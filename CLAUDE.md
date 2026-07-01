@@ -2,15 +2,14 @@ Guidance for Claude Code when working in this repository.
 
 ## ⚠️ Build status — READ THIS FIRST
 
-**This repo is NOT finished and NOT yet functional.** It was cloned from a sibling project
-(`deal-hunter`, a travel-deal finder) and is being transformed, task by task, into the
-**Weekend Concierge** described in `PLAN.md`. Much of what you see is LEFTOVER deal-hunter code
-(hotel/price/deal wording, `find_city_anomalies.py`, etc.) that has not been rewritten yet.
+**All target modules have landed.** `common.py`, `scrapers.py`, `weather.py`, `memory.py`,
+`config.py`, `weekend_concierge.py`, `.github/workflows/weekly.yml`, and `preferences.md` all
+exist per `PLAN.md`. What remains is verification (offline pipeline test, live smoke test — see
+`PLAN.md`'s Verification section) and ongoing prompt/scraper tuning, not a from-scratch build.
 
-- **`PLAN.md` is the source of truth for the target design. This file describes the end-state.**
+- **`PLAN.md` is the source of truth for the target design.**
 - Where the current code disagrees with `PLAN.md` or your task, the plan/task wins.
-- Reuse deal-hunter's infrastructure verbatim where the plan says so (`common.py` especially).
-- Update this file as pieces land; delete the leftover deal-hunter references as you replace them.
+- `common.py` is deal-hunter's infrastructure reused verbatim by design — don't modify it here.
 
 ## What this is
 
@@ -25,7 +24,7 @@ JSON state committed back by CI.
 Same Pareto ethos as its sibling: small, flat, readable scripts over clever abstractions. If a
 change adds a framework or a layer of indirection to save a few lines, it's probably wrong here.
 
-## Pipeline (target — see PLAN.md for the full diagram)
+## Pipeline (see PLAN.md for the full diagram)
 
 ```
 weekend_concierge.py
@@ -45,7 +44,7 @@ weekend_concierge.py
   └─ Always writes state/: weekend_signals.json, weekend_log.md, memory.json/.md, signals_seen.json
 ```
 
-## Files (target)
+## Files
 
 | File | Role |
 |---|---|
@@ -54,7 +53,7 @@ weekend_concierge.py
 | `weather.py` | open-meteo (no key) → soft weekend summary; strong signals only. |
 | `memory.py` | `load/save/prune/summarize_for_prompt`; evergreen catalog + suggestion ledger. |
 | `config.py` | Knobs, source registry, seed evergreens, per-stage model roles, prompts, schemas. |
-| `weekend_concierge.py` | The pipeline (HARVEST→FIND→SKEPTIC→anti-repeat→CONCIERGE→email). |
+| `weekend_concierge.py` | **Landed.** The pipeline (HARVEST→FIND→SKEPTIC→anti-repeat→CONCIERGE→email). |
 | `preferences.md` | Hand-edited feedback ("Loved / Not interested / Constraints"), injected into prompts. |
 | `.github/workflows/weekly.yml` | Thursday cron; commits `state/`. |
 | `state/*.json` | CI-managed state. Seeds: `memory.json={"evergreen":{},"ledger":[]}`, `signals_seen.json={"seen":{},"monthly_count":{}}`. |
