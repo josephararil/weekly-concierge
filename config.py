@@ -23,7 +23,7 @@ MAX_HARVEST_ITEMS = 200
 # equivalents are looked up in GEMINI_MODEL_MAP below.
 MODEL_FIND      = "claude-haiku-4-5-20251001"  # Stage 1: fast + web-search capable, consolidates harvest+leads
 MODEL_SKEPTIC   = "claude-sonnet-4-6"          # Stage 2: stronger reasoning, the hallucination guard
-MODEL_CONCIERGE = "claude-sonnet-4-6"          # Stage 3: strong prose writer, no search
+MODEL_CONCIERGE = "claude-haiku-4-5-20251001"          # Stage 3: strong prose writer, no search
 
 # Maps Anthropic model names (canonical keys) to Gemini equivalents.
 # Used when LLM_PROVIDER=gemini. Add a new entry here whenever a new model role
@@ -81,47 +81,203 @@ EVERGREEN_COOLDOWN_DAYS = 70  # cooldown before the same evergreen idea can resu
 
 # ── Evergreen seed catalog ───────────────────────────────────────────────────
 # Merged into state/memory.json's evergreen catalog on first run (see memory.record_evergreen).
-SEED_EVERGREEN = [
+[
     {
         "name": "Stara Zagora Zoo",
-        "location": "Stara Zagora",
-        "area": "~50 min drive from Plovdiv",
-        "description": "One of Bulgaria's larger zoos — a reliable half-day out for a 4-year-old.",
-        "tags": ["animals", "outdoor"],
-        "source": "seed",
+        "location": "Ayazmoto Park, Stara Zagora",
+        "area": "Stara Zagora (~50 min drive)",
+        "description": "One of Bulgaria's largest and most modernly renovated zoos, situated inside the sprawling Ayazmoto Park. Features wide walking alleys, bears, big cats, and herbivores. Excellent half-day outdoor trip for young kids.",
+        "logistics": {
+            "drive_time_mins": 50,
+            "parking": "Dedicated lot at park entrance, short uphill walk to zoo gates.",
+            "duration": "2-3 hours",
+            "weather_suitability": "OUTDOOR_PERFECT, CLOUDY"
+        },
+        "tags": ["animals", "outdoor", "park", "family_focus"],
+        "source": "seed"
     },
     {
         "name": "Plovdiv Regional Natural History Museum",
-        "location": "Plovdiv",
-        "area": "in town",
-        "description": "Compact natural history museum with taxidermy and a small aquarium — easy indoor fallback.",
-        "tags": ["museum", "indoor"],
-        "source": "seed",
+        "location": "3 Hristo G. Danov Str, Plovdiv",
+        "area": "In town (Center)",
+        "description": "The most interactive natural history museum in the country. Houses an impressive digital planetarium, a dedicated 3D aquarium basement, a live tropical butterfly dome, and extensive taxidermy/dinosaur halls. Perfect high-utility indoor destination.",
+        "logistics": {
+            "drive_time_mins": 0,
+            "parking": "Blue Zone city parking (difficult); better to walk from Main Street.",
+            "duration": "1.5-2 hours",
+            "weather_suitability": "RAINY, COLD, HOT"
+        },
+        "tags": ["museum", "indoor", "aquarium", "family_focus"],
+        "source": "seed"
     },
     {
-        "name": "Rowing Channel bike ride",
-        "location": "Kanala (Rowing Channel), Plovdiv",
-        "area": "in town",
-        "description": "Flat paved paths alongside the water, bike/scooter rental on site — easy free outdoor outing.",
-        "tags": ["outdoor", "free", "active"],
-        "source": "seed",
+        "name": "Rowing Channel (Grehna Baza)",
+        "location": "Rowing Channel Park, Plovdiv",
+        "area": "In town (Zapad)",
+        "description": "A massive 5km flat paved loop entirely separated from car traffic. Complete with on-site bicycle, family-quad, and scooter rentals, multiple children's playgrounds, and standard snack/coffee kiosks along the banks. High-energy, low-cost outdoor staple.",
+        "logistics": {
+            "drive_time_mins": 0,
+            "parking": "Large paid/free municipal lots near the main grandstands and hotel clusters.",
+            "duration": "1-3 hours",
+            "weather_suitability": "OUTDOOR_PERFECT, CLOUDY, MILD"
+        },
+        "tags": ["outdoor", "free", "active", "stroller_friendly", "family_focus"],
+        "source": "seed"
     },
     {
-        "name": "Ancient Theatre of Philippopolis",
-        "location": "Plovdiv Old Town",
-        "area": "in town",
-        "description": "Roman-era amphitheatre in the Old Town; a short scenic walk even without an event on.",
-        "tags": ["history", "outdoor", "free"],
-        "source": "seed",
+        "name": "Ancient Theatre of Philippopolis & Old Town Alleys",
+        "location": "2 Tzar Ivaylo Str, Plovdiv Old Town",
+        "area": "In town (Old Town)",
+        "description": "A beautifully preserved 2nd-century Roman amphitheater still hosting active performances. The surrounding architectural reserve features cobblestone walking routes, panoramic viewpoints from Nebet Tepe, and traditional old-world architecture.",
+        "logistics": {
+            "drive_time_mins": 0,
+            "parking": "Strictly limited access. Park below the hills (e.g., Kapana or Monday Market) and walk up.",
+            "duration": "1-2 hours",
+            "weather_suitability": "OUTDOOR_PERFECT, CLOUDY"
+        },
+        "tags": ["history", "outdoor", "scenic", "culture"],
+        "source": "seed"
     },
     {
-        "name": "Bachkovo Monastery",
-        "location": "Bachkovo",
-        "area": "~40 min drive from Plovdiv",
-        "description": "Scenic mountain monastery with a river nearby for a picnic stop — a gentle half-day trip.",
-        "tags": ["nature", "history", "outdoor"],
-        "source": "seed",
+        "name": "Bachkovo Monastery & Chaya River Trail",
+        "location": "Bachkovo Village",
+        "area": "Asenovgrad Region (~40 min drive)",
+        "description": "The second-largest monastery in Bulgaria, nestled deep in the Rhodope mountains. Features stunning central courtyards and murals. The approach market lane is filled with local food vendors, leading to gentle riverside walking paths and picnic spots upstream.",
+        "logistics": {
+            "drive_time_mins": 40,
+            "parking": "Paid managed private lots directly outside the main monastery bazaar gates.",
+            "duration": "3-4 hours",
+            "weather_suitability": "OUTDOOR_PERFECT, MILD"
+        },
+        "tags": ["nature", "history", "outdoor", "monastery", "scenic"],
+        "source": "seed"
     },
+    {
+        "name": "Lauta Park (Park Lauta)",
+        "location": "Trakia District, Plovdiv",
+        "area": "In town (Trakia)",
+        "description": "A dense forest-style park inside the city limits. Equipped with extensive modern wooden playgrounds, a fully fenced toddler-safe zone, outdoor fitness zones, dedicated dog parks, and paved paths ideal for kids' balance bikes.",
+        "logistics": {
+            "drive_time_mins": 0,
+            "parking": "Free roadside parking along the northern and eastern borders of the park.",
+            "duration": "1-2 hours",
+            "weather_suitability": "OUTDOOR_PERFECT, HOT, CLOUDY"
+        },
+        "tags": ["outdoor", "free", "park", "stroller_friendly", "family_focus"],
+        "source": "seed"
+    },
+    {
+        "name": "Asen's Fortress (Asenova Krepost)",
+        "location": "Asenovgrad Foothills",
+        "area": "Asenovgrad Region (~30 min drive)",
+        "description": "A medieval cliffside fortress offering sweeping, dramatic 360-degree views of the Rhodope mountains and the valley below. Features the fully intact 12th-century Church of the Holy Mother of God. Steep but well-secured paths.",
+        "logistics": {
+            "drive_time_mins": 30,
+            "parking": "Small paved mountain parking lot directly at the foot of the fortress visitor center.",
+            "duration": "1-1.5 hours",
+            "weather_suitability": "OUTDOOR_PERFECT, CLOUDY"
+        },
+        "tags": ["history", "outdoor", "scenic", "hiking_light"],
+        "source": "seed"
+    },
+    {
+        "name": "Children's Railway (Dzhendem Tepe)",
+        "location": "Youth Hill (Mladezhki Halm), Plovdiv",
+        "area": "In town (Zapad/Center)",
+        "description": "A legendary miniature train ride specifically for children. The 25-minute journey includes a real railway crossing, a 50-meter tunnel, and a panoramic viaduct. The hill itself offers excellent paved walking paths and a large playground at the base.",
+        "logistics": {
+            "drive_time_mins": 0,
+            "parking": "Free parking available near the base of the hill and Pioneer Station.",
+            "duration": "1-2 hours",
+            "weather_suitability": "OUTDOOR_PERFECT, CLOUDY"
+        },
+        "tags": ["outdoor", "attraction", "train", "family_focus"],
+        "source": "expanded"
+    },
+    {
+        "name": "Ostrov Svoboda (Island of Freedom)",
+        "location": "Maritsa River Island, Pazardzhik",
+        "area": "Pazardzhik (~40 min drive)",
+        "description": "An incredibly kid-friendly, massive flat park situated on an island in the Maritsa river. It features a free zoo (housing tigers, lions, monkeys, and llamas), roaring dinosaur models, the 'world's longest bench', and numerous modern playgrounds.",
+        "logistics": {
+            "drive_time_mins": 40,
+            "parking": "Dedicated parking lots near the pedestrian bridges leading to the island.",
+            "duration": "3-4 hours",
+            "weather_suitability": "OUTDOOR_PERFECT, CLOUDY, MILD"
+        },
+        "tags": ["animals", "outdoor", "park", "free", "family_focus"],
+        "source": "expanded"
+    },
+    {
+        "name": "Aviation Museum Krumovo",
+        "location": "Near Plovdiv Airport, Krumovo",
+        "area": "Krumovo (~15 min drive)",
+        "description": "A fascinating open-air museum displaying over 60 authentic military and civilian aircraft, helicopters, and space capsules. Kids love wandering among the massive machines, and there are options to peek inside some aircraft cabins.",
+        "logistics": {
+            "drive_time_mins": 15,
+            "parking": "Free dedicated parking right at the museum entrance.",
+            "duration": "1-2 hours",
+            "weather_suitability": "OUTDOOR_PERFECT, CLOUDY"
+        },
+        "tags": ["museum", "outdoor", "educational", "family_focus"],
+        "source": "expanded"
+    },
+    {
+        "name": "Tsar Simeon Garden & Singing Fountains",
+        "location": "City Center, Plovdiv",
+        "area": "In town (Center)",
+        "description": "The premier city park in Plovdiv, perfectly designed for families. Features completely flat, wide paved paths ideal for strollers or a 14-inch bicycle, massive trees for summer shade, multiple large enclosed playgrounds, and the spectacular central fountains.",
+        "logistics": {
+            "drive_time_mins": 0,
+            "parking": "Blue Zone parking or paid private lots nearby (e.g., Trimontium Hotel).",
+            "duration": "1-3 hours",
+            "weather_suitability": "OUTDOOR_PERFECT, MILD, HOT"
+        },
+        "tags": ["outdoor", "park", "free", "stroller_friendly", "family_focus"],
+        "source": "expanded"
+    },
+    {
+        "name": "Hisarya Parks & Roman Ruins",
+        "location": "Momina Salza Park, Hisarya",
+        "area": "Hisarya (~45 min drive)",
+        "description": "A quiet spa town boasting massive, well-preserved Roman fortress walls (like the famous 'Camels' gate) integrated directly into lush, stroller-friendly green parks. Perfect for safe walking, exploring safe ruins, and viewing natural hot mineral springs.",
+        "logistics": {
+            "drive_time_mins": 45,
+            "parking": "Plentiful free and low-cost street parking around the main park perimeters.",
+            "duration": "2-4 hours",
+            "weather_suitability": "OUTDOOR_PERFECT, CLOUDY, MILD"
+        },
+        "tags": ["outdoor", "history", "park", "scenic", "family_focus"],
+        "source": "expanded"
+    },
+    {
+        "name": "State Puppet Theatre (Kuklen Teatar)",
+        "location": "14 Hristo G. Danov Str, Plovdiv",
+        "area": "In town (Center)",
+        "description": "A highly acclaimed puppet theatre offering specialized weekend morning performances aimed precisely at toddlers and preschoolers. Shows are visually engaging, short enough for small attention spans, and an excellent indoor rainy-day staple.",
+        "logistics": {
+            "drive_time_mins": 0,
+            "parking": "Blue Zone city parking; easiest to walk from the pedestrian center.",
+            "duration": "1 hour",
+            "weather_suitability": "RAINY, COLD, HOT"
+        },
+        "tags": ["indoor", "culture", "theatre", "family_focus"],
+        "source": "expanded"
+    },
+    {
+        "name": "Belashtitsa Plane Trees (Chinarite)",
+        "location": "Belashtitsa Village",
+        "area": "Rodopi Foothills (~20 min drive)",
+        "description": "A beautiful, easy nature escape just outside the city featuring a dense grove of giant, 1000-year-old plane trees. The area provides vast, thick trunks for kids to explore, a nearby watchtower, and flat meadows ideal for a short, effortless family picnic.",
+        "logistics": {
+            "drive_time_mins": 20,
+            "parking": "Free parking near the Belashtitsa Monastery and the tree grove.",
+            "duration": "1-2 hours",
+            "weather_suitability": "OUTDOOR_PERFECT, MILD"
+        },
+        "tags": ["nature", "outdoor", "scenic", "free", "family_focus"],
+        "source": "expanded"
+    }
 ]
 
 # ── LLM prompts ─────────────────────────────────────────────────────────────
@@ -313,7 +469,7 @@ verdict: "keep" (verified or plausible, no changes needed) | "correct" (real, bu
 
 CONCIERGE_PROMPT = """Today is {today}. You are a warm, knowledgeable personal concierge writing a short weekly email for a family of 3 (2 adults + a 4-year-old) based in {home_area}. They have no TV, don't read local news, and rely entirely on this email to know what's worth doing this weekend and in the weeks ahead.
 
-Write in a warm, conversational tone — like a friend who keeps track of the city for you. This is a SOFT ITINERARY, not a schedule and never a scoreboard: no scores, no rankings, no "family_fit: 82" leaking into the copy.
+Write in a warm, conversational tone — like a friendly personal assistant who keeps track of the city for you. This is a SOFT ITINERARY, not a schedule and never a scoreboard: no scores, no rankings, no "family_fit: 82" leaking into the copy. The user's name is Joseph and his daughter's name is Sophie, a bright 4-year-old. They are English-speaking and don't read Bulgarian, so all event names, locations, and descriptions must be in English.
 
 ---
 
@@ -330,7 +486,7 @@ Each day is one of: OUTDOOR_PERFECT, HOT, COLD, RAINY, CLOUDY, MILD, UNKNOWN. Us
 - HOT → favor water/shade options, suggest going early or late in the day, mention it lightly ("it'll be a hot one, so...").
 - RAINY → steer toward indoor picks (museums, the Natural History Museum) and softly caveat outdoor events on that day.
 - COLD → favor indoor or bundle-up-friendly options.
-- CLOUDY / MILD → a normal day, no strong steer needed either way.
+- CLOUDY / MILD → a normal day, no steer needed either way.
 - UNKNOWN → no forecast signal available; don't mention weather for that day at all.
 Treat this as an educated guess, not gospel — never claim certainty about the weather.
 
@@ -347,12 +503,13 @@ Treat this as an educated guess, not gospel — never claim certainty about the 
 ---
 
 ### STRUCTURE
-Organize the email into three loose sections (use these or similar natural headers):
-1. **This weekend** — events happening this Saturday/Sunday.
-2. **Also worth knowing** — 1-2 rotating evergreen ideas (zoo, museum, rowing channel, etc.) as a fallback or add-on.
-3. **Looking ahead** — notable events 2-4 weeks out worth planning for.
+Organize the email into four loose sections (use these or similar natural headers):
+1. **Intro** — introduce yourself as Gemini, and include a short paragraph of context and warm framing for the email. Mention the weather signal if possible, and weave in any family feedback that helps set the tone. Don't make it cringe or over-the-top; just a friendly, helpful voice. If you have no weather signal, skip mentioning it rather than inventing one. Try to make this helpful, short and sweet.
+2. **This weekend** — events happening this Saturday/Sunday. Make sure to add a line or two of context for each, and weave in any relevant weather signal. Include relevant context - eg. if your event is "Kids Party in the Boris Garden", mention WHAT exactly is happening in the park to make this actionable rather than just a generic event. If nothing is happening this weekend, skip this section gracefully rather than leaving an awkward header with no content.
+3. **Also worth knowing** — 1-2 rotating evergreen ideas (zoo, museum, rowing channel, etc.) as a fallback or add-on. These are things the user can do any weekend, and are treated more as suggestions. Include a line or two of context for each, and weave in any relevant weather signal. 
+4. **Looking ahead** — notable events 2-4 weeks out worth planning for.
 
-If a section has nothing surviving, skip it gracefully rather than leaving an awkward header with no content — but there should almost always be something in "Also worth knowing" since evergreens are the guaranteed fallback.
+If a section has nothing surviving, skip it gracefully rather than leaving an awkward header with no content — but there should almost always be something in "Also worth knowing" since evergreens are the guaranteed fallback. Candidates may contain logistical meta-data like drive times or parking; weave these details naturally into the prose to help the family plan their day. If a candidate has a specific date, mention it in the prose; if it's evergreen, don't give a date.
 
 ---
 
