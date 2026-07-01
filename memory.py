@@ -1,61 +1,28 @@
-"""memory.py — self-improving price memory for the diamond finder.
+"""memory.py — self-improving memory for the weekend concierge.
 
 state/memory.json structure:
-  baselines: {destination|season → {realistic_price_eur, note, source, updated}}
-  ledger:    [{date, destination, window, type, claimed_price, verdict,
-               actual_price, source, note}]
+  evergreen: {name → {location, area, description, tags, last_suggested, discovered, source}}
+  ledger:    [{date, title, category, when, location, url, score, verdict, note}]
 
 Ledger is capped to MAX_LEDGER_ENTRIES entries and MAX_LEDGER_DAYS days.
 summarize_for_prompt() produces a compact, bounded text block for prompt injection.
 """
 
-import json, datetime as dt, os, re
+import json, datetime as dt, os
 
 STATE_DIR = "state"
 _MEMORY_FILE = "memory.json"
 _MEMORY_MD   = "memory.md"
 
-_MONTH_NAMES = {
-    "january": "01", "february": "02", "march": "03", "april": "04",
-    "may": "05", "june": "06", "july": "07", "august": "08",
-    "september": "09", "october": "10", "november": "11", "december": "12",
-    "jan": "01", "feb": "02", "mar": "03", "apr": "04",
-    "jun": "06", "jul": "07", "aug": "08",
-    "sep": "09", "oct": "10", "nov": "11", "dec": "12",
-}
-
-MAX_LEDGER_ENTRIES  = 200    # hard cap on ledger rows
-MAX_LEDGER_DAYS     = 180    # TTL for ledger entries
-MAX_PROMPT_BASELINES = 10    # baselines injected per prompt
-MAX_PROMPT_OUTCOMES  = 10    # recent corrections/kills injected per prompt
+MAX_LEDGER_ENTRIES     = 200    # hard cap on ledger rows
+MAX_LEDGER_DAYS         = 180   # TTL for ledger entries
+MAX_PROMPT_EVERGREENS   = 10    # off-cooldown evergreens injected per prompt
+MAX_PROMPT_SUGGESTIONS  = 10    # recent suggestions injected per prompt
+EVERGREEN_COOLDOWN_DAYS = 70    # an evergreen is off-cooldown once this many days have passed
 
 
 def _path(name):
     return os.path.join(STATE_DIR, name)
-
-
-def season_key(text):
-    """Map a free-text window/dates string to a coarse 'YYYY-MM' key.
-
-    Looks for the first month name (or number) paired with a 4-digit year.
-    Falls back to the stripped input string if nothing is parseable."""
-    t = text.strip()
-    # Numeric YYYY-MM / YYYY/MM
-    m = re.search(r'(20\d{2})[-/](\d{1,2})\b', t)
-    if m:
-        return f"{m.group(1)}-{int(m.group(2)):02d}"
-    # Numeric MM-YYYY / MM/YYYY
-    m = re.search(r'\b(\d{1,2})[-/](20\d{2})\b', t)
-    if m:
-        return f"{m.group(2)}-{int(m.group(1)):02d}"
-    # Month name + 4-digit year (first month name found wins)
-    yr = re.search(r'(20\d{2})', t)
-    if yr:
-        tl = t.lower()
-        for name, num in _MONTH_NAMES.items():
-            if re.search(rf'\b{re.escape(name)}\b', tl):
-                return f"{yr.group(1)}-{num}"
-    return t
 
 
 def _clip(text, limit):
@@ -65,25 +32,6 @@ def _clip(text, limit):
     return text[:limit].rsplit(" ", 1)[0] + "…"
 
 
-def _extract_price(text):
-    """Best-effort extraction of the first EUR amount from a string.
-
-    Handles €72, EUR 72, 72 EUR, and ranges like €72-95 (returns lower bound).
-    Returns None when nothing parseable is found."""
-    if not text:
-        return None
-    m = re.search(r'€(\d+(?:[.,]\d+)?)', text)
-    if m:
-        return float(m.group(1).replace(',', '.'))
-    m = re.search(r'\bEUR\s+(\d+(?:[.,]\d+)?)', text, re.IGNORECASE)
-    if m:
-        return float(m.group(1).replace(',', '.'))
-    m = re.search(r'(\d+(?:[.,]\d+)?)\s*EUR\b', text, re.IGNORECASE)
-    if m:
-        return float(m.group(1).replace(',', '.'))
-    return None
-
-
 # ── load / save ────────────────────────────────────────────────────────────────
 
 def load():
@@ -91,11 +39,11 @@ def load():
     try:
         with open(_path(_MEMORY_FILE), encoding="utf-8") as f:
             data = json.load(f)
-        data.setdefault("baselines", {})
+        data.setdefault("evergreen", {})
         data.setdefault("ledger", [])
         return data
     except (FileNotFoundError, json.JSONDecodeError):
-        return {"baselines": {}, "ledger": []}
+        return {"evergreen": {}, "ledger": []}
 
 
 def save(memory):
@@ -108,37 +56,38 @@ def save(memory):
 
 # ── write ──────────────────────────────────────────────────────────────────────
 
-def record_baseline(memory, destination, season, realistic_price_eur, note="", source=""):
-    """Upsert a realistic price baseline for a destination/season pair."""
-    key = f"{destination}|{season}"
-    memory["baselines"][key] = {
-        "realistic_price_eur": realistic_price_eur,
-        "note": note,
-        "source": source,
-        "updated": dt.date.today().isoformat(),
+def record_evergreen(memory, name, location="", area="", description="", tags=None, source="", suggested=False):
+    """Upsert an evergreen catalog entry, preserving fields not passed this call.
+
+    Set suggested=True to bump last_suggested to today — call this when the item is
+    actually included in an email, so the anti-repeat cooldown has something to check."""
+    existing = memory["evergreen"].get(name, {})
+    memory["evergreen"][name] = {
+        "location":       location or existing.get("location", ""),
+        "area":           area or existing.get("area", ""),
+        "description":    description or existing.get("description", ""),
+        "tags":           tags if tags is not None else existing.get("tags", []),
+        "discovered":     existing.get("discovered", dt.date.today().isoformat()),
+        "source":         source or existing.get("source", ""),
+        "last_suggested": dt.date.today().isoformat() if suggested else existing.get("last_suggested"),
     }
 
 
-def record_outcome(memory, destination, window, type_, claimed_price, verdict,
-                   actual_price=None, source="", note="", llm_score=None, final_score=None):
-    """Append one pipeline outcome to the rolling ledger.
+def record_suggestion(memory, title, category, when, location="", url="", score=None, verdict="", note=""):
+    """Append one candidate's outcome to the rolling ledger.
 
-    llm_score  = the scorer's raw desirability score (0-100), pre-modifiers.
-    final_score = the pipeline's final score after deterministic price/transit modifiers.
-    Both are kept so a candidate's score history survives across runs (e.g. the same hotel
-    scoring 69 at €86 and 74 at €79) instead of being lost to a binary keep/kill."""
+    category: event_this_weekend | event_lookahead | evergreen
+    verdict:  sent | killed | corrected | skipped ..."""
     memory["ledger"].append({
-        "date":          dt.date.today().isoformat(),
-        "destination":   destination,
-        "window":        window,
-        "type":          type_,
-        "claimed_price": claimed_price,
-        "verdict":       verdict,   # diamond | good | skip | kill | blocked | correct
-        "actual_price":  actual_price,
-        "llm_score":     llm_score,
-        "final_score":   final_score,
-        "source":        source,
-        "note":          note,
+        "date":     dt.date.today().isoformat(),
+        "title":    title,
+        "category": category,
+        "when":     when,
+        "location": location,
+        "url":      url,
+        "score":    score,
+        "verdict":  verdict,
+        "note":     note,
     })
 
 
@@ -153,67 +102,49 @@ def prune(memory):
 
 # ── prompt summary ─────────────────────────────────────────────────────────────
 
-def summarize_for_prompt(memory, cities=None):
-    """Return a compact text block for injection into FIND/SKEPTIC/VERIFY prompts.
-
-    cities: optional list of city/destination strings; when given, only baselines
-    whose key contains one of these strings are included (case-insensitive).
-    Result is intentionally capped so prompt size stays controlled."""
+def summarize_for_prompt(memory):
+    """Return a compact text block for injection into FIND/CONCIERGE prompts:
+    off-cooldown evergreens (safe to propose again) plus recent suggestions for
+    calibration. Result is intentionally capped so prompt size stays controlled."""
     lines = []
+    cutoff = (dt.date.today() - dt.timedelta(days=EVERGREEN_COOLDOWN_DAYS)).isoformat()
 
-    # --- Baselines ---
-    baselines = memory.get("baselines", {})
-    if baselines:
-        relevant = []
-        for key, b in sorted(baselines.items(), key=lambda kv: kv[1].get("updated", ""), reverse=True):
-            if cities:
-                dest_part = key.split("|")[0]
-                if not any(c.lower() in dest_part.lower() for c in cities):
-                    continue
-            price = b.get("realistic_price_eur")
-            note  = b.get("note", "").strip()
-            entry = f"  {key}: realistic ~€{price}/night"
-            if note:
-                entry += f" — {note}"
-            relevant.append(entry)
-            if len(relevant) >= MAX_PROMPT_BASELINES:
+    # --- Off-cooldown evergreens ---
+    evergreen = memory.get("evergreen", {})
+    if evergreen:
+        off_cooldown = []
+        for name, e in sorted(evergreen.items()):
+            last = e.get("last_suggested")
+            if last and last >= cutoff:
+                continue
+            area = e.get("area", "").strip()
+            desc = e.get("description", "").strip()
+            entry = f"  {name}" + (f" ({area})" if area else "")
+            if desc:
+                entry += f" — {_clip(desc, 140)}"
+            off_cooldown.append(entry)
+            if len(off_cooldown) >= MAX_PROMPT_EVERGREENS:
                 break
-        if relevant:
-            lines.append("Known realistic prices (from past verifications):")
-            lines.extend(relevant)
+        if off_cooldown:
+            lines.append("Evergreen ideas off cooldown (safe to suggest again):")
+            lines.extend(off_cooldown)
 
-    # --- Recent outcomes that carry calibration signal (skip its confirms/diamonds — a
-    # diamond needs no warning; the misses, corrections and mediocre scores teach the most).
+    # --- Recent suggestions ---
     ledger = memory.get("ledger", [])
-    recent_bad = sorted(
-        [e for e in ledger if e.get("verdict") in
-         ("correct", "kill", "hallucinated", "skeptic_kill", "skip", "blocked", "good")],
-        key=lambda e: e.get("date", ""),
-        reverse=True,
-    )[:MAX_PROMPT_OUTCOMES]
-    if recent_bad:
+    recent = sorted(ledger, key=lambda e: e.get("date", ""), reverse=True)[:MAX_PROMPT_SUGGESTIONS]
+    if recent:
         if lines:
             lines.append("")
-        lines.append("Recent outcomes (scores + corrections from past runs — calibrate to these):")
-        for e in recent_bad:
-            dest    = e.get("destination", "?")
-            win     = e.get("window", "?")
+        lines.append("Recently suggested (avoid repeating unless still upcoming):")
+        for e in recent:
+            title   = e.get("title", "?")
+            when    = e.get("when", "?")
             verdict = e.get("verdict", "?")
-            actual  = e.get("actual_price")
-            final   = e.get("final_score")
-            llm     = e.get("llm_score")
             note    = e.get("note", "").strip()
-
-            parts = [f"  {dest} ({win}): {verdict}"]
-            if llm is not None and final is not None:
-                parts.append(f"score {llm}->{final}")
-            elif final is not None:
-                parts.append(f"final {final}")
-            if actual:
-                parts.append(f"€{actual}/night")
+            entry = f"  {title} ({when}): {verdict}"
             if note:
-                parts.append(_clip(note, 120))
-            lines.append(", ".join(parts))
+                entry += f" — {_clip(note, 120)}"
+            lines.append(entry)
 
     return "\n".join(lines) if lines else "(no prior memory)"
 
@@ -222,63 +153,59 @@ def summarize_for_prompt(memory, cities=None):
 
 def _write_md(memory):
     today = dt.date.today().isoformat()
-    lines = [f"# Diamond Finder Memory — updated {today}", ""]
+    lines = [f"# Weekend Concierge Memory — updated {today}", ""]
 
-    baselines = memory.get("baselines", {})
-    lines.append(f"## Price Baselines ({len(baselines)} entries)")
+    evergreen = memory.get("evergreen", {})
+    lines.append(f"## Evergreen Catalog ({len(evergreen)} entries)")
     lines.append("")
-    if baselines:
-        for key, b in sorted(baselines.items()):
-            price   = b.get("realistic_price_eur")
-            note    = b.get("note", "")
-            updated = b.get("updated", "?")
-            src     = b.get("source", "")
-            lines.append(f"### {key}")
-            lines.append(f"**Realistic:** ~€{price}/night &nbsp; **Updated:** {updated}")
-            if note:
-                lines.append(note)
+    if evergreen:
+        for name, e in sorted(evergreen.items()):
+            location = e.get("location", "")
+            area     = e.get("area", "")
+            desc     = e.get("description", "")
+            tags     = e.get("tags", [])
+            discovered = e.get("discovered", "?")
+            last_suggested = e.get("last_suggested") or "never"
+            src      = e.get("source", "")
+            lines.append(f"### {name}")
+            loc_bits = [b for b in (location, area) if b]
+            if loc_bits:
+                lines.append(f"**Location:** {' / '.join(loc_bits)}")
+            lines.append(f"**Discovered:** {discovered} &nbsp; **Last suggested:** {last_suggested}")
+            if desc:
+                lines.append(desc)
+            if tags:
+                lines.append(f"_Tags: {', '.join(tags)}_")
             if src:
                 lines.append(f"_Source: {src}_")
             lines.append("")
     else:
-        lines.append("_No baselines recorded yet._")
+        lines.append("_No evergreen ideas recorded yet._")
         lines.append("")
 
     ledger = memory.get("ledger", [])
-    lines.append(f"## Outcome Ledger ({len(ledger)} entries)")
+    lines.append(f"## Suggestion Ledger ({len(ledger)} entries)")
     lines.append("")
     if ledger:
         recent = sorted(ledger, key=lambda e: e.get("date", ""), reverse=True)
-        _icons = {"diamond": "💎", "good": "👍", "skip": "·", "confirm": "✅",
-                  "correct": "🔧", "kill": "❌", "blocked": "🔒"}
+        _icons = {"sent": "✅", "killed": "❌", "corrected": "🔧", "skipped": "·"}
         for e in recent[:50]:
-            date    = e.get("date", "?")
-            dest    = e.get("destination", "?")
-            win     = e.get("window", "?")
-            verdict = e.get("verdict", "?")
-            claimed = e.get("claimed_price")
-            actual  = e.get("actual_price")
-            llm     = e.get("llm_score")
-            final   = e.get("final_score")
-            note    = e.get("note", "").strip()
+            date     = e.get("date", "?")
+            title    = e.get("title", "?")
+            category = e.get("category", "?")
+            when     = e.get("when", "?")
+            verdict  = e.get("verdict", "?")
+            score    = e.get("score")
+            note     = e.get("note", "").strip()
 
             icon = _icons.get(verdict, "•")
-            price_str = ""
-            if claimed:
-                price_str += f" claimed=€{claimed}"
-            if actual:
-                price_str += f" actual=€{actual}"
-            score_str = ""
-            if llm is not None and final is not None:
-                score_str = f" score={llm}->{final}"
-            elif final is not None:
-                score_str = f" final={final}"
+            score_str = f" score={score}" if score is not None else ""
             suffix = f" — {_clip(note, 100)}" if note else ""
-            lines.append(f"- {icon} {date} | {dest} | {win} | {verdict}{score_str}{price_str}{suffix}")
+            lines.append(f"- {icon} {date} | {title} | {category} | {when} | {verdict}{score_str}{suffix}")
         if len(ledger) > 50:
             lines.append(f"_... and {len(ledger) - 50} earlier entries_")
     else:
-        lines.append("_No outcomes recorded yet._")
+        lines.append("_No suggestions recorded yet._")
 
     with open(_path(_MEMORY_MD), "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
