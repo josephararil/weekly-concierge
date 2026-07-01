@@ -62,6 +62,15 @@
       "discovered": "2026-07-01",
       "source": "seed",
       "last_suggested": null
+    },
+    "Rowing Channel Family Bike Ride": {
+      "location": "Rowing Canal (Grebi Kanal), Plovdiv",
+      "area": "",
+      "description": "A completely flat, car-free paved loop with bike, family-kart, and scooter rentals on-site, perfect for an active but easy outdoor morning with a toddler.",
+      "tags": [],
+      "discovered": "2026-07-01",
+      "source": "find",
+      "last_suggested": "2026-07-01"
     }
   },
   "ledger": [
@@ -86,6 +95,61 @@
       "score": 60,
       "verdict": "sent",
       "note": "Compact natural history museum with taxidermy and a small aquarium — easy indoor fallback."
+    },
+    {
+      "date": "2026-07-01",
+      "title": "Summer in the Old Town",
+      "category": "event_this_weekend",
+      "when": "Ongoing throughout the weekend, July 4-5, 2026",
+      "location": "Various venues in the Old Town, Plovdiv",
+      "url": "https://www.visitplovdiv.com",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Verified as an ongoing festival running throughout the summer of 2026 in Plovdiv."
+    },
+    {
+      "date": "2026-07-01",
+      "title": "Groove Valley Festival in Kazanlak",
+      "category": "event_this_weekend",
+      "when": "Saturday, July 4, 2026, from 16:00",
+      "location": "Melody Park, Kazanlak",
+      "url": "https://bilet.bg",
+      "score": 72,
+      "verdict": "sent",
+      "note": "Verified as a real open-air festival in Kazanlak on July 4, 2026, which is within a 90-minute drive."
+    },
+    {
+      "date": "2026-07-01",
+      "title": "Western Festival (Уестърн фестивал)",
+      "category": "event_lookahead",
+      "when": "July 10 – July 12, 2026",
+      "location": "Dengri Eco Resorts, Velingrad",
+      "url": "https://bilet.bg",
+      "score": 92,
+      "verdict": "sent",
+      "note": "Verified as a real event scheduled at Dengri Eco Resorts in Velingrad on the correct dates."
+    },
+    {
+      "date": "2026-07-01",
+      "title": "International Folklore Festival",
+      "category": "event_lookahead",
+      "when": "July 27 – July 31, 2026",
+      "location": "Ancient Theatre, Plovdiv",
+      "url": "https://www.visitplovdiv.com",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Verified as the 30th International Folklore Festival occurring July 27-31, 2026, at the Ancient Theatre."
+    },
+    {
+      "date": "2026-07-01",
+      "title": "Rowing Channel Family Bike Ride",
+      "category": "evergreen",
+      "when": "Always available (best on weekend mornings)",
+      "location": "Rowing Canal (Grebi Kanal), Plovdiv",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "A completely flat, car-free paved loop with bike, family-kart, and scooter rentals on-site, perfect for an active but easy outdoor morning with a toddler."
     }
   ]
 }
