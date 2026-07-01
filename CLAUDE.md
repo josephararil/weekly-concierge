@@ -50,7 +50,7 @@ weekend_concierge.py
 | File | Role |
 |---|---|
 | `common.py` | `llm()`, `send_email()`, `parse_json_block()`, state IO, Gemini two-step search. **Copied verbatim from deal-hunter — do not modify.** |
-| `scrapers.py` | **Centerpiece.** Two-tier per-source registry (raw-fetch default + structured upgrade), `harvest()`, `fetch()`, `bg_date()`. Adding a source is a one-line entry. |
+| `scrapers.py` | **Landed.** Two-tier per-source registry (raw-fetch default + structured upgrade), `harvest()`, `fetch()`, `text_of()`, `bg_date()`. Structured parsers: `plovdiv2019.eu` (its own JS calendar just navigates to a server-rendered `?f_time=all&page=N` — see the docstring) and `bilet.bg`. `eventim.bg` stays raw-fetch: it consistently times out from this dev environment (likely bot-challenged) and couldn't be verified against real HTML. `scrape_facebook` is a documented stub (raises `NotImplementedError`, caught by `harvest()`) — no auth/anti-bot handling yet. `config.ENABLED_SOURCES`/`MAX_HARVEST_ITEMS` (added ahead of the full config.py rewrite) turn sources on/off and cap volume. Adding a raw-fetch source is a one-line entry in `RAW_FETCH_SOURCES` + `ENABLED_SOURCES`. Tests: `test_scrapers.py` (offline, mocks network). |
 | `weather.py` | open-meteo (no key) → soft weekend summary; strong signals only. |
 | `memory.py` | `load/save/prune/summarize_for_prompt`; evergreen catalog + suggestion ledger. |
 | `config.py` | Knobs, source registry, seed evergreens, per-stage model roles, prompts, schemas. |

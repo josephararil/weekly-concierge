@@ -2,6 +2,24 @@
 
 import os
 
+# ── Scraper framework (scrapers.py) ──────────────────────────────────────────
+# NOTE: this repo is mid-transformation from deal-hunter into the Weekend Concierge
+# (see PLAN.md/CLAUDE.md) — most of this file is still deal-hunter leftovers. These
+# two knobs are the only pieces scrapers.py needs; the rest of config.py gets rewritten
+# for the concierge pipeline in a later step.
+
+# Every source scrapers.py knows how to run (keys into scrapers.SCRAPERS for the
+# structured tier, scrapers.RAW_FETCH_SOURCES for the raw-fetch tier). "facebook" is
+# a documented stub — left disabled until auth/anti-bot is worth solving.
+ENABLED_SOURCES = [
+    "plovdiv2019", "bilet",
+    "eventim", "ticketstation", "ticketbg", "dtp", "rnhm", "oldplovdiv",
+    "programata", "starazagora_tourist", "plovdiv_bg", "visitplovdiv", "marica",
+]
+
+# Volume cap applied to the deduped harvest before it's handed to FIND.
+MAX_HARVEST_ITEMS = 200
+
 # ── City list ───────────────────────────────────────────────────────────────
 # Cities the diamond finder uses as a search anchor. The LLM receives these as
 # the preferred destinations but can extend to nearby or thematically related
