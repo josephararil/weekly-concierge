@@ -1,1 +1,91 @@
-{"evergreen":{},"ledger":[]}
+{
+  "evergreen": {
+    "Stara Zagora Zoo": {
+      "location": "Stara Zagora",
+      "area": "~50 min drive from Plovdiv",
+      "description": "One of Bulgaria's larger zoos — a reliable half-day out for a 4-year-old.",
+      "tags": [
+        "animals",
+        "outdoor"
+      ],
+      "discovered": "2026-07-01",
+      "source": "seed",
+      "last_suggested": "2026-07-01"
+    },
+    "Plovdiv Regional Natural History Museum": {
+      "location": "Plovdiv",
+      "area": "in town",
+      "description": "Compact natural history museum with taxidermy and a small aquarium — easy indoor fallback.",
+      "tags": [
+        "museum",
+        "indoor"
+      ],
+      "discovered": "2026-07-01",
+      "source": "seed",
+      "last_suggested": "2026-07-01"
+    },
+    "Rowing Channel bike ride": {
+      "location": "Kanala (Rowing Channel), Plovdiv",
+      "area": "in town",
+      "description": "Flat paved paths alongside the water, bike/scooter rental on site — easy free outdoor outing.",
+      "tags": [
+        "outdoor",
+        "free",
+        "active"
+      ],
+      "discovered": "2026-07-01",
+      "source": "seed",
+      "last_suggested": null
+    },
+    "Ancient Theatre of Philippopolis": {
+      "location": "Plovdiv Old Town",
+      "area": "in town",
+      "description": "Roman-era amphitheatre in the Old Town; a short scenic walk even without an event on.",
+      "tags": [
+        "history",
+        "outdoor",
+        "free"
+      ],
+      "discovered": "2026-07-01",
+      "source": "seed",
+      "last_suggested": null
+    },
+    "Bachkovo Monastery": {
+      "location": "Bachkovo",
+      "area": "~40 min drive from Plovdiv",
+      "description": "Scenic mountain monastery with a river nearby for a picnic stop — a gentle half-day trip.",
+      "tags": [
+        "nature",
+        "history",
+        "outdoor"
+      ],
+      "discovered": "2026-07-01",
+      "source": "seed",
+      "last_suggested": null
+    }
+  },
+  "ledger": [
+    {
+      "date": "2026-07-01",
+      "title": "Stara Zagora Zoo",
+      "category": "evergreen",
+      "when": "",
+      "location": "Stara Zagora",
+      "url": "",
+      "score": 60,
+      "verdict": "sent",
+      "note": "One of Bulgaria's larger zoos — a reliable half-day out for a 4-year-old."
+    },
+    {
+      "date": "2026-07-01",
+      "title": "Plovdiv Regional Natural History Museum",
+      "category": "evergreen",
+      "when": "",
+      "location": "Plovdiv",
+      "url": "",
+      "score": 60,
+      "verdict": "sent",
+      "note": "Compact natural history museum with taxidermy and a small aquarium — easy indoor fallback."
+    }
+  ]
+}
