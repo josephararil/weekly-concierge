@@ -138,11 +138,13 @@ Modularity is explicit so the user can keep adding sources with Claude Code over
 
 ## Weather (`weather.py`)
 
-`weekend_weather(latlon, today) -> str`: open-meteo daily forecast (no key), read Sat/Sun max
-temp + precip probability. Emit a **soft** one-liner only on strong signals (e.g. maxtemp ≥ ~34
-→ "very hot, lean shade/water"; precip prob ≥ ~70 → "rain likely, lean indoor"); otherwise return
-"" (a weak 10% is a non-signal). Passed to CONCIERGE with an explicit "treat as educated guess"
-instruction.
+`weekend_weather(latlon, today) -> dict[str, str]`: open-meteo daily forecast (no key), reading
+Sat/Sun max temp, precip probability, and WMO weather code. Returns `{"Sat": ..., "Sun": ...}`,
+each mapped to one categorical label: `RAINY` (precip prob > 50% or WMO rain codes 51–65/80–82),
+`HOT` (max temp > 32°C), `COLD` (max temp < 12°C), `CLOUDY` (WMO 1–3), `OUTDOOR_PERFECT` (WMO 0
+and 18–28°C), `MILD` (default safe bucket), or `UNKNOWN` (network/API failure — caught, never
+raises). CONCIERGE consumes these labels (with an explicit "treat as educated guess" instruction)
+to decide indoor/outdoor/shade framing per day, rather than parsing a prose summary.
 
 ## Feedback (`preferences.md`)
 
@@ -191,14 +193,4 @@ reply-parsing. Memory schema also leaves room for future "went/liked" flags.
 
 ---
 
-# Execution guide (clone → iterate with Sonnet)
-
-## Setup (manual, once)
-1. Clone `/deal-hunter` → `/concierge`.
-2. In `/concierge`: `rm -rf .git && git init` (drop deal-hunter history + remote; add the new
-   remote later). Sequential single branch — do NOT parallelize (files are interdependent).
-3. Copy this plan into the repo as `/concierge/PLAN.md`.
-4. Replace `CLAUDE.md` with the content below.
-5. Run the prompts below in order, each a fresh Sonnet session on branch `build/concierge`.
-   No PRs between tasks — they stack on the branch. Final review is a single diff at the end.
 

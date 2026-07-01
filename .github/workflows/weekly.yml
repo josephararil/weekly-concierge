@@ -1,19 +1,18 @@
-name: daily
+name: weekly
 
-# Daily diamond finder: three-stage LLM gate, emails immediately on genuine finds.
-# Stage-3 grounding: Booking.com (apidojo) via RAPIDAPI_KEY; falls back to LLM concierge.
-# Set HOTEL_PROVIDER="" (repo variable) to force LLM-only grounding.
+# Weekly concierge: HARVEST -> FIND -> SKEPTIC -> anti-repeat -> CONCIERGE -> email.
+# Always sends Thursday morning (weekly ritual; evergreen fallback guarantees content).
 
 on:
   schedule:
-    - cron: "0 6 * * *"     # 06:00 UTC daily
+    - cron: "0 6 * * 4"     # 06:00 UTC Thursday
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: deal-hunter-daily
+  group: weekly-concierge
   cancel-in-progress: false
 
 jobs:
@@ -31,8 +30,6 @@ jobs:
       SMTP_PASS:         ${{ secrets.SMTP_PASS }}
       EMAIL_TO:          ${{ secrets.EMAIL_TO }}
       EMAIL_FROM:        ${{ secrets.EMAIL_FROM }}
-      RAPIDAPI_KEY:      ${{ secrets.RAPIDAPI_KEY }}
-      HOTEL_PROVIDER:    ${{ vars.HOTEL_PROVIDER }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -41,12 +38,12 @@ jobs:
           cache: "pip"
       - run: pip install -r requirements.txt
 
-      - name: Run find_city_anomalies.py (planner + web search)
-        run: python find_city_anomalies.py
+      - name: Run weekend_concierge.py (harvest + three-stage LLM gate)
+        run: python weekend_concierge.py
 
       - name: Persist state
         run: |
-          git config user.name "deal-hunter"
+          git config user.name "weekly-concierge"
           git config user.email "actions@users.noreply.github.com"
           git add state/
           git commit -m "update state [skip ci]" || echo "no changes"
