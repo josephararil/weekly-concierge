@@ -53,7 +53,7 @@ weekend_concierge.py
 | `weather.py` | open-meteo (no key) → soft weekend summary; strong signals only. |
 | `memory.py` | `load/save/prune/summarize_for_prompt`; evergreen catalog + suggestion ledger. |
 | `config.py` | Knobs, source registry, seed evergreens, per-stage model roles, prompts, schemas. |
-| `weekend_concierge.py` | **Landed.** The pipeline (HARVEST→FIND→SKEPTIC→anti-repeat→CONCIERGE→email). |
+| `weekend_concierge.py` | **Landed.** The pipeline (HARVEST→FIND→SKEPTIC→anti-repeat→CONCIERGE→email). Tests: `test_concierge.py` (offline, stubs `common.llm`/`scrapers.harvest`/`weather.weekend_weather`, runs `main()` twice to verify state files + event suppression + evergreen rotation). |
 | `preferences.md` | Hand-edited feedback ("Loved / Not interested / Constraints"), injected into prompts. |
 | `.github/workflows/weekly.yml` | Thursday cron; commits `state/`. |
 | `state/*.json` | CI-managed state. Seeds: `memory.json={"evergreen":{},"ledger":[]}`, `signals_seen.json={"seen":{},"monthly_count":{}}`. |
