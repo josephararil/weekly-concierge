@@ -268,5 +268,23 @@ class TestParseVisitplovdivFixture(unittest.TestCase):
         self.assertEqual(craft_school["date_iso"], "2026-04-18")
 
 
+class TestParsePlovdivBgFixture(unittest.TestCase):
+    def test_parses_cards_from_fixture(self):
+        html = load_fixture("plovdiv_bg.html")
+        items = scrapers._parse_plovdiv_bg(html, today=dt.date(2026, 7, 2))
+        self.assertEqual(len(items), 3)
+
+        concert = next(item for item in items if "Илка Александрова" in item["title"])
+        # Prose date has an explicit year ("На 20 септември 2026 г."), parsed unambiguously.
+        self.assertEqual(concert["date_iso"], "2026-09-20")
+        self.assertEqual(
+            concert["url"],
+            "https://www.plovdiv.bg/tsaritsata-na-avtorskata-narodna-pesen-ilka-aleksandrova-chestva-50-godini-na-stsena-s-golyam-kontsert-na-antichniya-teatar-v-plovdiv/",
+        )
+
+        talk = next(item for item in items if "Герджиков" in item["title"])
+        self.assertIsNotNone(talk["date_iso"])
+
+
 if __name__ == "__main__":
     unittest.main()

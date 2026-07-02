@@ -207,12 +207,13 @@ def _make_item(source, title, when_text="", date_iso=None, location="", url="", 
 # fetches events from an API after JS executes. There is no event markup in the fetched
 # HTML for BeautifulSoup to select, so a structured parser can't be written or verified
 # against real HTML. Revisit only if the site ships server-rendered listing pages.
-# ticketbg, programata and visitplovdiv also have structured parsers (see SCRAPERS below);
-# they're kept here as the raw-fetch fallback if a site's markup/endpoint ever changes
-# underneath the parser.
+# ticketbg, programata, visitplovdiv and plovdiv_bg also have structured parsers (see
+# SCRAPERS below); they're kept here as the raw-fetch fallback if a site's markup/endpoint
+# ever changes underneath the parser.
 # programata's raw-fetch entry still points at /sofia (a broader page) rather than the
 # structured parser's /kids/ category, so the fallback blob covers more ground than the
-# structured path if that one ever breaks.
+# structured path if that one ever breaks. Same idea for plovdiv_bg's raw-fetch entry,
+# which points at the homepage rather than the structured parser's /category/events/.
 RAW_FETCH_SOURCES = {
     "eventim":              "https://www.eventim.bg/en/city/plovdiv-52/",
     "ticketstation":        "https://ticketstation.bg/",
@@ -510,6 +511,54 @@ def scrape_visitplovdiv(lookahead_days=None):
     return _parse_visitplovdiv(xml)
 
 
+PLOVDIV_BG_BASE = "https://www.plovdiv.bg"
+PLOVDIV_BG_EVENTS_URL = f"{PLOVDIV_BG_BASE}/category/events/"
+PLOVDIV_BG_PAGES = 2  # ~10 posts/page; this is a news feed ordered by publish date, not
+# event date, so deeper pages mostly add older announcements rather than more future events.
+
+
+def _parse_plovdiv_bg(html, today=None):
+    """Pure parse of plovdiv.bg's events-category listing (WordPress). Cards are
+    article.post with an h2 > a for title/url and a .post-block p for the announcement
+    text. The listing's own .post-date is the article's PUBLISH date, not the event
+    date, so it's ignored; the event date (when stated at all) is embedded as free-form
+    Bulgarian prose inside the body text, e.g. 'На 20 септември 2026 г. от 20:00 часа' —
+    best-effort parsed with bg_date. Many cards are general municipal news (school
+    results, ribbon-cuttings) with no event date at all; those simply get date_iso=None
+    and FIND/SKEPTIC decide whether they're relevant."""
+    soup = BeautifulSoup(html, "html.parser")
+    items = []
+    for card in soup.find_all("article", class_="post"):
+        h2 = card.find("h2")
+        link = h2.find("a") if h2 else None
+        title = link.get_text(strip=True) if link else ""
+        if not title:
+            continue
+        p = card.select_one(".post-block p")
+        description = p.get_text(" ", strip=True) if p else ""
+        date_iso = bg_date(description, today) if description else None
+        url = resolve_url(PLOVDIV_BG_BASE, link.get("href", ""))
+        items.append(_make_item("plovdiv_bg", title, date_iso=date_iso, url=url, description=description))
+    return items
+
+
+def scrape_plovdiv_bg(pages=PLOVDIV_BG_PAGES):
+    """Structured parser for plovdiv.bg's events-category news feed. Fetches the first
+    few pages (newest first) and delegates parsing to _parse_plovdiv_bg; stops early
+    once a page yields no cards."""
+    items = []
+    for page in range(1, pages + 1):
+        url = PLOVDIV_BG_EVENTS_URL if page == 1 else f"{PLOVDIV_BG_EVENTS_URL}page/{page}/"
+        html = fetch(url)
+        if not html:
+            break
+        page_items = _parse_plovdiv_bg(html)
+        if not page_items:
+            break
+        items.extend(page_items)
+    return items
+
+
 def scrape_facebook(source=None):
     """Documented stub. Facebook event pages require an authenticated session and
     aggressively block anonymous/automated fetches (login walls, anti-bot checks) —
@@ -525,6 +574,7 @@ SCRAPERS = {
     "ticketbg": scrape_ticketbg,
     "programata": scrape_programata,
     "visitplovdiv": scrape_visitplovdiv,
+    "plovdiv_bg": scrape_plovdiv_bg,
     "facebook": scrape_facebook,
 }
 
