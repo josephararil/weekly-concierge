@@ -13,7 +13,7 @@ Two tiers per source:
 import re
 import time
 import datetime as dt
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlencode
 
 import requests
 from bs4 import BeautifulSoup
@@ -207,8 +207,9 @@ def _make_item(source, title, when_text="", date_iso=None, location="", url="", 
 # fetches events from an API after JS executes. There is no event markup in the fetched
 # HTML for BeautifulSoup to select, so a structured parser can't be written or verified
 # against real HTML. Revisit only if the site ships server-rendered listing pages.
-# ticketbg and programata also have structured parsers (see SCRAPERS below); they're kept
-# here as the raw-fetch fallback if either site's markup ever changes underneath the parser.
+# ticketbg, programata and visitplovdiv also have structured parsers (see SCRAPERS below);
+# they're kept here as the raw-fetch fallback if a site's markup/endpoint ever changes
+# underneath the parser.
 # programata's raw-fetch entry still points at /sofia (a broader page) rather than the
 # structured parser's /kids/ category, so the fallback blob covers more ground than the
 # structured path if that one ever breaks.
@@ -433,6 +434,82 @@ def scrape_programata():
     return _parse_programata(html)
 
 
+VISITPLOVDIV_BASE = "https://www.visitplovdiv.com"
+# The /en/eventsplovdiv "culture calendar" page itself renders empty (<div class="event_block">
+# stays blank) — its own JS fills it in by calling this XML endpoint after page load. Rather
+# than scrape the empty shell, we call the same endpoint directly, exactly like plovdiv2019's
+# JS-navigates-to-a-server-rendered-page trick. Response is XML, not HTML: BeautifulSoup needs
+# features="xml" here, because "html.parser" treats <link> as the void HTML tag and silently
+# drops its text content (the node URL).
+
+
+def _parse_visitplovdiv_date(text):
+    """Parse the endpoint's 'DD/MM/YYYY[, DD/MM/YYYY, ...]' date field, taking the first
+    occurrence (recurring events list one date per recurrence)."""
+    if not text:
+        return None
+    m = re.match(r"(\d{1,2})/(\d{1,2})/(\d{4})", text.split(",")[0].strip())
+    if not m:
+        return None
+    day, month, year = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    try:
+        return dt.date(year, month, day).isoformat()
+    except ValueError:
+        return None
+
+
+def _parse_visitplovdiv(html, today=None):
+    """Pure parse of visitplovdiv.com's culture-calendar XML feed. Each <items> node holds
+    title/sdate/edate/date/content/type/link; sdate/edate may list several comma-separated
+    recurrence dates, we take the first as this event's date_iso. Events whose edate has
+    already passed are dropped; ongoing/future ones are kept even if sdate is in the past."""
+    today = today or dt.date.today()
+    soup = BeautifulSoup(html, "xml")
+    items = []
+    for node in soup.find_all("items"):
+        title_tag = node.find("title")
+        title = title_tag.get_text(strip=True) if title_tag else ""
+        if not title:
+            continue
+
+        edate_iso = _parse_visitplovdiv_date(node.find("edate").get_text(strip=True)) if node.find("edate") else None
+        if edate_iso and dt.date.fromisoformat(edate_iso) < today:
+            continue
+
+        sdate_tag = node.find("sdate")
+        date_iso = _parse_visitplovdiv_date(sdate_tag.get_text(strip=True)) if sdate_tag else None
+        when_tag = node.find("date")
+        when_text = when_tag.get_text(strip=True) if when_tag else ""
+        content_tag = node.find("content")
+        description = content_tag.get_text(" ", strip=True) if content_tag else ""
+        link_tag = node.find("link")
+        url = resolve_url(VISITPLOVDIV_BASE, link_tag.get_text(strip=True)) if link_tag else ""
+        items.append(_make_item("visitplovdiv", title, when_text, date_iso, "", url, description))
+    return items
+
+
+def scrape_visitplovdiv(lookahead_days=None):
+    """Structured parser for visitplovdiv.com's culture calendar. Queries the site's own
+    AJAX endpoint (see _parse_visitplovdiv) for events between today and today+lookahead_days
+    (defaults to config.LOOKAHEAD_WEEKS plus a week of headroom), then delegates to
+    _parse_visitplovdiv."""
+    today = dt.date.today()
+    lookahead_days = lookahead_days or (C.LOOKAHEAD_WEEKS + 1) * 7
+    end = today + dt.timedelta(days=lookahead_days)
+    fmt = "%d/%m/%Y"
+    params = {
+        "between_date_filter[value][date]": today.strftime(fmt),
+        "field_fedb_value[min][date]": today.strftime(fmt),
+        "field_fedb_value[max][date]": end.strftime(fmt),
+        "field_fedb_value2[min][date]": today.strftime(fmt),
+        "field_fedb_value2[max][date]": end.strftime(fmt),
+    }
+    xml = fetch(f"{VISITPLOVDIV_BASE}/en/cevents_page_month?{urlencode(params)}")
+    if not xml:
+        return []
+    return _parse_visitplovdiv(xml)
+
+
 def scrape_facebook(source=None):
     """Documented stub. Facebook event pages require an authenticated session and
     aggressively block anonymous/automated fetches (login walls, anti-bot checks) —
@@ -447,6 +524,7 @@ SCRAPERS = {
     "bilet": scrape_bilet,
     "ticketbg": scrape_ticketbg,
     "programata": scrape_programata,
+    "visitplovdiv": scrape_visitplovdiv,
     "facebook": scrape_facebook,
 }
 

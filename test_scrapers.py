@@ -251,5 +251,22 @@ class TestParseProgramataFixture(unittest.TestCase):
         )
 
 
+class TestParseVisitplovdivFixture(unittest.TestCase):
+    def test_parses_items_from_fixture(self):
+        xml = load_fixture("visitplovdiv.html")
+        # "90 Years – 90 Paintings" ends 02/07/2026, before this `today` — dropped as past.
+        items = scrapers._parse_visitplovdiv(xml, today=dt.date(2026, 7, 3))
+        self.assertEqual(len(items), 3)
+        titles = [item["title"] for item in items]
+        self.assertNotIn("90 Years – 90 Paintings", titles)
+
+        summer = next(item for item in items if item["title"] == "Summer in the Old Town")
+        self.assertEqual(summer["date_iso"], "2026-06-04")
+        self.assertEqual(summer["url"], "https://www.visitplovdiv.com/en/node/15909")
+
+        craft_school = next(item for item in items if item["title"] == "Craft School - Plovdiv 2026")
+        self.assertEqual(craft_school["date_iso"], "2026-04-18")
+
+
 if __name__ == "__main__":
     unittest.main()
