@@ -221,9 +221,9 @@ def _make_item(source, title, when_text="", date_iso=None, location="", url="", 
 # fetches events from an API after JS executes. There is no event markup in the fetched
 # HTML for BeautifulSoup to select, so a structured parser can't be written or verified
 # against real HTML. Revisit only if the site ships server-rendered listing pages.
-# ticketbg, programata, visitplovdiv and plovdiv_bg also have structured parsers (see
-# SCRAPERS below); they're kept here as the raw-fetch fallback if a site's markup/endpoint
-# ever changes underneath the parser.
+# ticketbg, programata, visitplovdiv, plovdiv_bg and lostinplovdiv also have structured
+# parsers (see SCRAPERS below); they're kept here as the raw-fetch fallback if a site's
+# markup/endpoint ever changes underneath the parser.
 # programata's raw-fetch entry still points at /sofia (a broader page) rather than the
 # structured parser's /kids/ category, so the fallback blob covers more ground than the
 # structured path if that one ever breaks. Same idea for plovdiv_bg's raw-fetch entry,
@@ -240,6 +240,8 @@ RAW_FETCH_SOURCES = {
     "plovdiv_bg":           "https://www.plovdiv.bg/",
     "visitplovdiv":         "https://visitplovdiv.com/",
     "marica":               "https://www.marica.bg/",
+    "lostinplovdiv":          "https://lostinplovdiv.com/",
+    "plovdiv24":            "https://www.plovdiv24.bg/",
 }
 
 
@@ -573,6 +575,69 @@ def scrape_plovdiv_bg(pages=PLOVDIV_BG_PAGES):
     return items
 
 
+LOSTINPLOVDIV_BASE = "https://lostinplovdiv.com"
+LOSTINPLOVDIV_ARTICLES_URL = f"{LOSTINPLOVDIV_BASE}/en/articles"
+LOSTINPLOVDIV_LIMIT = 30  # the listing has no pagination param — one fetch returns the
+# site's entire ~10-year archive (1000+ cards), newest first. This is a weekly harvest, so
+# we only need the newest slice: it reliably covers the latest "What to do in Plovdiv
+# (DD.MM - DD.MM)" weekly digest plus several evergreen thematic roundups.
+_LOSTINPLOVDIV_WEEK_RE = re.compile(r"\((\d{1,2})\.(\d{1,2})\s*[-–—]\s*(\d{1,2})\.(\d{1,2})\)")
+
+
+def _parse_lostinplovdiv_week_title(title, today):
+    """Extract the start date from a 'What to do in Plovdiv (DD.MM - DD.MM)' weekly
+    digest title (no year given). Unlike bg_date's roll-forward convention for future
+    listings, this digest describes the current/just-finished week relative to its
+    publish date, so the date is taken at face value in today's year rather than rolled
+    forward. Returns None for any other article title."""
+    m = _LOSTINPLOVDIV_WEEK_RE.search(title)
+    if not m:
+        return None
+    day, month = int(m.group(1)), int(m.group(2))
+    try:
+        return dt.date(today.year, month, day).isoformat()
+    except ValueError:
+        return None
+
+
+def _parse_lostinplovdiv(html, today=None):
+    """Pure parse of lostinplovdiv.com's /en/articles listing. Cards are article.article
+    with an h3.article-title > a for title/url, a .date span for the publish date (not an
+    event date), and a p.article-descpription (sic) blurb. Most articles are editorial
+    (evergreen roundups, local trivia, one-off news) with no event date at all — those get
+    date_iso=None for FIND/SKEPTIC to resolve. The recurring 'What to do in Plovdiv
+    (DD.MM - DD.MM)' weekly digest is the one title format that embeds its own date range,
+    parsed by _parse_lostinplovdiv_week_title."""
+    today = today or dt.date.today()
+    soup = BeautifulSoup(html, "html.parser")
+    items = []
+    for card in soup.find_all("article", class_="article")[:LOSTINPLOVDIV_LIMIT]:
+        h3 = card.find("h3", class_="article-title")
+        link = h3.find("a") if h3 else None
+        title = link.get_text(strip=True) if link else ""
+        if not title:
+            continue
+        date_span = card.select_one(".date span")
+        when_text = date_span.get_text(strip=True) if date_span else ""
+        date_iso = _parse_lostinplovdiv_week_title(title, today)
+        desc_tag = card.find("p", class_="article-descpription")
+        description = desc_tag.get_text(" ", strip=True) if desc_tag else ""
+        url = resolve_url(LOSTINPLOVDIV_BASE, link.get("href", ""))
+        items.append(_make_item("lostinplovdiv", title, when_text, date_iso, "", url, description))
+    return items
+
+
+def scrape_lostinplovdiv():
+    """Structured parser for lostinplovdiv.com's English articles feed — the site's own
+    bilingual, hand-curated guide to Plovdiv (weekly what-to-do digests, evergreen
+    thematic roundups, local food/culture spots). Fetches /en/articles and delegates to
+    _parse_lostinplovdiv."""
+    html = fetch(LOSTINPLOVDIV_ARTICLES_URL)
+    if not html:
+        return []
+    return _parse_lostinplovdiv(html)
+
+
 def scrape_facebook(source=None):
     """Documented stub. Facebook event pages require an authenticated session and
     aggressively block anonymous/automated fetches (login walls, anti-bot checks) —
@@ -589,6 +654,7 @@ SCRAPERS = {
     "programata": scrape_programata,
     "visitplovdiv": scrape_visitplovdiv,
     "plovdiv_bg": scrape_plovdiv_bg,
+    "lostinplovdiv": scrape_lostinplovdiv,
     "facebook": scrape_facebook,
 }
 

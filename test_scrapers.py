@@ -286,5 +286,26 @@ class TestParsePlovdivBgFixture(unittest.TestCase):
         self.assertIsNotNone(talk["date_iso"])
 
 
+class TestParseLostinplovdivFixture(unittest.TestCase):
+    def test_parses_cards_from_fixture(self):
+        html = load_fixture("lostinplovdiv.html")
+        items = scrapers._parse_lostinplovdiv(html, today=dt.date(2026, 7, 2))
+        # The no-title card is skipped.
+        self.assertEqual(len(items), 3)
+
+        cafe = next(item for item in items if "TOP 100" in item["title"])
+        self.assertIsNone(cafe["date_iso"])
+        self.assertEqual(
+            cafe["url"],
+            "https://lostinplovdiv.com/en/articles/plovdiv-cafe-enters-the-top-100-in-the-world",
+        )
+
+        digest = next(item for item in items if item["title"].startswith("What to do in Plovdiv"))
+        # Title embeds its own date range ("26.06 - 02.07"); the start date is taken as-is
+        # in today's year, not rolled forward like bg_date's future-listing convention.
+        self.assertEqual(digest["date_iso"], "2026-06-26")
+        self.assertEqual(digest["url"], "https://lostinplovdiv.com/en/articles/what-to-do-in-plovdiv-358")
+
+
 if __name__ == "__main__":
     unittest.main()

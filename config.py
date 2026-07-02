@@ -13,6 +13,7 @@ ENABLED_SOURCES = [
     "plovdiv2019", "bilet",
     "eventim", "ticketstation", "ticketbg", "dtp", "rnhm", "oldplovdiv",
     "programata", "starazagora_tourist", "plovdiv_bg", "visitplovdiv", "marica",
+    "lostinplovdiv",
 ]
 
 # Volume cap applied to the deduped harvest before it's handed to FIND.
