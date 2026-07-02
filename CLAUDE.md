@@ -1,14 +1,17 @@
+# CLAUDE.md
+
 Guidance for Claude Code when working in this repository.
 
-## ⚠️ Build status — READ THIS FIRST
+## Build status
 
-**All target modules have landed.** `common.py`, `scrapers.py`, `weather.py`, `memory.py`,
-`config.py`, `weekend_concierge.py`, `.github/workflows/weekly.yml`, and `preferences.md` all
-exist per `PLAN.md`. What remains is verification (offline pipeline test, live smoke test — see
-`PLAN.md`'s Verification section) and ongoing prompt/scraper tuning, not a from-scratch build.
+**Live.** The full pipeline is built, merged to `main`, and running weekly on GitHub Actions
+(first real run succeeded). All modules exist and are wired: `common.py`, `scrapers.py`,
+`weather.py`, `memory.py`, `config.py`, `weekend_concierge.py`, `.github/workflows/weekly.yml`,
+`preferences.md`. Ongoing work is **iteration, not construction**: tuning the prompts, and
+adding/upgrading scrapers (raw-fetch → structured) as new sources prove worthwhile.
 
-- **`PLAN.md` is the source of truth for the target design.**
-- Where the current code disagrees with `PLAN.md` or your task, the plan/task wins.
+- `plan.md` captures the original design rationale and the intended end-state; consult it when
+  a change might conflict with a core design decision.
 - `common.py` is deal-hunter's infrastructure reused verbatim by design — don't modify it here.
 
 ## What this is
@@ -38,7 +41,9 @@ weekend_concierge.py
   ├─ Anti-repeat filter  state/signals_seen.json — events keyed slug(title)|date|role,
   │             evergreens keyed evergreen|slug(name) with a long cooldown
   ├─ Stage 3 · CONCIERGE (gemini-pro-latest, no search) writes the email from survivors +
-  │             scores + weather + feedback + recent-suggestion memory (soft itinerary, prose)
+  │             scores + weather + feedback + recent-suggestion memory (soft itinerary, prose).
+  │             Each candidate carries actionable links: real source_url + a Google Maps link
+  │             and a search link built deterministically (build_links) so no URL is invented.
   ├─ Memory write        ledger per candidate; grow evergreen catalog; prune; save
   ├─ Email               ALWAYS sends Thursday (weekly ritual; evergreen guarantees content)
   └─ Always writes state/: weekend_signals.json, weekend_log.md, memory.json/.md, signals_seen.json
@@ -49,11 +54,11 @@ weekend_concierge.py
 | File | Role |
 |---|---|
 | `common.py` | `llm()`, `send_email()`, `parse_json_block()`, state IO, Gemini two-step search. **Copied verbatim from deal-hunter — do not modify.** |
-| `scrapers.py` | **Landed.** Two-tier per-source registry (raw-fetch default + structured upgrade), `harvest()`, `fetch()`, `text_of()`, `bg_date()`. Structured parsers: `plovdiv2019.eu` (its own JS calendar just navigates to a server-rendered `?f_time=all&page=N` — see the docstring) and `bilet.bg`. `eventim.bg` stays raw-fetch: it consistently times out from this dev environment (likely bot-challenged) and couldn't be verified against real HTML. `scrape_facebook` is a documented stub (raises `NotImplementedError`, caught by `harvest()`) — no auth/anti-bot handling yet. `config.ENABLED_SOURCES`/`MAX_HARVEST_ITEMS` (added ahead of the full config.py rewrite) turn sources on/off and cap volume. Adding a raw-fetch source is a one-line entry in `RAW_FETCH_SOURCES` + `ENABLED_SOURCES`. Tests: `test_scrapers.py` (offline, mocks network). |
+| `scrapers.py` | **Landed.** Two-tier per-source registry (raw-fetch default + structured upgrade), `harvest()`, `fetch()`, `text_of()`, `bg_date()`. Structured parsers: `plovdiv2019.eu` (its own JS calendar just navigates to a server-rendered `?f_time=all&page=N` — see the docstring) and `bilet.bg`. `eventim.bg` stays raw-fetch: it consistently times out from this dev environment (likely bot-challenged) and couldn't be verified against real HTML. `scrape_facebook` is a documented stub (raises `NotImplementedError`, caught by `harvest()`) — no auth/anti-bot handling yet. `config.ENABLED_SOURCES`/`MAX_HARVEST_ITEMS` turn sources on/off and cap volume. Adding a raw-fetch source is a one-line entry in `RAW_FETCH_SOURCES` + `ENABLED_SOURCES`. Tests: `test_scrapers.py` (offline, mocks network). |
 | `weather.py` | open-meteo (no key) → soft weekend summary; strong signals only. |
 | `memory.py` | `load/save/prune/summarize_for_prompt`; evergreen catalog + suggestion ledger. |
 | `config.py` | Knobs, source registry, seed evergreens, per-stage model roles, prompts, schemas. |
-| `weekend_concierge.py` | **Landed.** The pipeline (HARVEST→FIND→SKEPTIC→anti-repeat→CONCIERGE→email). Tests: `test_concierge.py` (offline, stubs `common.llm`/`scrapers.harvest`/`weather.weekend_weather`, runs `main()` twice to verify state files + event suppression + evergreen rotation). |
+| `weekend_concierge.py` | The pipeline (HARVEST→FIND→SKEPTIC→anti-repeat→CONCIERGE→email). `build_links()` builds each candidate's `(source_url, maps_url, search_url)` before the concierge call. Tests: `test_concierge.py` (offline, stubs `common.llm`/`scrapers.harvest`/`weather.weekend_weather`, runs `main()` twice to verify state files + event suppression + evergreen rotation, plus a `build_links` unit test). |
 | `preferences.md` | Hand-edited feedback ("Loved / Not interested / Constraints"), injected into prompts. |
 | `.github/workflows/weekly.yml` | Thursday cron; commits `state/`. |
 | `state/*.json` | CI-managed state. Seeds: `memory.json={"evergreen":{},"ledger":[]}`, `signals_seen.json={"seen":{},"monthly_count":{}}`. |
@@ -69,6 +74,11 @@ weekend_concierge.py
   events and corrects wrong dates. Desirability is FIND/CONCIERGE's job, not a SKEPTIC kill.
 - **Scores are internal only.** family_fit scores rank items and drive the anti-repeat rotation.
   The email is warm prose / a soft itinerary — NEVER a scoreboard or a strict hour-by-hour plan.
+- **Links are real or built, never invented.** The email should be actionable, but the CONCIERGE
+  is given exact link strings and told not to fabricate URLs. `build_links()` passes through the
+  real `source_url` (from FIND/scrapers, may be "") and deterministically constructs a Google
+  Maps link (from `location`) and a search link (from `title`+`location`). Add links where they
+  help someone act, not on every line.
 - **State in `state/` is CI-managed real state**, committed every run. Seed shapes as above.
 - **Anti-repeat keys:** events `slug(title)|date|role` (role = lookahead|thisweekend, so a
   look-ahead item can re-surface as "happening now"); evergreens `evergreen|slug(name)` with
@@ -128,4 +138,3 @@ Leave SMTP vars unset to test without sending (the send is caught and printed).
 Flat functions, plain stdlib + `requests` + BeautifulSoup, clear names, short modules. Match the
 existing tone. Prefer editing in place over adding files. Comment only the non-obvious. No emoji
 in code; `weekend_log.md` and the email HTML may use them.
-```

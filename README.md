@@ -1,38 +1,57 @@
-# Deal Hunter
+# Weekend Concierge
 
-Finds genuinely good-to-exceptional hotel travel windows for a family of 3 (2 adults + child
-aged 4) based near Plovdiv, Bulgaria. One script, three stages, live Booking.com rate
-verification, and a deterministic scoring model. Runs daily on free GitHub Actions and emails
-an honest daily digest of every scored candidate (💎 diamond / 👍 good / skip) whenever there's
-something new to see; silent otherwise.
+A passive weekly concierge for a family of 3 (2 adults + a 4-year-old) based near Plovdiv,
+Bulgaria. The household is English-speaking with no TV/newspapers, so it misses most of what's
+happening locally — parades, concerts, a circus in town — and never hears about the quietly
+great standing options (the Stara Zagora zoo, the Natural History Museum, biking the rowing
+channel). Every **Thursday** it runs on free GitHub Actions and emails one warm, curated
+**soft-itinerary** of what's worth doing this weekend and in the weeks ahead. No app, no server,
+no database — just JSON state committed back by CI. You do nothing but read the email.
 
 ## How it works
 
 ```
-find_city_anomalies.py   (daily, three-stage gate)
+weekend_concierge.py   (weekly)
    │
-   ├─ Stage 1 — FIND (web search)
-   │     Scores hotel/resort/flight/cruise candidates 0–100 with an est_price_eur.
-   │     Gate: FIND score ≥ 80 → grounding. No price filter (price is scored later).
+   ├─ HARVEST — scrapers.py (no LLM)
+   │     Scrape every enabled Bulgarian source (ticketing, municipal, theatre, news).
+   │     Two tiers: raw-fetch (URL → page text) and structured parsers. Each source runs in
+   │     its own try/except → [] on failure, so one dead site never breaks the run.
    │
-   ├─ Stage 2 — GROUND (Booking.com live rates → LLM fallback)
-   │     providers.ground_api() fetches live nightly rates (apidojo RapidAPI); fuzzy-matches
-   │     the named hotel; falls back to LLM concierge + web search on failure.
-   │     kill → dropped. confirm/correct → real price merged and forwarded to scoring
-   │     (unless a data-quality guard trips: low confidence / dates out of window).
+   ├─ Stage 1 — FIND (LLM + web search)
+   │     Consolidates the harvest + live search leads + the model's own knowledge into
+   │     structured candidates: title, category (this weekend | look-ahead | evergreen),
+   │     date/location, a family_fit score, and a source_url when one was found.
    │
-   └─ Stage 3 — SCORE (LLM desirability score + deterministic modifiers)
-         The LLM returns a 0–100 desirability score (price held neutral). The pipeline then
-         computes: final = llm_score + price_adj (vs regional par) + transit_adj (drive/fly).
-         final ≥ 85 → 💎 diamond · ≥ 68 → 👍 good · below → skip.
-         The email is a daily digest of EVERY scored candidate (diamond/good/skip) with its
-         score breakdown, so you see what the pipeline weighed and why. Anti-spam TTL (keyed
-         destination|window|tier) fires on any new/tier-changed item and stays quiet on
-         repeats. Grounding kills/blocks ride along in a "seen & dropped" footer. Every score
-         is recorded — no veto throws information away.
+   ├─ Stage 2 — SKEPTIC (LLM + web search) — the hallucination guard
+   │     One batch call verifies each event's real existence, date, family-relevance, and
+   │     90-minute radius. keep | correct (fix date/location) | kill. Evergreens are known-real
+   │     and skip the existence check. Never invents — a fake event is dropped here.
+   │
+   ├─ Anti-repeat filter — state/signals_seen.json
+   │     Events keyed slug(title)|date|role (a look-ahead item can resurface as "happening now"),
+   │     evergreens on a long cooldown. If no evergreen is off-cooldown, the least-recently-
+   │     suggested one is used, so the email is never empty.
+   │
+   └─ Stage 3 — CONCIERGE (LLM, no search)
+         Writes the email — warm prose, a soft itinerary (never a schedule, never a scoreboard),
+         grouped This Weekend / Also Worth Knowing / Looking Ahead, with weather woven in softly.
+         Every item carries actionable links: the real source_url when present, plus a Google
+         Maps link and a search link built deterministically so no URL is ever invented.
+         The email always sends (the weekly ritual is the point).
 ```
 
 State files (`state/`) are committed back by CI after each run — no external database.
+
+## Sources
+
+Scrapers live in `scrapers.py`; the active set is `config.ENABLED_SOURCES`. Adding a source is a
+one-line entry in `scrapers.RAW_FETCH_SOURCES` (raw-fetch tier) — it contributes immediately as
+page text FIND parses — and can later be upgraded to a structured parser (`scrapers.SCRAPERS`)
+when it's worth it. Currently enabled: `plovdiv2019.eu`, `bilet.bg` (structured), plus raw-fetch
+of `eventim.bg`, `ticketstation.bg`, `ticket.bg`, `dtp.bg`, `rnhm.org`, `oldplovdiv.bg`,
+`programata.bg`, `tourist.stara-zagora.bg`, `plovdiv.bg`, `visitplovdiv`, and `marica.bg`.
+`facebook` is a documented stub, disabled until auth/anti-bot is worth solving.
 
 ## Setup
 
@@ -43,63 +62,68 @@ State files (`state/`) are committed back by CI after each run — no external d
 
    | Secret | What |
    |---|---|
-   | `ANTHROPIC_API_KEY` | console.anthropic.com — required if `LLM_PROVIDER=anthropic` |
    | `GEMINI_API_KEY` | aistudio.google.com/apikey — required if `LLM_PROVIDER=gemini` |
-   | `RAPIDAPI_KEY` | RapidAPI key for Booking.com (apidojo) hotel grounding |
+   | `ANTHROPIC_API_KEY` | console.anthropic.com — required if `LLM_PROVIDER=anthropic` |
    | `SMTP_HOST` / `SMTP_PORT` | e.g. `smtp.gmail.com` / `587` |
    | `SMTP_USER` / `SMTP_PASS` | sending address + app password (Gmail: 2FA → App Password) |
    | `EMAIL_TO` / `EMAIL_FROM` | recipient / sender (both default to `SMTP_USER`) |
 
-   **Variables** (plain text, *Variables* tab in the same page):
+   **Variables** (plain text, *Variables* tab):
 
    | Variable | Default | Effect |
    |---|---|---|
    | `LLM_PROVIDER` | `anthropic` | `anthropic` or `gemini` |
-   | `HOTEL_PROVIDER` | `apidojo` | Set to `""` to force LLM-only grounding (no Booking.com calls) |
-   | `BOOKING_RAPIDAPI_HOST` | `apidojo-booking-v1.p.rapidapi.com` | Override the RapidAPI host |
 
-3. Enable Actions. Test via *Actions → daily → Run workflow*.
+   No hotel/weather/RapidAPI keys — weather uses open-meteo, which needs none.
 
-> **LLM web search:** with `LLM_PROVIDER=anthropic`, Stage 1 and the LLM fallback use the
-> Anthropic `web_search` tool — enable it in the console if needed. With `LLM_PROVIDER=gemini`
-> it uses `google_search`; if Gemini rejects the tool, the call retries without search.
+3. Enable Actions. It runs automatically at **06:00 UTC every Thursday**; test any time via
+   *Actions → weekly → Run workflow*.
+
+> **LLM web search:** with `LLM_PROVIDER=anthropic`, FIND and SKEPTIC use the Anthropic
+> `web_search` tool. With `LLM_PROVIDER=gemini`, search runs on a lite model (`google_search`)
+> and the flagship reasons over the results — see `common.py` for the two-step split.
 
 ## Running locally
 
 ```bash
 pip install -r requirements.txt
-export ANTHROPIC_API_KEY=...  LLM_PROVIDER=anthropic  RAPIDAPI_KEY=...
-# or: export GEMINI_API_KEY=...  LLM_PROVIDER=gemini  RAPIDAPI_KEY=...
-python find_city_anomalies.py   # writes state/; emails if diamonds found + SMTP vars set
+export GEMINI_API_KEY=...  LLM_PROVIDER=gemini
+# or: export ANTHROPIC_API_KEY=...  LLM_PROVIDER=anthropic
+python weekend_concierge.py   # writes state/; emails if SMTP vars set, else prints the error
+python scrapers.py            # harvest smoke test: prints per-source item counts
+python weather.py             # weekend weather summary smoke test
 ```
 
-To skip Booking.com calls (LLM-only grounding):
-```bash
-HOTEL_PROVIDER="" python find_city_anomalies.py
-```
+Leave SMTP vars unset to test without sending (the send is caught and printed). Offline tests
+stub the network and LLM:
 
-To run offline unit tests for the grounding provider:
 ```bash
-python test_providers.py           # apidojo: monkey-patched, no network
-HOTEL_PROVIDER="" python test_stub.py  # full pipeline: LLM-only, stub llm()
+python -m unittest test_concierge test_memory test_scrapers
 ```
 
 ## Tuning (config.py)
 
 | Knob | Default | Effect |
 |---|---|---|
-| `STAGE1_MIN_SCORE` | 80 | Minimum FIND score to forward a candidate to grounding (triage only; no price filter). |
-| `MAX_EMAILS_PER_RUN` | 3 | Cap on the actionable diamond/good picks shown (diamonds first); skips are context and always shown in full. |
-| `SIGNAL_TTL_DAYS` | 14 | Anti-spam TTL per destination+window+tier; a tier change re-notifies. |
-| `DIAMOND_PAR_EUR` | BG €80, TR €85, rest €110 | Per-night reference price. Below par → score bonus, above → penalty. Not a wall. |
-| `PRICE_SCORE_WEIGHT` / `PRICE_BONUS_CAP` | 50 / 15 | Strength of the price modifier; bonus capped, penalty uncapped. |
-| `TRANSIT_TIER1_BONUS` / `TIER2` | +3 / −3 | Deterministic drive-vs-fly score nudge. |
-| `DIAMOND_SCORE_THRESHOLD` / `GOOD_SCORE_THRESHOLD` | 85 / 68 | Final-score cutoffs for 💎 / 👍. |
+| `ENABLED_SOURCES` | 13 sources | Which scrapers run each harvest. |
+| `MAX_HARVEST_ITEMS` | 200 | Cap on the deduped harvest handed to FIND. |
+| `RADIUS_MINUTES` | 90 | Max one-way travel time from Plovdiv worth suggesting. |
+| `LOOKAHEAD_WEEKS` | 4 | How far ahead "notable events to plan for" reaches. |
+| `MAX_EVENTS_PER_EMAIL` | 6 | Cap on non-evergreen items in one email. |
+| `EVERGREEN_PER_EMAIL` | 2 | Rotating evergreen ideas included per email. |
+| `MIN_INCLUDE_SCORE` | 50 | family_fit floor (0–100) below which an event is dropped. |
+| `EVENT_TTL_DAYS` | 21 | Cooldown before the same event can resurface. |
+| `EVERGREEN_COOLDOWN_DAYS` | 70 | Cooldown before the same evergreen idea can resurface. |
+| `MODEL_FIND` / `MODEL_SKEPTIC` / `MODEL_CONCIERGE` | haiku / sonnet / sonnet | Per-stage model roles (Gemini equivalents via `GEMINI_MODEL_MAP`). |
+| `SEED_EVERGREEN` | seed list | Initial evergreen catalog; the pipeline grows it over time. |
+
+Family preferences live in `preferences.md` — hand-edit it ("Loved / Not interested /
+Constraints") and it's injected into the FIND and CONCIERGE prompts.
 
 ## Cost
 
-LLM calls are cheap at this volume (a few per day, Claude Haiku/Sonnet or Gemini).
-Booking.com rate lookups via RapidAPI are one call per gate survivor (typically 3–5 per day).
-The LLM fallback fires on any API failure.
+A handful of LLM calls per week (three stages, on Claude Haiku/Sonnet or Gemini) plus free
+open-meteo weather and direct scraping. Effectively free at this cadence.
 
-See `CLAUDE.md` for full design rationale, pipeline invariants, and grounding seam details.
+See `CLAUDE.md` for the full design rationale and pipeline invariants, and `plan.md` for the
+original design notes.
