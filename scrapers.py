@@ -207,6 +207,8 @@ def _make_item(source, title, when_text="", date_iso=None, location="", url="", 
 # fetches events from an API after JS executes. There is no event markup in the fetched
 # HTML for BeautifulSoup to select, so a structured parser can't be written or verified
 # against real HTML. Revisit only if the site ships server-rendered listing pages.
+# ticketbg also has a structured parser (see SCRAPERS below); it's kept here as the
+# raw-fetch fallback if the site's markup ever changes underneath the parser.
 RAW_FETCH_SOURCES = {
     "eventim":              "https://www.eventim.bg/en/city/plovdiv-52/",
     "ticketstation":        "https://ticketstation.bg/",
@@ -311,6 +313,89 @@ def scrape_bilet():
     return _parse_bilet(html)
 
 
+TICKETBG_BASE = "https://www.ticket.bg"
+
+# Towns within the ~90-min Plovdiv radius (see config.RADIUS_MINUTES / FIND_PROMPT's example
+# list). Sofia is farther but still worth surfacing as a look-ahead-only idea, never as a
+# same-weekend suggestion — everything else nationwide (Varna, Burgas, Ruse, Gabrovo, Veliko
+# Tarnovo, Sozopol, ...) is out of scope for this family.
+_TICKETBG_RADIUS_CITIES = ("пловдив", "асеновград", "стара загора", "пазарджик", "хисар")
+_TICKETBG_SOFIA = "софия"
+_TICKETBG_SOFIA_LOOKAHEAD_DAYS = 14  # Sofia trips need real advance planning, not a same-week ask
+
+
+def _parse_ticketbg_date(when_text, today):
+    """ticket.bg gives no year, e.g. '01 Окт., Четв., 19:00 ч.' (day, abbreviated month,
+    abbreviated weekday, time). Match the abbreviation as a prefix of a full month name and
+    assume the next upcoming occurrence, same convention as bg_date's roll-forward."""
+    m = re.match(r"(\d{1,2})\s+([^\s.,]+)\.?,", when_text.strip())
+    if not m:
+        return None
+    day = int(m.group(1))
+    abbr = m.group(2).strip().lower()
+    month = next((num for name, num in BG_MONTHS.items() if name.startswith(abbr)), None)
+    if month is None:
+        return None
+    try:
+        date = dt.date(today.year, month, day)
+    except ValueError:
+        return None
+    if date < today:
+        date = dt.date(today.year + 1, month, day)
+    return date.isoformat()
+
+
+def _parse_ticketbg(html, today=None):
+    """Pure parse of ticket.bg's homepage HTML. Cards are div.productItem, each with an
+    a.productItemLink (href + title attribute = event title), a strong.sr-only with
+    'Title - Venue - City / Country', and a span.productEventStarts with the date/time."""
+    today = today or dt.date.today()
+    soup = BeautifulSoup(html, "html.parser")
+    items = []
+    for card in soup.find_all("div", class_="productItem"):
+        link = card.find("a", class_="productItemLink")
+        if not link:
+            continue
+        title = (link.get("title") or "").strip()
+        if not title:
+            continue
+
+        sr = card.find("strong", class_="sr-only")
+        location = ""
+        if sr:
+            parts = [p.strip() for p in sr.get_text(strip=True).split(" - ") if p.strip()]
+            if len(parts) >= 2:
+                city = parts[-1].split("/")[0].strip()
+                venue = parts[-2]
+                location = f"{venue}, {city}" if venue and venue != city else city
+        city_lower = location.lower()
+        in_radius = any(town in city_lower for town in _TICKETBG_RADIUS_CITIES)
+        is_sofia = _TICKETBG_SOFIA in city_lower
+
+        starts = card.find("span", class_="productEventStarts")
+        when_text = starts.get_text(strip=True) if starts else ""
+        date_iso = _parse_ticketbg_date(when_text, today) if when_text else None
+
+        if not in_radius:
+            if not is_sofia:
+                continue
+            if date_iso and (dt.date.fromisoformat(date_iso) - today).days < _TICKETBG_SOFIA_LOOKAHEAD_DAYS:
+                continue
+
+        url = resolve_url(TICKETBG_BASE, link.get("href", ""))
+        items.append(_make_item("ticketbg", title, when_text, date_iso, location, url))
+    return items
+
+
+def scrape_ticketbg():
+    """Structured parser for ticket.bg's homepage event grid. Fetches the homepage and
+    delegates parsing to _parse_ticketbg."""
+    html = fetch(f"{TICKETBG_BASE}/")
+    if not html:
+        return []
+    return _parse_ticketbg(html)
+
+
 def scrape_facebook(source=None):
     """Documented stub. Facebook event pages require an authenticated session and
     aggressively block anonymous/automated fetches (login walls, anti-bot checks) —
@@ -323,6 +408,7 @@ def scrape_facebook(source=None):
 SCRAPERS = {
     "plovdiv2019": scrape_plovdiv2019,
     "bilet": scrape_bilet,
+    "ticketbg": scrape_ticketbg,
     "facebook": scrape_facebook,
 }
 

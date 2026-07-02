@@ -210,5 +210,26 @@ class TestParseBiletFixture(unittest.TestCase):
         self.assertEqual(first["url"], "https://bilet.bg/en/events/summer-jazz-night")
 
 
+class TestParseTicketbgFixture(unittest.TestCase):
+    def test_parses_cards_from_fixture(self):
+        html = load_fixture("ticketbg.html")
+        items = scrapers._parse_ticketbg(html, today=dt.date(2026, 7, 2))
+        # Varna (Chamkoria) and Burgas events are dropped as out of the Plovdiv radius.
+        self.assertEqual(len(items), 3)
+        titles = [item["title"] for item in items]
+        self.assertIn("Неделя сутрин", titles)
+        self.assertNotIn("Чамкория", titles)
+
+        first = items[0]
+        self.assertEqual(first["title"], "Неделя сутрин")
+        self.assertEqual(first["date_iso"], "2026-07-07")
+        self.assertEqual(first["location"], "Летен Театър Пловдив, Пловдив")
+        self.assertEqual(first["url"], "https://www.ticket.bg/bilet/nedelq-sutrin")
+
+        sofia = next(item for item in items if item["title"] == "Концерт на Анелия")
+        self.assertEqual(sofia["date_iso"], "2026-11-28")
+        self.assertEqual(sofia["location"], "Арена 8888 София, София")
+
+
 if __name__ == "__main__":
     unittest.main()
