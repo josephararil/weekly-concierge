@@ -202,6 +202,11 @@ def _make_item(source, title, when_text="", date_iso=None, location="", url="", 
 # dev environment (likely Cloudflare bot-challenge), so a hand-written parser could
 # never be verified against real HTML. It still runs every week; if CI's network can
 # reach it, FIND gets a text blob, and if not, harvest() logs a clean FAILED.
+# ticketstation.bg is also raw-fetch only: it's a client-rendered Vue SPA — the static
+# HTML is just an empty <div id="app"> shell plus a compiled js/app.js bundle that
+# fetches events from an API after JS executes. There is no event markup in the fetched
+# HTML for BeautifulSoup to select, so a structured parser can't be written or verified
+# against real HTML. Revisit only if the site ships server-rendered listing pages.
 RAW_FETCH_SOURCES = {
     "eventim":              "https://www.eventim.bg/en/city/plovdiv-52/",
     "ticketstation":        "https://ticketstation.bg/",
