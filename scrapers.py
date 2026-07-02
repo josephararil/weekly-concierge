@@ -13,6 +13,7 @@ Two tiers per source:
 import re
 import time
 import datetime as dt
+from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup
@@ -32,13 +33,66 @@ BG_MONTHS = {
     "януари": 1, "февруари": 2, "март": 3, "април": 4, "май": 5, "юни": 6,
     "юли": 7, "август": 8, "септември": 9, "октомври": 10, "ноември": 11, "декември": 12,
 }
-_BG_MONTH_PATTERN = "|".join(BG_MONTHS)
+EN_MONTHS = {
+    "january": 1, "february": 2, "march": 3, "april": 4, "may": 5, "june": 6,
+    "july": 7, "august": 8, "september": 9, "october": 10, "november": 11, "december": 12,
+}
+MONTHS = {**BG_MONTHS, **EN_MONTHS}
+# Longest names first so alternation doesn't stop on a shorter prefix match.
+_MONTH_PATTERN = "|".join(sorted(MONTHS, key=len, reverse=True))
+
+
+def _roll_forward_if_needed(date, year, month, day, today, year_given):
+    if not year_given and date < today:
+        return dt.date(year + 1, month, day)
+    return date
+
+
+def bg_date_range(text, today=None):
+    """Best-effort parse of a date-range expression ('10-14 юли', '10 юли - 12 август
+    2026') to a (start_iso, end_iso) tuple, or (None, None) if no range is found. When
+    the range's start month is omitted it's assumed to match the end month."""
+    if not text:
+        return (None, None)
+    today = today or dt.date.today()
+    t = text.strip().lower()
+
+    m = re.search(
+        rf"\b(\d{{1,2}})\.?\s*(?:({_MONTH_PATTERN})\.?)?\s*[\-–—]\s*"
+        rf"(\d{{1,2}})\.?\s*({_MONTH_PATTERN})\.?\s*(\d{{4}})?\b",
+        t,
+    )
+    if not m:
+        return (None, None)
+
+    day1 = int(m.group(1))
+    month1_text = m.group(2)
+    day2 = int(m.group(3))
+    month2 = MONTHS[m.group(4)]
+    month1 = MONTHS[month1_text] if month1_text else month2
+    year_text = m.group(5)
+    year = int(year_text) if year_text else today.year
+
+    try:
+        start = dt.date(year, month1, day1)
+        end = dt.date(year, month2, day2)
+    except ValueError:
+        return (None, None)
+
+    if not year_text and end < today:
+        year += 1
+        start = dt.date(year, month1, day1)
+        end = dt.date(year, month2, day2)
+
+    return (start.isoformat(), end.isoformat())
 
 
 def bg_date(text, today=None):
-    """Best-effort parse of a Bulgarian date expression to an ISO date string, or None.
-    Handles numeric dd.mm.yyyy / dd/mm/yyyy and 'DD <bulgarian month name> [YYYY]'.
-    A missing year is assumed to be the next upcoming occurrence relative to `today`."""
+    """Best-effort parse of a Bulgarian/English date expression to an ISO date string,
+    or None. Handles numeric dd.mm.yyyy / dd/mm/yyyy, bare dd.mm (no year), date ranges
+    ('10-14 юли' -> the start date; use bg_date_range for the full span), and
+    'DD <month name> [YYYY]' in Bulgarian or English. A missing year is assumed to be
+    the next upcoming occurrence relative to `today`."""
     if not text:
         return None
     today = today or dt.date.today()
@@ -52,18 +106,31 @@ def bg_date(text, today=None):
         except ValueError:
             return None
 
-    m = re.search(rf"\b(\d{{1,2}})[\-–]?\s*(?:ти|ви|ри|ми)?\.?\s*({_BG_MONTH_PATTERN})\.?\s*(\d{{4}})?", t)
+    start, _end = bg_date_range(t, today)
+    if start:
+        return start
+
+    m = re.search(rf"\b(\d{{1,2}})[\-–]?\s*(?:ти|ви|ри|ми)?\.?\s*({_MONTH_PATTERN})\.?\s*(\d{{4}})?", t)
     if m:
         day = int(m.group(1))
-        month = BG_MONTHS[m.group(2)]
+        month = MONTHS[m.group(2)]
         year_text = m.group(3)
         year = int(year_text) if year_text else today.year
         try:
             date = dt.date(year, month, day)
         except ValueError:
             return None
-        if not year_text and date < today:
-            date = dt.date(year + 1, month, day)
+        date = _roll_forward_if_needed(date, year, month, day, today, bool(year_text))
+        return date.isoformat()
+
+    m = re.search(r"\b(\d{1,2})[./](\d{1,2})\b", t)
+    if m:
+        day, month = int(m.group(1)), int(m.group(2))
+        try:
+            date = dt.date(today.year, month, day)
+        except ValueError:
+            return None
+        date = _roll_forward_if_needed(date, today.year, month, day, today, False)
         return date.isoformat()
 
     return None
@@ -90,6 +157,21 @@ def fetch(url, timeout=_FETCH_TIMEOUT, retries=_FETCH_RETRIES):
                 continue
             return None
     return None
+
+
+def fetch_soup(url, timeout=_FETCH_TIMEOUT, retries=_FETCH_RETRIES):
+    """fetch() + BeautifulSoup parse in one step. Returns None if the fetch failed."""
+    html = fetch(url, timeout=timeout, retries=retries)
+    if not html:
+        return None
+    return BeautifulSoup(html, "html.parser")
+
+
+def resolve_url(base, href):
+    """Join a possibly-relative href against a page's base URL."""
+    if not href:
+        return ""
+    return urljoin(base, href)
 
 
 def text_of(html, max_chars=RAW_FETCH_MAX_CHARS):
@@ -151,47 +233,53 @@ PLOVDIV2019_BASE = "https://plovdiv2019.eu"
 PLOVDIV2019_PAGES = 3  # each page holds ~12 cards; plenty of headroom over LOOKAHEAD_WEEKS
 
 
+def _parse_plovdiv2019(html, today=None):
+    """Pure parse of one plovdiv2019.eu events page. Cards live in
+    div.program-resume-wrapper with an h2 title, a <time datetime=...> for the start
+    date, and a .location .value link."""
+    soup = BeautifulSoup(html, "html.parser")
+    items = []
+    for card in soup.find_all("div", class_="program-resume-wrapper"):
+        h2 = card.find("h2")
+        title = h2.get_text(strip=True) if h2 else ""
+        if not title:
+            continue
+        time_tag = card.find("time")
+        when_text = time_tag.get_text(" ", strip=True) if time_tag else ""
+        date_iso = None
+        if time_tag and time_tag.get("datetime"):
+            date_iso = time_tag["datetime"].split(" ")[0]
+        loc_value = card.select_one(".location .value")
+        location = loc_value.get_text(strip=True) if loc_value else ""
+        link = card.find("a", class_="go")
+        url = resolve_url(PLOVDIV2019_BASE, link.get("href", "")) if link else ""
+        items.append(_make_item("plovdiv2019", title, when_text, date_iso, location, url))
+    return items
+
+
 def scrape_plovdiv2019(pages=PLOVDIV2019_PAGES):
     """Structured parser for plovdiv2019.eu's event archive. The site's own JS calendar
     widget just navigates to /en/events?f_time=all&page=N (see its resource_builds JS),
-    which IS server-rendered — cards live in div.program-resume-wrapper with an h2 title,
-    a <time datetime=...> for the start date, and a .location .value link."""
+    which IS server-rendered. Fetches each page and delegates parsing to
+    _parse_plovdiv2019; stops early once a page yields no cards."""
     items = []
     for page in range(1, pages + 1):
         html = fetch(f"{PLOVDIV2019_BASE}/en/events?f_time=all&page={page}")
         if not html:
             break
-        soup = BeautifulSoup(html, "html.parser")
-        cards = soup.find_all("div", class_="program-resume-wrapper")
-        if not cards:
+        page_items = _parse_plovdiv2019(html)
+        if not page_items:
             break
-        for card in cards:
-            h2 = card.find("h2")
-            title = h2.get_text(strip=True) if h2 else ""
-            if not title:
-                continue
-            time_tag = card.find("time")
-            when_text = time_tag.get_text(" ", strip=True) if time_tag else ""
-            date_iso = None
-            if time_tag and time_tag.get("datetime"):
-                date_iso = time_tag["datetime"].split(" ")[0]
-            loc_value = card.select_one(".location .value")
-            location = loc_value.get_text(strip=True) if loc_value else ""
-            link = card.find("a", class_="go")
-            url = link.get("href", "") if link else ""
-            items.append(_make_item("plovdiv2019", title, when_text, date_iso, location, url))
+        items.extend(page_items)
     return items
 
 
 BILET_BASE = "https://bilet.bg"
 
 
-def scrape_bilet():
-    """Structured parser for bilet.bg's homepage event carousels. Cards are <a href="/.../
-    events/...">, with a title <p>, a date <span> ('YYYY-MM-DD HH:MM'), and a location <span>."""
-    html = fetch(f"{BILET_BASE}/")
-    if not html:
-        return []
+def _parse_bilet(html, today=None):
+    """Pure parse of bilet.bg's homepage HTML. Cards are <a href="/.../events/...">,
+    with a title <p>, a date <span> ('YYYY-MM-DD HH:MM'), and a location <span>."""
     soup = BeautifulSoup(html, "html.parser")
     items = []
     for card in soup.select("a[href*='/events/']"):
@@ -204,10 +292,18 @@ def scrape_bilet():
         location = spans[1].get_text(" ", strip=True) if len(spans) > 1 else ""
         date_match = re.match(r"(\d{4}-\d{2}-\d{2})", when_text)
         date_iso = date_match.group(1) if date_match else None
-        href = card.get("href", "")
-        url = href if href.startswith("http") else BILET_BASE + href
+        url = resolve_url(BILET_BASE, card.get("href", ""))
         items.append(_make_item("bilet", title, when_text, date_iso, location, url))
     return items
+
+
+def scrape_bilet():
+    """Structured parser for bilet.bg's homepage event carousels. Fetches the homepage
+    and delegates parsing to _parse_bilet."""
+    html = fetch(f"{BILET_BASE}/")
+    if not html:
+        return []
+    return _parse_bilet(html)
 
 
 def scrape_facebook(source=None):
@@ -246,18 +342,29 @@ def harvest(today=None):
     takes down the run — its failure is logged and it contributes []."""
     all_items = []
     for source in C.ENABLED_SOURCES:
-        try:
-            if source in SCRAPERS:
+        has_structured = source in SCRAPERS
+        has_raw_fetch = source in RAW_FETCH_SOURCES
+        if not has_structured and not has_raw_fetch:
+            print(f"  [harvest] {source}: unknown source, skipping")
+            continue
+
+        items, path = [], "structured"
+        if has_structured:
+            try:
                 items = SCRAPERS[source]()
-            elif source in RAW_FETCH_SOURCES:
+            except Exception as exc:
+                print(f"  [harvest] {source}: structured parser FAILED ({type(exc).__name__}: {exc})")
+
+        if not items and has_raw_fetch:
+            path = "raw-fetch fallback" if has_structured else "raw-fetch"
+            try:
                 items = raw_fetch(source, RAW_FETCH_SOURCES[source])
-            else:
-                print(f"  [harvest] {source}: unknown source, skipping")
+            except Exception as exc:
+                print(f"  [harvest] {source}: raw-fetch FAILED ({type(exc).__name__}: {exc})")
                 continue
-            print(f"  [harvest] {source}: {len(items)} items")
-            all_items.extend(items)
-        except Exception as exc:
-            print(f"  [harvest] {source}: FAILED ({type(exc).__name__}: {exc})")
+
+        print(f"  [harvest] {source}: {len(items)} item(s) [{path}]")
+        all_items.extend(items)
 
     deduped = _dedupe(all_items)
     capped = deduped[:C.MAX_HARVEST_ITEMS]
