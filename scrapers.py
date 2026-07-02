@@ -207,8 +207,11 @@ def _make_item(source, title, when_text="", date_iso=None, location="", url="", 
 # fetches events from an API after JS executes. There is no event markup in the fetched
 # HTML for BeautifulSoup to select, so a structured parser can't be written or verified
 # against real HTML. Revisit only if the site ships server-rendered listing pages.
-# ticketbg also has a structured parser (see SCRAPERS below); it's kept here as the
-# raw-fetch fallback if the site's markup ever changes underneath the parser.
+# ticketbg and programata also have structured parsers (see SCRAPERS below); they're kept
+# here as the raw-fetch fallback if either site's markup ever changes underneath the parser.
+# programata's raw-fetch entry still points at /sofia (a broader page) rather than the
+# structured parser's /kids/ category, so the fallback blob covers more ground than the
+# structured path if that one ever breaks.
 RAW_FETCH_SOURCES = {
     "eventim":              "https://www.eventim.bg/en/city/plovdiv-52/",
     "ticketstation":        "https://ticketstation.bg/",
@@ -396,6 +399,40 @@ def scrape_ticketbg():
     return _parse_ticketbg(html)
 
 
+PROGRAMATA_BASE = "https://programata.bg"
+PROGRAMATA_KIDS_URL = f"{PROGRAMATA_BASE}/kids/"
+
+
+def _parse_programata(html, today=None):
+    """Pure parse of programata.bg's Kids category page. Cards live in div.post-list-entry
+    with an h3 > a for title/url. programata.bg is an editorial/magazine site, not an event
+    calendar: listing cards carry no date or venue field — dates only appear as free-form
+    prose inside each article body (e.g. 'every Saturday in June and July at 21:30'), too
+    unstructured to regex reliably. date_iso/location stay unset here; FIND/SKEPTIC resolve
+    the date from the linked article or their own search."""
+    soup = BeautifulSoup(html, "html.parser")
+    items = []
+    for card in soup.find_all("div", class_="post-list-entry"):
+        h3 = card.find("h3")
+        link = h3.find("a") if h3 else None
+        title = link.get_text(strip=True) if link else ""
+        if not title:
+            continue
+        url = resolve_url(PROGRAMATA_BASE, link.get("href", ""))
+        items.append(_make_item("programata", title, url=url))
+    return items
+
+
+def scrape_programata():
+    """Structured parser for programata.bg's Kids category — chosen over the generic
+    /sofia page (a venue directory listing cinemas, not events) as the category most
+    relevant to this family. Fetches the page and delegates parsing to _parse_programata."""
+    html = fetch(PROGRAMATA_KIDS_URL)
+    if not html:
+        return []
+    return _parse_programata(html)
+
+
 def scrape_facebook(source=None):
     """Documented stub. Facebook event pages require an authenticated session and
     aggressively block anonymous/automated fetches (login walls, anti-bot checks) —
@@ -409,6 +446,7 @@ SCRAPERS = {
     "plovdiv2019": scrape_plovdiv2019,
     "bilet": scrape_bilet,
     "ticketbg": scrape_ticketbg,
+    "programata": scrape_programata,
     "facebook": scrape_facebook,
 }
 

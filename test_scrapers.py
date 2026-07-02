@@ -231,5 +231,25 @@ class TestParseTicketbgFixture(unittest.TestCase):
         self.assertEqual(sofia["location"], "Арена 8888 София, София")
 
 
+class TestParseProgramataFixture(unittest.TestCase):
+    def test_parses_cards_from_fixture(self):
+        html = load_fixture("programata.html")
+        items = scrapers._parse_programata(html)
+        self.assertEqual(len(items), 2)
+        first = items[0]
+        self.assertEqual(first["title"], "Зелено училище в Дом на културата Искър")
+        self.assertEqual(first["url"], "https://programata.bg/kids/zele/")
+
+        second = items[1]
+        self.assertEqual(
+            second["title"],
+            "Disney Лято на историите | Специално шоу на пеещите фонтани в Пловдив",
+        )
+        self.assertEqual(
+            second["url"],
+            "https://programata.bg/kids/disney-lyato-na-istoriite-speczialno-shou-na-peesthite-fontani-v-plovdiv/",
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
