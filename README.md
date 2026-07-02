@@ -121,8 +121,6 @@ python -m unittest test_concierge test_memory test_scrapers
 | `MAX_HARVEST_ITEMS` | 200 | Cap on the deduped harvest handed to FIND. |
 | `RADIUS_MINUTES` | 90 | Max one-way travel time from Plovdiv worth suggesting. |
 | `LOOKAHEAD_WEEKS` | 4 | How far ahead "notable events to plan for" reaches. |
-| `MAX_EVENTS_PER_EMAIL` | 6 | Cap on non-evergreen items in one email. |
-| `EVERGREEN_PER_EMAIL` | 2 | Rotating evergreen ideas included per email. |
 | `MIN_INCLUDE_SCORE` | 50 | family_fit floor (0–100) below which an event is dropped. |
 | `EVENT_TTL_DAYS` | 21 | Cooldown before the same event can resurface. |
 | `EVERGREEN_COOLDOWN_DAYS` | 70 | Cooldown before the same evergreen idea can resurface. |

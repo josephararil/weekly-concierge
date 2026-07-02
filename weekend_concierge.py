@@ -94,16 +94,16 @@ def mark_seen(state, key):
 # --- selection ---
 
 def select_events(fresh_events):
-    """Top MAX_EVENTS_PER_EMAIL non-evergreen survivors by family_fit, already filtered
-    for anti-repeat cooldown by the caller."""
-    ranked = sorted(fresh_events, key=lambda c: c.get("family_fit", 0), reverse=True)
-    return ranked[:C.MAX_EVENTS_PER_EMAIL]
+    """All non-evergreen survivors, ranked by family_fit (for the concierge's prioritization
+    only), already filtered for anti-repeat cooldown by the caller. No count cap — every
+    survivor that passed FIND + SKEPTIC + anti-repeat goes to the concierge."""
+    return sorted(fresh_events, key=lambda c: c.get("family_fit", 0), reverse=True)
 
 
 def select_evergreens(evergreen_survivors, mem):
-    """Off-cooldown survivor evergreens first; if none are off cooldown (or none survived
-    this run at all), fall back to the least-recently-suggested catalog entries so the
-    email is never empty."""
+    """All off-cooldown survivor evergreens, ranked by family_fit. If none are off cooldown
+    (or none survived this run at all), fall back to a single least-recently-suggested
+    catalog entry so the email is never empty."""
     catalog = mem.get("evergreen", {})
     cutoff = (dt.date.today() - dt.timedelta(days=C.EVERGREEN_COOLDOWN_DAYS)).isoformat()
 
@@ -112,12 +112,11 @@ def select_evergreens(evergreen_survivors, mem):
         last = catalog.get(c.get("title", ""), {}).get("last_suggested")
         if not last or last < cutoff:
             off_cooldown.append(c)
-    off_cooldown.sort(key=lambda c: c.get("family_fit", 0), reverse=True)
-    picks = off_cooldown[:C.EVERGREEN_PER_EMAIL]
+    picks = sorted(off_cooldown, key=lambda c: c.get("family_fit", 0), reverse=True)
 
     if not picks:
         ranked = sorted(catalog.items(), key=lambda kv: kv[1].get("last_suggested") or "")
-        for name, entry in ranked[:C.EVERGREEN_PER_EMAIL]:
+        for name, entry in ranked[:1]:
             picks.append({
                 "title": name, "category": "evergreen", "when_text": "", "date_iso": None,
                 "location": entry.get("location", ""), "family_fit": 60,

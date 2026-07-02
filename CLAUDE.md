@@ -20,7 +20,7 @@ A personal weekend-activities concierge for a family of 3 (2 adults + 4-year-old
 Plovdiv, Bulgaria. The household is English-speaking with no TV/newspapers and little local
 plug-in, so it misses events happening around it. This pipeline runs weekly on free GitHub
 Actions and emails one warm, curated **soft-itinerary** every Thursday: (1) events happening
-this weekend, (2) 1–2 rotating evergreen ideas (zoo, museums, rowing channel), and (3) notable
+this weekend, (2) rotating evergreen ideas (zoo, museums, rowing channel), and (3) notable
 events 2–4 weeks out. Passive by design — the user only reads the email. No server, no database;
 JSON state committed back by CI.
 

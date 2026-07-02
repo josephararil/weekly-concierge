@@ -72,8 +72,6 @@ WEB_SEARCH_MAX_USES = 6
 
 # ── Coverage knobs ───────────────────────────────────────────────────────────
 LOOKAHEAD_WEEKS      = 4    # how far ahead "notable events to plan for" reaches
-MAX_EVENTS_PER_EMAIL = 6    # cap on non-evergreen items included in one email
-EVERGREEN_PER_EMAIL  = 2    # rotating evergreen ideas included in one email
 MIN_INCLUDE_SCORE    = 50   # family_fit floor (0-100) below which an event is dropped
 
 # ── Anti-repeat knobs ────────────────────────────────────────────────────────
@@ -713,9 +711,9 @@ Some candidates also carry a `practical` field (opening hours, entry fees, seaso
 
 ### STRUCTURE
 Organize the email into three loose sections (use these or similar natural headers):
-1. **This weekend** — events happening this Saturday/Sunday. Add a short weather note if relevant. Include links for each item. This is the main section, so prioritize the best 3-6 items here. If there are no events this weekend, skip this section gracefully.
-2. **Also worth knowing** — 1-2 rotating evergreen ideas (zoo, museum, rowing channel, etc.) as a fallback or add-on. This is more a reminder than a recommendation, so keep it short and warm (eg "It's going to rain so why not visit the museum?"). Include links for each item.
-3. **Looking ahead** — notable events 2-4 weeks out worth looking out for. 
+1. **This weekend** — events happening this Saturday/Sunday. Add a short weather note if relevant. Include links for each item. Include every candidate provided for this weekend — they've already been fact-checked and filtered upstream, so don't drop any for length. If there are no events this weekend, skip this section gracefully.
+2. **Also worth knowing** — the rotating evergreen ideas provided (zoo, museum, rowing channel, etc.) as a fallback or add-on. Include every evergreen candidate provided, keeping each one short and warm (eg "It's going to rain so why not visit the museum?"). Include links for each item.
+3. **Looking ahead** — notable events 2-4 weeks out worth looking out for. Include every candidate provided in this category.
 
 If a section has nothing surviving, skip it gracefully rather than leaving an awkward header with no content — but there should almost always be something in "Also worth knowing" since evergreens are the guaranteed fallback.
 
