@@ -22,6 +22,7 @@ state/signals_seen.json.
 
 import json
 import re
+import urllib.parse
 import datetime as dt
 try:
     from dotenv import load_dotenv; load_dotenv()
@@ -125,6 +126,24 @@ def select_evergreens(evergreen_survivors, mem):
     return picks
 
 
+# --- actionable links ---
+
+def build_links(c):
+    """Ready-made links so the reader never has to go googling, and so the concierge
+    never has to invent a URL. source_url is the real page FIND/a scraper found (may be
+    ""); maps_url and search_url are constructed deterministically and always resolve.
+    Returns (source_url, maps_url, search_url) — any may be "" if unbuildable."""
+    title = (c.get("title") or "").strip()
+    location = (c.get("location") or "").strip()
+    maps_q = location or title
+    search_q = " ".join(p for p in (title, location) if p)
+    maps_url = ("https://www.google.com/maps/search/?api=1&query=" + urllib.parse.quote_plus(maps_q)
+                if maps_q else "")
+    search_url = ("https://www.google.com/search?q=" + urllib.parse.quote_plus(search_q)
+                  if search_q else "")
+    return (c.get("source_url") or "").strip(), maps_url, search_url
+
+
 # --- fallback email (used only if CONCIERGE fails or returns incomplete output) ---
 
 def _fallback_email(events, evergreens, today):
@@ -137,10 +156,21 @@ def _fallback_email(events, evergreens, today):
         text.append(f"\n{label}:")
         for c in items:
             when = c.get("when_text") or c.get("date_iso") or ""
+            source_url, maps_url, search_url = build_links(c)
+            info_url = source_url or search_url
+            link_html, link_text = [], []
+            if info_url:
+                link_html.append(f'<a href="{info_url}">{"details" if source_url else "look it up"}</a>')
+                link_text.append(info_url)
+            if maps_url:
+                link_html.append(f'<a href="{maps_url}">map</a>')
+                link_text.append(f"map: {maps_url}")
+            links_h = (" — " + " · ".join(link_html)) if link_html else ""
+            links_t = ("  [" + " | ".join(link_text) + "]") if link_text else ""
             html.append(f"<li><b>{c.get('title','?')}</b> ({when}, {c.get('location','')}) "
-                        f"— {c.get('reason','')}</li>")
+                        f"— {c.get('reason','')}{links_h}</li>")
             text.append(f"- {c.get('title','?')} ({when}, {c.get('location','')}) "
-                        f"— {c.get('reason','')}")
+                        f"— {c.get('reason','')}{links_t}")
         html.append("</ul>")
     return "".join(html), "\n".join(text)
 
@@ -334,11 +364,15 @@ def main():
 
     # Stage 3: CONCIERGE -- write the email.
     _section("STAGE 3 · CONCIERGE")
-    concierge_candidates = [{
-        "title": c.get("title"), "category": c.get("category"), "when_text": c.get("when_text"),
-        "date_iso": c.get("date_iso"), "location": c.get("location"), "reason": c.get("reason"),
-        "family_fit": c.get("family_fit"),
-    } for c in selected_events + selected_evergreens]
+    concierge_candidates = []
+    for c in selected_events + selected_evergreens:
+        source_url, maps_url, search_url = build_links(c)
+        concierge_candidates.append({
+            "title": c.get("title"), "category": c.get("category"), "when_text": c.get("when_text"),
+            "date_iso": c.get("date_iso"), "location": c.get("location"), "reason": c.get("reason"),
+            "family_fit": c.get("family_fit"),
+            "source_url": source_url, "maps_url": maps_url, "search_url": search_url,
+        })
 
     subject, html, text = None, "", ""
     try:

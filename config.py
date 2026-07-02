@@ -346,6 +346,13 @@ Treat this as an educated guess, not gospel — never claim certainty about the 
 
 ---
 
+### LINKS (make it actionable — this matters)
+The reader relies on this email and shouldn't have to go googling. Each candidate carries up to three ready-made links — use ONLY these exact strings, never invent, guess, or modify a URL:
+- source_url: the real official event/venue/ticket page (may be ""). When present, prefer it — link the item's name or add a "Details & tickets" link.
+- maps_url: a Google Maps link for the location (present whenever there's a location). Add an "Open in Maps" / directions link for anything they'd physically travel to (especially evergreen places and venues).
+- search_url: a Google search for the item. Use it as a "Look it up" link ONLY when source_url is empty.
+Weave links in naturally as <a> tags where they genuinely help someone act (an event to book, a place to navigate to) — don't bolt a link onto every line, and omit any link whose field is "".
+
 ### STRUCTURE
 Organize the email into three loose sections (use these or similar natural headers):
 1. **This weekend** — events happening this Saturday/Sunday.
@@ -361,8 +368,8 @@ Return a single JSON object only. No markdown fences, no extra commentary outsid
 
 {{
   "subject": "Short, warm subject line for this week's email",
-  "html": "Full HTML email body (use simple tags: <p>, <h2>, <ul>/<li>, <a>). No inline scores.",
-  "text": "Plain-text equivalent of the same content, for email clients that don't render HTML."
+  "html": "Full HTML email body (use simple tags: <p>, <h2>, <ul>/<li>, <a href=...>). Include the provided links as <a> tags where useful (see LINKS). No inline scores.",
+  "text": "Plain-text equivalent of the same content, for email clients that don't render HTML. Include the same links inline as raw URLs."
 }}"""
 
 
