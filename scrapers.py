@@ -594,7 +594,51 @@ LOSTINPLOVDIV_LIMIT = 30  # the listing has no pagination param — one fetch re
 # site's entire ~10-year archive (1000+ cards), newest first. This is a weekly harvest, so
 # we only need the newest slice: it reliably covers the latest "What to do in Plovdiv
 # (DD.MM - DD.MM)" weekly digest plus several evergreen thematic roundups.
+LOSTINPLOVDIV_DETAIL_MAX_CHARS = 2500  # enough for a full dated event list (e.g. a "which
+# events in June" roundup runs ~2000 chars); the listing blurb alone is only 1-2 sentences.
+LOSTINPLOVDIV_MAX_DETAIL_FETCHES = 10  # cap extra per-article requests per harvest run
 _LOSTINPLOVDIV_WEEK_RE = re.compile(r"\((\d{1,2})\.(\d{1,2})\s*[-–—]\s*(\d{1,2})\.(\d{1,2})\)")
+# The listing blurb is too short to be useful for actual activity/event guides (e.g. "which
+# events should we not miss in June" collapses to one teaser sentence with zero of the dates
+# it lists), but is a waste of a request for pure local-history trivia ("who was the first
+# Bulgarian photographer to..."). This heuristic flags titles that read as an actionable
+# guide — a numbered listicle ("5 caves...", "5 sports clubs...") or one containing an
+# activity/event word — so only those get a follow-up fetch of the full article body.
+_LOSTINPLOVDIV_NUMBERED_TITLE_RE = re.compile(r"^\s*\d+\s+\S")
+_LOSTINPLOVDIV_WHERE_QUESTION_RE = re.compile(r"\bwhere\s+(is|are|to|can|will)\b", re.IGNORECASE)
+_LOSTINPLOVDIV_ACTIVITY_WORDS_RE = re.compile(
+    r"\b(events?|concerts?|festivals?|performances?|shows?|exhibitions?|workshops?|fairs?|"
+    r"markets?|premieres?|screenings?|cinemas?|camps?|classes?|tours?|celebrations?|parties?|"
+    r"openings?|kids?|children|family|playgrounds?|activit\w*|guides?|places?|spots?|parks?|"
+    r"museums?|caf[eé]s?|coffee|restaurants?|food|bakeri\w*|clubs?|programs?|schedules?|"
+    r"calendars?|weekends?|not\s*miss|what\s*to\s*do|things\s*to\s*do)\b",
+    re.IGNORECASE,
+)
+
+
+def _lostinplovdiv_is_actionable(title):
+    """True if a listing title reads as an activity/event guide worth a full-article
+    fetch, rather than pure local-history/trivia content (see the comment above)."""
+    if _LOSTINPLOVDIV_NUMBERED_TITLE_RE.match(title):
+        return True
+    if _LOSTINPLOVDIV_WHERE_QUESTION_RE.search(title):
+        return True
+    return bool(_LOSTINPLOVDIV_ACTIVITY_WORDS_RE.search(title))
+
+
+def _fetch_lostinplovdiv_detail(url):
+    """Fetch one lostinplovdiv article page and return its full body text (the
+    article.main-content paragraphs, whitespace-collapsed and capped), or "" on any
+    failure. Only called for titles _lostinplovdiv_is_actionable() flags as worth it."""
+    html = fetch(url)
+    if not html:
+        return ""
+    soup = BeautifulSoup(html, "html.parser")
+    main = soup.find("article", class_="main-content")
+    if not main:
+        return ""
+    text = re.sub(r"\s+", " ", main.get_text(" ", strip=True)).strip()
+    return text[:LOSTINPLOVDIV_DETAIL_MAX_CHARS]
 
 
 def _parse_lostinplovdiv_week_title(title, today):
@@ -644,11 +688,26 @@ def scrape_lostinplovdiv():
     """Structured parser for lostinplovdiv.com's English articles feed — the site's own
     bilingual, hand-curated guide to Plovdiv (weekly what-to-do digests, evergreen
     thematic roundups, local food/culture spots). Fetches /en/articles and delegates to
-    _parse_lostinplovdiv."""
+    _parse_lostinplovdiv, then replaces the one-sentence listing blurb with the full
+    article body (see _fetch_lostinplovdiv_detail) for titles that look like an actual
+    activity/event guide, up to LOSTINPLOVDIV_MAX_DETAIL_FETCHES extra requests — the
+    blurb alone is too thin for FIND to extract, say, a June event calendar's dozen
+    dated entries from."""
     html = fetch(LOSTINPLOVDIV_ARTICLES_URL)
     if not html:
         return []
-    return _parse_lostinplovdiv(html)
+    items = _parse_lostinplovdiv(html)
+    fetched = 0
+    for item in items:
+        if fetched >= LOSTINPLOVDIV_MAX_DETAIL_FETCHES:
+            break
+        if not _lostinplovdiv_is_actionable(item["title"]):
+            continue
+        detail = _fetch_lostinplovdiv_detail(item["url"])
+        if detail:
+            item["description"] = detail
+        fetched += 1
+    return items
 
 
 def scrape_facebook(source=None):
