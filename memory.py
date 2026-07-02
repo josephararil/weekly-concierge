@@ -128,7 +128,7 @@ def summarize_for_prompt(memory):
             area = e.get("area", "").strip()
             desc = e.get("description", "").strip()
             practical = e.get("practical", "").strip()
-            entry = f"  {name}" + (f" ({area})" if area else "")
+            entry = f"- {name}" + (f" ({area})" if area else "")
             if desc:
                 entry += f" — {_clip(desc, 140)}"
             if practical:
@@ -137,7 +137,7 @@ def summarize_for_prompt(memory):
             if len(off_cooldown) >= MAX_PROMPT_EVERGREENS:
                 break
         if off_cooldown:
-            lines.append("Evergreen ideas off cooldown (safe to suggest again):")
+            lines.append("Evergreen Activities in the pipeline's memory that are not on cooldown and can be suggested again:")
             lines.extend(off_cooldown)
 
     # --- Recent suggestions ---
@@ -146,13 +146,13 @@ def summarize_for_prompt(memory):
     if recent:
         if lines:
             lines.append("")
-        lines.append("Recently suggested (avoid repeating unless still upcoming):")
+        lines.append("Evergreen Activities in the pipeline's memory that are in cooldown (avoid repeating):")
         for e in recent:
             title   = e.get("title", "?")
             when    = e.get("when", "?")
             verdict = e.get("verdict", "?")
             note    = e.get("note", "").strip()
-            entry = f"  {title} ({when}): {verdict}"
+            entry = f"-  {title} ({when}): {verdict}"
             if note:
                 entry += f" — {_clip(note, 120)}"
             lines.append(entry)
