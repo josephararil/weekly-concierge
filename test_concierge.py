@@ -152,6 +152,27 @@ class WeekendConciergeTest(unittest.TestCase):
         rotated_name = next(iter(_sent_titles(log2)))
         self.assertNotIn("Rowing Channel bike ride", rotated_name)
 
+    def test_build_links(self):
+        # real source_url is passed through untouched; maps + search always constructed
+        src, maps, search = WC.build_links(
+            {"title": "Kapana Fest", "location": "Kapana, Plovdiv", "source_url": "https://kapana.bg/fest"})
+        self.assertEqual(src, "https://kapana.bg/fest")
+        self.assertIn("google.com/maps", maps)
+        self.assertIn("Kapana", maps)
+        self.assertTrue(search.startswith("https://www.google.com/search?q="))
+
+        # no source_url -> "", but maps/search still built from location/title
+        src, maps, search = WC.build_links(
+            {"title": "Stara Zagora Zoo", "location": "Stara Zagora", "source_url": ""})
+        self.assertEqual(src, "")
+        self.assertIn("Stara+Zagora", maps)
+
+        # title only, missing keys -> no crash; maps falls back to the title
+        src, maps, search = WC.build_links({"title": "Some Parade"})
+        self.assertEqual(src, "")
+        self.assertIn("Some+Parade", maps)
+        self.assertIn("Some+Parade", search)
+
 
 if __name__ == "__main__":
     unittest.main()
