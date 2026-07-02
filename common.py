@@ -178,7 +178,11 @@ def send_email(subject, html, text):
     with smtplib.SMTP(host, port) as s:
         s.starttls(context=ssl.create_default_context())
         s.login(user, pw)
-        s.send_message(msg)
+        refused = s.send_message(msg)
+        # send_message() only raises if EVERY recipient is refused; a partial refusal
+        # (e.g. one of several EMAIL_TO addresses) returns silently otherwise.
+        if refused:
+            raise smtplib.SMTPRecipientsRefused(refused)
 
 
 # ------------------------------ State ------------------------------
