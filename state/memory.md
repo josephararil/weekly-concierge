@@ -4,7 +4,7 @@
 
 ### Ancient Theatre of Philippopolis
 **Location:** Plovdiv Old Town / in town
-**Discovered:** 2026-07-01 &nbsp; **Last suggested:** never
+**Discovered:** 2026-07-01 &nbsp; **Last suggested:** 2026-07-02
 Roman-era amphitheatre in the Old Town; a short scenic walk even without an event on.
 _Tags: history, outdoor, free_
 _Source: seed_
@@ -43,7 +43,7 @@ _Source: find_
 
 ### Rowing Channel bike ride
 **Location:** Kanala (Rowing Channel), Plovdiv / in town
-**Discovered:** 2026-07-01 &nbsp; **Last suggested:** never
+**Discovered:** 2026-07-01 &nbsp; **Last suggested:** 2026-07-02
 Flat paved paths alongside the water, bike/scooter rental on site — easy free outdoor outing.
 _Tags: outdoor, free, active_
 _Source: seed_
@@ -55,13 +55,16 @@ One of Bulgaria's larger zoos — a reliable half-day out for a 4-year-old.
 _Tags: animals, outdoor_
 _Source: seed_
 
-## Suggestion Ledger (12 entries)
+## Suggestion Ledger (15 entries)
 
 - ✅ 2026-07-02 | State Puppet Theatre Weekend Performances | event_this_weekend | Saturday and Sunday, July 4-5, 2026, at 10:30 and 11:45 | sent score=95 — Verified as a real, family-friendly venue in Plovdiv with regular weekend performances suitable for…
 - ✅ 2026-07-02 | Craft School Plovdiv Workshops | event_this_weekend | Running through Saturday, July 4, 2026 | sent score=75 — Verified as a real entity in Plovdiv hosting workshops suitable for children.
 - ✅ 2026-07-02 | PhillGood Festival at the Rowing Canal | event_lookahead | July 17–19, 2026 | sent score=70 — Verified as a recurring family-friendly event at the Rowing Canal in Plovdiv.
 - ✅ 2026-07-02 | Day Trip to Bachkovo Monastery | evergreen | Always available (best on clear days) | sent score=85 — A highly accessible, beautiful mountain monastery with short walking paths, river views, and local…
 - ✅ 2026-07-02 | Explore the Ancient Theatre of Philippopolis | evergreen | Always available | sent score=80 — A spectacular historical site in the heart of the Old Town, offering an easy and impressive stroll…
+- ✅ 2026-07-02 | Cinema Under the Stars | event_lookahead | Throughout July 2026 | sent score=70 — Outdoor summer cinema screenings are a verified common occurrence in Plovdiv.
+- ✅ 2026-07-02 | Rowing Channel bike ride | evergreen |  | sent score=60 — Flat paved paths alongside the water, bike/scooter rental on site — easy free outdoor outing.
+- ✅ 2026-07-02 | Ancient Theatre of Philippopolis | evergreen |  | sent score=60 — Roman-era amphitheatre in the Old Town; a short scenic walk even without an event on.
 - ✅ 2026-07-01 | Stara Zagora Zoo | evergreen |  | sent score=60 — One of Bulgaria's larger zoos — a reliable half-day out for a 4-year-old.
 - ✅ 2026-07-01 | Plovdiv Regional Natural History Museum | evergreen |  | sent score=60 — Compact natural history museum with taxidermy and a small aquarium — easy indoor fallback.
 - ✅ 2026-07-01 | Summer in the Old Town | event_this_weekend | Ongoing throughout the weekend, July 4-5, 2026 | sent score=85 — Verified as an ongoing festival running throughout the summer of 2026 in Plovdiv.

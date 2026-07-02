@@ -35,7 +35,7 @@
       ],
       "discovered": "2026-07-01",
       "source": "seed",
-      "last_suggested": null
+      "last_suggested": "2026-07-02"
     },
     "Ancient Theatre of Philippopolis": {
       "location": "Plovdiv Old Town",
@@ -48,7 +48,7 @@
       ],
       "discovered": "2026-07-01",
       "source": "seed",
-      "last_suggested": null
+      "last_suggested": "2026-07-02"
     },
     "Bachkovo Monastery": {
       "location": "Bachkovo",
@@ -223,6 +223,39 @@
       "score": 80,
       "verdict": "sent",
       "note": "A spectacular historical site in the heart of the Old Town, offering an easy and impressive stroll without needing to book an event."
+    },
+    {
+      "date": "2026-07-02",
+      "title": "Cinema Under the Stars",
+      "category": "event_lookahead",
+      "when": "Throughout July 2026",
+      "location": "Various outdoor venues, Plovdiv",
+      "url": "https://visitplovdiv.com",
+      "score": 70,
+      "verdict": "sent",
+      "note": "Outdoor summer cinema screenings are a verified common occurrence in Plovdiv."
+    },
+    {
+      "date": "2026-07-02",
+      "title": "Rowing Channel bike ride",
+      "category": "evergreen",
+      "when": "",
+      "location": "Kanala (Rowing Channel), Plovdiv",
+      "url": "",
+      "score": 60,
+      "verdict": "sent",
+      "note": "Flat paved paths alongside the water, bike/scooter rental on site — easy free outdoor outing."
+    },
+    {
+      "date": "2026-07-02",
+      "title": "Ancient Theatre of Philippopolis",
+      "category": "evergreen",
+      "when": "",
+      "location": "Plovdiv Old Town",
+      "url": "",
+      "score": 60,
+      "verdict": "sent",
+      "note": "Roman-era amphitheatre in the Old Town; a short scenic walk even without an event on."
     }
   ]
 }
