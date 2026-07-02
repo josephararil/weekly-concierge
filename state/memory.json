@@ -71,6 +71,24 @@
       "discovered": "2026-07-01",
       "source": "find",
       "last_suggested": "2026-07-01"
+    },
+    "Day Trip to Bachkovo Monastery": {
+      "location": "Bachkovo Monastery (~40-minute drive from Plovdiv)",
+      "area": "",
+      "description": "A highly accessible, beautiful mountain monastery with short walking paths, river views, and local stalls, making for a perfect half-day family trip.",
+      "tags": [],
+      "discovered": "2026-07-02",
+      "source": "find",
+      "last_suggested": "2026-07-02"
+    },
+    "Explore the Ancient Theatre of Philippopolis": {
+      "location": "Ancient Theatre, Plovdiv Old Town",
+      "area": "",
+      "description": "A spectacular historical site in the heart of the Old Town, offering an easy and impressive stroll without needing to book an event.",
+      "tags": [],
+      "discovered": "2026-07-02",
+      "source": "find",
+      "last_suggested": "2026-07-02"
     }
   },
   "ledger": [
@@ -150,6 +168,61 @@
       "score": 95,
       "verdict": "sent",
       "note": "A completely flat, car-free paved loop with bike, family-kart, and scooter rentals on-site, perfect for an active but easy outdoor morning with a toddler."
+    },
+    {
+      "date": "2026-07-02",
+      "title": "State Puppet Theatre Weekend Performances",
+      "category": "event_this_weekend",
+      "when": "Saturday and Sunday, July 4-5, 2026, at 10:30 and 11:45",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "https://puppet.bg",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Verified as a real, family-friendly venue in Plovdiv with regular weekend performances suitable for a 4-year-old."
+    },
+    {
+      "date": "2026-07-02",
+      "title": "Craft School Plovdiv Workshops",
+      "category": "event_this_weekend",
+      "when": "Running through Saturday, July 4, 2026",
+      "location": "Various locations, Plovdiv",
+      "url": "https://visitplovdiv.com",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Verified as a real entity in Plovdiv hosting workshops suitable for children."
+    },
+    {
+      "date": "2026-07-02",
+      "title": "PhillGood Festival at the Rowing Canal",
+      "category": "event_lookahead",
+      "when": "July 17–19, 2026",
+      "location": "Rowing Canal, Plovdiv",
+      "url": "https://ticketstation.bg",
+      "score": 70,
+      "verdict": "sent",
+      "note": "Verified as a recurring family-friendly event at the Rowing Canal in Plovdiv."
+    },
+    {
+      "date": "2026-07-02",
+      "title": "Day Trip to Bachkovo Monastery",
+      "category": "evergreen",
+      "when": "Always available (best on clear days)",
+      "location": "Bachkovo Monastery (~40-minute drive from Plovdiv)",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "A highly accessible, beautiful mountain monastery with short walking paths, river views, and local stalls, making for a perfect half-day family trip."
+    },
+    {
+      "date": "2026-07-02",
+      "title": "Explore the Ancient Theatre of Philippopolis",
+      "category": "evergreen",
+      "when": "Always available",
+      "location": "Ancient Theatre, Plovdiv Old Town",
+      "url": "",
+      "score": 80,
+      "verdict": "sent",
+      "note": "A spectacular historical site in the heart of the Old Town, offering an easy and impressive stroll without needing to book an event."
     }
   ]
 }
