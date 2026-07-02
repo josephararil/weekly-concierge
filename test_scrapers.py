@@ -291,7 +291,7 @@ class TestParseLostinplovdivFixture(unittest.TestCase):
         html = load_fixture("lostinplovdiv.html")
         items = scrapers._parse_lostinplovdiv(html, today=dt.date(2026, 7, 2))
         # The no-title card is skipped.
-        self.assertEqual(len(items), 3)
+        self.assertEqual(len(items), 4)
 
         cafe = next(item for item in items if "TOP 100" in item["title"])
         self.assertIsNone(cafe["date_iso"])
@@ -305,6 +305,64 @@ class TestParseLostinplovdivFixture(unittest.TestCase):
         # in today's year, not rolled forward like bg_date's future-listing convention.
         self.assertEqual(digest["date_iso"], "2026-06-26")
         self.assertEqual(digest["url"], "https://lostinplovdiv.com/en/articles/what-to-do-in-plovdiv-358")
+
+
+class TestLostinplovdivIsActionable(unittest.TestCase):
+    """Real titles pulled from a production run: pure local-history trivia should stay
+    blurb-only, while genuine activity/event guides should get a full-article fetch."""
+
+    def test_trivia_titles_are_not_actionable(self):
+        for title in [
+            "Which Plovdiv actress starred in the first Bulgarian film?",
+            "Who was the first Bulgarian photographer to capture Old Plovdiv?",
+            "How did the people of Plovdiv spend their summer 100 years ago?",
+        ]:
+            self.assertFalse(scrapers._lostinplovdiv_is_actionable(title), title)
+
+    def test_guide_titles_are_actionable(self):
+        for title in [
+            "5 caves in the Rhodope Mountains for the bravest",
+            "Which events should we not miss in Plovdiv in June?",
+            "Where are the most delicious pancakes in Plovdiv?",
+        ]:
+            self.assertTrue(scrapers._lostinplovdiv_is_actionable(title), title)
+
+
+class TestFetchLostinplovdivDetail(unittest.TestCase):
+    def test_extracts_and_caps_main_content_text(self):
+        html = load_fixture("lostinplovdiv_detail.html")
+        with patch("scrapers.fetch", return_value=html):
+            text = scrapers._fetch_lostinplovdiv_detail("https://lostinplovdiv.com/en/articles/x")
+        self.assertIn("EVENTS IN JUNE IN BORIS HRISTOV", text)
+        self.assertIn("Annual dance performance", text)
+        self.assertIn("benefit concert", text)
+
+    def test_returns_empty_string_on_fetch_failure(self):
+        with patch("scrapers.fetch", return_value=None):
+            self.assertEqual(scrapers._fetch_lostinplovdiv_detail("https://lostinplovdiv.com/en/articles/x"), "")
+
+
+class TestScrapeLostinplovdivEnrichment(unittest.TestCase):
+    def test_enriches_only_actionable_items_up_to_the_fetch_cap(self):
+        listing_html = load_fixture("lostinplovdiv.html")
+        detail_html = load_fixture("lostinplovdiv_detail.html")
+
+        def fake_fetch(url, *args, **kwargs):
+            return listing_html if url == scrapers.LOSTINPLOVDIV_ARTICLES_URL else detail_html
+
+        with patch("scrapers.fetch", side_effect=fake_fetch), \
+             patch("scrapers.LOSTINPLOVDIV_MAX_DETAIL_FETCHES", 10):
+            items = scrapers.scrape_lostinplovdiv()
+
+        # "What to do in Plovdiv (...)" is actionable (activity keyword) -> enriched.
+        digest = next(item for item in items if item["title"].startswith("What to do in Plovdiv"))
+        self.assertIn("EVENTS IN JUNE IN BORIS HRISTOV", digest["description"])
+
+        # "Who was the first Bulgarian photographer..." is pure trivia -> no activity
+        # keyword, no numbered/where-question title -> stays as the short listing blurb.
+        trivia = next(item for item in items if "photographer" in item["title"])
+        self.assertNotIn("EVENTS IN JUNE", trivia["description"])
+        self.assertIn("Nikola Stamenov", trivia["description"])
 
 
 if __name__ == "__main__":
