@@ -13,6 +13,7 @@ ENABLED_SOURCES = [
     "plovdiv2019", "bilet",
     "eventim", "ticketstation", "ticketbg", "dtp", "rnhm", "oldplovdiv",
     "programata", "starazagora_tourist", "plovdiv_bg", "visitplovdiv", "marica",
+    "lostinplovdiv",
 ]
 
 # Volume cap applied to the deduped harvest before it's handed to FIND.
@@ -274,7 +275,7 @@ Today is {today}.
 For each candidate, verify:
 1. **Real existence** — does this event/place actually exist? Search for it.
 2. **Correct date** — is the stated date right? If you find a different real date, CORRECT it; don't kill it for having a wrong date.
-3. **Family relevance** — is it actually something a 4-year-old could attend (not, say, an 18+ nightclub event)?
+3. **Family relevance** — is it actually something a 4-year-old could feasibly attend (not, say, an 18+ nightclub event)?
 4. **Within radius** — is it within roughly a {radius_minutes}-minute drive of {home_area}?
 
 You do NOT judge desirability, excitement, or quality — that has already been scored upstream and is not your concern. You ONLY remove or correct candidates that fail the checks above. Evergreen-category candidates are known-real by construction (they come from a maintained catalog) — verify only relevance/radius for those, not existence.
@@ -311,13 +312,13 @@ JSON Schema:
 verdict: "keep" (verified or plausible, no changes needed) | "correct" (real, but date/location was wrong — fill corrected_date_iso and/or corrected_location) | "kill" (not real, already past, not family-relevant, or clearly outside the travel radius — explain in note)."""
 
 
-CONCIERGE_PROMPT = """Today is {today}. You are a warm, knowledgeable personal concierge writing a short weekly email for a family of 3 (2 adults + a 4-year-old) based in {home_area}. They have no TV, don't read local news, and rely entirely on this email to know what's worth doing this weekend and in the weeks ahead.
+CONCIERGE_PROMPT = """Today is {today}. You are a warm, knowledgeable personal concierge writing a short weekly email for a family of 3 (2 adults called Joseph and Marti + a 4-year-old called Sophie) based in {home_area}. They have no TV, don't read local news, and rely entirely on this email to know what's worth doing this weekend and in the weeks ahead.
 
 Write in a warm, conversational tone — like a friend who keeps track of the city for you. This is a SOFT ITINERARY, not a schedule and never a scoreboard: no scores, no rankings, no "family_fit: 82" leaking into the copy.
 
 ---
 
-### SURVIVING CANDIDATES (already fact-checked; scores are for your prioritization only, never show them)
+### POTENTIAL CANDIDATES (already fact-checked; scores are for your prioritization only, never show them)
 {candidates}
 
 ---
@@ -355,9 +356,9 @@ Weave links in naturally as <a> tags where they genuinely help someone act (an e
 
 ### STRUCTURE
 Organize the email into three loose sections (use these or similar natural headers):
-1. **This weekend** — events happening this Saturday/Sunday.
-2. **Also worth knowing** — 1-2 rotating evergreen ideas (zoo, museum, rowing channel, etc.) as a fallback or add-on.
-3. **Looking ahead** — notable events 2-4 weeks out worth planning for.
+1. **This weekend** — events happening this Saturday/Sunday. Add a short weather note if relevant. Include links for each item. This is the main section, so prioritize the best 3-6 items here. If there are no events this weekend, skip this section gracefully.
+2. **Also worth knowing** — 1-2 rotating evergreen ideas (zoo, museum, rowing channel, etc.) as a fallback or add-on. This is more a reminder than a recommendation, so keep it short and warm (eg "It's going to rain so why not visit the museum?"). Include links for each item.
+3. **Looking ahead** — notable events 2-4 weeks out worth looking out for. 
 
 If a section has nothing surviving, skip it gracefully rather than leaving an awkward header with no content — but there should almost always be something in "Also worth knowing" since evergreens are the guaranteed fallback.
 
