@@ -140,22 +140,33 @@ def bg_date(text, today=None):
 
 def fetch(url, timeout=_FETCH_TIMEOUT, retries=_FETCH_RETRIES):
     """GET url with a polite UA and exponential-backoff retry on transient failures.
-    Returns response text, or None if the fetch never succeeded."""
-    headers = {"User-Agent": USER_AGENT}
+    Returns response text, or None if the fetch never succeeded. Prints the concrete
+    HTTP status or exception on failure — silent None returns here are what made past
+    scraper failures unexplainable in the logs (e.g. plovdiv_bg going from 20 items to 0
+    with no clue why)."""
+    headers = {
+        "User-Agent": USER_AGENT,
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "bg,en-US;q=0.7,en;q=0.3",
+    }
+    reason = None
     for attempt in range(retries + 1):
         try:
             r = requests.get(url, headers=headers, timeout=timeout)
             if r.ok:
                 return r.text
+            reason = f"HTTP {r.status_code}"
             if r.status_code in (429, 500, 502, 503, 504) and attempt < retries:
                 time.sleep(_RETRY_DELAYS[min(attempt, len(_RETRY_DELAYS) - 1)])
                 continue
-            return None
-        except requests.exceptions.RequestException:
+            break
+        except requests.exceptions.RequestException as exc:
+            reason = f"{type(exc).__name__}: {exc}"
             if attempt < retries:
                 time.sleep(_RETRY_DELAYS[min(attempt, len(_RETRY_DELAYS) - 1)])
                 continue
-            return None
+            break
+    print(f"  [fetch] {url}: failed ({reason})")
     return None
 
 
@@ -251,6 +262,7 @@ def raw_fetch(source, url):
         return []
     description = text_of(html)
     if not description:
+        print(f"  [raw_fetch] {source}: fetched {url} ({len(html)} chars) but extracted no visible text")
         return []
     return [_make_item(source, title=f"{source} — page snapshot", url=url, description=description)]
 
@@ -567,9 +579,10 @@ def scrape_plovdiv_bg(pages=PLOVDIV_BG_PAGES):
         url = PLOVDIV_BG_EVENTS_URL if page == 1 else f"{PLOVDIV_BG_EVENTS_URL}page/{page}/"
         html = fetch(url)
         if not html:
-            break
+            break  # fetch() already logged the concrete reason
         page_items = _parse_plovdiv_bg(html)
         if not page_items:
+            print(f"  [plovdiv_bg] page {page}: fetched {len(html)} chars but found 0 event cards (markup may have changed)")
             break
         items.extend(page_items)
     return items
