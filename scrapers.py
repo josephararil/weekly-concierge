@@ -198,10 +198,24 @@ def _make_item(source, title, when_text="", date_iso=None, location="", url="", 
 # ── Tier 1: raw-fetch sources (one-liner each) ───────────────────────────────
 # Each entry is fetched verbatim and turned into a single RawItem whose description is
 # the page-text blob; FIND parses events out of it. eventim.bg is included here rather
-# than as a structured parser — it consistently times out / never resolves from this
-# dev environment (likely Cloudflare bot-challenge), so a hand-written parser could
-# never be verified against real HTML. It still runs every week; if CI's network can
-# reach it, FIND gets a text blob, and if not, harvest() logs a clean FAILED.
+# than as a structured parser. The HTML page itself is reachable, but a structured
+# parser was ruled out after investigating two routes to its real event data:
+#   1. Direct JSON API: eventim.bg's own suggest-widget JS reveals the real backing
+#      endpoint (public-api.eventim.com/websearch/search/api/exploration/v1/productGroups,
+#      apiClientId "web__eventim-bgr") and its exact query params (webId, search_term,
+#      language, page, page_size, ...), reverse-engineered from the site's own bundled
+#      JS. But every request to that path — correct params or not — gets a 403 "Access
+#      Denied" from Akamai's edge (the API host's own root path 404s cleanly, so this is
+#      a deliberate WAF block on that specific path, not a routing/param problem). No
+#      combination of browser-like headers changes the outcome; it looks like Akamai Bot
+#      Manager fingerprinting the TLS handshake, which plain `requests` can't spoof.
+#   2. pyventim (the suggested library fallback): pulls in playwright, patchright,
+#      curl_cffi and scrapling as transitive dependencies — i.e. it bypasses Akamai with
+#      browser automation / TLS impersonation under the hood, exactly the
+#      heavy-dependency approach this project avoids. Not adopted.
+# Both routes fail without a headless browser, so eventim.bg stays raw-fetch. It still
+# runs every week; if CI's network can reach it, FIND gets a text blob, and if not,
+# harvest() logs a clean FAILED.
 # ticketstation.bg is also raw-fetch only: it's a client-rendered Vue SPA — the static
 # HTML is just an empty <div id="app"> shell plus a compiled js/app.js bundle that
 # fetches events from an API after JS executes. There is no event markup in the fetched
