@@ -124,8 +124,9 @@ Modularity is explicit so the user can keep adding sources with Claude Code over
 - **Geo:** `PLOVDIV_LATLON`, `RADIUS_MINUTES = 90`, `HOME_AREA` text for prompts.
 - **Models:** `MODEL_FIND` (flash), `MODEL_SKEPTIC`/`MODEL_CONCIERGE` (pro-latest); reuse
   `GEMINI_MODEL_MAP`, `GEMINI_SEARCH_MODEL`, `PROVIDER_*` overrides, `MAX_TOKENS_*`.
-- **Coverage:** `LOOKAHEAD_WEEKS = 4`, `MAX_EVENTS_PER_EMAIL`, `EVERGREEN_PER_EMAIL = 2`,
-  `MIN_INCLUDE_SCORE` (family-fit floor for events).
+- **Coverage:** `LOOKAHEAD_WEEKS = 4`, `MIN_INCLUDE_SCORE` (family-fit floor for events).
+  No count cap on events or evergreens sent to the concierge — every survivor that clears
+  FIND + SKEPTIC + anti-repeat is included.
 - **Anti-repeat:** `EVENT_TTL_DAYS` (≈21), `EVERGREEN_COOLDOWN_DAYS = 70`.
 - **Sources:** `ENABLED_SOURCES`, `RAW_FETCH_SOURCES`.
 - **Evergreen seed:** `SEED_EVERGREEN` (hand list: Stara Zagora zoo, Plovdiv Regional Natural
