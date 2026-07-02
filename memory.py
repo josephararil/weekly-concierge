@@ -56,8 +56,14 @@ def save(memory):
 
 # ── write ──────────────────────────────────────────────────────────────────────
 
-def record_evergreen(memory, name, location="", area="", description="", tags=None, source="", suggested=False):
+def record_evergreen(memory, name, location="", area="", description="", tags=None, source="",
+                     url="", practical="", suggested=False):
     """Upsert an evergreen catalog entry, preserving fields not passed this call.
+
+    url:       official venue/event page, surfaced as a real "Details" link when this
+               evergreen is emailed (evergreens otherwise ship with no source_url).
+    practical: short hours/fees/season note, injected into prompts so the concierge can
+               write weather- and logistics-aware prose.
 
     Set suggested=True to bump last_suggested to today — call this when the item is
     actually included in an email, so the anti-repeat cooldown has something to check."""
@@ -67,6 +73,8 @@ def record_evergreen(memory, name, location="", area="", description="", tags=No
         "area":           area or existing.get("area", ""),
         "description":    description or existing.get("description", ""),
         "tags":           tags if tags is not None else existing.get("tags", []),
+        "url":            url or existing.get("url", ""),
+        "practical":      practical or existing.get("practical", ""),
         "discovered":     existing.get("discovered", dt.date.today().isoformat()),
         "source":         source or existing.get("source", ""),
         "last_suggested": dt.date.today().isoformat() if suggested else existing.get("last_suggested"),
@@ -119,9 +127,12 @@ def summarize_for_prompt(memory):
                 continue
             area = e.get("area", "").strip()
             desc = e.get("description", "").strip()
+            practical = e.get("practical", "").strip()
             entry = f"  {name}" + (f" ({area})" if area else "")
             if desc:
                 entry += f" — {_clip(desc, 140)}"
+            if practical:
+                entry += f" [{_clip(practical, 120)}]"
             off_cooldown.append(entry)
             if len(off_cooldown) >= MAX_PROMPT_EVERGREENS:
                 break
@@ -164,6 +175,8 @@ def _write_md(memory):
             area     = e.get("area", "")
             desc     = e.get("description", "")
             tags     = e.get("tags", [])
+            url      = e.get("url", "")
+            practical = e.get("practical", "")
             discovered = e.get("discovered", "?")
             last_suggested = e.get("last_suggested") or "never"
             src      = e.get("source", "")
@@ -174,6 +187,10 @@ def _write_md(memory):
             lines.append(f"**Discovered:** {discovered} &nbsp; **Last suggested:** {last_suggested}")
             if desc:
                 lines.append(desc)
+            if practical:
+                lines.append(f"**Practical:** {practical}")
+            if url:
+                lines.append(f"**Link:** {url}")
             if tags:
                 lines.append(f"_Tags: {', '.join(tags)}_")
             if src:

@@ -121,7 +121,8 @@ def select_evergreens(evergreen_survivors, mem):
             picks.append({
                 "title": name, "category": "evergreen", "when_text": "", "date_iso": None,
                 "location": entry.get("location", ""), "family_fit": 60,
-                "reason": entry.get("description", ""), "source_url": "", "confidence": "high",
+                "reason": entry.get("description", ""), "source_url": entry.get("url", ""),
+                "practical": entry.get("practical", ""), "confidence": "high",
             })
     return picks
 
@@ -212,7 +213,8 @@ def main():
         if seed["name"] not in mem["evergreen"]:
             M.record_evergreen(mem, seed["name"], location=seed.get("location", ""),
                                 area=seed.get("area", ""), description=seed.get("description", ""),
-                                tags=seed.get("tags"), source=seed.get("source", "seed"))
+                                tags=seed.get("tags"), url=seed.get("url", ""),
+                                practical=seed.get("practical", ""), source=seed.get("source", "seed"))
     mem_text = M.summarize_for_prompt(mem)
     feedback = load_feedback()
     print(f"  memory: {len(mem['evergreen'])} evergreen(s), {len(mem['ledger'])} ledger entry(s) loaded")
@@ -370,7 +372,7 @@ def main():
         concierge_candidates.append({
             "title": c.get("title"), "category": c.get("category"), "when_text": c.get("when_text"),
             "date_iso": c.get("date_iso"), "location": c.get("location"), "reason": c.get("reason"),
-            "family_fit": c.get("family_fit"),
+            "family_fit": c.get("family_fit"), "practical": c.get("practical", ""),
             "source_url": source_url, "maps_url": maps_url, "search_url": search_url,
         })
 
