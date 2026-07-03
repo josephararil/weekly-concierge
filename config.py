@@ -676,17 +676,10 @@ Write in a warm, conversational tone — like a friend who keeps track of the ci
 
 ---
 
-### WEEKEND WEATHER (structured signal — a soft educated guess, not a certainty)
+### WEEKEND WEATHER (real forecast data from open-meteo — a best-effort estimate, not a certainty)
 {weather}
 
-Each day is one of: OUTDOOR_PERFECT, HOT, COLD, RAINY, CLOUDY, MILD, UNKNOWN. Use these to actively shape your recommendations, woven in as natural prose (never print the raw label):
-- OUTDOOR_PERFECT → lean into outdoor picks for that day: parks, the Rowing Channel, outdoor festivals, the Ancient Theatre.
-- HOT → favor water/shade options, suggest going early or late in the day, mention it lightly ("it'll be a hot one, so...").
-- RAINY → steer toward indoor picks (museums, the Natural History Museum) and softly caveat outdoor events on that day.
-- COLD → favor indoor or bundle-up-friendly options.
-- CLOUDY / MILD → a normal day, no strong steer needed either way.
-- UNKNOWN → no forecast signal available; don't mention weather for that day at all.
-Treat this as an educated guess, not gospel — never claim certainty about the weather.
+This is actual forecast data for Saturday and Sunday (temperature, feels-like, humidity, cloud cover, chance of rain), not a pre-digested label — use your own judgment on what it implies for a family outing: hot and dry favors water/shade and going early or late in the day; a real chance of rain favors indoor picks (museums, the Natural History Museum) and a soft caveat on outdoor events that day; cold favors indoor or bundle-up-friendly options; a mild, dry, low-cloud day is a good excuse to lean outdoor (parks, the Rowing Channel, the Ancient Theatre). Weave specific numbers into natural prose where they help (e.g. "low 30s and dry" or "a real chance of showers in the afternoon") — never invent a number that isn't in the data above, never claim certainty about the weather, and don't mention weather for a day marked "forecast unavailable".
 
 ---
 
@@ -710,7 +703,9 @@ Weave links in naturally as <a> tags where they genuinely help someone act (an e
 Some candidates also carry a `practical` field (opening hours, entry fees, seasonality, reservation or safety notes). When present, weave the useful bits into your prose naturally — a quick "open Wed–Sun, kids under 7 free" or "book the pony ride ahead" saves the reader a click. Never dump it verbatim; fold it in as a friendly aside, and pair it with the weather where it helps (e.g. a shaded zoo on a hot day).
 
 ### STRUCTURE
-Organize the email into three loose sections (use these or similar natural headers):
+Open with a short 1-2 sentence weather-at-a-glance line grounding the reader in what Saturday and Sunday actually look like, using the specific numbers from WEEKEND WEATHER above (e.g. "Saturday's shaping up hot and dry, low 30s with barely a cloud; Sunday eases off a touch with a real chance of afternoon showers."). This comes before any recommendations, so the reader has grounding before reading the suggestions below — no need to open another weather app.
+
+Then organize the rest into three loose sections (use these or similar natural headers):
 1. **This weekend** — events happening this Saturday/Sunday. Add a short weather note if relevant. Include links for each item. Include every candidate provided for this weekend — they've already been fact-checked and filtered upstream, so don't drop any for length. If there are no events this weekend, skip this section gracefully.
 2. **Also worth knowing** — the rotating evergreen ideas provided (zoo, museum, rowing channel, etc.) as a fallback or add-on. Include every evergreen candidate provided, keeping each one short and warm (eg "It's going to rain so why not visit the museum?"). Include links for each item.
 3. **Looking ahead** — notable events 2-4 weeks out worth looking out for. Include every candidate provided in this category.

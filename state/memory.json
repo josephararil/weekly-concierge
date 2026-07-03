@@ -10,7 +10,7 @@
       ],
       "discovered": "2026-07-01",
       "source": "seed",
-      "last_suggested": "2026-07-01"
+      "last_suggested": null
     },
     "Plovdiv Regional Natural History Museum": {
       "location": "Plovdiv",
@@ -22,7 +22,7 @@
       ],
       "discovered": "2026-07-01",
       "source": "seed",
-      "last_suggested": "2026-07-01"
+      "last_suggested": null
     },
     "Rowing Channel bike ride": {
       "location": "Kanala (Rowing Channel), Plovdiv",
@@ -35,7 +35,7 @@
       ],
       "discovered": "2026-07-01",
       "source": "seed",
-      "last_suggested": "2026-07-02"
+      "last_suggested": null
     },
     "Ancient Theatre of Philippopolis": {
       "location": "Plovdiv Old Town",
@@ -48,7 +48,7 @@
       ],
       "discovered": "2026-07-01",
       "source": "seed",
-      "last_suggested": "2026-07-02"
+      "last_suggested": null
     },
     "Bachkovo Monastery": {
       "location": "Bachkovo",
@@ -70,7 +70,7 @@
       "tags": [],
       "discovered": "2026-07-01",
       "source": "find",
-      "last_suggested": "2026-07-01"
+      "last_suggested": null
     },
     "Day Trip to Bachkovo Monastery": {
       "location": "Bachkovo Monastery (~40-minute drive from Plovdiv)",
@@ -79,7 +79,7 @@
       "tags": [],
       "discovered": "2026-07-02",
       "source": "find",
-      "last_suggested": "2026-07-02"
+      "last_suggested": null
     },
     "Explore the Ancient Theatre of Philippopolis": {
       "location": "Ancient Theatre, Plovdiv Old Town",
@@ -88,7 +88,7 @@
       "tags": [],
       "discovered": "2026-07-02",
       "source": "find",
-      "last_suggested": "2026-07-02"
+      "last_suggested": null
     },
     "Tara Eco Farm & Horse Base": {
       "location": "Yagodovo village, near Plovdiv",
@@ -187,7 +187,7 @@
       "practical": "Tickets ~1 BGN; Wed-Sun (closed Mon/Tue); midday break around 13:00; shorter winter hours.",
       "discovered": "2026-07-02",
       "source": "research",
-      "last_suggested": "2026-07-02"
+      "last_suggested": null
     },
     "Lauta Rope Park": {
       "location": "Park Lauta, Trakiya District, Plovdiv",
@@ -315,7 +315,7 @@
       "practical": "Free access; on-site mini-golf ~2 BGN, Wed-Sun 08:00-20:00 with a midday break.",
       "discovered": "2026-07-02",
       "source": "research",
-      "last_suggested": "2026-07-02"
+      "last_suggested": null
     },
     "The Fairytale Forest": {
       "location": "Rakovski (between Sekirovo and Gen. Nikolaevo)",

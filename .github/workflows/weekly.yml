@@ -1,11 +1,11 @@
 name: weekly
 
 # Weekly concierge: HARVEST -> FIND -> SKEPTIC -> anti-repeat -> CONCIERGE -> email.
-# Always sends Thursday morning (weekly ritual; evergreen fallback guarantees content).
+# Always sends Friday morning (weekly ritual; evergreen fallback guarantees content).
 
 on:
   schedule:
-    - cron: "0 6 * * 4"     # 06:00 UTC Thursday
+    - cron: "0 9 * * 5"     # 09:00 UTC Friday
   workflow_dispatch:
 
 permissions:

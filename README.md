@@ -4,7 +4,7 @@ A passive weekly concierge for a family of 3 (2 adults + a 4-year-old) based nea
 Bulgaria. The household is English-speaking with no TV/newspapers, so it misses most of what's
 happening locally — parades, concerts, a circus in town — and never hears about the quietly
 great standing options (the Stara Zagora zoo, the Natural History Museum, biking the rowing
-channel). Every **Thursday** it runs on free GitHub Actions and emails one warm, curated
+channel). Every **Friday** it runs on free GitHub Actions and emails one warm, curated
 **soft-itinerary** of what's worth doing this weekend and in the weeks ahead. No app, no server,
 no database — just JSON state committed back by CI. You do nothing but read the email.
 
@@ -35,7 +35,8 @@ weekend_concierge.py   (weekly)
    │
    └─ Stage 3 — CONCIERGE (LLM, no search)
          Writes the email — warm prose, a soft itinerary (never a schedule, never a scoreboard),
-         grouped This Weekend / Also Worth Knowing / Looking Ahead, with weather woven in softly.
+         opening with a short weather-at-a-glance line (real forecast numbers, not a label),
+         then grouped This Weekend / Also Worth Knowing / Looking Ahead.
          Every item carries actionable links: the real source_url when present, plus a Google
          Maps link and a search link built deterministically so no URL is ever invented.
          The email always sends (the weekly ritual is the point).
@@ -88,7 +89,7 @@ for the full per-source investigation notes.
 
    No hotel/weather/RapidAPI keys — weather uses open-meteo, which needs none.
 
-3. Enable Actions. It runs automatically at **06:00 UTC every Thursday**; test any time via
+3. Enable Actions. It runs automatically at **09:00 UTC every Friday**; test any time via
    *Actions → weekly → Run workflow*.
 
 > **LLM web search:** with `LLM_PROVIDER=anthropic`, FIND and SKEPTIC use the Anthropic
@@ -103,7 +104,7 @@ export GEMINI_API_KEY=...  LLM_PROVIDER=gemini
 # or: export ANTHROPIC_API_KEY=...  LLM_PROVIDER=anthropic
 python weekend_concierge.py   # writes state/; emails if SMTP vars set, else prints the error
 python scrapers.py            # harvest smoke test: prints per-source item counts
-python weather.py             # weekend weather summary smoke test
+python weather.py             # weekend weather forecast smoke test
 ```
 
 Leave SMTP vars unset to test without sending (the send is caught and printed). Offline tests

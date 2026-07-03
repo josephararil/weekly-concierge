@@ -144,6 +144,28 @@ def build_links(c):
     return (c.get("source_url") or "").strip(), maps_url, search_url
 
 
+# --- weather formatting ---
+
+def format_weather(weekend_weather):
+    """Render the raw per-day forecast dicts from weather.weekend_weather() into a plain-text
+    block for the LLM prompts and the run log -- actual numbers, not a pre-classified label,
+    so the model reasons about the forecast itself."""
+    lines = []
+    for day in ("Sat", "Sun"):
+        w = weekend_weather.get(day) or {}
+        if not w:
+            lines.append(f"{day}: forecast unavailable")
+            continue
+        lines.append(
+            f"{day} ({w.get('date', '?')}): {w.get('condition', '?')}, "
+            f"{w.get('min_temp_c', '?')}-{w.get('max_temp_c', '?')}°C "
+            f"(feels {w.get('feels_like_min_c', '?')}-{w.get('feels_like_max_c', '?')}°C), "
+            f"{w.get('humidity_pct', '?')}% humidity, {w.get('cloud_cover_pct', '?')}% cloud cover, "
+            f"{w.get('rain_chance_pct', '?')}% chance of rain"
+        )
+    return "\n".join(lines)
+
+
 # --- fallback email (used only if CONCIERGE fails or returns incomplete output) ---
 
 def _fallback_email(events, evergreens, today):
@@ -220,7 +242,7 @@ def main():
 
     _section("WEATHER")
     weekend_weather = weather.weekend_weather(C.PLOVDIV_LATLON, today)
-    weather_text = "\n".join(f"{day}: {label}" for day, label in weekend_weather.items())
+    weather_text = format_weather(weekend_weather)
     print(f"  {weather_text.replace(chr(10), ' · ')}")
 
     _section("HARVEST")

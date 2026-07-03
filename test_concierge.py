@@ -94,7 +94,12 @@ class WeekendConciergeTest(unittest.TestCase):
         self._real_weather = weather.weekend_weather
         X.llm = _stub_llm
         scrapers.harvest = lambda today=None: []
-        weather.weekend_weather = lambda latlon, today: {"Sat": "MILD", "Sun": "MILD"}
+        def _stub_day(date_iso):
+            return {"date": date_iso, "condition": "partly cloudy", "max_temp_c": 24,
+                    "min_temp_c": 14, "feels_like_max_c": 24, "feels_like_min_c": 13,
+                    "humidity_pct": 55, "cloud_cover_pct": 40, "rain_chance_pct": 10}
+        weather.weekend_weather = lambda latlon, today: {
+            "Sat": _stub_day("2099-01-02"), "Sun": _stub_day("2099-01-03")}
         os.environ.pop("SMTP_HOST", None)
 
     def tearDown(self):

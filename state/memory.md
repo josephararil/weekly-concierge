@@ -1,10 +1,10 @@
-# Weekend Concierge Memory — updated 2026-07-02
+# Weekend Concierge Memory — updated 2026-07-03
 
 ## Evergreen Catalog (46 entries)
 
 ### Ancient Theatre of Philippopolis
 **Location:** Plovdiv Old Town / in town
-**Discovered:** 2026-07-01 &nbsp; **Last suggested:** 2026-07-02
+**Discovered:** 2026-07-01 &nbsp; **Last suggested:** never
 Roman-era amphitheatre in the Old Town; a short scenic walk even without an event on.
 _Tags: history, outdoor, free_
 _Source: seed_
@@ -73,7 +73,7 @@ _Source: research_
 
 ### Children's Railway 'Banner of Peace'
 **Location:** Youth Hill (Mladezhki Halm), Plovdiv / in town
-**Discovered:** 2026-07-02 &nbsp; **Last suggested:** 2026-07-02
+**Discovered:** 2026-07-02 &nbsp; **Last suggested:** never
 A real miniature train on a scenic loop around Youth Hill. Complete with a dark tunnel and drawbridges, it is a safe and absolute favorite for 4-year-olds.
 **Practical:** Tickets ~1 BGN; Wed-Sun (closed Mon/Tue); midday break around 13:00; shorter winter hours.
 _Tags: ride, park, outdoor, cheap_
@@ -90,13 +90,13 @@ _Source: research_
 
 ### Day Trip to Bachkovo Monastery
 **Location:** Bachkovo Monastery (~40-minute drive from Plovdiv)
-**Discovered:** 2026-07-02 &nbsp; **Last suggested:** 2026-07-02
+**Discovered:** 2026-07-02 &nbsp; **Last suggested:** never
 A highly accessible, beautiful mountain monastery with short walking paths, river views, and local stalls, making for a perfect half-day family trip.
 _Source: find_
 
 ### Eco Park Stamboliyski
 **Location:** Stamboliyski (approx. 30-minute drive from Plovdiv) / ~30 min drive from Plovdiv (20 km)
-**Discovered:** 2026-07-02 &nbsp; **Last suggested:** 2026-07-02
+**Discovered:** 2026-07-02 &nbsp; **Last suggested:** never
 A free municipal park featuring a dedicated, fenced toddler-friendly playground with wooden climbing structures and sensory play boards.
 **Practical:** Free access; on-site mini-golf ~2 BGN, Wed-Sun 08:00-20:00 with a midday break.
 _Tags: playground, park, outdoor, free_
@@ -104,7 +104,7 @@ _Source: research_
 
 ### Explore the Ancient Theatre of Philippopolis
 **Location:** Ancient Theatre, Plovdiv Old Town
-**Discovered:** 2026-07-02 &nbsp; **Last suggested:** 2026-07-02
+**Discovered:** 2026-07-02 &nbsp; **Last suggested:** never
 A spectacular historical site in the heart of the Old Town, offering an easy and impressive stroll without needing to book an event.
 _Source: find_
 
@@ -251,7 +251,7 @@ _Source: research_
 
 ### Plovdiv Regional Natural History Museum
 **Location:** Plovdiv / in town
-**Discovered:** 2026-07-01 &nbsp; **Last suggested:** 2026-07-01
+**Discovered:** 2026-07-01 &nbsp; **Last suggested:** never
 Compact natural history museum with taxidermy and a small aquarium — easy indoor fallback.
 _Tags: museum, indoor_
 _Source: seed_
@@ -274,13 +274,13 @@ _Source: research_
 
 ### Rowing Channel Family Bike Ride
 **Location:** Rowing Canal (Grebi Kanal), Plovdiv
-**Discovered:** 2026-07-01 &nbsp; **Last suggested:** 2026-07-01
+**Discovered:** 2026-07-01 &nbsp; **Last suggested:** never
 A completely flat, car-free paved loop with bike, family-kart, and scooter rentals on-site, perfect for an active but easy outdoor morning with a toddler.
 _Source: find_
 
 ### Rowing Channel bike ride
 **Location:** Kanala (Rowing Channel), Plovdiv / in town
-**Discovered:** 2026-07-01 &nbsp; **Last suggested:** 2026-07-02
+**Discovered:** 2026-07-01 &nbsp; **Last suggested:** never
 Flat paved paths alongside the water, bike/scooter rental on site — easy free outdoor outing.
 _Tags: outdoor, free, active_
 _Source: seed_
@@ -296,7 +296,7 @@ _Source: research_
 
 ### Stara Zagora Zoo
 **Location:** Stara Zagora / ~50 min drive from Plovdiv
-**Discovered:** 2026-07-01 &nbsp; **Last suggested:** 2026-07-01
+**Discovered:** 2026-07-01 &nbsp; **Last suggested:** never
 One of Bulgaria's larger zoos — a reliable half-day out for a 4-year-old.
 _Tags: animals, outdoor_
 _Source: seed_
