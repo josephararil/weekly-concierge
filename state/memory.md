@@ -1,6 +1,6 @@
 # Weekend Concierge Memory — updated 2026-07-03
 
-## Evergreen Catalog (46 entries)
+## Evergreen Catalog (47 entries)
 
 ### Ancient Theatre of Philippopolis
 **Location:** Plovdiv Old Town / in town
@@ -19,15 +19,15 @@ _Tags: museum, educational, outdoor, paid_
 _Source: research_
 
 ### Aviation Museum Krumovo
-**Location:** Krumovo (approx. 15-20 minute drive from Plovdiv)
-**Discovered:** 2026-07-02 &nbsp; **Last suggested:** never
-This spacious open-air museum lets young kids run around safely on open grass while marveling at dozens of historical airplanes and helicopters.
+**Location:** Krumovo (~15-20 min drive from Plovdiv)
+**Discovered:** 2026-07-02 &nbsp; **Last suggested:** 2026-07-03
+Spacious, safe, open-air grounds with dozens of massive airplanes and helicopters where your toddler can run freely on the grass while marveling at the big machines.
 _Source: find_
 
 ### Ayazmoto Park & Hall of Laughter
-**Location:** Stara Zagora / ~75 min drive from Plovdiv
-**Discovered:** 2026-07-02 &nbsp; **Last suggested:** never
-Sprawling park with a 'Hall of Laughter' (curved mirrors) and a free municipal children's rope park with harnesses and instructors.
+**Location:** Stara Zagora (~75 min drive from Plovdiv) / ~75 min drive from Plovdiv
+**Discovered:** 2026-07-02 &nbsp; **Last suggested:** 2026-07-03
+A massive, shady park with wide paths and a 'Hall of Laughter' filled with curved sensory mirrors. It pairs perfectly with a repeat trip to your beloved Stara Zagora Zoo nearby.
 **Practical:** Rope park provides harnesses/instructors free; Hall of Laughter is a cheap, repeatable sensory stop.
 _Tags: park, active, indoor, outdoor, free_
 _Source: research_
@@ -73,8 +73,8 @@ _Source: research_
 
 ### Children's Railway 'Banner of Peace'
 **Location:** Youth Hill (Mladezhki Halm), Plovdiv / in town
-**Discovered:** 2026-07-02 &nbsp; **Last suggested:** never
-A real miniature train on a scenic loop around Youth Hill. Complete with a dark tunnel and drawbridges, it is a safe and absolute favorite for 4-year-olds.
+**Discovered:** 2026-07-02 &nbsp; **Last suggested:** 2026-07-03
+An absolute favorite for 4-year-olds: a real miniature train taking a safe, scenic loop complete with a dark tunnel and drawbridges.
 **Practical:** Tickets ~1 BGN; Wed-Sun (closed Mon/Tue); midday break around 13:00; shorter winter hours.
 _Tags: ride, park, outdoor, cheap_
 _Source: research_
@@ -264,6 +264,12 @@ Short ~30-minute trail on a wide dirt path to a panoramic rock overlook — a go
 _Tags: hiking, nature, outdoor, free_
 _Source: research_
 
+### Regional Natural History Museum Visit
+**Location:** Regional Natural History Museum, Plovdiv
+**Discovered:** 2026-07-03 &nbsp; **Last suggested:** 2026-07-03
+Directly loved by your daughter; this local gem features an aquarium, a terrarium, a digital planetarium, and highly engaging exhibits for early-years exploration.
+_Source: find_
+
 ### Rhodope Narrow-Gauge Railway
 **Location:** Septemvri station / ~45 min drive to the station from Plovdiv
 **Discovered:** 2026-07-02 &nbsp; **Last suggested:** never
@@ -368,8 +374,13 @@ Picturesque lake in a green park — feed ducks and swans, rent pedal boats, use
 _Tags: water, park, outdoor, free_
 _Source: research_
 
-## Suggestion Ledger (19 entries)
+## Suggestion Ledger (24 entries)
 
+- ✅ 2026-07-03 | Light Up the Neighborhood – Theatre in the Park | event_lookahead | July 6 – July 14, 2026 | sent score=80 — Plovdiv regularly hosts outdoor cultural initiatives in July, making this plausible and…
+- ✅ 2026-07-03 | Regional Natural History Museum Visit | evergreen | Daily, 09:00 - 18:00 | sent score=98 — Directly loved by your daughter; this local gem features an aquarium, a terrarium, a digital…
+- ✅ 2026-07-03 | Children's Railway 'Banner of Peace' | evergreen | Wednesday - Sunday (midday break around 13:00) | sent score=95 — An absolute favorite for 4-year-olds: a real miniature train taking a safe, scenic loop complete…
+- ✅ 2026-07-03 | Aviation Museum Krumovo | evergreen | Wednesday - Sunday, 09:00 - 18:00 | sent score=90 — Spacious, safe, open-air grounds with dozens of massive airplanes and helicopters where your…
+- ✅ 2026-07-03 | Ayazmoto Park & Hall of Laughter | evergreen | Daily | sent score=85 — A massive, shady park with wide paths and a 'Hall of Laughter' filled with curved sensory mirrors.…
 - ✅ 2026-07-02 | State Puppet Theatre Weekend Performances | event_this_weekend | Saturday and Sunday, July 4-5, 2026, at 10:30 and 11:45 | sent score=95 — Verified as a real, family-friendly venue in Plovdiv with regular weekend performances suitable for…
 - ✅ 2026-07-02 | Craft School Plovdiv Workshops | event_this_weekend | Running through Saturday, July 4, 2026 | sent score=75 — Verified as a real entity in Plovdiv hosting workshops suitable for children.
 - ✅ 2026-07-02 | PhillGood Festival at the Rowing Canal | event_lookahead | July 17–19, 2026 | sent score=70 — Verified as a recurring family-friendly event at the Rowing Canal in Plovdiv.

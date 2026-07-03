@@ -176,7 +176,7 @@
     "Children's Railway 'Banner of Peace'": {
       "location": "Youth Hill (Mladezhki Halm), Plovdiv",
       "area": "in town",
-      "description": "A real miniature train on a scenic loop around Youth Hill. Complete with a dark tunnel and drawbridges, it is a safe and absolute favorite for 4-year-olds.",
+      "description": "An absolute favorite for 4-year-olds: a real miniature train taking a safe, scenic loop complete with a dark tunnel and drawbridges.",
       "tags": [
         "ride",
         "park",
@@ -187,7 +187,7 @@
       "practical": "Tickets ~1 BGN; Wed-Sun (closed Mon/Tue); midday break around 13:00; shorter winter hours.",
       "discovered": "2026-07-02",
       "source": "research",
-      "last_suggested": null
+      "last_suggested": "2026-07-03"
     },
     "Lauta Rope Park": {
       "location": "Park Lauta, Trakiya District, Plovdiv",
@@ -579,9 +579,9 @@
       "last_suggested": null
     },
     "Ayazmoto Park & Hall of Laughter": {
-      "location": "Stara Zagora",
+      "location": "Stara Zagora (~75 min drive from Plovdiv)",
       "area": "~75 min drive from Plovdiv",
-      "description": "Sprawling park with a 'Hall of Laughter' (curved mirrors) and a free municipal children's rope park with harnesses and instructors.",
+      "description": "A massive, shady park with wide paths and a 'Hall of Laughter' filled with curved sensory mirrors. It pairs perfectly with a repeat trip to your beloved Stara Zagora Zoo nearby.",
       "tags": [
         "park",
         "active",
@@ -593,7 +593,7 @@
       "practical": "Rope park provides harnesses/instructors free; Hall of Laughter is a cheap, repeatable sensory stop.",
       "discovered": "2026-07-02",
       "source": "research",
-      "last_suggested": null
+      "last_suggested": "2026-07-03"
     },
     "Damascena Biopark": {
       "location": "Skobelevo, near Pavel Banya",
@@ -692,15 +692,26 @@
       "last_suggested": null
     },
     "Aviation Museum Krumovo": {
-      "location": "Krumovo (approx. 15-20 minute drive from Plovdiv)",
+      "location": "Krumovo (~15-20 min drive from Plovdiv)",
       "area": "",
-      "description": "This spacious open-air museum lets young kids run around safely on open grass while marveling at dozens of historical airplanes and helicopters.",
+      "description": "Spacious, safe, open-air grounds with dozens of massive airplanes and helicopters where your toddler can run freely on the grass while marveling at the big machines.",
       "tags": [],
       "url": "",
       "practical": "",
       "discovered": "2026-07-02",
       "source": "find",
-      "last_suggested": null
+      "last_suggested": "2026-07-03"
+    },
+    "Regional Natural History Museum Visit": {
+      "location": "Regional Natural History Museum, Plovdiv",
+      "area": "",
+      "description": "Directly loved by your daughter; this local gem features an aquarium, a terrarium, a digital planetarium, and highly engaging exhibits for early-years exploration.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-07-03",
+      "source": "find",
+      "last_suggested": "2026-07-03"
     }
   },
   "ledger": [
@@ -912,6 +923,61 @@
       "score": 92,
       "verdict": "sent",
       "note": "A free municipal park featuring a dedicated, fenced toddler-friendly playground with wooden climbing structures and sensory play boards."
+    },
+    {
+      "date": "2026-07-03",
+      "title": "Light Up the Neighborhood – Theatre in the Park",
+      "category": "event_lookahead",
+      "when": "July 6 – July 14, 2026",
+      "location": "Various green parks in Plovdiv neighborhoods",
+      "url": "https://www.visitplovdiv.com",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Plovdiv regularly hosts outdoor cultural initiatives in July, making this plausible and family-relevant."
+    },
+    {
+      "date": "2026-07-03",
+      "title": "Regional Natural History Museum Visit",
+      "category": "evergreen",
+      "when": "Daily, 09:00 - 18:00",
+      "location": "Regional Natural History Museum, Plovdiv",
+      "url": "",
+      "score": 98,
+      "verdict": "sent",
+      "note": "Directly loved by your daughter; this local gem features an aquarium, a terrarium, a digital planetarium, and highly engaging exhibits for early-years exploration."
+    },
+    {
+      "date": "2026-07-03",
+      "title": "Children's Railway 'Banner of Peace'",
+      "category": "evergreen",
+      "when": "Wednesday - Sunday (midday break around 13:00)",
+      "location": "Youth Hill (Mladezhki Halm), Plovdiv",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "An absolute favorite for 4-year-olds: a real miniature train taking a safe, scenic loop complete with a dark tunnel and drawbridges."
+    },
+    {
+      "date": "2026-07-03",
+      "title": "Aviation Museum Krumovo",
+      "category": "evergreen",
+      "when": "Wednesday - Sunday, 09:00 - 18:00",
+      "location": "Krumovo (~15-20 min drive from Plovdiv)",
+      "url": "",
+      "score": 90,
+      "verdict": "sent",
+      "note": "Spacious, safe, open-air grounds with dozens of massive airplanes and helicopters where your toddler can run freely on the grass while marveling at the big machines."
+    },
+    {
+      "date": "2026-07-03",
+      "title": "Ayazmoto Park & Hall of Laughter",
+      "category": "evergreen",
+      "when": "Daily",
+      "location": "Stara Zagora (~75 min drive from Plovdiv)",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "A massive, shady park with wide paths and a 'Hall of Laughter' filled with curved sensory mirrors. It pairs perfectly with a repeat trip to your beloved Stara Zagora Zoo nearby."
     }
   ]
 }
