@@ -1,22 +1,22 @@
-# Weekend Concierge — 2026-07-03
+# Weekend Concierge — 2026-07-10
 
-**Subject:** Your Plovdiv Weekend: Mini Trains, Open-Air Theatre, and Park Adventures
+**Subject:** Weekend ideas: Disney fountains, island parks, and warm weather ahead
 
-**Weather:** Sat (2026-07-04): overcast, 22.2-31.0°C (feels 20.3-30.5°C), 47% humidity, 66% cloud cover, 0% chance of rain · Sun (2026-07-05): overcast, 19.3-30.3°C (feels 17.0-28.8°C), 35% humidity, 40% cloud cover, 0% chance of rain
+**Weather:** Sat (2026-07-11): mainly clear, 16.1-33.0°C (feels 15.2-33.6°C), 37% humidity, 3% cloud cover, 0% chance of rain · Sun (2026-07-12): overcast, 18.8-32.3°C (feels 18.4-32.9°C), 47% humidity, 59% cloud cover, 23% chance of rain
 
-_6 candidate(s) considered · 1 event(s) + 4 evergreen(s) sent._
+_6 candidate(s) considered · 3 event(s) + 2 evergreen(s) sent._
 
 ## Sent this run
-- **Light Up the Neighborhood – Theatre in the Park** (event_lookahead, July 6 – July 14, 2026, Various green parks in Plovdiv neighborhoods) — This festival brings free, open-air, accessible theatre performances directly into neighborhood parks, making it easy to enjoy without the formality of a theatre building.
-- **Regional Natural History Museum Visit** (evergreen, Daily, 09:00 - 18:00, Regional Natural History Museum, Plovdiv) — Directly loved by your daughter; this local gem features an aquarium, a terrarium, a digital planetarium, and highly engaging exhibits for early-years exploration.
-- **Children's Railway 'Banner of Peace'** (evergreen, Wednesday - Sunday (midday break around 13:00), Youth Hill (Mladezhki Halm), Plovdiv) — An absolute favorite for 4-year-olds: a real miniature train taking a safe, scenic loop complete with a dark tunnel and drawbridges.
-- **Aviation Museum Krumovo** (evergreen, Wednesday - Sunday, 09:00 - 18:00, Krumovo (~15-20 min drive from Plovdiv)) — Spacious, safe, open-air grounds with dozens of massive airplanes and helicopters where your toddler can run freely on the grass while marveling at the big machines.
-- **Ayazmoto Park & Hall of Laughter** (evergreen, Daily, Stara Zagora (~75 min drive from Plovdiv)) — A massive, shady park with wide paths and a 'Hall of Laughter' filled with curved sensory mirrors. It pairs perfectly with a repeat trip to your beloved Stara Zagora Zoo nearby.
+- **Disney Summer of Stories at the Singing Fountains** (event_this_weekend, Thursday, Friday, and Saturday evenings, July 2026, Tsar Simeon's Garden, Plovdiv) — A magical, kid-friendly outdoor light and music show projecting Disney stories onto a water wall at the Singing Fountains.
+- **Festival of Fun for Children** (event_lookahead, Monday, July 20 and July 27, 2026 (17:00–21:30), Plovdiv STAGE PARK, Youth Hill) — Specifically curated for younger audiences with outdoor workshops, sports activities, and games at the green foot of Youth Hill.
+- **International Folklore Festival Street Parade** (event_lookahead, July 27–31, 2026 (Daily parade at 17:30), Stefan Stambolov Square, Plovdiv) — Very colorful, lively open-air parades through the city center that are easy to watch with a toddler without sitting through a long stage show.
+- **Day Trip to Park-Island 'Svoboda' in Pazardzhik** (evergreen, Always available (Best on sunny days), Pazardzhik (approx. 35-40 min drive from Plovdiv)) — Highly rated by the family; features fantastic playgrounds and a small zoo area, making it a perfect, easy day trip destination.
+- **Byala Reka Ecotrail Hike** (evergreen, Always available, Near Kalofer Monastery (approx. 85 min drive)) — A highly accessible, child-friendly trail of sturdy wooden bridges over a river, matching the family's preference for gentle, safe walks.
 
 ## All candidates
-- #3 [sent] Regional Natural History Museum Visit (evergreen, fit=98) — Verified as a real, operational, and highly recommended family-friendly museum in Plovdiv.
-- #4 [sent] Children's Railway 'Banner of Peace' (evergreen, fit=95) — Verified as a popular, operational children's railway located on Youth Hill in Plovdiv.
-- #5 [sent] Aviation Museum Krumovo (evergreen, fit=90) — Verified as an operational open-air museum in Krumovo, safely within the travel radius and great for toddlers.
-- #6 [sent] Ayazmoto Park & Hall of Laughter (evergreen, fit=85) — Verified as a major park in Stara Zagora within the 90-minute travel radius, featuring family-friendly attractions.
-- #2 [sent] Light Up the Neighborhood – Theatre in the Park (event_lookahead, fit=80) — Plovdiv regularly hosts outdoor cultural initiatives in July, making this plausible and family-relevant.
-- #1 [kill] State Triathlon Championship (event_this_weekend, fit=70) — No evidence of a 'State Triathlon Championship' taking place in Plovdiv on these dates.
+- #5 [sent] Day Trip to Park-Island 'Svoboda' in Pazardzhik (evergreen, fit=100) — Park-Island Svoboda is a real, well-known park with playgrounds and a small zoo in Pazardzhik, well within the 90-minute radius.
+- #2 [sent] Disney Summer of Stories at the Singing Fountains (event_this_weekend, fit=95) — The Singing Fountains are a verified, family-friendly location in Plovdiv known for evening shows; kept as a plausible event.
+- #3 [sent] Festival of Fun for Children (event_lookahead, fit=95) — Plovdiv Stage Park at Youth Hill is a real venue that regularly hosts family-friendly outdoor festivals.
+- #6 [sent] Byala Reka Ecotrail Hike (evergreen, fit=90) — The Byala Reka Ecotrail is a real, family-friendly trail with wooden bridges located within an 85-minute drive of Plovdiv.
+- #1 [kill] Western Festival at Dengri Eco Resorts (event_this_weekend, fit=85) — The venue 'Dengri Eco Resorts' in Velingrad appears to be a hallucination and cannot be verified.
+- #4 [sent] International Folklore Festival Street Parade (event_lookahead, fit=80) — The International Folklore Festival is a real recurring event in Plovdiv, and the street parades are suitable for a 4-year-old.

@@ -1,6 +1,6 @@
-# Weekend Concierge Memory — updated 2026-07-03
+# Weekend Concierge Memory — updated 2026-07-10
 
-## Evergreen Catalog (47 entries)
+## Evergreen Catalog (49 entries)
 
 ### Ancient Theatre of Philippopolis
 **Location:** Plovdiv Old Town / in town
@@ -63,6 +63,12 @@ Child-friendly canyon trail of ~1.8 km over a series of sturdy wooden bridges �
 _Tags: hiking, nature, outdoor, free_
 _Source: research_
 
+### Byala Reka Ecotrail Hike
+**Location:** Near Kalofer Monastery (approx. 85 min drive)
+**Discovered:** 2026-07-10 &nbsp; **Last suggested:** 2026-07-10
+A highly accessible, child-friendly trail of sturdy wooden bridges over a river, matching the family's preference for gentle, safe walks.
+_Source: find_
+
 ### Cars of Socialism Museum
 **Location:** 56 Mihail Takev St, Peshtera / ~50-60 min drive from Plovdiv
 **Discovered:** 2026-07-02 &nbsp; **Last suggested:** never
@@ -92,6 +98,12 @@ _Source: research_
 **Location:** Bachkovo Monastery (~40-minute drive from Plovdiv)
 **Discovered:** 2026-07-02 &nbsp; **Last suggested:** never
 A highly accessible, beautiful mountain monastery with short walking paths, river views, and local stalls, making for a perfect half-day family trip.
+_Source: find_
+
+### Day Trip to Park-Island 'Svoboda' in Pazardzhik
+**Location:** Pazardzhik (approx. 35-40 min drive from Plovdiv)
+**Discovered:** 2026-07-10 &nbsp; **Last suggested:** 2026-07-10
+Highly rated by the family; features fantastic playgrounds and a small zoo area, making it a perfect, easy day trip destination.
 _Source: find_
 
 ### Eco Park Stamboliyski
@@ -374,8 +386,13 @@ Picturesque lake in a green park — feed ducks and swans, rent pedal boats, use
 _Tags: water, park, outdoor, free_
 _Source: research_
 
-## Suggestion Ledger (24 entries)
+## Suggestion Ledger (29 entries)
 
+- ✅ 2026-07-10 | Disney Summer of Stories at the Singing Fountains | event_this_weekend | Thursday, Friday, and Saturday evenings, July 2026 | sent score=95 — The Singing Fountains are a verified, family-friendly location in Plovdiv known for evening shows;…
+- ✅ 2026-07-10 | Festival of Fun for Children | event_lookahead | Monday, July 20 and July 27, 2026 (17:00–21:30) | sent score=95 — Plovdiv Stage Park at Youth Hill is a real venue that regularly hosts family-friendly outdoor…
+- ✅ 2026-07-10 | International Folklore Festival Street Parade | event_lookahead | July 27–31, 2026 (Daily parade at 17:30) | sent score=80 — The International Folklore Festival is a real recurring event in Plovdiv, and the street parades…
+- ✅ 2026-07-10 | Day Trip to Park-Island 'Svoboda' in Pazardzhik | evergreen | Always available (Best on sunny days) | sent score=100 — Highly rated by the family; features fantastic playgrounds and a small zoo area, making it a…
+- ✅ 2026-07-10 | Byala Reka Ecotrail Hike | evergreen | Always available | sent score=90 — A highly accessible, child-friendly trail of sturdy wooden bridges over a river, matching the…
 - ✅ 2026-07-03 | Light Up the Neighborhood – Theatre in the Park | event_lookahead | July 6 – July 14, 2026 | sent score=80 — Plovdiv regularly hosts outdoor cultural initiatives in July, making this plausible and…
 - ✅ 2026-07-03 | Regional Natural History Museum Visit | evergreen | Daily, 09:00 - 18:00 | sent score=98 — Directly loved by your daughter; this local gem features an aquarium, a terrarium, a digital…
 - ✅ 2026-07-03 | Children's Railway 'Banner of Peace' | evergreen | Wednesday - Sunday (midday break around 13:00) | sent score=95 — An absolute favorite for 4-year-olds: a real miniature train taking a safe, scenic loop complete…

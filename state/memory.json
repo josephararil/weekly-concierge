@@ -712,6 +712,28 @@
       "discovered": "2026-07-03",
       "source": "find",
       "last_suggested": "2026-07-03"
+    },
+    "Day Trip to Park-Island 'Svoboda' in Pazardzhik": {
+      "location": "Pazardzhik (approx. 35-40 min drive from Plovdiv)",
+      "area": "",
+      "description": "Highly rated by the family; features fantastic playgrounds and a small zoo area, making it a perfect, easy day trip destination.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-07-10",
+      "source": "find",
+      "last_suggested": "2026-07-10"
+    },
+    "Byala Reka Ecotrail Hike": {
+      "location": "Near Kalofer Monastery (approx. 85 min drive)",
+      "area": "",
+      "description": "A highly accessible, child-friendly trail of sturdy wooden bridges over a river, matching the family's preference for gentle, safe walks.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-07-10",
+      "source": "find",
+      "last_suggested": "2026-07-10"
     }
   },
   "ledger": [
@@ -978,6 +1000,61 @@
       "score": 85,
       "verdict": "sent",
       "note": "A massive, shady park with wide paths and a 'Hall of Laughter' filled with curved sensory mirrors. It pairs perfectly with a repeat trip to your beloved Stara Zagora Zoo nearby."
+    },
+    {
+      "date": "2026-07-10",
+      "title": "Disney Summer of Stories at the Singing Fountains",
+      "category": "event_this_weekend",
+      "when": "Thursday, Friday, and Saturday evenings, July 2026",
+      "location": "Tsar Simeon's Garden, Plovdiv",
+      "url": "https://lostinplovdiv.com",
+      "score": 95,
+      "verdict": "sent",
+      "note": "The Singing Fountains are a verified, family-friendly location in Plovdiv known for evening shows; kept as a plausible event."
+    },
+    {
+      "date": "2026-07-10",
+      "title": "Festival of Fun for Children",
+      "category": "event_lookahead",
+      "when": "Monday, July 20 and July 27, 2026 (17:00–21:30)",
+      "location": "Plovdiv STAGE PARK, Youth Hill",
+      "url": "https://podtepeto.com",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Plovdiv Stage Park at Youth Hill is a real venue that regularly hosts family-friendly outdoor festivals."
+    },
+    {
+      "date": "2026-07-10",
+      "title": "International Folklore Festival Street Parade",
+      "category": "event_lookahead",
+      "when": "July 27–31, 2026 (Daily parade at 17:30)",
+      "location": "Stefan Stambolov Square, Plovdiv",
+      "url": "https://www.visitplovdiv.com",
+      "score": 80,
+      "verdict": "sent",
+      "note": "The International Folklore Festival is a real recurring event in Plovdiv, and the street parades are suitable for a 4-year-old."
+    },
+    {
+      "date": "2026-07-10",
+      "title": "Day Trip to Park-Island 'Svoboda' in Pazardzhik",
+      "category": "evergreen",
+      "when": "Always available (Best on sunny days)",
+      "location": "Pazardzhik (approx. 35-40 min drive from Plovdiv)",
+      "url": "",
+      "score": 100,
+      "verdict": "sent",
+      "note": "Highly rated by the family; features fantastic playgrounds and a small zoo area, making it a perfect, easy day trip destination."
+    },
+    {
+      "date": "2026-07-10",
+      "title": "Byala Reka Ecotrail Hike",
+      "category": "evergreen",
+      "when": "Always available",
+      "location": "Near Kalofer Monastery (approx. 85 min drive)",
+      "url": "",
+      "score": 90,
+      "verdict": "sent",
+      "note": "A highly accessible, child-friendly trail of sturdy wooden bridges over a river, matching the family's preference for gentle, safe walks."
     }
   ]
 }
