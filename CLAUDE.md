@@ -60,7 +60,7 @@ weekend_concierge.py
 | `config.py` | Knobs, source registry, seed evergreens, per-stage model roles, prompts, schemas. `SEED_EVERGREEN` holds the original 5 seeds plus ~37 `source="research"` places (from a Gemini Deep Research sweep of family attractions within a ~90-min drive of Plovdiv), each with optional `url`/`practical` fields; seeded into `state/memory.json` on the first run where the name is absent. |
 | `weekend_concierge.py` | The pipeline (HARVEST→FIND→SKEPTIC→anti-repeat→CONCIERGE→email). `build_links()` builds each candidate's `(source_url, maps_url, search_url)` before the concierge call. Tests: `test_concierge.py` (offline, stubs `common.llm`/`scrapers.harvest`/`weather.weekend_weather`, runs `main()` twice to verify state files + event suppression + evergreen rotation, plus a `build_links` unit test). |
 | `preferences.md` | Hand-edited feedback ("Loved / Not interested / Constraints"), injected into prompts. Constraints also carry factual exclusions (Aqualand closed; Asen's Fortress / Kuklen Waterfall / Belintash too dangerous for a 4-year-old) so FIND/CONCIERGE never propose them. |
-| `.github/workflows/weekly.yml` | Friday cron; commits `state/`. |
+| `.github/workflows/weekly.yml` | Friday 9am Bulgarian time (Europe/Sofia); two UTC crons (one per DST season) plus a guard step that skips whichever one fires outside the current DST regime, so it fires once, on time, year-round. Commits `state/`. |
 | `state/*.json` | CI-managed state. Seeds: `memory.json={"evergreen":{},"ledger":[]}`, `signals_seen.json={"seen":{},"monthly_count":{}}`. |
 
 ## Critical invariants — do not break

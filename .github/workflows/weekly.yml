@@ -5,7 +5,8 @@ name: weekly
 
 on:
   schedule:
-    - cron: "0 9 * * 5"     # 09:00 UTC Friday
+    - cron: "0 6 * * 5"     # 09:00 EEST (Bulgaria summer time, UTC+3)
+    - cron: "0 7 * * 5"     # 09:00 EET (Bulgaria winter time, UTC+2)
   workflow_dispatch:
 
 permissions:
@@ -38,10 +39,21 @@ jobs:
           cache: "pip"
       - run: pip install -r requirements.txt
 
+      - name: Skip the wrong-DST-season scheduled trigger
+        if: github.event_name == 'schedule'
+        run: |
+          hour=$(TZ='Europe/Sofia' date +%H)
+          if [ "$hour" != "09" ]; then
+            echo "Sofia local hour is $hour, not 09 — this cron fired for the other DST season, skipping."
+            echo "SKIP=true" >> "$GITHUB_ENV"
+          fi
+
       - name: Run weekend_concierge.py (harvest + three-stage LLM gate)
+        if: env.SKIP != 'true'
         run: python weekend_concierge.py
 
       - name: Persist state
+        if: env.SKIP != 'true'
         run: |
           git config user.name "weekly-concierge"
           git config user.email "actions@users.noreply.github.com"
