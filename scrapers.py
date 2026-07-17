@@ -247,7 +247,6 @@ RAW_FETCH_SOURCES = {
     "rnhm":                 "https://www.rnhm.org/",
     "oldplovdiv":           "https://oldplovdiv.bg/",
     "programata":           "https://programata.bg/sofia",
-    "starazagora_tourist":  "https://tourist.stara-zagora.bg/",
     "plovdiv_bg":           "https://www.plovdiv.bg/",
     "visitplovdiv":         "https://visitplovdiv.com/",
     "marica":               "https://www.marica.bg/",
@@ -589,11 +588,15 @@ def scrape_plovdiv_bg(pages=PLOVDIV_BG_PAGES):
 
 
 LOSTINPLOVDIV_BASE = "https://lostinplovdiv.com"
-LOSTINPLOVDIV_ARTICLES_URL = f"{LOSTINPLOVDIV_BASE}/en/articles"
-LOSTINPLOVDIV_LIMIT = 30  # the listing has no pagination param — one fetch returns the
-# site's entire ~10-year archive (1000+ cards), newest first. This is a weekly harvest, so
-# we only need the newest slice: it reliably covers the latest "What to do in Plovdiv
-# (DD.MM - DD.MM)" weekly digest plus several evergreen thematic roundups.
+# The site dropped its old /en/articles archive listing (now 404) after a theme change
+# (Jannah/WordPress) and its front page is now the newest-first feed instead. Cards are
+# no longer paginated with a query param either — /en/ alone already yields ~56 cards,
+# well over LOSTINPLOVDIV_LIMIT.
+LOSTINPLOVDIV_ARTICLES_URL = f"{LOSTINPLOVDIV_BASE}/en/"
+LOSTINPLOVDIV_LIMIT = 30  # the listing has no pagination param — one fetch returns dozens
+# of cards, newest first. This is a weekly harvest, so we only need the newest slice: it
+# reliably covers the latest "What to do in Plovdiv (DD.MM - DD.MM)" weekly digest plus
+# several evergreen thematic roundups.
 LOSTINPLOVDIV_DETAIL_MAX_CHARS = 2500  # enough for a full dated event list (e.g. a "which
 # events in June" roundup runs ~2000 chars); the listing blurb alone is only 1-2 sentences.
 LOSTINPLOVDIV_MAX_DETAIL_FETCHES = 10  # cap extra per-article requests per harvest run
@@ -628,13 +631,13 @@ def _lostinplovdiv_is_actionable(title):
 
 def _fetch_lostinplovdiv_detail(url):
     """Fetch one lostinplovdiv article page and return its full body text (the
-    article.main-content paragraphs, whitespace-collapsed and capped), or "" on any
-    failure. Only called for titles _lostinplovdiv_is_actionable() flags as worth it."""
+    entry-content paragraphs, whitespace-collapsed and capped), or "" on any failure.
+    Only called for titles _lostinplovdiv_is_actionable() flags as worth it."""
     html = fetch(url)
     if not html:
         return ""
     soup = BeautifulSoup(html, "html.parser")
-    main = soup.find("article", class_="main-content")
+    main = soup.find(class_="entry-content")
     if not main:
         return ""
     text = re.sub(r"\s+", " ", main.get_text(" ", strip=True)).strip()
@@ -658,36 +661,39 @@ def _parse_lostinplovdiv_week_title(title, today):
 
 
 def _parse_lostinplovdiv(html, today=None):
-    """Pure parse of lostinplovdiv.com's /en/articles listing. Cards are article.article
-    with an h3.article-title > a for title/url, a .date span for the publish date (not an
-    event date), and a p.article-descpription (sic) blurb. Most articles are editorial
-    (evergreen roundups, local trivia, one-off news) with no event date at all — those get
-    date_iso=None for FIND/SKEPTIC to resolve. The recurring 'What to do in Plovdiv
-    (DD.MM - DD.MM)' weekly digest is the one title format that embeds its own date range,
-    parsed by _parse_lostinplovdiv_week_title."""
+    """Pure parse of lostinplovdiv.com's /en/ front-page feed (its Jannah WordPress theme).
+    Cards carry class post-item, with an h2.post-title > a for title/url, a .post-meta
+    .date span for the publish date (not an event date — often relative, e.g. '5 hours
+    ago'), and a p.post-excerpt blurb. Most articles are editorial (evergreen roundups,
+    local trivia, one-off news) with no event date at all — those get date_iso=None for
+    FIND/SKEPTIC to resolve. The recurring 'What to do in Plovdiv (DD.MM - DD.MM)' weekly
+    digest is the one title format that embeds its own date range, parsed by
+    _parse_lostinplovdiv_week_title. Card hrefs are relative to /en/ (no leading slash), so
+    they're resolved against LOSTINPLOVDIV_ARTICLES_URL, not the bare domain."""
     today = today or dt.date.today()
     soup = BeautifulSoup(html, "html.parser")
     items = []
-    for card in soup.find_all("article", class_="article")[:LOSTINPLOVDIV_LIMIT]:
-        h3 = card.find("h3", class_="article-title")
-        link = h3.find("a") if h3 else None
+    for card in soup.find_all(class_="post-item")[:LOSTINPLOVDIV_LIMIT]:
+        h2 = card.find(class_="post-title")
+        link = h2.find("a") if h2 else None
         title = link.get_text(strip=True) if link else ""
         if not title:
             continue
-        date_span = card.select_one(".date span")
+        meta = card.find(class_="post-meta")
+        date_span = meta.find(class_="date") if meta else None
         when_text = date_span.get_text(strip=True) if date_span else ""
         date_iso = _parse_lostinplovdiv_week_title(title, today)
-        desc_tag = card.find("p", class_="article-descpription")
+        desc_tag = card.find(class_="post-excerpt")
         description = desc_tag.get_text(" ", strip=True) if desc_tag else ""
-        url = resolve_url(LOSTINPLOVDIV_BASE, link.get("href", ""))
+        url = resolve_url(LOSTINPLOVDIV_ARTICLES_URL, link.get("href", ""))
         items.append(_make_item("lostinplovdiv", title, when_text, date_iso, "", url, description))
     return items
 
 
 def scrape_lostinplovdiv():
-    """Structured parser for lostinplovdiv.com's English articles feed — the site's own
+    """Structured parser for lostinplovdiv.com's English front-page feed — the site's own
     bilingual, hand-curated guide to Plovdiv (weekly what-to-do digests, evergreen
-    thematic roundups, local food/culture spots). Fetches /en/articles and delegates to
+    thematic roundups, local food/culture spots). Fetches /en/ and delegates to
     _parse_lostinplovdiv, then replaces the one-sentence listing blurb with the full
     article body (see _fetch_lostinplovdiv_detail) for titles that look like an actual
     activity/event guide, up to LOSTINPLOVDIV_MAX_DETAIL_FETCHES extra requests — the

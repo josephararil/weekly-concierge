@@ -54,14 +54,14 @@ fallback if the parser ever comes back empty.
 
 **Structured** (dedicated per-event parser): `plovdiv2019.eu`, `bilet.bg`, `ticket.bg`,
 `programata.bg` (Kids category), `visitplovdiv.com` (its own AJAX calendar endpoint),
-`plovdiv.bg` (events-category news feed), and `lostinplovdiv.com` (English articles feed).
+`plovdiv.bg` (events-category news feed), and `lostinplovdiv.com` (English front-page feed).
 
 **Raw-fetch only** — `eventim.bg` (its real event data sits behind a JSON API that 403s at
 Akamai's edge for every request; the alternative, `pyventim`, drags in a full headless-browser
 stack this project avoids) and `ticketstation.bg` (a client-rendered Vue SPA — the fetched HTML
-is an empty shell with no event markup to parse). The remaining raw-fetch sources — `dtp.bg`,
-`rnhm.org`, `oldplovdiv.bg`, `tourist.stara-zagora.bg`, `marica.bg` — just haven't been evaluated
-for a structured upgrade yet.
+carries only nav/config JSON, no event markup to parse). The remaining raw-fetch sources —
+`dtp.bg`, `rnhm.org`, `oldplovdiv.bg`, `marica.bg` — just haven't been evaluated for a structured
+upgrade yet.
 
 `facebook` is a documented stub, disabled until auth/anti-bot is worth solving. See `CLAUDE.md`
 for the full per-source investigation notes.
