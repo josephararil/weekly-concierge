@@ -23,8 +23,8 @@ MAX_HARVEST_ITEMS = 200
 # Per-stage model roles. Values are canonical Anthropic model names; Gemini
 # equivalents are looked up in GEMINI_MODEL_MAP below.
 MODEL_FIND      = "claude-haiku-4-5-20251001"  # Stage 1: fast + web-search capable, consolidates harvest+leads
-MODEL_SKEPTIC   = "claude-sonnet-4-6"          # Stage 2: stronger reasoning, the hallucination guard
-MODEL_CONCIERGE = "claude-sonnet-4-6"          # Stage 3: strong prose writer, no search
+MODEL_SKEPTIC   = "claude-haiku-4-5-20251001"          # Stage 2: stronger reasoning, the hallucination guard
+MODEL_CONCIERGE = "claude-haiku-4-5-20251001"          # Stage 3: strong prose writer, no search
 
 # Maps Anthropic model names (canonical keys) to Gemini equivalents.
 # Used when LLM_PROVIDER=gemini. Add a new entry here whenever a new model role
