@@ -12,7 +12,7 @@ RADIUS_MINUTES = 90  # max one-way travel time from Plovdiv worth suggesting
 ENABLED_SOURCES = [
     "plovdiv2019", "bilet",
     "eventim", "ticketstation", "ticketbg", "dtp", "rnhm", "oldplovdiv",
-    "programata", "starazagora_tourist", "plovdiv_bg", "visitplovdiv", "marica",
+    "programata", "plovdiv_bg", "visitplovdiv", "marica",
     "lostinplovdiv",
 ]
 

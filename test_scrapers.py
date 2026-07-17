@@ -297,14 +297,14 @@ class TestParseLostinplovdivFixture(unittest.TestCase):
         self.assertIsNone(cafe["date_iso"])
         self.assertEqual(
             cafe["url"],
-            "https://lostinplovdiv.com/en/articles/plovdiv-cafe-enters-the-top-100-in-the-world",
+            "https://lostinplovdiv.com/en/articles/plovdiv-cafe-enters-the-top-100-in-the-world/",
         )
 
         digest = next(item for item in items if item["title"].startswith("What to do in Plovdiv"))
         # Title embeds its own date range ("26.06 - 02.07"); the start date is taken as-is
         # in today's year, not rolled forward like bg_date's future-listing convention.
         self.assertEqual(digest["date_iso"], "2026-06-26")
-        self.assertEqual(digest["url"], "https://lostinplovdiv.com/en/articles/what-to-do-in-plovdiv-358")
+        self.assertEqual(digest["url"], "https://lostinplovdiv.com/en/articles/what-to-do-in-plovdiv-358/")
 
 
 class TestLostinplovdivIsActionable(unittest.TestCase):
