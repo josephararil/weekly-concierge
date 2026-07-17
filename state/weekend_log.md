@@ -1,22 +1,21 @@
-# Weekend Concierge — 2026-07-10
+# Weekend Concierge — 2026-07-17
 
-**Subject:** Weekend ideas: Disney fountains, island parks, and warm weather ahead
+**Subject:** Beating the Plovdiv heat: Puppet shows, mountain lakes, and your favorite park
 
-**Weather:** Sat (2026-07-11): mainly clear, 16.1-33.0°C (feels 15.2-33.6°C), 37% humidity, 3% cloud cover, 0% chance of rain · Sun (2026-07-12): overcast, 18.8-32.3°C (feels 18.4-32.9°C), 47% humidity, 59% cloud cover, 23% chance of rain
+**Weather:** Sat (2026-07-18): overcast, 21.0-35.9°C (feels 23.5-37.7°C), 50% humidity, 17% cloud cover, 0% chance of rain · Sun (2026-07-19): overcast, 20.5-35.6°C (feels 21.9-38.2°C), 50% humidity, 36% cloud cover, 11% chance of rain
 
-_6 candidate(s) considered · 3 event(s) + 2 evergreen(s) sent._
+_5 candidate(s) considered · 2 event(s) + 3 evergreen(s) sent._
 
 ## Sent this run
-- **Disney Summer of Stories at the Singing Fountains** (event_this_weekend, Thursday, Friday, and Saturday evenings, July 2026, Tsar Simeon's Garden, Plovdiv) — A magical, kid-friendly outdoor light and music show projecting Disney stories onto a water wall at the Singing Fountains.
-- **Festival of Fun for Children** (event_lookahead, Monday, July 20 and July 27, 2026 (17:00–21:30), Plovdiv STAGE PARK, Youth Hill) — Specifically curated for younger audiences with outdoor workshops, sports activities, and games at the green foot of Youth Hill.
-- **International Folklore Festival Street Parade** (event_lookahead, July 27–31, 2026 (Daily parade at 17:30), Stefan Stambolov Square, Plovdiv) — Very colorful, lively open-air parades through the city center that are easy to watch with a toddler without sitting through a long stage show.
-- **Day Trip to Park-Island 'Svoboda' in Pazardzhik** (evergreen, Always available (Best on sunny days), Pazardzhik (approx. 35-40 min drive from Plovdiv)) — Highly rated by the family; features fantastic playgrounds and a small zoo area, making it a perfect, easy day trip destination.
-- **Byala Reka Ecotrail Hike** (evergreen, Always available, Near Kalofer Monastery (approx. 85 min drive)) — A highly accessible, child-friendly trail of sturdy wooden bridges over a river, matching the family's preference for gentle, safe walks.
+- **State Puppet Theatre Weekend Performances** (event_this_weekend, Saturday and Sunday at 10:30 and 11:45, State Puppet Theatre, Plovdiv) — Perfect morning activity with short, highly engaging puppet shows tailored specifically for toddlers, and located right in town.
+- **PhillGood Festival 2026** (event_this_weekend, July 17 – 19, 2026, Rowing Canal, Plovdiv) — An massive open-air music festival on a flat, spacious site. While loud, children under 11 enter for free and a daytime walk with ear protection could be a fun option for music-loving parents.
+- **Eco Park Stamboliyski** (evergreen, Wednesday – Sunday, 08:00 - 20:00 (midday break), Stamboliyski (~30 min drive from Plovdiv)) — Explicitly loved by the family; features a secure, fenced toddler playground filled with wooden structures and sensory elements.
+- **Damascena Biopark** (evergreen, Daily, 09:00 - 17:00, Skobelevo (~85 min drive from Plovdiv)) — A beautiful rose distillery gardens that function as an eco-park, with safe paths to see free-roaming deer, swans, and ostriches.
+- **Batak Reservoir & Tsigov Chark** (evergreen, Daily, Tsigov Chark (~60 min drive from Plovdiv)) — A wonderful destination to escape the high July temperatures of Plovdiv, offering wide grassy areas, gentle pedal boats, and horses to spot.
 
 ## All candidates
-- #5 [sent] Day Trip to Park-Island 'Svoboda' in Pazardzhik (evergreen, fit=100) — Park-Island Svoboda is a real, well-known park with playgrounds and a small zoo in Pazardzhik, well within the 90-minute radius.
-- #2 [sent] Disney Summer of Stories at the Singing Fountains (event_this_weekend, fit=95) — The Singing Fountains are a verified, family-friendly location in Plovdiv known for evening shows; kept as a plausible event.
-- #3 [sent] Festival of Fun for Children (event_lookahead, fit=95) — Plovdiv Stage Park at Youth Hill is a real venue that regularly hosts family-friendly outdoor festivals.
-- #6 [sent] Byala Reka Ecotrail Hike (evergreen, fit=90) — The Byala Reka Ecotrail is a real, family-friendly trail with wooden bridges located within an 85-minute drive of Plovdiv.
-- #1 [kill] Western Festival at Dengri Eco Resorts (event_this_weekend, fit=85) — The venue 'Dengri Eco Resorts' in Velingrad appears to be a hallucination and cannot be verified.
-- #4 [sent] International Folklore Festival Street Parade (event_lookahead, fit=80) — The International Folklore Festival is a real recurring event in Plovdiv, and the street parades are suitable for a 4-year-old.
+- #3 [sent] Eco Park Stamboliyski (evergreen, fit=98) — Eco Park Stamboliyski is a verified family-friendly location within a 30-minute drive of Plovdiv.
+- #1 [sent] State Puppet Theatre Weekend Performances (event_this_weekend, fit=95) — State Puppet Theatre is a verified venue in Plovdiv with weekend shows suitable for young children.
+- #4 [sent] Damascena Biopark (evergreen, fit=85) — Damascena Biopark is a real, family-relevant attraction in Skobelevo within the 90-minute radius.
+- #5 [sent] Batak Reservoir & Tsigov Chark (evergreen, fit=82) — Batak Reservoir and Tsigov Chark are real, accessible family destinations within a 60-minute drive.
+- #2 [sent] PhillGood Festival 2026 (event_this_weekend, fit=65) — The Rowing Canal is a real venue in Plovdiv; the music festival is a verified public event.

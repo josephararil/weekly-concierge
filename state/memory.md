@@ -1,4 +1,4 @@
-# Weekend Concierge Memory — updated 2026-07-10
+# Weekend Concierge Memory — updated 2026-07-17
 
 ## Evergreen Catalog (49 entries)
 
@@ -40,9 +40,9 @@ _Tags: nature, history, outdoor_
 _Source: seed_
 
 ### Batak Reservoir & Tsigov Chark
-**Location:** Tsigov Chark resort area / ~60 min drive from Plovdiv (73 km)
-**Discovered:** 2026-07-02 &nbsp; **Last suggested:** never
-Open lakeside meadows for running and picnics, with slow pedal boats to rent and free-roaming horses to spot.
+**Location:** Tsigov Chark (~60 min drive from Plovdiv) / ~60 min drive from Plovdiv (73 km)
+**Discovered:** 2026-07-02 &nbsp; **Last suggested:** 2026-07-17
+A wonderful destination to escape the high July temperatures of Plovdiv, offering wide grassy areas, gentle pedal boats, and horses to spot.
 **Practical:** High altitude — bring layered clothing; pedal boats operate seasonally.
 _Tags: water, nature, outdoor, free_
 _Source: research_
@@ -86,9 +86,9 @@ _Tags: ride, park, outdoor, cheap_
 _Source: research_
 
 ### Damascena Biopark
-**Location:** Skobelevo, near Pavel Banya / ~80-90 min drive from Plovdiv
-**Discovered:** 2026-07-02 &nbsp; **Last suggested:** never
-A rose distillery grown into an ecological park with free-roaming deer, swans and ostriches, bronze statues and rose gardens.
+**Location:** Skobelevo (~85 min drive from Plovdiv) / ~80-90 min drive from Plovdiv
+**Discovered:** 2026-07-02 &nbsp; **Last suggested:** 2026-07-17
+A beautiful rose distillery gardens that function as an eco-park, with safe paths to see free-roaming deer, swans, and ostriches.
 **Practical:** Open daily 09:00-17:00; adults ~24 BGN, children under 7 free.
 **Link:** https://www.damascena.net
 _Tags: animals, botanical, outdoor, paid_
@@ -107,9 +107,9 @@ Highly rated by the family; features fantastic playgrounds and a small zoo area,
 _Source: find_
 
 ### Eco Park Stamboliyski
-**Location:** Stamboliyski (approx. 30-minute drive from Plovdiv) / ~30 min drive from Plovdiv (20 km)
-**Discovered:** 2026-07-02 &nbsp; **Last suggested:** never
-A free municipal park featuring a dedicated, fenced toddler-friendly playground with wooden climbing structures and sensory play boards.
+**Location:** Stamboliyski (~30 min drive from Plovdiv) / ~30 min drive from Plovdiv (20 km)
+**Discovered:** 2026-07-02 &nbsp; **Last suggested:** 2026-07-17
+Explicitly loved by the family; features a secure, fenced toddler playground filled with wooden structures and sensory elements.
 **Practical:** Free access; on-site mini-golf ~2 BGN, Wed-Sun 08:00-20:00 with a midday break.
 _Tags: playground, park, outdoor, free_
 _Source: research_
@@ -386,8 +386,13 @@ Picturesque lake in a green park — feed ducks and swans, rent pedal boats, use
 _Tags: water, park, outdoor, free_
 _Source: research_
 
-## Suggestion Ledger (29 entries)
+## Suggestion Ledger (34 entries)
 
+- ✅ 2026-07-17 | State Puppet Theatre Weekend Performances | event_this_weekend | Saturday and Sunday at 10:30 and 11:45 | sent score=95 — State Puppet Theatre is a verified venue in Plovdiv with weekend shows suitable for young children.
+- ✅ 2026-07-17 | PhillGood Festival 2026 | event_this_weekend | July 17 – 19, 2026 | sent score=65 — The Rowing Canal is a real venue in Plovdiv; the music festival is a verified public event.
+- ✅ 2026-07-17 | Eco Park Stamboliyski | evergreen | Wednesday – Sunday, 08:00 - 20:00 (midday break) | sent score=98 — Explicitly loved by the family; features a secure, fenced toddler playground filled with wooden…
+- ✅ 2026-07-17 | Damascena Biopark | evergreen | Daily, 09:00 - 17:00 | sent score=85 — A beautiful rose distillery gardens that function as an eco-park, with safe paths to see…
+- ✅ 2026-07-17 | Batak Reservoir & Tsigov Chark | evergreen | Daily | sent score=82 — A wonderful destination to escape the high July temperatures of Plovdiv, offering wide grassy…
 - ✅ 2026-07-10 | Disney Summer of Stories at the Singing Fountains | event_this_weekend | Thursday, Friday, and Saturday evenings, July 2026 | sent score=95 — The Singing Fountains are a verified, family-friendly location in Plovdiv known for evening shows;…
 - ✅ 2026-07-10 | Festival of Fun for Children | event_lookahead | Monday, July 20 and July 27, 2026 (17:00–21:30) | sent score=95 — Plovdiv Stage Park at Youth Hill is a real venue that regularly hosts family-friendly outdoor…
 - ✅ 2026-07-10 | International Folklore Festival Street Parade | event_lookahead | July 27–31, 2026 (Daily parade at 17:30) | sent score=80 — The International Folklore Festival is a real recurring event in Plovdiv, and the street parades…

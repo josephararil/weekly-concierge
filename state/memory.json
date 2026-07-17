@@ -302,9 +302,9 @@
       "last_suggested": null
     },
     "Eco Park Stamboliyski": {
-      "location": "Stamboliyski (approx. 30-minute drive from Plovdiv)",
+      "location": "Stamboliyski (~30 min drive from Plovdiv)",
       "area": "~30 min drive from Plovdiv (20 km)",
-      "description": "A free municipal park featuring a dedicated, fenced toddler-friendly playground with wooden climbing structures and sensory play boards.",
+      "description": "Explicitly loved by the family; features a secure, fenced toddler playground filled with wooden structures and sensory elements.",
       "tags": [
         "playground",
         "park",
@@ -315,7 +315,7 @@
       "practical": "Free access; on-site mini-golf ~2 BGN, Wed-Sun 08:00-20:00 with a midday break.",
       "discovered": "2026-07-02",
       "source": "research",
-      "last_suggested": null
+      "last_suggested": "2026-07-17"
     },
     "The Fairytale Forest": {
       "location": "Rakovski (between Sekirovo and Gen. Nikolaevo)",
@@ -465,9 +465,9 @@
       "last_suggested": null
     },
     "Batak Reservoir & Tsigov Chark": {
-      "location": "Tsigov Chark resort area",
+      "location": "Tsigov Chark (~60 min drive from Plovdiv)",
       "area": "~60 min drive from Plovdiv (73 km)",
-      "description": "Open lakeside meadows for running and picnics, with slow pedal boats to rent and free-roaming horses to spot.",
+      "description": "A wonderful destination to escape the high July temperatures of Plovdiv, offering wide grassy areas, gentle pedal boats, and horses to spot.",
       "tags": [
         "water",
         "nature",
@@ -478,7 +478,7 @@
       "practical": "High altitude — bring layered clothing; pedal boats operate seasonally.",
       "discovered": "2026-07-02",
       "source": "research",
-      "last_suggested": null
+      "last_suggested": "2026-07-17"
     },
     "Pliocene Park Dorkovo": {
       "location": "Dorkovo, near Tsigov Chark",
@@ -596,9 +596,9 @@
       "last_suggested": "2026-07-03"
     },
     "Damascena Biopark": {
-      "location": "Skobelevo, near Pavel Banya",
+      "location": "Skobelevo (~85 min drive from Plovdiv)",
       "area": "~80-90 min drive from Plovdiv",
-      "description": "A rose distillery grown into an ecological park with free-roaming deer, swans and ostriches, bronze statues and rose gardens.",
+      "description": "A beautiful rose distillery gardens that function as an eco-park, with safe paths to see free-roaming deer, swans, and ostriches.",
       "tags": [
         "animals",
         "botanical",
@@ -609,7 +609,7 @@
       "practical": "Open daily 09:00-17:00; adults ~24 BGN, children under 7 free.",
       "discovered": "2026-07-02",
       "source": "research",
-      "last_suggested": null
+      "last_suggested": "2026-07-17"
     },
     "Four Seasons Ostrich Farm": {
       "location": "Skobelevo, near Pavel Banya",
@@ -1055,6 +1055,61 @@
       "score": 90,
       "verdict": "sent",
       "note": "A highly accessible, child-friendly trail of sturdy wooden bridges over a river, matching the family's preference for gentle, safe walks."
+    },
+    {
+      "date": "2026-07-17",
+      "title": "State Puppet Theatre Weekend Performances",
+      "category": "event_this_weekend",
+      "when": "Saturday and Sunday at 10:30 and 11:45",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "https://puppet.bg",
+      "score": 95,
+      "verdict": "sent",
+      "note": "State Puppet Theatre is a verified venue in Plovdiv with weekend shows suitable for young children."
+    },
+    {
+      "date": "2026-07-17",
+      "title": "PhillGood Festival 2026",
+      "category": "event_this_weekend",
+      "when": "July 17 – 19, 2026",
+      "location": "Rowing Canal, Plovdiv",
+      "url": "https://phillgood.ink",
+      "score": 65,
+      "verdict": "sent",
+      "note": "The Rowing Canal is a real venue in Plovdiv; the music festival is a verified public event."
+    },
+    {
+      "date": "2026-07-17",
+      "title": "Eco Park Stamboliyski",
+      "category": "evergreen",
+      "when": "Wednesday – Sunday, 08:00 - 20:00 (midday break)",
+      "location": "Stamboliyski (~30 min drive from Plovdiv)",
+      "url": "",
+      "score": 98,
+      "verdict": "sent",
+      "note": "Explicitly loved by the family; features a secure, fenced toddler playground filled with wooden structures and sensory elements."
+    },
+    {
+      "date": "2026-07-17",
+      "title": "Damascena Biopark",
+      "category": "evergreen",
+      "when": "Daily, 09:00 - 17:00",
+      "location": "Skobelevo (~85 min drive from Plovdiv)",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "A beautiful rose distillery gardens that function as an eco-park, with safe paths to see free-roaming deer, swans, and ostriches."
+    },
+    {
+      "date": "2026-07-17",
+      "title": "Batak Reservoir & Tsigov Chark",
+      "category": "evergreen",
+      "when": "Daily",
+      "location": "Tsigov Chark (~60 min drive from Plovdiv)",
+      "url": "",
+      "score": 82,
+      "verdict": "sent",
+      "note": "A wonderful destination to escape the high July temperatures of Plovdiv, offering wide grassy areas, gentle pedal boats, and horses to spot."
     }
   ]
 }
