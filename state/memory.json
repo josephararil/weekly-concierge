@@ -612,9 +612,9 @@
       "last_suggested": "2026-07-17"
     },
     "Four Seasons Ostrich Farm": {
-      "location": "Skobelevo, near Pavel Banya",
+      "location": "Tazha village (~80 min drive)",
       "area": "~80-90 min drive from Plovdiv",
-      "description": "Quirky farm where children safely watch ostriches, with memorable treats like ostrich-egg crème caramel.",
+      "description": "A memorable countryside excursion where young children can safely observe giant ostriches up close in a calm rural setting.",
       "tags": [
         "animals",
         "farm",
@@ -625,7 +625,7 @@
       "practical": "Open Wed-Sun 10:00-17:00; pairs well with the nearby Damascena Biopark.",
       "discovered": "2026-07-02",
       "source": "research",
-      "last_suggested": null
+      "last_suggested": "2026-07-24"
     },
     "Sopot Chairlift": {
       "location": "Sopot",
@@ -734,6 +734,28 @@
       "discovered": "2026-07-10",
       "source": "find",
       "last_suggested": "2026-07-10"
+    },
+    "Regional Natural History Museum Plovdiv": {
+      "location": "3 Hristo G. Danov Str, Plovdiv",
+      "area": "",
+      "description": "Explicitly loved by the family; features an impressive sea aquarium, terrarium, live butterfly house, and life-sized dinosaur animatronics.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-07-24",
+      "source": "find",
+      "last_suggested": "2026-07-24"
+    },
+    "Day Trip to Stara Zagora Zoo": {
+      "location": "Ayazmoto Park, Stara Zagora (~60 min drive)",
+      "area": "",
+      "description": "Explicitly highlighted as a family favorite; set in a deeply shaded forest park with wide, gentle paths and diverse animal exhibits.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-07-24",
+      "source": "find",
+      "last_suggested": "2026-07-24"
     }
   },
   "ledger": [
@@ -1110,6 +1132,72 @@
       "score": 82,
       "verdict": "sent",
       "note": "A wonderful destination to escape the high July temperatures of Plovdiv, offering wide grassy areas, gentle pedal boats, and horses to spot."
+    },
+    {
+      "date": "2026-07-24",
+      "title": "Cinema Under the Stars - Open Air Screenings",
+      "category": "event_this_weekend",
+      "when": "Saturday & Sunday evenings, July 25–26, 2026",
+      "location": "Various city parks (Mladezhki Hill, Lauta Park), Plovdiv",
+      "url": "https://visitplovdiv.com",
+      "score": 82,
+      "verdict": "sent",
+      "note": "Plovdiv frequently hosts outdoor cinema screenings in city parks during summer."
+    },
+    {
+      "date": "2026-07-24",
+      "title": "World Rowing Under 19 Championships",
+      "category": "event_lookahead",
+      "when": "August 6–9, 2026",
+      "location": "Rowing Canal (Grebna Baza), Plovdiv",
+      "url": "https://visitplovdiv.com",
+      "score": 85,
+      "verdict": "sent",
+      "note": "The World Rowing U19 Championships at the Rowing Canal in Plovdiv are confirmed for 2026."
+    },
+    {
+      "date": "2026-07-24",
+      "title": "Shake That Hill: Eldoria 2026 Festival",
+      "category": "event_lookahead",
+      "when": "August 28–30, 2026",
+      "location": "Mladezhki Hill (Youth Hill), Plovdiv",
+      "url": "https://visitplovdiv.com",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Shake That Hill is a verified annual open-air festival held on Youth Hill in Plovdiv."
+    },
+    {
+      "date": "2026-07-24",
+      "title": "Regional Natural History Museum Plovdiv",
+      "category": "evergreen",
+      "when": "Tuesday–Sunday, 08:30–17:00",
+      "location": "3 Hristo G. Danov Str, Plovdiv",
+      "url": "",
+      "score": 98,
+      "verdict": "sent",
+      "note": "Explicitly loved by the family; features an impressive sea aquarium, terrarium, live butterfly house, and life-sized dinosaur animatronics."
+    },
+    {
+      "date": "2026-07-24",
+      "title": "Day Trip to Stara Zagora Zoo",
+      "category": "evergreen",
+      "when": "Daily, 09:00–18:00",
+      "location": "Ayazmoto Park, Stara Zagora (~60 min drive)",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Explicitly highlighted as a family favorite; set in a deeply shaded forest park with wide, gentle paths and diverse animal exhibits."
+    },
+    {
+      "date": "2026-07-24",
+      "title": "Four Seasons Ostrich Farm",
+      "category": "evergreen",
+      "when": "Wednesday–Sunday, 10:00–17:00",
+      "location": "Tazha village (~80 min drive)",
+      "url": "",
+      "score": 84,
+      "verdict": "sent",
+      "note": "A memorable countryside excursion where young children can safely observe giant ostriches up close in a calm rural setting."
     }
   ]
 }

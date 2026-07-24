@@ -1,6 +1,6 @@
-# Weekend Concierge Memory — updated 2026-07-17
+# Weekend Concierge Memory — updated 2026-07-24
 
-## Evergreen Catalog (49 entries)
+## Evergreen Catalog (51 entries)
 
 ### Ancient Theatre of Philippopolis
 **Location:** Plovdiv Old Town / in town
@@ -106,6 +106,12 @@ _Source: find_
 Highly rated by the family; features fantastic playgrounds and a small zoo area, making it a perfect, easy day trip destination.
 _Source: find_
 
+### Day Trip to Stara Zagora Zoo
+**Location:** Ayazmoto Park, Stara Zagora (~60 min drive)
+**Discovered:** 2026-07-24 &nbsp; **Last suggested:** 2026-07-24
+Explicitly highlighted as a family favorite; set in a deeply shaded forest park with wide, gentle paths and diverse animal exhibits.
+_Source: find_
+
 ### Eco Park Stamboliyski
 **Location:** Stamboliyski (~30 min drive from Plovdiv) / ~30 min drive from Plovdiv (20 km)
 **Discovered:** 2026-07-02 &nbsp; **Last suggested:** 2026-07-17
@@ -129,9 +135,9 @@ _Tags: indoor, interactive, art, paid_
 _Source: research_
 
 ### Four Seasons Ostrich Farm
-**Location:** Skobelevo, near Pavel Banya / ~80-90 min drive from Plovdiv
-**Discovered:** 2026-07-02 &nbsp; **Last suggested:** never
-Quirky farm where children safely watch ostriches, with memorable treats like ostrich-egg crème caramel.
+**Location:** Tazha village (~80 min drive) / ~80-90 min drive from Plovdiv
+**Discovered:** 2026-07-02 &nbsp; **Last suggested:** 2026-07-24
+A memorable countryside excursion where young children can safely observe giant ostriches up close in a calm rural setting.
 **Practical:** Open Wed-Sun 10:00-17:00; pairs well with the nearby Damascena Biopark.
 **Link:** https://www.shtraus.com
 _Tags: animals, farm, outdoor, paid_
@@ -276,6 +282,12 @@ Short ~30-minute trail on a wide dirt path to a panoramic rock overlook — a go
 _Tags: hiking, nature, outdoor, free_
 _Source: research_
 
+### Regional Natural History Museum Plovdiv
+**Location:** 3 Hristo G. Danov Str, Plovdiv
+**Discovered:** 2026-07-24 &nbsp; **Last suggested:** 2026-07-24
+Explicitly loved by the family; features an impressive sea aquarium, terrarium, live butterfly house, and life-sized dinosaur animatronics.
+_Source: find_
+
 ### Regional Natural History Museum Visit
 **Location:** Regional Natural History Museum, Plovdiv
 **Discovered:** 2026-07-03 &nbsp; **Last suggested:** 2026-07-03
@@ -386,8 +398,14 @@ Picturesque lake in a green park — feed ducks and swans, rent pedal boats, use
 _Tags: water, park, outdoor, free_
 _Source: research_
 
-## Suggestion Ledger (34 entries)
+## Suggestion Ledger (40 entries)
 
+- ✅ 2026-07-24 | Cinema Under the Stars - Open Air Screenings | event_this_weekend | Saturday & Sunday evenings, July 25–26, 2026 | sent score=82 — Plovdiv frequently hosts outdoor cinema screenings in city parks during summer.
+- ✅ 2026-07-24 | World Rowing Under 19 Championships | event_lookahead | August 6–9, 2026 | sent score=85 — The World Rowing U19 Championships at the Rowing Canal in Plovdiv are confirmed for 2026.
+- ✅ 2026-07-24 | Shake That Hill: Eldoria 2026 Festival | event_lookahead | August 28–30, 2026 | sent score=80 — Shake That Hill is a verified annual open-air festival held on Youth Hill in Plovdiv.
+- ✅ 2026-07-24 | Regional Natural History Museum Plovdiv | evergreen | Tuesday–Sunday, 08:30–17:00 | sent score=98 — Explicitly loved by the family; features an impressive sea aquarium, terrarium, live butterfly…
+- ✅ 2026-07-24 | Day Trip to Stara Zagora Zoo | evergreen | Daily, 09:00–18:00 | sent score=95 — Explicitly highlighted as a family favorite; set in a deeply shaded forest park with wide, gentle…
+- ✅ 2026-07-24 | Four Seasons Ostrich Farm | evergreen | Wednesday–Sunday, 10:00–17:00 | sent score=84 — A memorable countryside excursion where young children can safely observe giant ostriches up close…
 - ✅ 2026-07-17 | State Puppet Theatre Weekend Performances | event_this_weekend | Saturday and Sunday at 10:30 and 11:45 | sent score=95 — State Puppet Theatre is a verified venue in Plovdiv with weekend shows suitable for young children.
 - ✅ 2026-07-17 | PhillGood Festival 2026 | event_this_weekend | July 17 – 19, 2026 | sent score=65 — The Rowing Canal is a real venue in Plovdiv; the music festival is a verified public event.
 - ✅ 2026-07-17 | Eco Park Stamboliyski | evergreen | Wednesday – Sunday, 08:00 - 20:00 (midday break) | sent score=98 — Explicitly loved by the family; features a secure, fenced toddler playground filled with wooden…

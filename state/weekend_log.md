@@ -1,21 +1,24 @@
-# Weekend Concierge — 2026-07-17
+# Weekend Concierge — 2026-07-24
 
-**Subject:** Beating the Plovdiv heat: Puppet shows, mountain lakes, and your favorite park
+**Subject:** Weekend plans for Joseph, Marti & Sophie: Park movies, dinosaurs, and farm outings!
 
-**Weather:** Sat (2026-07-18): overcast, 21.0-35.9°C (feels 23.5-37.7°C), 50% humidity, 17% cloud cover, 0% chance of rain · Sun (2026-07-19): overcast, 20.5-35.6°C (feels 21.9-38.2°C), 50% humidity, 36% cloud cover, 11% chance of rain
+**Weather:** Sat (2026-07-25): overcast, 17.1-26.6°C (feels 14.9-25.4°C), 46% humidity, 62% cloud cover, 15% chance of rain · Sun (2026-07-26): mainly clear, 15.4-30.3°C (feels 15.1-30.2°C), 49% humidity, 3% cloud cover, 0% chance of rain
 
-_5 candidate(s) considered · 2 event(s) + 3 evergreen(s) sent._
+_7 candidate(s) considered · 3 event(s) + 3 evergreen(s) sent._
 
 ## Sent this run
-- **State Puppet Theatre Weekend Performances** (event_this_weekend, Saturday and Sunday at 10:30 and 11:45, State Puppet Theatre, Plovdiv) — Perfect morning activity with short, highly engaging puppet shows tailored specifically for toddlers, and located right in town.
-- **PhillGood Festival 2026** (event_this_weekend, July 17 – 19, 2026, Rowing Canal, Plovdiv) — An massive open-air music festival on a flat, spacious site. While loud, children under 11 enter for free and a daytime walk with ear protection could be a fun option for music-loving parents.
-- **Eco Park Stamboliyski** (evergreen, Wednesday – Sunday, 08:00 - 20:00 (midday break), Stamboliyski (~30 min drive from Plovdiv)) — Explicitly loved by the family; features a secure, fenced toddler playground filled with wooden structures and sensory elements.
-- **Damascena Biopark** (evergreen, Daily, 09:00 - 17:00, Skobelevo (~85 min drive from Plovdiv)) — A beautiful rose distillery gardens that function as an eco-park, with safe paths to see free-roaming deer, swans, and ostriches.
-- **Batak Reservoir & Tsigov Chark** (evergreen, Daily, Tsigov Chark (~60 min drive from Plovdiv)) — A wonderful destination to escape the high July temperatures of Plovdiv, offering wide grassy areas, gentle pedal boats, and horses to spot.
+- **World Rowing Under 19 Championships** (event_lookahead, August 6–9, 2026, Rowing Canal (Grebna Baza), Plovdiv) — Watching fast-paced rowers from around the world along the wide, stroller-friendly tree-lined canal is visually exciting for a 4-year-old.
+- **Cinema Under the Stars - Open Air Screenings** (event_this_weekend, Saturday & Sunday evenings, July 25–26, 2026, Various city parks (Mladezhki Hill, Lauta Park), Plovdiv) — Free outdoor film screenings held in pleasant park settings, ideal for a casual evening outing under summer skies.
+- **Shake That Hill: Eldoria 2026 Festival** (event_lookahead, August 28–30, 2026, Mladezhki Hill (Youth Hill), Plovdiv) — A vibrant open-air festival on Youth Hill featuring daytime craft workshops, art installations, and grassy spaces for kids to play.
+- **Regional Natural History Museum Plovdiv** (evergreen, Tuesday–Sunday, 08:30–17:00, 3 Hristo G. Danov Str, Plovdiv) — Explicitly loved by the family; features an impressive sea aquarium, terrarium, live butterfly house, and life-sized dinosaur animatronics.
+- **Day Trip to Stara Zagora Zoo** (evergreen, Daily, 09:00–18:00, Ayazmoto Park, Stara Zagora (~60 min drive)) — Explicitly highlighted as a family favorite; set in a deeply shaded forest park with wide, gentle paths and diverse animal exhibits.
+- **Four Seasons Ostrich Farm** (evergreen, Wednesday–Sunday, 10:00–17:00, Tazha village (~80 min drive)) — A memorable countryside excursion where young children can safely observe giant ostriches up close in a calm rural setting.
 
 ## All candidates
-- #3 [sent] Eco Park Stamboliyski (evergreen, fit=98) — Eco Park Stamboliyski is a verified family-friendly location within a 30-minute drive of Plovdiv.
-- #1 [sent] State Puppet Theatre Weekend Performances (event_this_weekend, fit=95) — State Puppet Theatre is a verified venue in Plovdiv with weekend shows suitable for young children.
-- #4 [sent] Damascena Biopark (evergreen, fit=85) — Damascena Biopark is a real, family-relevant attraction in Skobelevo within the 90-minute radius.
-- #5 [sent] Batak Reservoir & Tsigov Chark (evergreen, fit=82) — Batak Reservoir and Tsigov Chark are real, accessible family destinations within a 60-minute drive.
-- #2 [sent] PhillGood Festival 2026 (event_this_weekend, fit=65) — The Rowing Canal is a real venue in Plovdiv; the music festival is a verified public event.
+- #4 [sent] Regional Natural History Museum Plovdiv (evergreen, fit=98) — Verified evergreen museum in central Plovdiv with family-friendly interactive exhibits.
+- #5 [sent] Day Trip to Stara Zagora Zoo (evergreen, fit=95) — Verified zoo in Stara Zagora, approximately 60 minutes' drive from Plovdiv.
+- #6 [keep] Aviation Museum Krumovo (evergreen, fit=90) — Verified museum in Krumovo, situated within a 15-minute drive of Plovdiv.
+- #2 [sent] World Rowing Under 19 Championships (event_lookahead, fit=85) — The World Rowing U19 Championships at the Rowing Canal in Plovdiv are confirmed for 2026.
+- #7 [sent] Four Seasons Ostrich Farm (evergreen, fit=84) — Verified ostrich farm near Tazha village, within a 90-minute driving radius of Plovdiv.
+- #1 [sent] Cinema Under the Stars - Open Air Screenings (event_this_weekend, fit=82) — Plovdiv frequently hosts outdoor cinema screenings in city parks during summer.
+- #3 [sent] Shake That Hill: Eldoria 2026 Festival (event_lookahead, fit=80) — Shake That Hill is a verified annual open-air festival held on Youth Hill in Plovdiv.
