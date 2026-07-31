@@ -660,9 +660,9 @@
       "last_suggested": null
     },
     "Byala Reka Ecotrail": {
-      "location": "Near Kalofer",
+      "location": "Near Kalofer (~80-minute drive from Plovdiv)",
       "area": "~80-90 min drive from Plovdiv (70 km)",
-      "description": "Child-friendly canyon trail of ~1.8 km over a series of sturdy wooden bridges — the constant bridge-crossing feels like a playground.",
+      "description": "A gentle, scenic ecotrail featuring easy wooden bridges over mountain streams that feel like an exciting adventure for a 4-year-old without steep hazards.",
       "tags": [
         "hiking",
         "nature",
@@ -673,7 +673,7 @@
       "practical": "Reached via a dirt road past the Kalofer Monastery; very crowded on summer weekends.",
       "discovered": "2026-07-02",
       "source": "research",
-      "last_suggested": null
+      "last_suggested": "2026-07-31"
     },
     "Kostenets Waterfall": {
       "location": "Kostenets",
@@ -756,6 +756,17 @@
       "discovered": "2026-07-24",
       "source": "find",
       "last_suggested": "2026-07-24"
+    },
+    "Pazardzhik Svoboda Island Park Excursion": {
+      "location": "Svoboda Island Park, Pazardzhik",
+      "area": "",
+      "description": "A proven family favorite featuring shaded walking paths, small animal enclosures, and extensive playgrounds just a 35-minute drive from Plovdiv.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-07-31",
+      "source": "find",
+      "last_suggested": "2026-07-31"
     }
   },
   "ledger": [
@@ -1198,6 +1209,50 @@
       "score": 84,
       "verdict": "sent",
       "note": "A memorable countryside excursion where young children can safely observe giant ostriches up close in a calm rural setting."
+    },
+    {
+      "date": "2026-07-31",
+      "title": "Grafa – Tour 2026 Concert",
+      "category": "event_lookahead",
+      "when": "Saturday, August 8, 2026 at 21:00",
+      "location": "Ancient Theatre, Plovdiv",
+      "url": "https://www.eventim.bg",
+      "score": 75,
+      "verdict": "sent",
+      "note": "no skeptic verdict matched — kept by default"
+    },
+    {
+      "date": "2026-07-31",
+      "title": "Opera Open 2026: A Night with the Music of Queen",
+      "category": "event_lookahead",
+      "when": "Monday, August 24, 2026",
+      "location": "Ancient Theatre, Plovdiv",
+      "url": "https://www.eventim.bg",
+      "score": 70,
+      "verdict": "sent",
+      "note": "no skeptic verdict matched — kept by default"
+    },
+    {
+      "date": "2026-07-31",
+      "title": "Pazardzhik Svoboda Island Park Excursion",
+      "category": "evergreen",
+      "when": "Daily, open access",
+      "location": "Svoboda Island Park, Pazardzhik",
+      "url": "",
+      "score": 92,
+      "verdict": "sent",
+      "note": "A proven family favorite featuring shaded walking paths, small animal enclosures, and extensive playgrounds just a 35-minute drive from Plovdiv."
+    },
+    {
+      "date": "2026-07-31",
+      "title": "Byala Reka Ecotrail",
+      "category": "evergreen",
+      "when": "Daily during daylight hours",
+      "location": "Near Kalofer (~80-minute drive from Plovdiv)",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "A gentle, scenic ecotrail featuring easy wooden bridges over mountain streams that feel like an exciting adventure for a 4-year-old without steep hazards."
     }
   ]
 }

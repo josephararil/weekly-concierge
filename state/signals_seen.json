@@ -1,6 +1,5 @@
 {
   "seen": {
-    "light-up-the-neighborhood-theatre-in-the-park|2026-07-06|lookahead": "2026-07-03",
     "evergreen|regional-natural-history-museum-visit": "2026-07-03",
     "evergreen|children-s-railway-banner-of-peace": "2026-07-03",
     "evergreen|aviation-museum-krumovo": "2026-07-03",
@@ -20,7 +19,11 @@
     "shake-that-hill-eldoria-2026-festival|2026-08-28|lookahead": "2026-07-24",
     "evergreen|regional-natural-history-museum-plovdiv": "2026-07-24",
     "evergreen|day-trip-to-stara-zagora-zoo": "2026-07-24",
-    "evergreen|four-seasons-ostrich-farm": "2026-07-24"
+    "evergreen|four-seasons-ostrich-farm": "2026-07-24",
+    "grafa-tour-2026-concert|2026-08-08|lookahead": "2026-07-31",
+    "opera-open-2026-a-night-with-the-music-of-queen|2026-08-24|lookahead": "2026-07-31",
+    "evergreen|pazardzhik-svoboda-island-park-excursion": "2026-07-31",
+    "evergreen|byala-reka-ecotrail": "2026-07-31"
   },
   "monthly_count": {}
 }

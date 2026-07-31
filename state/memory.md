@@ -1,6 +1,6 @@
-# Weekend Concierge Memory — updated 2026-07-24
+# Weekend Concierge Memory — updated 2026-07-31
 
-## Evergreen Catalog (51 entries)
+## Evergreen Catalog (52 entries)
 
 ### Ancient Theatre of Philippopolis
 **Location:** Plovdiv Old Town / in town
@@ -56,9 +56,9 @@ _Tags: playground, indoor, outdoor, paid_
 _Source: research_
 
 ### Byala Reka Ecotrail
-**Location:** Near Kalofer / ~80-90 min drive from Plovdiv (70 km)
-**Discovered:** 2026-07-02 &nbsp; **Last suggested:** never
-Child-friendly canyon trail of ~1.8 km over a series of sturdy wooden bridges — the constant bridge-crossing feels like a playground.
+**Location:** Near Kalofer (~80-minute drive from Plovdiv) / ~80-90 min drive from Plovdiv (70 km)
+**Discovered:** 2026-07-02 &nbsp; **Last suggested:** 2026-07-31
+A gentle, scenic ecotrail featuring easy wooden bridges over mountain streams that feel like an exciting adventure for a 4-year-old without steep hazards.
 **Practical:** Reached via a dirt road past the Kalofer Monastery; very crowded on summer weekends.
 _Tags: hiking, nature, outdoor, free_
 _Source: research_
@@ -234,6 +234,12 @@ Huge 300-decare car-free island with a free zoo (tigers, monkeys, deer), a dinos
 _Tags: park, zoo, playground, outdoor, free_
 _Source: research_
 
+### Pazardzhik Svoboda Island Park Excursion
+**Location:** Svoboda Island Park, Pazardzhik
+**Discovered:** 2026-07-31 &nbsp; **Last suggested:** 2026-07-31
+A proven family favorite featuring shaded walking paths, small animal enclosures, and extensive playgrounds just a 35-minute drive from Plovdiv.
+_Source: find_
+
 ### Penyo Penev Park
 **Location:** Dimitrovgrad / ~70 min drive from Plovdiv
 **Discovered:** 2026-07-02 &nbsp; **Last suggested:** never
@@ -398,8 +404,12 @@ Picturesque lake in a green park — feed ducks and swans, rent pedal boats, use
 _Tags: water, park, outdoor, free_
 _Source: research_
 
-## Suggestion Ledger (40 entries)
+## Suggestion Ledger (44 entries)
 
+- ✅ 2026-07-31 | Grafa – Tour 2026 Concert | event_lookahead | Saturday, August 8, 2026 at 21:00 | sent score=75 — no skeptic verdict matched — kept by default
+- ✅ 2026-07-31 | Opera Open 2026: A Night with the Music of Queen | event_lookahead | Monday, August 24, 2026 | sent score=70 — no skeptic verdict matched — kept by default
+- ✅ 2026-07-31 | Pazardzhik Svoboda Island Park Excursion | evergreen | Daily, open access | sent score=92 — A proven family favorite featuring shaded walking paths, small animal enclosures, and extensive…
+- ✅ 2026-07-31 | Byala Reka Ecotrail | evergreen | Daily during daylight hours | sent score=85 — A gentle, scenic ecotrail featuring easy wooden bridges over mountain streams that feel like an…
 - ✅ 2026-07-24 | Cinema Under the Stars - Open Air Screenings | event_this_weekend | Saturday & Sunday evenings, July 25–26, 2026 | sent score=82 — Plovdiv frequently hosts outdoor cinema screenings in city parks during summer.
 - ✅ 2026-07-24 | World Rowing Under 19 Championships | event_lookahead | August 6–9, 2026 | sent score=85 — The World Rowing U19 Championships at the Rowing Canal in Plovdiv are confirmed for 2026.
 - ✅ 2026-07-24 | Shake That Hill: Eldoria 2026 Festival | event_lookahead | August 28–30, 2026 | sent score=80 — Shake That Hill is a verified annual open-air festival held on Youth Hill in Plovdiv.
