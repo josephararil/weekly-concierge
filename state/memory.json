@@ -767,6 +767,39 @@
       "discovered": "2026-07-31",
       "source": "find",
       "last_suggested": "2026-07-31"
+    },
+    "Aviation Museum Krumovo Excursion": {
+      "location": "Krumovo (~15 min drive from Plovdiv)",
+      "area": "",
+      "description": "Spacious open-air grounds featuring real airplanes and helicopters where a toddler can safely roam and explore huge machines.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-08-07",
+      "source": "find",
+      "last_suggested": "2026-08-07"
+    },
+    "Bubbu Bear Children's Center & Park Zone": {
+      "location": "Plovdiv",
+      "area": "",
+      "description": "Includes a fully enclosed outdoor park zone with inflatables and green space designed specifically for young kids.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-08-07",
+      "source": "find",
+      "last_suggested": "2026-08-07"
+    },
+    "Frigopan Horse Base Pony Walk": {
+      "location": "Tsaratsovo (~15 min drive from Plovdiv)",
+      "area": "",
+      "description": "Clean, well-maintained equestrian complex offering guided toddler pony rides and animal observation.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-08-07",
+      "source": "find",
+      "last_suggested": "2026-08-07"
     }
   },
   "ledger": [
@@ -1253,6 +1286,39 @@
       "score": 85,
       "verdict": "sent",
       "note": "A gentle, scenic ecotrail featuring easy wooden bridges over mountain streams that feel like an exciting adventure for a 4-year-old without steep hazards."
+    },
+    {
+      "date": "2026-08-07",
+      "title": "Aviation Museum Krumovo Excursion",
+      "category": "evergreen",
+      "when": "Wednesday–Sunday, 09:00–18:00",
+      "location": "Krumovo (~15 min drive from Plovdiv)",
+      "url": "",
+      "score": 92,
+      "verdict": "sent",
+      "note": "Spacious open-air grounds featuring real airplanes and helicopters where a toddler can safely roam and explore huge machines."
+    },
+    {
+      "date": "2026-08-07",
+      "title": "Bubbu Bear Children's Center & Park Zone",
+      "category": "evergreen",
+      "when": "Saturday–Sunday, 10:00–23:00",
+      "location": "Plovdiv",
+      "url": "",
+      "score": 88,
+      "verdict": "sent",
+      "note": "Includes a fully enclosed outdoor park zone with inflatables and green space designed specifically for young kids."
+    },
+    {
+      "date": "2026-08-07",
+      "title": "Frigopan Horse Base Pony Walk",
+      "category": "evergreen",
+      "when": "Daily by appointment",
+      "location": "Tsaratsovo (~15 min drive from Plovdiv)",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Clean, well-maintained equestrian complex offering guided toddler pony rides and animal observation."
     }
   ]
 }

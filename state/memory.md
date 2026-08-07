@@ -1,6 +1,6 @@
-# Weekend Concierge Memory — updated 2026-07-31
+# Weekend Concierge Memory — updated 2026-08-07
 
-## Evergreen Catalog (52 entries)
+## Evergreen Catalog (55 entries)
 
 ### Ancient Theatre of Philippopolis
 **Location:** Plovdiv Old Town / in town
@@ -22,6 +22,12 @@ _Source: research_
 **Location:** Krumovo (~15-20 min drive from Plovdiv)
 **Discovered:** 2026-07-02 &nbsp; **Last suggested:** 2026-07-03
 Spacious, safe, open-air grounds with dozens of massive airplanes and helicopters where your toddler can run freely on the grass while marveling at the big machines.
+_Source: find_
+
+### Aviation Museum Krumovo Excursion
+**Location:** Krumovo (~15 min drive from Plovdiv)
+**Discovered:** 2026-08-07 &nbsp; **Last suggested:** 2026-08-07
+Spacious open-air grounds featuring real airplanes and helicopters where a toddler can safely roam and explore huge machines.
 _Source: find_
 
 ### Ayazmoto Park & Hall of Laughter
@@ -54,6 +60,12 @@ Play centre with an enclosed outdoor 'Park Zone' of inflatables and green space 
 **Practical:** Outdoor park zone is seasonal; general hours Sat-Sun 10:00-23:00, weekdays from 12:00.
 _Tags: playground, indoor, outdoor, paid_
 _Source: research_
+
+### Bubbu Bear Children's Center & Park Zone
+**Location:** Plovdiv
+**Discovered:** 2026-08-07 &nbsp; **Last suggested:** 2026-08-07
+Includes a fully enclosed outdoor park zone with inflatables and green space designed specifically for young kids.
+_Source: find_
 
 ### Byala Reka Ecotrail
 **Location:** Near Kalofer (~80-minute drive from Plovdiv) / ~80-90 min drive from Plovdiv (70 km)
@@ -151,6 +163,12 @@ Modern 26-decare equestrian complex with indoor and outdoor arenas — clean, we
 **Link:** https://konnabazafrigopan.com
 _Tags: animals, horses, indoor, outdoor, paid_
 _Source: research_
+
+### Frigopan Horse Base Pony Walk
+**Location:** Tsaratsovo (~15 min drive from Plovdiv)
+**Discovered:** 2026-08-07 &nbsp; **Last suggested:** 2026-08-07
+Clean, well-maintained equestrian complex offering guided toddler pony rides and animal observation.
+_Source: find_
 
 ### Han Krum Horse Base
 **Location:** Voyvodinovo village, near Plovdiv / ~15 min drive from Plovdiv
@@ -404,8 +422,11 @@ Picturesque lake in a green park — feed ducks and swans, rent pedal boats, use
 _Tags: water, park, outdoor, free_
 _Source: research_
 
-## Suggestion Ledger (44 entries)
+## Suggestion Ledger (47 entries)
 
+- ✅ 2026-08-07 | Aviation Museum Krumovo Excursion | evergreen | Wednesday–Sunday, 09:00–18:00 | sent score=92 — Spacious open-air grounds featuring real airplanes and helicopters where a toddler can safely roam…
+- ✅ 2026-08-07 | Bubbu Bear Children's Center & Park Zone | evergreen | Saturday–Sunday, 10:00–23:00 | sent score=88 — Includes a fully enclosed outdoor park zone with inflatables and green space designed specifically…
+- ✅ 2026-08-07 | Frigopan Horse Base Pony Walk | evergreen | Daily by appointment | sent score=85 — Clean, well-maintained equestrian complex offering guided toddler pony rides and animal observation.
 - ✅ 2026-07-31 | Grafa – Tour 2026 Concert | event_lookahead | Saturday, August 8, 2026 at 21:00 | sent score=75 — no skeptic verdict matched — kept by default
 - ✅ 2026-07-31 | Opera Open 2026: A Night with the Music of Queen | event_lookahead | Monday, August 24, 2026 | sent score=70 — no skeptic verdict matched — kept by default
 - ✅ 2026-07-31 | Pazardzhik Svoboda Island Park Excursion | evergreen | Daily, open access | sent score=92 — A proven family favorite featuring shaded walking paths, small animal enclosures, and extensive…
