@@ -311,8 +311,11 @@ def write_log(today, candidates, sent_pools, weather_text, subject):
     attributable to a pool, and every drop is attributable to a score against a named floor.
     That is what the owner tunes the floors from."""
     total_sent = sum(len(items) for _, items in sent_pools)
-    lines = [f"# Weekend Concierge — {today}", "", f"**Subject:** {subject}", "",
-             f"**Weather:** {weather_text.replace(chr(10), ' · ')}", ""]
+    lines = [f"# Weekend Concierge — {today}", "", f"**Subject:** {subject}", "", "**Weather:**", ""]
+    # One bullet per day rather than a single joined line -- at 7 days a joined line runs to
+    # ~770 characters, which is unreadable in a markdown file.
+    lines += [f"- {day}" for day in weather_text.splitlines()]
+    lines.append("")
     lines.append(f"_{len(candidates)} candidate(s) considered · {total_sent} sent._")
     lines.append("")
     lines.append("## Sent this run")
@@ -552,6 +555,14 @@ def main():
         # and subtracting points in Python as well would double-count the same fact.
         if c.get("language_barrier") == "blocking":
             c["verdict"] = "skipped"
+            # Say so in the note too: this is the one drop the log can't otherwise explain,
+            # since the score and floor columns will show a passing score (a blocking item is
+            # often high-scoring) and read as though it should have been sent.
+            # Keep this ASCII. `note` is serialised by common.save_json(), which passes
+            # ensure_ascii=False but opens the file without encoding="utf-8" -- so on a
+            # non-UTF-8 locale (Windows) a non-ASCII note writes cp1252 and the next read
+            # fails. common.py is copied from deal-hunter and not ours to fix here.
+            c["note"] = f"dropped: language_barrier=blocking; {note}"
             print(f"    [LANG-BLOCK] #{c['candidate_id']} {c.get('title', '?')} — "
                   f"unattendable without Bulgarian")
             continue
