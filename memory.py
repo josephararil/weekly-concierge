@@ -57,13 +57,19 @@ def save(memory):
 # ── write ──────────────────────────────────────────────────────────────────────
 
 def record_evergreen(memory, name, location="", area="", description="", tags=None, source="",
-                     url="", practical="", suggested=False):
+                     url="", practical="", suggested=False, audience="family"):
     """Upsert an evergreen catalog entry, preserving fields not passed this call.
 
     url:       official venue/event page, surfaced as a real "Details" link when this
                evergreen is emailed (evergreens otherwise ship with no source_url).
     practical: short hours/fees/season note, injected into prompts so the concierge can
                write weather- and logistics-aware prose.
+    audience:  "family" or "adult" — which FIND path this catalog entry belongs to.
+               Defaults to "family" so pre-existing entries need no migration. Since
+               "family" is also the default, an omitted audience is indistinguishable
+               from an explicit audience="family" call — like url/practical, passing
+               the sentinel ("family") preserves whatever is already on record instead
+               of overwriting it; pass audience="adult" to actually set/switch it.
 
     Set suggested=True to bump last_suggested to today — call this when the item is
     actually included in an email, so the anti-repeat cooldown has something to check."""
@@ -78,13 +84,14 @@ def record_evergreen(memory, name, location="", area="", description="", tags=No
         "discovered":     existing.get("discovered", dt.date.today().isoformat()),
         "source":         source or existing.get("source", ""),
         "last_suggested": dt.date.today().isoformat() if suggested else existing.get("last_suggested"),
+        "audience":       existing.get("audience", "family") if audience == "family" else audience,
     }
 
 
 def record_suggestion(memory, title, category, when, location="", url="", score=None, verdict="", note=""):
     """Append one candidate's outcome to the rolling ledger.
 
-    category: event_this_weekend | event_lookahead | evergreen
+    category: event_this_weekend | event_thisweek | event_lookahead | evergreen | civic_opportunity | civic_notice
     verdict:  sent | killed | corrected | skipped ..."""
     memory["ledger"].append({
         "date":     dt.date.today().isoformat(),
@@ -110,10 +117,14 @@ def prune(memory):
 
 # ── prompt summary ─────────────────────────────────────────────────────────────
 
-def summarize_for_prompt(memory):
+def summarize_for_prompt(memory, audience="family"):
     """Return a compact text block for injection into FIND/CONCIERGE prompts:
     off-cooldown evergreens (safe to propose again) plus recent suggestions for
-    calibration. Result is intentionally capped so prompt size stays controlled."""
+    calibration. Result is intentionally capped so prompt size stays controlled.
+
+    audience: only evergreen entries whose stored audience matches are included;
+    MAX_PROMPT_EVERGREENS therefore applies per audience, since each audience's
+    FIND path makes its own call."""
     lines = []
     cutoff = (dt.date.today() - dt.timedelta(days=EVERGREEN_COOLDOWN_DAYS)).isoformat()
 
@@ -122,6 +133,8 @@ def summarize_for_prompt(memory):
     if evergreen:
         off_cooldown = []
         for name, e in sorted(evergreen.items()):
+            if e.get("audience", "family") != audience:
+                continue
             last = e.get("last_suggested")
             if last and last >= cutoff:
                 continue
@@ -146,7 +159,7 @@ def summarize_for_prompt(memory):
     if recent:
         if lines:
             lines.append("")
-        lines.append("Evergreen Activities in the pipeline's memory that are in cooldown (avoid repeating):")
+        lines.append("Recently suggested items (any category) — avoid repeating these:")
         for e in recent:
             title   = e.get("title", "?")
             when    = e.get("when", "?")
