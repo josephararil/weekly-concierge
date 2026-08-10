@@ -15,6 +15,16 @@ _DAILY_FIELDS = (
     "precipitation_probability_max,relative_humidity_2m_mean,cloud_cover_mean,weather_code"
 )
 
+# The exact keys week_weather() emits per day. weekend_concierge.format_weather() reads these
+# same names with .get(k, '?'), so renaming one on only one side prints '?' into a live LLM
+# prompt and the model invents plausible weather to fill the gap -- a wrong email with no error
+# anywhere. test_concierge builds its weather stub from this tuple to bind the two sides
+# together offline. Keep it in step with the dict built in week_weather() below.
+DAY_FIELDS = (
+    "label", "date", "condition", "max_temp_c", "min_temp_c",
+    "feels_like_max_c", "feels_like_min_c", "humidity_pct", "cloud_cover_pct", "rain_chance_pct",
+)
+
 # WMO weather-interpretation codes (open-meteo's daily weather_code) -> short description.
 _WMO_DESCRIPTIONS = {
     0: "clear sky", 1: "mainly clear", 2: "partly cloudy", 3: "overcast",

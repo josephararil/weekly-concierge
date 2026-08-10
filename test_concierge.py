@@ -119,10 +119,23 @@ _STAGE3 = {"subject": "Your weekend, sorted",
            "text": "Test email body."}
 
 
+_STUB_VALUES = {"condition": "partly cloudy", "max_temp_c": 24, "min_temp_c": 14,
+                "feels_like_max_c": 25, "feels_like_min_c": 13, "humidity_pct": 55,
+                "cloud_cover_pct": 40, "rain_chance_pct": 10}
+
+
 def _stub_day(label, date_iso):
-    return {"label": label, "date": date_iso, "condition": "partly cloudy",
-            "max_temp_c": 24, "min_temp_c": 14, "feels_like_max_c": 25, "feels_like_min_c": 13,
-            "humidity_pct": 55, "cloud_cover_pct": 40, "rain_chance_pct": 10}
+    """Built from weather.DAY_FIELDS rather than a hand-written key list, so a key renamed in
+    weather.py turns this stub red instead of leaving format_weather() reading a name nothing
+    emits any more. Without that binding, the no-'?' assertion below only proves the two sides
+    of the TEST agree -- it would stay green while production printed '?' into a live prompt."""
+    values = dict(_STUB_VALUES, label=label, date=date_iso)
+    missing = set(weather.DAY_FIELDS) - set(values)
+    extra = set(values) - set(weather.DAY_FIELDS)
+    assert not missing and not extra, (
+        f"weather.DAY_FIELDS and this stub have drifted apart: missing={sorted(missing)}, "
+        f"extra={sorted(extra)}. Update both, and check format_weather() reads the new names.")
+    return {k: values[k] for k in weather.DAY_FIELDS}
 
 
 _WEEK_DAYS = [
