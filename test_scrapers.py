@@ -251,6 +251,16 @@ class TestParseProgramataFixture(unittest.TestCase):
         )
 
 
+class TestParseProgramataAdultFixture(unittest.TestCase):
+    def test_parses_cards_from_kino_page(self):
+        # _parse_programata is generic over any programata.bg category page -- the adult
+        # source (scrape_programata_adult) reuses it unchanged against /kino/ and three
+        # other categories, so this fixture is a real /kino/ page rather than /kids/.
+        html = load_fixture("programata_adult.html")
+        items = scrapers._parse_programata(html)
+        self.assertGreaterEqual(len(items), 10)
+
+
 class TestParseVisitplovdivFixture(unittest.TestCase):
     def test_parses_items_from_fixture(self):
         xml = load_fixture("visitplovdiv.html")
