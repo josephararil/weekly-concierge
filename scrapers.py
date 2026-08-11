@@ -238,7 +238,7 @@ def _make_item(source, title, when_text="", date_iso=None, location="", url="", 
 # programata's raw-fetch entry still points at /sofia (a broader page) rather than the
 # structured parser's /kids/ category, so the fallback blob covers more ground than the
 # structured path if that one ever breaks. Same idea for plovdiv_bg's raw-fetch entry,
-# which points at the homepage rather than the structured parser's /category/events/.
+# which points at the homepage rather than the structured parser's /feed/ RSS.
 RAW_FETCH_SOURCES = {
     "eventim":              "https://www.eventim.bg/en/city/plovdiv-52/",
     "ticketstation":        "https://ticketstation.bg/",
@@ -253,7 +253,31 @@ RAW_FETCH_SOURCES = {
     "marica":               "https://www.marica.bg/",
     "lostinplovdiv":          "https://lostinplovdiv.com/",
     "plovdiv24":            "https://www.plovdiv24.bg/",
+    "trafficnews":          "https://trafficnews.bg/plovdiv/",
+    "podtepeto":            "https://podtepeto.com/",
+    "dcnews":               "https://dcnews.bg/",
+    "plovdivnews":          "https://plovdivnews.bg/category/plovdiv/",
+    # Raw-fetch only (no structured parser — see the comment above each name for why):
+    "plovdiv_online":       "https://plovdiv-online.com/",
+    "plovdivtime":          "https://plovdivtime.bg/",
+    "sphotel":              "https://sphotel.net/blog/",
 }
+# plovdiv_online: a genuinely Plovdiv-branded site ("Новини от Пловдив"), but its feed's
+# signal is weaker than the four structured sources above — mostly crime/tabloid/national
+# opinion pieces, with only occasional real local civic content (e.g. a duplicate of the
+# Тракия/Хемус lane-restriction story dcnews also carries). Kept raw-fetch: cheap to add,
+# not worth a dedicated parser at this signal-to-noise ratio.
+# plovdivtime: no RSS feed (/feed/ 404s), but its "Ела и виж" (Come and See) section runs
+# a genuinely useful recurring feature — a dated "Къде да отидем в <day>, Пловдив" (Where
+# to go on <day> in Plovdiv) digest — visible directly on the homepage. No structured
+# parser because there's no feed and no per-item date/link markup to key off without one;
+# FIND parses the homepage blob same as any other raw-fetch source.
+# sphotel: a hotel's blog, low prestige, but its RSS feed matches the lead's prediction —
+# recurring seasonal roundups ("17 free things to do in Plovdiv", "Concerts in Plovdiv
+# 2026", "Summer 2026: Events in Plovdiv"). Like lostinplovdiv, the blurb visible in the
+# feed is too thin to extract a dozen dated entries from a roundup; unlike lostinplovdiv,
+# the volume here (10 posts, mostly evergreen) didn't justify building the same
+# detail-fetch enrichment machinery, so this stays a plain raw-fetch of the blog index.
 
 
 def raw_fetch(source, url):
@@ -567,52 +591,187 @@ def scrape_visitplovdiv(lookahead_days=None):
 
 
 PLOVDIV_BG_BASE = "https://www.plovdiv.bg"
-PLOVDIV_BG_EVENTS_URL = f"{PLOVDIV_BG_BASE}/category/events/"
-PLOVDIV_BG_PAGES = 2  # ~10 posts/page; this is a news feed ordered by publish date, not
-# event date, so deeper pages mostly add older announcements rather than more future events.
+PLOVDIV_BG_FEED_URL = f"{PLOVDIV_BG_BASE}/feed/"
+PLOVDIV_BG_PAGES = 2  # WordPress feed paginates via ?paged=N, ~10 posts/page.
+# Upgraded from HTML-scraping the /category/events/ listing to the site-wide RSS feed.
+# The events-only category never carries the Транспорт/Актуално posts — bus reroutes,
+# road closures, water-main work — that are exactly the highest-value civic_notice
+# content this product exists for; the feed does, for free, plus a real per-item
+# permalink instead of an HTML card scrape. wp-json is disabled site-wide (404 with a
+# WordPress-branded 404 page, not a CDN block — confirmed both /wp-json/ and
+# /wp-json/wp/v2/categories 404 the same way as a random bad path), but /feed/ and
+# /category/events/feed/ both 200 with real RSS. This project uses the broader
+# /feed/, not the category-scoped one.
 
 
-def _parse_plovdiv_bg(html, today=None):
-    """Pure parse of plovdiv.bg's events-category listing (WordPress). Cards are
-    article.post with an h2 > a for title/url and a .post-block p for the announcement
-    text. The listing's own .post-date is the article's PUBLISH date, not the event
-    date, so it's ignored; the event date (when stated at all) is embedded as free-form
-    Bulgarian prose inside the body text, e.g. 'На 20 септември 2026 г. от 20:00 часа' —
-    best-effort parsed with bg_date. Many cards are general municipal news (school
-    results, ribbon-cuttings) with no event date at all; those simply get date_iso=None
-    and FIND/SKEPTIC decide whether they're relevant."""
-    soup = BeautifulSoup(html, "html.parser")
+NEWS_RSS_DESCRIPTION_MAX_CHARS = 2000
+# Several of these sites' RSS plugins append "Материалът <a>Title</a> е публикуван за
+# пръв път на <a>Site</a>." (lit. "This post was first published on Site") to the end of
+# every <description>/<content:encoded> blob. It's pure noise for FIND — the real URL is
+# already in <link> — so it's stripped rather than passed through as if it were content.
+_WP_RSS_FOOTER_RE = re.compile(r"\s*Материалът\b.*$", re.S)
+
+
+def _clean_news_rss_html(html_text):
+    """Strip HTML tags from an RSS <description>/<content:encoded> CDATA blob (some of
+    these feeds embed real markup — <p>, <a>, <img> — inside the CDATA rather than plain
+    text) and drop the "first published on" footer. Caps length since <content:encoded>
+    can run to a full multi-paragraph article plus image captions."""
+    if not html_text:
+        return ""
+    text = BeautifulSoup(html_text, "html.parser").get_text(" ", strip=True)
+    text = _WP_RSS_FOOTER_RE.sub("", text).strip()
+    return text[:NEWS_RSS_DESCRIPTION_MAX_CHARS]
+
+
+def _parse_news_rss(xml, source, today=None):
+    """Pure parse of a standard RSS 2.0 <item> feed (title/link/description, optionally
+    a richer <content:encoded>, per item) — shared by every plain news-RSS source below
+    (plovdiv.bg, trafficnews, podtepeto, dcnews, plovdivnews) since they all emit the
+    same shape regardless of platform (WordPress or a bespoke CMS). Prefers
+    <content:encoded> over <description> when present: several sources' feeds carry the
+    full article body there for free (no extra per-item fetch, unlike lostinplovdiv's
+    detail-fetch enrichment), while <description> alone is a one-sentence teaser too
+    thin to extract an event's actual time/age-range/booking details from. pubDate,
+    where present, is the article's PUBLISH date, not an event/disruption date, so it's
+    ignored in favor of best-effort bg_date() extraction from the free-form Bulgarian
+    prose in the body text. Many posts are general news with no event/disruption date at
+    all; those simply get date_iso=None and FIND/SKEPTIC decide relevance."""
+    soup = BeautifulSoup(xml, "xml")
     items = []
-    for card in soup.find_all("article", class_="post"):
-        h2 = card.find("h2")
-        link = h2.find("a") if h2 else None
-        title = link.get_text(strip=True) if link else ""
+    for node in soup.find_all("item"):
+        title_tag = node.find("title")
+        title = title_tag.get_text(strip=True) if title_tag else ""
         if not title:
             continue
-        p = card.select_one(".post-block p")
-        description = p.get_text(" ", strip=True) if p else ""
+        link_tag = node.find("link")
+        url = link_tag.get_text(strip=True) if link_tag else ""
+        content_tag = node.find("encoded")
+        desc_tag = node.find("description")
+        raw_html = (content_tag.get_text() if content_tag else "") or (desc_tag.get_text() if desc_tag else "")
+        description = _clean_news_rss_html(raw_html)
         date_iso = bg_date(description, today) if description else None
-        url = resolve_url(PLOVDIV_BG_BASE, link.get("href", ""))
-        items.append(_make_item("plovdiv_bg", title, date_iso=date_iso, url=url, description=description))
+        items.append(_make_item(source, title, date_iso=date_iso, url=url, description=description))
     return items
+
+
+def _parse_plovdiv_bg(xml, today=None):
+    """Pure parse of plovdiv.bg's site-wide RSS feed (WordPress default /feed/).
+    Upgraded from HTML-scraping the /category/events/ listing to this feed because the
+    events-only category never carries the Транспорт/Актуално posts — bus reroutes,
+    road closures, water-main work — that are exactly the highest-value civic_notice
+    content this product exists for; the feed does, for free, plus a real per-item
+    permalink instead of an HTML card scrape. wp-json is disabled site-wide (404 with a
+    WordPress-branded 404 page, not a CDN block — confirmed both /wp-json/ and
+    /wp-json/wp/v2/categories 404 the same way as a random bad path), but /feed/ and
+    /category/events/feed/ both 200 with real RSS. This project uses the broader
+    /feed/, not the category-scoped one."""
+    return _parse_news_rss(xml, "plovdiv_bg", today)
 
 
 def scrape_plovdiv_bg(pages=PLOVDIV_BG_PAGES):
-    """Structured parser for plovdiv.bg's events-category news feed. Fetches the first
-    few pages (newest first) and delegates parsing to _parse_plovdiv_bg; stops early
-    once a page yields no cards."""
+    """Structured parser for plovdiv.bg's site-wide RSS feed. Fetches up to `pages`
+    (newest first; WordPress paginates a feed via ?paged=N) and delegates parsing to
+    _parse_plovdiv_bg; stops early once a page yields no items."""
     items = []
     for page in range(1, pages + 1):
-        url = PLOVDIV_BG_EVENTS_URL if page == 1 else f"{PLOVDIV_BG_EVENTS_URL}page/{page}/"
-        html = fetch(url)
-        if not html:
+        url = PLOVDIV_BG_FEED_URL if page == 1 else f"{PLOVDIV_BG_FEED_URL}?paged={page}"
+        xml = fetch(url)
+        if not xml:
             break  # fetch() already logged the concrete reason
-        page_items = _parse_plovdiv_bg(html)
+        page_items = _parse_plovdiv_bg(xml)
         if not page_items:
-            print(f"  [plovdiv_bg] page {page}: fetched {len(html)} chars but found 0 event cards (markup may have changed)")
             break
         items.extend(page_items)
     return items
+
+
+TRAFFICNEWS_FEED_URL = "https://trafficnews.bg/rss/category/plovdiv/"
+# trafficnews.bg is a national outlet, but its own /plovdiv/ category (confirmed via a
+# manual href scan of its homepage) is genuinely Plovdiv-scoped news, and it publishes a
+# dedicated per-category RSS feed with no wp-json/HTML-scrape needed. One fetch returns
+# 50 items (5x a typical WordPress feed's default page size) — no pagination needed.
+# The feed has no <pubDate> at all (unlike the WordPress sources below), so date_iso
+# relies entirely on bg_date() finding a date in the description, which is rare for
+# ordinary news teasers; most items will carry date_iso=None, same as programata.
+
+
+def _parse_trafficnews(xml, today=None):
+    """Pure parse of trafficnews.bg's Plovdiv-category RSS feed. See _parse_news_rss."""
+    return _parse_news_rss(xml, "trafficnews", today)
+
+
+def scrape_trafficnews():
+    """Structured parser for trafficnews.bg's dedicated Plovdiv-category feed."""
+    xml = fetch(TRAFFICNEWS_FEED_URL)
+    if not xml:
+        return []
+    return _parse_trafficnews(xml)
+
+
+PODTEPETO_FEED_URL = "https://podtepeto.com/feed/"
+# "Podtepeto" (лит. "under the tepeta/hills") is itself a Plovdiv nickname; this is a
+# dedicated Plovdiv news site (confirmed: 95 Plovdiv mentions across just 10 items in
+# its own default WordPress /feed/ — the densest signal of every candidate evaluated),
+# covering exactly the mix this product wants: family activities (a free kids' LEGO
+# workshop), culture (an opera-at-the-antique-theatre gig, a film festival), and civic
+# awareness (a heatwave warning, a public safety protest) in the same feed.
+
+
+def _parse_podtepeto(xml, today=None):
+    """Pure parse of podtepeto.com's default WordPress RSS feed. See _parse_news_rss."""
+    return _parse_news_rss(xml, "podtepeto", today)
+
+
+def scrape_podtepeto():
+    """Structured parser for podtepeto.com's WordPress /feed/."""
+    xml = fetch(PODTEPETO_FEED_URL)
+    if not xml:
+        return []
+    return _parse_podtepeto(xml)
+
+
+DCNEWS_FEED_URL = "https://dcnews.bg/feed/"
+# dcnews.bg's own title tag is "Новини от Пловдив, Асеновград и региона" (News from
+# Plovdiv, Asenovgrad and the region) — genuinely regional, and its default feed already
+# carries exactly the civic-disruption content this product wants most: a water-main
+# reconstruction in Строево, toll-camera lane restrictions on the Тракия/Хемус
+# motorways, a wildfire near Hisar — all inside the ~90-min radius.
+
+
+def _parse_dcnews(xml, today=None):
+    """Pure parse of dcnews.bg's default WordPress RSS feed. See _parse_news_rss."""
+    return _parse_news_rss(xml, "dcnews", today)
+
+
+def scrape_dcnews():
+    """Structured parser for dcnews.bg's WordPress /feed/."""
+    xml = fetch(DCNEWS_FEED_URL)
+    if not xml:
+        return []
+    return _parse_dcnews(xml)
+
+
+PLOVDIVNEWS_FEED_URL = "https://plovdivnews.bg/category/plovdiv/feed/"
+# plovdivnews.bg's homepage/default feed is a general Bulgarian news portal (world,
+# politics, horoscopes) that happens to be Plovdiv-branded — its top-level /feed/ skews
+# national. Its own nav exposes a genuine /category/plovdiv/ section, and that
+# category's feed is real local news (a rowing-championship win, a bus reroute, a heat
+# health advisory). Overlaps some with plovdiv_bg and dcnews (same underlying stories,
+# independently written up) — harmless, harvest()'s title+date dedupe absorbs it.
+
+
+def _parse_plovdivnews(xml, today=None):
+    """Pure parse of plovdivnews.bg's Plovdiv-category RSS feed. See _parse_news_rss."""
+    return _parse_news_rss(xml, "plovdivnews", today)
+
+
+def scrape_plovdivnews():
+    """Structured parser for plovdivnews.bg's /category/plovdiv/feed/."""
+    xml = fetch(PLOVDIVNEWS_FEED_URL)
+    if not xml:
+        return []
+    return _parse_plovdivnews(xml)
 
 
 LOSTINPLOVDIV_BASE = "https://lostinplovdiv.com"
@@ -762,6 +921,10 @@ SCRAPERS = {
     "visitplovdiv": scrape_visitplovdiv,
     "plovdiv_bg": scrape_plovdiv_bg,
     "lostinplovdiv": scrape_lostinplovdiv,
+    "trafficnews": scrape_trafficnews,
+    "podtepeto": scrape_podtepeto,
+    "dcnews": scrape_dcnews,
+    "plovdivnews": scrape_plovdivnews,
     "facebook": scrape_facebook,
 }
 
@@ -780,11 +943,34 @@ def _dedupe(items):
     return out
 
 
+def _round_robin(per_source_items):
+    """Interleave a list of per-source item lists (in ENABLED_SOURCES order) one item at
+    a time. Plain concatenation plus a hard MAX_HARVEST_ITEMS cap means whichever
+    sources are listed first in config.ENABLED_SOURCES eat the entire cap — with the
+    civic/news sources added after the older event sources, that silently zeroed out
+    every one of them every run once total volume crossed 200 (discovered while adding
+    them: total pre-cap went from ~180 to 320, and none of the new sources survived the
+    cap at all). Round-robin ensures every source gets a fair share before any single
+    high-volume source (bilet, plovdiv2019, trafficnews) can exhaust the budget alone."""
+    out = []
+    index = 0
+    while True:
+        added_any = False
+        for items in per_source_items:
+            if index < len(items):
+                out.append(items[index])
+                added_any = True
+        if not added_any:
+            break
+        index += 1
+    return out
+
+
 def harvest(today=None):
     """Run every source in config.ENABLED_SOURCES inside try/except and return the
     combined, deduped, volume-capped list of RawItems. A single dead source never
     takes down the run — its failure is logged and it contributes []."""
-    all_items = []
+    per_source_items = []
     for source in C.ENABLED_SOURCES:
         has_structured = source in SCRAPERS
         has_raw_fetch = source in RAW_FETCH_SOURCES
@@ -808,9 +994,9 @@ def harvest(today=None):
                 continue
 
         print(f"  [harvest] {source}: {len(items)} item(s) [{path}]")
-        all_items.extend(items)
+        per_source_items.append(items)
 
-    deduped = _dedupe(all_items)
+    deduped = _dedupe(_round_robin(per_source_items))
     capped = deduped[:C.MAX_HARVEST_ITEMS]
     if len(deduped) > len(capped):
         print(f"  [harvest] capped {len(deduped)} deduped items down to {len(capped)}")
