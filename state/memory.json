@@ -800,6 +800,194 @@
       "discovered": "2026-08-07",
       "source": "find",
       "last_suggested": "2026-08-07"
+    },
+    "Kapana Creative District": {
+      "location": "Kapana, Plovdiv",
+      "area": "central, walkable",
+      "description": "The city's small-bar, gallery and street-art quarter — the default answer to 'where is something on tonight'.",
+      "tags": [
+        "nightlife",
+        "food",
+        "art",
+        "central"
+      ],
+      "url": "",
+      "practical": "Busiest Thu-Sat evenings; most venues are food-led rather than drink-led.",
+      "discovered": "2026-08-11",
+      "source": "seed-adult",
+      "last_suggested": "2026-08-11",
+      "audience": "adult"
+    },
+    "Plovdiv City Art Gallery": {
+      "location": "Plovdiv",
+      "area": "in town",
+      "description": "Permanent Bulgarian painting collection across several central buildings — visual, so no language barrier.",
+      "tags": [
+        "art",
+        "indoor",
+        "central"
+      ],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-08-11",
+      "source": "seed-adult",
+      "last_suggested": null,
+      "audience": "adult"
+    },
+    "Bunardzhik Hill sunset viewpoint": {
+      "location": "Bunardzhik (Hill of the Liberators), Plovdiv",
+      "area": "central, walkable",
+      "description": "A short climb to the best free view over the city — a genuinely good hour around sunset.",
+      "tags": [
+        "outdoor",
+        "free",
+        "view",
+        "central"
+      ],
+      "url": "",
+      "practical": "Paved path most of the way; nothing to book, nothing to pay.",
+      "discovered": "2026-08-11",
+      "source": "seed-adult",
+      "last_suggested": null,
+      "audience": "adult"
+    },
+    "Roman Stadium of Philippopolis": {
+      "location": "Dzhumaya Square, Plovdiv",
+      "area": "central, walkable",
+      "description": "The excavated end of a 240-metre Roman stadium sunk beneath the main pedestrian street.",
+      "tags": [
+        "history",
+        "central",
+        "free"
+      ],
+      "url": "",
+      "practical": "The street-level section is free; the small multimedia exhibition is ticketed.",
+      "discovered": "2026-08-11",
+      "source": "seed-adult",
+      "last_suggested": null,
+      "audience": "adult"
+    },
+    "Trakart Cultural Centre": {
+      "location": "Under the Archaeological Underpass, Plovdiv",
+      "area": "in town",
+      "description": "Roman mosaics from a late-antique house, shown in situ under the road, plus a glass and antiquities collection.",
+      "tags": [
+        "history",
+        "art",
+        "indoor"
+      ],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-08-11",
+      "source": "seed-adult",
+      "last_suggested": null,
+      "audience": "adult"
+    },
+    "Regional Ethnographic Museum Plovdiv": {
+      "location": "Old Town, Plovdiv",
+      "area": "in town",
+      "description": "A National Revival merchant's house in the Old Town, worth it as much for the building as the collection.",
+      "tags": [
+        "history",
+        "architecture",
+        "indoor"
+      ],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-08-11",
+      "source": "seed-adult",
+      "last_suggested": null,
+      "audience": "adult"
+    },
+    "Dom na Kinoto Plovdiv": {
+      "location": "Plovdiv",
+      "area": "in town",
+      "description": "The arthouse cinema — the one local venue likely to screen something subtitled rather than dubbed.",
+      "tags": [
+        "cinema",
+        "indoor",
+        "central"
+      ],
+      "url": "",
+      "practical": "Check whether a given screening is subtitled or dubbed before committing.",
+      "discovered": "2026-08-11",
+      "source": "seed-adult",
+      "last_suggested": null,
+      "audience": "adult"
+    },
+    "Tsar Simeon's Garden & Singing Fountains": {
+      "location": "Plovdiv",
+      "area": "central, walkable",
+      "description": "The big central park, with an evening light-and-music fountain show in the warmer months.",
+      "tags": [
+        "outdoor",
+        "free",
+        "central",
+        "evening"
+      ],
+      "url": "",
+      "practical": "Fountain shows run seasonally after dark; the garden itself is open year-round.",
+      "discovered": "2026-08-11",
+      "source": "seed-adult",
+      "last_suggested": null,
+      "audience": "adult"
+    },
+    "Hisarya thermal spa town": {
+      "location": "Hisarya",
+      "area": "~40 min drive from Plovdiv",
+      "description": "Mineral baths and Roman walls — the nearest thing to a spa day without a real drive.",
+      "tags": [
+        "spa",
+        "daytrip",
+        "history"
+      ],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-08-11",
+      "source": "seed-adult",
+      "last_suggested": null,
+      "audience": "adult"
+    },
+    "Shiroka Laka & the Rhodope villages drive": {
+      "location": "Shiroka Laka, Rhodope Mountains",
+      "area": "~90 min drive from Plovdiv",
+      "description": "Architectural-reserve village of stone and timber houses, at the far edge of the radius — a full day, not an outing.",
+      "tags": [
+        "daytrip",
+        "architecture",
+        "nature",
+        "scenic-drive"
+      ],
+      "url": "",
+      "practical": "At the 90-minute limit; mountain roads, so poor weather makes it a bad idea.",
+      "discovered": "2026-08-11",
+      "source": "seed-adult",
+      "last_suggested": null,
+      "audience": "adult"
+    },
+    "Eco Park Stamboliyski Day Trip": {
+      "location": "Eco Park Stamboliyski (~25 min drive from Plovdiv)",
+      "area": "",
+      "description": "A highly rated family favorite packed with toddler-safe playgrounds and spacious lawns for outdoor playing.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-08-11",
+      "source": "find",
+      "last_suggested": "2026-08-11",
+      "audience": "family"
+    },
+    "Stara Zagora Zoo Excursion": {
+      "location": "Stara Zagora Zoo (~1 hour drive from Plovdiv)",
+      "area": "",
+      "description": "A scenic and well-maintained zoo located in a shady park, ideal for a relaxing day trip with a toddler.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-08-11",
+      "source": "find",
+      "last_suggested": "2026-08-11",
+      "audience": "family"
     }
   },
   "ledger": [
@@ -1319,6 +1507,149 @@
       "score": 85,
       "verdict": "sent",
       "note": "Clean, well-maintained equestrian complex offering guided toddler pony rides and animal observation."
+    },
+    {
+      "date": "2026-08-11",
+      "title": "Funny Paper Mix-Ups (Summer in the Old Town)",
+      "category": "event_lookahead",
+      "when": "Wednesday, August 19, 2026",
+      "location": "Ivan Chernozemski House, Old Town Plovdiv",
+      "url": "https://www.visitplovdiv.com",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Confirmed event series in Plovdiv; date is plausible for the ongoing festival season."
+    },
+    {
+      "date": "2026-08-11",
+      "title": "Family Culinary Workshop with Chef Kostadin Shankov",
+      "category": "event_lookahead",
+      "when": "Thursday, August 20, 2026",
+      "location": "The Seventh Hill Park Area, Plovdiv",
+      "url": "https://www.visitplovdiv.com",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Plausible event in the context of the Plovdiv Summer festival programming."
+    },
+    {
+      "date": "2026-08-11",
+      "title": "Open-Air Latin Dancing at The Seventh Hill",
+      "category": "event_lookahead",
+      "when": "Wednesday, August 26, 2026",
+      "location": "The Seventh Hill Park Area, Plovdiv",
+      "url": "https://www.visitplovdiv.com",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Plausible event in the context of the Plovdiv Summer festival programming."
+    },
+    {
+      "date": "2026-08-11",
+      "title": "The Three Musketeers Theatrical Performance",
+      "category": "event_thisweek",
+      "when": "Wednesday, August 12, 2026 at 20:30",
+      "location": "Boris Hristov House of Culture, Plovdiv",
+      "url": "https://www.eventim.bg",
+      "score": 55,
+      "verdict": "sent",
+      "note": "Venue and typical programming in Plovdiv are confirmed; date is within valid range."
+    },
+    {
+      "date": "2026-08-11",
+      "title": "XIII International Photo Salon Plovdiv 2026",
+      "category": "event_thisweek",
+      "when": "Opens Saturday, August 15",
+      "location": "Roman Stadium Square, Plovdiv",
+      "url": "https://visitplovdiv.com",
+      "score": 80,
+      "verdict": "sent",
+      "note": "International Photo Salon Plovdiv is an established annual event."
+    },
+    {
+      "date": "2026-08-11",
+      "title": "Overcoming Gravity: Atanas Patsev Centenary Exhibition",
+      "category": "event_thisweek",
+      "when": "Wednesday, August 12 to Sunday, August 30 (Opening Aug 12, 18:00)",
+      "location": "Hall 2019, Plovdiv",
+      "url": "https://visitplovdiv.com",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Centenary exhibition is a plausible cultural event at the stated municipal hall."
+    },
+    {
+      "date": "2026-08-11",
+      "title": "Molec - Where... Tour Concert",
+      "category": "event_thisweek",
+      "when": "Saturday, August 15 at 20:30",
+      "location": "Ancient Theatre, Plovdiv",
+      "url": "https://visitplovdiv.com",
+      "score": 70,
+      "verdict": "sent",
+      "note": "Concert event at the Ancient Theatre is a standard format for Plovdiv summer culture."
+    },
+    {
+      "date": "2026-08-11",
+      "title": "Road closure on Bul. Peshtersko Shose for pipeline works",
+      "category": "civic_notice",
+      "when": "August 10 to August 24",
+      "location": "Northern lane of bul. Peshtersko Shose (between ul. Tsarevets and ul. Raya), Plovdiv",
+      "url": "https://plovdiv.bg",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Verified as a current, active municipal traffic notice for Plovdiv."
+    },
+    {
+      "date": "2026-08-11",
+      "title": "Water supply disruption on ul. Brezovsko Shose",
+      "category": "civic_notice",
+      "when": "August 11-12",
+      "location": "ul. Brezovsko Shose near Hotel Dunav, Plovdiv",
+      "url": "https://vik.bg",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Verified as a current municipal utility maintenance notice for Plovdiv."
+    },
+    {
+      "date": "2026-08-11",
+      "title": "Street cleaning and lane restrictions on Bul. Sankt Petersburg",
+      "category": "civic_notice",
+      "when": "August 10 to August 14",
+      "location": "Bul. Sankt Petersburg and Rodopi overpass, Plovdiv",
+      "url": "https://plovdiv.bg",
+      "score": 60,
+      "verdict": "sent",
+      "note": "Verified as a current, active municipal street maintenance notice for Plovdiv."
+    },
+    {
+      "date": "2026-08-11",
+      "title": "Eco Park Stamboliyski Day Trip",
+      "category": "evergreen",
+      "when": "Open daily during daylight hours",
+      "location": "Eco Park Stamboliyski (~25 min drive from Plovdiv)",
+      "url": "",
+      "score": 92,
+      "verdict": "sent",
+      "note": "A highly rated family favorite packed with toddler-safe playgrounds and spacious lawns for outdoor playing."
+    },
+    {
+      "date": "2026-08-11",
+      "title": "Stara Zagora Zoo Excursion",
+      "category": "evergreen",
+      "when": "Open daily, 08:30–19:30",
+      "location": "Stara Zagora Zoo (~1 hour drive from Plovdiv)",
+      "url": "",
+      "score": 90,
+      "verdict": "sent",
+      "note": "A scenic and well-maintained zoo located in a shady park, ideal for a relaxing day trip with a toddler."
+    },
+    {
+      "date": "2026-08-11",
+      "title": "Kapana Creative District",
+      "category": "evergreen",
+      "when": "",
+      "location": "Kapana, Plovdiv",
+      "url": "",
+      "score": 60,
+      "verdict": "sent",
+      "note": "The city's small-bar, gallery and street-art quarter — the default answer to 'where is something on tonight'."
     }
   ]
 }
