@@ -18,6 +18,10 @@ ENABLED_SOURCES = [
     # scrapers.RAW_FETCH_SOURCES but never enabled here; it's local news, which is the
     # only route to road closures and outages (no utility publishes a usable feed).
     "plovdiv24", "programata_adult",
+    # Local/regional news sources added to widen civic coverage beyond FIND's web
+    # search (see CLAUDE.md's scrapers.py row for what each carries and why).
+    "trafficnews", "podtepeto", "dcnews", "plovdivnews",
+    "plovdiv_online", "plovdivtime", "sphotel",
 ]
 
 # Volume cap applied to the deduped harvest before it's handed to FIND.

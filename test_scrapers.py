@@ -185,6 +185,21 @@ class TestHarvestNeverCrashes(unittest.TestCase):
             result = scrapers.harvest("2026-07-01")
         self.assertEqual(result, [item])
 
+    def test_round_robin_prevents_a_high_volume_source_from_starving_a_low_one_under_the_cap(self):
+        # Regression test: a plain-concatenation cap let whichever source ran first eat
+        # the entire MAX_HARVEST_ITEMS budget, silently zeroing out every source listed
+        # after it once total volume crossed the cap (this is exactly what happened when
+        # trafficnews/podtepeto/dcnews/plovdivnews were added — see _round_robin's
+        # docstring). big_source: N items, small_source: 1 item, cap well below N+1.
+        big_items = [scrapers._make_item("big", f"Event {i}") for i in range(50)]
+        small_item = scrapers._make_item("small", "The Only Small Event")
+        with patch("scrapers.SCRAPERS", {"big": lambda: big_items, "small": lambda: [small_item]}), \
+             patch("scrapers.RAW_FETCH_SOURCES", {}), \
+             patch.object(C, "ENABLED_SOURCES", ["big", "small"]), \
+             patch.object(C, "MAX_HARVEST_ITEMS", 10):
+            result = scrapers.harvest("2026-07-01")
+        self.assertIn(small_item, result)
+
 
 class TestParsePlovdiv2019Fixture(unittest.TestCase):
     def test_parses_cards_from_fixture(self):
@@ -279,21 +294,96 @@ class TestParseVisitplovdivFixture(unittest.TestCase):
 
 
 class TestParsePlovdivBgFixture(unittest.TestCase):
-    def test_parses_cards_from_fixture(self):
-        html = load_fixture("plovdiv_bg.html")
-        items = scrapers._parse_plovdiv_bg(html, today=dt.date(2026, 7, 2))
+    def test_parses_items_from_rss_fixture(self):
+        xml = load_fixture("plovdiv_bg_feed.xml")
+        items = scrapers._parse_plovdiv_bg(xml, today=dt.date(2026, 8, 10))
         self.assertEqual(len(items), 3)
 
-        concert = next(item for item in items if "Илка Александрова" in item["title"])
-        # Prose date has an explicit year ("На 20 септември 2026 г."), parsed unambiguously.
-        self.assertEqual(concert["date_iso"], "2026-09-20")
+        concert = next(item for item in items if "Мистерия и свобода" in item["title"])
+        # Prose has no explicit year ("10 август"); today == that date, so it doesn't roll forward.
+        self.assertEqual(concert["date_iso"], "2026-08-10")
         self.assertEqual(
             concert["url"],
-            "https://www.plovdiv.bg/tsaritsata-na-avtorskata-narodna-pesen-ilka-aleksandrova-chestva-50-godini-na-stsena-s-golyam-kontsert-na-antichniya-teatar-v-plovdiv/",
+            "https://www.plovdiv.bg/dnes-muzikalniyat-fenomen-misteriya-i-svoboda-s-final-na-antichen-teatar/",
         )
 
-        talk = next(item for item in items if "Герджиков" in item["title"])
-        self.assertIsNotNone(talk["date_iso"])
+        # A real transport disruption (bus reroute for construction) — exactly the
+        # civic_notice content the events-only category never carried.
+        reroute = next(item for item in items if "автобуса" in item["title"])
+        self.assertEqual(reroute["date_iso"], "2026-08-10")
+        self.assertEqual(
+            reroute["url"],
+            "https://www.plovdiv.bg/5-avtobusa-s-promenen-marshrut-zaradi-polagane-na-toploprovod-v-rayon-zapaden/",
+        )
+
+        # Recurring street-washing schedule — kept by the parser (title-based dropping
+        # is is_recurring_maintenance()'s job in weekend_concierge.py, not the parser's).
+        washing = next(item for item in items if "миенето" in item["title"])
+        self.assertEqual(washing["date_iso"], "2026-08-07")
+
+
+class TestParseTrafficnewsFixture(unittest.TestCase):
+    def test_parses_items_from_rss_fixture(self):
+        xml = load_fixture("trafficnews.xml")
+        items = scrapers._parse_trafficnews(xml, today=dt.date(2026, 8, 11))
+        self.assertEqual(len(items), 3)
+        item = items[0]
+        self.assertEqual(item["source"], "trafficnews")
+        self.assertEqual(
+            item["url"],
+            "https://trafficnews.bg/plovdiv/api-plashta-500-hil-evro-arheolozi-yugoiztochniia-obhod-385900/",
+        )
+        # This feed carries no <pubDate> and its short teaser rarely states a date —
+        # date_iso legitimately stays None; FIND/SKEPTIC resolve it if relevant.
+        self.assertIsNone(item["date_iso"])
+
+
+class TestParsePodtepetoFixture(unittest.TestCase):
+    def test_prefers_content_encoded_over_description(self):
+        xml = load_fixture("podtepeto.xml")
+        items = scrapers._parse_podtepeto(xml, today=dt.date(2026, 8, 11))
+        self.assertEqual(len(items), 3)
+
+        lego = next(item for item in items if "LEGO" in item["title"])
+        self.assertEqual(
+            lego["url"],
+            "https://podtepeto.com/art/lego-rabotilnicza-za-decza-v-episkopskata-bazilika/",
+        )
+        # <description> is a one-sentence teaser; <content:encoded> carries the real
+        # event details (time, age range) — the parser must prefer the latter.
+        self.assertIn("11:00", lego["description"])
+        self.assertIn("6 до 10 години", lego["description"])
+        # The "published first on" RSS-plugin footer must not leak into the description.
+        self.assertNotIn("публикуван за пръв път", lego["description"])
+        self.assertNotIn("<p>", lego["description"])
+
+    def test_free_text_date_still_resolved_from_content(self):
+        xml = load_fixture("podtepeto.xml")
+        items = scrapers._parse_podtepeto(xml, today=dt.date(2026, 8, 11))
+        eurovision = next(item for item in items if "Евровизия" in item["title"])
+        self.assertEqual(eurovision["date_iso"], "2026-08-12")
+
+
+class TestParseDcnewsFixture(unittest.TestCase):
+    def test_parses_items_from_rss_fixture(self):
+        xml = load_fixture("dcnews.xml")
+        items = scrapers._parse_dcnews(xml, today=dt.date(2026, 8, 11))
+        self.assertEqual(len(items), 3)
+        tollcams = next(item for item in items if "толкамери" in item["title"])
+        self.assertEqual(tollcams["source"], "dcnews")
+        self.assertIn("Тракия", tollcams["description"])
+        self.assertNotIn("<p>", tollcams["description"])
+        self.assertNotIn("публикуван за пръв път", tollcams["description"])
+
+
+class TestParsePlovdivnewsFixture(unittest.TestCase):
+    def test_parses_items_from_rss_fixture(self):
+        xml = load_fixture("plovdivnews.xml")
+        items = scrapers._parse_plovdivnews(xml, today=dt.date(2026, 8, 11))
+        self.assertEqual(len(items), 3)
+        reroute = next(item for item in items if "автобуса" in item["title"])
+        self.assertEqual(reroute["date_iso"], "2026-08-10")
+        self.assertTrue(reroute["url"].startswith("https://plovdivnews.bg/plovdiv/item/"))
 
 
 class TestParseLostinplovdivFixture(unittest.TestCase):
