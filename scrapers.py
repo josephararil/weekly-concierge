@@ -247,6 +247,7 @@ RAW_FETCH_SOURCES = {
     "rnhm":                 "https://www.rnhm.org/",
     "oldplovdiv":           "https://oldplovdiv.bg/",
     "programata":           "https://programata.bg/sofia",
+    "programata_adult":     "https://programata.bg/kino/",
     "plovdiv_bg":           "https://www.plovdiv.bg/",
     "visitplovdiv":         "https://visitplovdiv.com/",
     "marica":               "https://www.marica.bg/",
@@ -430,6 +431,12 @@ def scrape_ticketbg():
 
 PROGRAMATA_BASE = "https://programata.bg"
 PROGRAMATA_KIDS_URL = f"{PROGRAMATA_BASE}/kids/"
+PROGRAMATA_ADULT_URLS = [
+    f"{PROGRAMATA_BASE}/kino/",
+    f"{PROGRAMATA_BASE}/muzika/kontserti-partita/",
+    f"{PROGRAMATA_BASE}/izlozhbi/",
+    f"{PROGRAMATA_BASE}/stsena/postanovki/",
+]
 
 
 def _parse_programata(html, today=None):
@@ -460,6 +467,27 @@ def scrape_programata():
     if not html:
         return []
     return _parse_programata(html)
+
+
+def scrape_programata_adult():
+    """Structured parser for programata.bg's four adult-interest categories (cinema,
+    concerts, exhibitions, theatre) — same card markup as the Kids category, so this
+    reuses _parse_programata unchanged rather than writing a new parser. National site
+    with a strong Sofia skew; no Plovdiv filter here, FIND/SKEPTIC own that judgement.
+    Each category is fetched/parsed in its own try/except so one dead category yields
+    [] without losing the others."""
+    items = []
+    for url in PROGRAMATA_ADULT_URLS:
+        try:
+            html = fetch(url)
+            if not html:
+                continue
+            for item in _parse_programata(html):
+                item["source"] = "programata_adult"
+                items.append(item)
+        except Exception as e:
+            print(f"  [scrape_programata_adult] {url}: {e}")
+    return items
 
 
 VISITPLOVDIV_BASE = "https://www.visitplovdiv.com"
@@ -730,6 +758,7 @@ SCRAPERS = {
     "bilet": scrape_bilet,
     "ticketbg": scrape_ticketbg,
     "programata": scrape_programata,
+    "programata_adult": scrape_programata_adult,
     "visitplovdiv": scrape_visitplovdiv,
     "plovdiv_bg": scrape_plovdiv_bg,
     "lostinplovdiv": scrape_lostinplovdiv,

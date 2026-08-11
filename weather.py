@@ -1,7 +1,7 @@
-"""Weekend weather data for the Weekend Concierge email — open-meteo (no API key). Returns raw
-forecast numbers for Sat/Sun so the LLM stages can reason about the actual data themselves,
-rather than parsing a pre-classified label. Always returns a dict for Sat/Sun; never raises
-(network failures degrade to empty per-day dicts)."""
+"""Weekly weather data for the Weekend Concierge email — open-meteo (no API key). Returns raw
+forecast numbers for the upcoming week so the LLM stages can reason about the actual data
+themselves, rather than parsing a pre-classified label. Never raises (network failures degrade
+to an empty list)."""
 
 import datetime as dt
 
@@ -13,6 +13,16 @@ _FORECAST_URL = "https://api.open-meteo.com/v1/forecast"
 _DAILY_FIELDS = (
     "temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,"
     "precipitation_probability_max,relative_humidity_2m_mean,cloud_cover_mean,weather_code"
+)
+
+# The exact keys week_weather() emits per day. weekend_concierge.format_weather() reads these
+# same names with .get(k, '?'), so renaming one on only one side prints '?' into a live LLM
+# prompt and the model invents plausible weather to fill the gap -- a wrong email with no error
+# anywhere. test_concierge builds its weather stub from this tuple to bind the two sides
+# together offline. Keep it in step with the dict built in week_weather() below.
+DAY_FIELDS = (
+    "label", "date", "condition", "max_temp_c", "min_temp_c",
+    "feels_like_max_c", "feels_like_min_c", "humidity_pct", "cloud_cover_pct", "rain_chance_pct",
 )
 
 # WMO weather-interpretation codes (open-meteo's daily weather_code) -> short description.
@@ -31,16 +41,16 @@ _WMO_DESCRIPTIONS = {
 }
 
 
-def weekend_weather(latlon, today):
-    """Fetch the daily forecast for the upcoming Sat/Sun. Returns {"Sat": {...}, "Sun": {...}},
-    each a dict of raw values (or {} on fetch failure / forecast-horizon miss):
-      date, condition, max_temp_c, min_temp_c, feels_like_max_c, feels_like_min_c,
-      humidity_pct, cloud_cover_pct, rain_chance_pct."""
+def week_weather(latlon, today, days=7):
+    """Fetch the daily forecast for today+1 .. today+days. Returns a list of dicts ordered by
+    date, one per day, each a dict of raw values:
+      label, date, condition, max_temp_c, min_temp_c, feels_like_max_c, feels_like_min_c,
+      humidity_pct, cloud_cover_pct, rain_chance_pct.
+    Returns [] on any failure (fetch error, forecast-horizon miss). Never raises."""
     lat, lon = latlon
-    days_until_sat = (5 - today.weekday()) % 7
-    saturday = today.date() if isinstance(today, dt.datetime) else today
-    saturday = saturday + dt.timedelta(days=days_until_sat)
-    sunday = saturday + dt.timedelta(days=1)
+    today_date = today.date() if isinstance(today, dt.datetime) else today
+    start = today_date + dt.timedelta(days=1)
+    end = today_date + dt.timedelta(days=days)
 
     try:
         resp = requests.get(
@@ -50,19 +60,20 @@ def weekend_weather(latlon, today):
                 "longitude": lon,
                 "daily": _DAILY_FIELDS,
                 "timezone": "auto",
-                "start_date": saturday.isoformat(),
-                "end_date": sunday.isoformat(),
+                "start_date": start.isoformat(),
+                "end_date": end.isoformat(),
             },
             timeout=_FETCH_TIMEOUT,
         )
         resp.raise_for_status()
         daily = resp.json()["daily"]
 
-        result = {}
-        for label, date_iso in (("Sat", saturday.isoformat()), ("Sun", sunday.isoformat())):
-            idx = daily["time"].index(date_iso)
+        result = []
+        for idx, date_iso in enumerate(daily["time"]):
+            date = dt.date.fromisoformat(date_iso)
             code = daily["weather_code"][idx]
-            result[label] = {
+            result.append({
+                "label": date.strftime("%a"),
                 "date": date_iso,
                 "condition": _WMO_DESCRIPTIONS.get(code, f"WMO code {code}"),
                 "max_temp_c": daily["temperature_2m_max"][idx],
@@ -72,12 +83,12 @@ def weekend_weather(latlon, today):
                 "humidity_pct": daily["relative_humidity_2m_mean"][idx],
                 "cloud_cover_pct": daily["cloud_cover_mean"][idx],
                 "rain_chance_pct": daily["precipitation_probability_max"][idx],
-            }
+            })
         return result
     except Exception:
-        return {"Sat": {}, "Sun": {}}
+        return []
 
 
 if __name__ == "__main__":
     PLOVDIV_LATLON = (42.1354, 24.7453)
-    print(weekend_weather(PLOVDIV_LATLON, dt.datetime.now()))
+    print(week_weather(PLOVDIV_LATLON, dt.datetime.now()))
