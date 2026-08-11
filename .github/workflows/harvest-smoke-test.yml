@@ -1,0 +1,31 @@
+name: harvest-smoke-test
+
+# TEMPORARY — verifies scrapers.py sources actually work from GitHub Actions' network
+# (some sites 403/block datacenter IPs while fetching fine locally/from home). Triggered
+# manually against any branch via workflow_dispatch's ref. Delete this file (and this
+# workflow's run history is harmless to leave, but the file itself should go) once
+# verification is done — it must not ship in the merged PR.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Show ref/commit under test
+        run: |
+          echo "ref: ${{ github.ref }}"
+          echo "sha: ${{ github.sha }}"
+          git log -1 --stat
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - run: pip install -r requirements.txt
+      - name: Run scrapers.py (unbuffered, full per-source + per-request log)
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: python -u scrapers.py
