@@ -109,8 +109,13 @@ _STAGE1_ADULT = {"candidates": [
 # 3=adult high, 4=adult low, 5=blocking, 6=civic opportunity, 7=civic notice,
 # 8=adult evergreen.
 _STAGE2 = [
-    {"candidate_id": i, "verdict": "keep", "corrected_date_iso": None,
-     "corrected_location": None, "note": "verified via search"}
+    # #7 (the civic notice) is deliberately verified=False: an uncorroborated item must still
+    # reach the reader -- killing on "found no result" would lose exactly the thinly-reported
+    # hyperlocal disruptions this pipeline exists for -- while being visibly flagged in the
+    # log. test_unverified_item_is_sent_but_flagged asserts both halves of that.
+    {"candidate_id": i, "verdict": "keep", "verified": i != 7, "corrected_date_iso": None,
+     "corrected_location": None,
+     "note": "confirmed on plovdiv.bg" if i != 7 else "could not find any corroborating source"}
     for i in range(1, 9)
 ]
 
@@ -306,6 +311,117 @@ class WeekendConciergeTest(unittest.TestCase):
         self.assertEqual(src, "")
         self.assertIn("Some+Parade", maps)
         self.assertIn("Some+Parade", search)
+
+    def test_unverified_item_is_sent_but_flagged(self):
+        """`verified` is a visibility signal, NOT a gate — both halves matter.
+
+        Gating on it would kill thinly-reported hyperlocal civic notices, which are the whole
+        point of the civic half. But leaving it silent is how the Aug 2026 run shipped three
+        civic items whose skeptic notes said 'verified' on no evidence at all. So: the item
+        goes out, and the log says plainly that nothing corroborated it."""
+        WC.main()
+        signals = json.load(open("state/weekend_signals.json", encoding="utf-8"))
+        by_title = {s["title"]: s for s in signals["signals"]}
+
+        # The stub marks candidate #7 (the civic notice) unverified. It must still be sent.
+        self.assertEqual(by_title[CIVIC_NOTICE_TITLE]["verdict"], "sent",
+                         "an unverified item must NOT be gated out — that would lose exactly "
+                         "the thinly-reported disruptions the civic half exists to surface")
+        self.assertFalse(by_title[CIVIC_NOTICE_TITLE]["verified"])
+        self.assertTrue(by_title[EVENT_TITLE]["verified"],
+                        "a corroborated item must carry verified=True")
+
+        log = open("state/weekend_log.md", encoding="utf-8").read()
+        self.assertIn("UNVERIFIED", log,
+                      "the log must flag uncorroborated items or the signal is invisible")
+        self.assertIn(CIVIC_NOTICE_TITLE, log)
+        # The summary line is what a human actually skims; assert it names the item.
+        summary = [ln for ln in log.splitlines() if "NOT corroborated" in ln]
+        self.assertEqual(len(summary), 1, "expected exactly one uncorroborated-summary line")
+        self.assertIn(CIVIC_NOTICE_TITLE, summary[0])
+        # ...and does not smear the flag over items that WERE corroborated.
+        self.assertNotIn(EVENT_TITLE, summary[0])
+
+    def test_clean_source_url_strips_bare_domains(self):
+        """A bare domain is FIND guessing where an item might live, not a citation. In the
+        Aug 2026 run all 14 candidates came back this way, which made every link unactionable
+        and provenance unauditable. Dropping to "" is strictly better: build_links then
+        promotes the search link, which actually resolves."""
+        for homepage in ("https://plovdiv.bg", "https://www.visitplovdiv.com/",
+                         "http://vik.bg", "https://plovdiv.bg///", "  https://plovdiv.bg  "):
+            self.assertEqual(WC.clean_source_url(homepage), "",
+                             f"bare domain {homepage!r} should be stripped")
+        for deep in ("https://plovdiv.bg/category/events/road-closure",
+                     "https://www.eventim.bg/event/molec-21475773/",
+                     "https://example.bg/?p=1234"):
+            self.assertEqual(WC.clean_source_url(deep), deep,
+                             f"deep link {deep!r} must survive untouched")
+        self.assertEqual(WC.clean_source_url(""), "")
+        self.assertEqual(WC.clean_source_url(None), "")
+        # ...and build_links must actually apply it, not just define it.
+        src, _, search = WC.build_links({"title": "Road closure", "location": "Plovdiv",
+                                         "source_url": "https://plovdiv.bg"})
+        self.assertEqual(src, "")
+        self.assertTrue(search.startswith("https://www.google.com/search?q="))
+
+    def test_recurring_maintenance_is_dropped(self):
+        """The municipality republishes a street-washing schedule every week with a new title
+        and a new date, so it keys differently each time and the 21-day cooldown can never
+        suppress it. Without this it appears in every email forever."""
+        for title in ("Street cleaning and lane restrictions on Bul. Sankt Petersburg",
+                      "Machine washing of streets 10-14 August",
+                      "Weekly grass cutting in Zapaden district"):
+            self.assertTrue(
+                WC.is_recurring_maintenance({"category": "civic_notice", "title": title}),
+                f"{title!r} is a recurring maintenance round and must be dropped")
+        # A real closure must survive even when the underlying work is maintenance, and the
+        # rule must never reach outside the civic categories.
+        for candidate in (
+            {"category": "civic_notice",
+             "title": "Road closure on Bul. Peshtersko Shose for pipeline works"},
+            {"category": "civic_notice", "title": "Scheduled 8-hour water outage on Gladstone"},
+            {"category": "civic_opportunity", "title": "New shopping centre opens in Trakia"},
+            # matched on title only: `reason` prose mentioning cleaning must not cost us a
+            # genuine closure.
+            {"category": "civic_notice", "title": "Bul. Bulgaria shut for three days",
+             "reason": "Closed while crews carry out street cleaning and resurfacing."},
+            {"category": "event_thisweek", "title": "Street cleaning, a documentary screening"},
+        ):
+            self.assertFalse(WC.is_recurring_maintenance(candidate),
+                             f"{candidate['title']!r} must NOT be dropped as maintenance")
+
+    def test_civic_notice_expiry_keeps_long_closures(self):
+        """end_date_iso is what separates a two-week closure from a spent overnight outage.
+        Both start in the past, so filtering on date_iso alone would throw away precisely the
+        long closures that matter most."""
+        window_start = "2026-08-12"
+        # Spent: announced and finished before the window opens.
+        self.assertTrue(WC.civic_notice_expired(
+            {"category": "civic_notice", "date_iso": "2026-08-09",
+             "end_date_iso": "2026-08-10"}, window_start))
+        # Still in force across the window -- the Peshtersko Shose case.
+        self.assertFalse(WC.civic_notice_expired(
+            {"category": "civic_notice", "date_iso": "2026-08-10",
+             "end_date_iso": "2026-08-24"}, window_start))
+        # Ends exactly as the window opens: still live that day, so it stays.
+        self.assertFalse(WC.civic_notice_expired(
+            {"category": "civic_notice", "date_iso": "2026-08-11",
+             "end_date_iso": "2026-08-12"}, window_start))
+        # Unknown end date KEEPS the item -- missing a real disruption is the worse failure.
+        self.assertFalse(WC.civic_notice_expired(
+            {"category": "civic_notice", "date_iso": "2026-08-09"}, window_start),
+            "no end_date_iso must fall back to date_iso, not to dropping")
+        self.assertFalse(WC.civic_notice_expired(
+            {"category": "civic_notice", "date_iso": None, "end_date_iso": ""}, window_start),
+            "an undated notice must be kept, never silently dropped")
+        # The rule is civic_notice-only: a durable fact has no end date, and an old event is
+        # already handled by the window, not by this.
+        self.assertFalse(WC.civic_notice_expired(
+            {"category": "civic_opportunity", "date_iso": "2026-01-01",
+             "end_date_iso": "2026-01-02"}, window_start))
+        self.assertFalse(WC.civic_notice_expired(
+            {"category": "event_thisweek", "date_iso": "2026-08-01",
+             "end_date_iso": "2026-08-02"}, window_start))
 
     def test_prefix_civic_cutoff_not_applied_to_lookalike_event(self):
         """PREFIX: prune_seen()'s civic-only 180d cutoff must key off 'civic|' WITH the

@@ -348,7 +348,7 @@ def scrape_bilet():
 
 TICKETBG_BASE = "https://www.ticket.bg"
 
-# Towns within the ~90-min Plovdiv radius (see config.RADIUS_MINUTES / FIND_PROMPT's example
+# Towns within the ~90-min Plovdiv radius (see config.RADIUS_MINUTES / the FIND prompts' example
 # list). Sofia is farther but still worth surfacing as a look-ahead-only idea, never as a
 # same-weekend suggestion — everything else nationwide (Varna, Burgas, Ruse, Gabrovo, Veliko
 # Tarnovo, Sozopol, ...) is out of scope for this family.
