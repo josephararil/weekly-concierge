@@ -1,6 +1,6 @@
-# Weekend Concierge Memory — updated 2026-08-07
+# Weekend Concierge Memory — updated 2026-08-11
 
-## Evergreen Catalog (55 entries)
+## Evergreen Catalog (67 entries)
 
 ### Ancient Theatre of Philippopolis
 **Location:** Plovdiv Old Town / in town
@@ -67,6 +67,14 @@ _Source: research_
 Includes a fully enclosed outdoor park zone with inflatables and green space designed specifically for young kids.
 _Source: find_
 
+### Bunardzhik Hill sunset viewpoint
+**Location:** Bunardzhik (Hill of the Liberators), Plovdiv / central, walkable
+**Discovered:** 2026-08-11 &nbsp; **Last suggested:** never
+A short climb to the best free view over the city — a genuinely good hour around sunset.
+**Practical:** Paved path most of the way; nothing to book, nothing to pay.
+_Tags: outdoor, free, view, central_
+_Source: seed-adult_
+
 ### Byala Reka Ecotrail
 **Location:** Near Kalofer (~80-minute drive from Plovdiv) / ~80-90 min drive from Plovdiv (70 km)
 **Discovered:** 2026-07-02 &nbsp; **Last suggested:** 2026-07-31
@@ -124,6 +132,14 @@ _Source: find_
 Explicitly highlighted as a family favorite; set in a deeply shaded forest park with wide, gentle paths and diverse animal exhibits.
 _Source: find_
 
+### Dom na Kinoto Plovdiv
+**Location:** Plovdiv / in town
+**Discovered:** 2026-08-11 &nbsp; **Last suggested:** never
+The arthouse cinema — the one local venue likely to screen something subtitled rather than dubbed.
+**Practical:** Check whether a given screening is subtitled or dubbed before committing.
+_Tags: cinema, indoor, central_
+_Source: seed-adult_
+
 ### Eco Park Stamboliyski
 **Location:** Stamboliyski (~30 min drive from Plovdiv) / ~30 min drive from Plovdiv (20 km)
 **Discovered:** 2026-07-02 &nbsp; **Last suggested:** 2026-07-17
@@ -131,6 +147,12 @@ Explicitly loved by the family; features a secure, fenced toddler playground fil
 **Practical:** Free access; on-site mini-golf ~2 BGN, Wed-Sun 08:00-20:00 with a midday break.
 _Tags: playground, park, outdoor, free_
 _Source: research_
+
+### Eco Park Stamboliyski Day Trip
+**Location:** Eco Park Stamboliyski (~25 min drive from Plovdiv)
+**Discovered:** 2026-08-11 &nbsp; **Last suggested:** 2026-08-11
+A highly rated family favorite packed with toddler-safe playgrounds and spacious lawns for outdoor playing.
+_Source: find_
 
 ### Explore the Ancient Theatre of Philippopolis
 **Location:** Ancient Theatre, Plovdiv Old Town
@@ -178,6 +200,21 @@ One of the region's largest equestrian centres, 150+ horses; kids can watch the 
 **Link:** https://khankrum.n.nu
 _Tags: animals, horses, outdoor, paid_
 _Source: research_
+
+### Hisarya thermal spa town
+**Location:** Hisarya / ~40 min drive from Plovdiv
+**Discovered:** 2026-08-11 &nbsp; **Last suggested:** never
+Mineral baths and Roman walls — the nearest thing to a spa day without a real drive.
+_Tags: spa, daytrip, history_
+_Source: seed-adult_
+
+### Kapana Creative District
+**Location:** Kapana, Plovdiv / central, walkable
+**Discovered:** 2026-08-11 &nbsp; **Last suggested:** 2026-08-11
+The city's small-bar, gallery and street-art quarter — the default answer to 'where is something on tonight'.
+**Practical:** Busiest Thu-Sat evenings; most venues are food-led rather than drink-led.
+_Tags: nightlife, food, art, central_
+_Source: seed-adult_
 
 ### Keffa Children's Farm
 **Location:** Stroevo village, near Plovdiv / ~20-25 min drive from Plovdiv
@@ -291,6 +328,13 @@ Modern museum over a fossil dig with a spectacular life-sized mastodon model; a 
 _Tags: museum, fossils, indoor, paid_
 _Source: research_
 
+### Plovdiv City Art Gallery
+**Location:** Plovdiv / in town
+**Discovered:** 2026-08-11 &nbsp; **Last suggested:** never
+Permanent Bulgarian painting collection across several central buildings — visual, so no language barrier.
+_Tags: art, indoor, central_
+_Source: seed-adult_
+
 ### Plovdiv Regional Natural History Museum
 **Location:** Plovdiv / in town
 **Discovered:** 2026-07-01 &nbsp; **Last suggested:** never
@@ -305,6 +349,13 @@ Short ~30-minute trail on a wide dirt path to a panoramic rock overlook — a go
 **Practical:** Follow the yellow markers; supervise closely at the final cliff edge.
 _Tags: hiking, nature, outdoor, free_
 _Source: research_
+
+### Regional Ethnographic Museum Plovdiv
+**Location:** Old Town, Plovdiv / in town
+**Discovered:** 2026-08-11 &nbsp; **Last suggested:** never
+A National Revival merchant's house in the Old Town, worth it as much for the building as the collection.
+_Tags: history, architecture, indoor_
+_Source: seed-adult_
 
 ### Regional Natural History Museum Plovdiv
 **Location:** 3 Hristo G. Danov Str, Plovdiv
@@ -326,6 +377,14 @@ Bulgaria's only narrow-gauge line; the slow, rhythmic ~1.5-hr ride through the C
 _Tags: train, ride, outdoor, cheap_
 _Source: research_
 
+### Roman Stadium of Philippopolis
+**Location:** Dzhumaya Square, Plovdiv / central, walkable
+**Discovered:** 2026-08-11 &nbsp; **Last suggested:** never
+The excavated end of a 240-metre Roman stadium sunk beneath the main pedestrian street.
+**Practical:** The street-level section is free; the small multimedia exhibition is ticketed.
+_Tags: history, central, free_
+_Source: seed-adult_
+
 ### Rowing Channel Family Bike Ride
 **Location:** Rowing Canal (Grebi Kanal), Plovdiv
 **Discovered:** 2026-07-01 &nbsp; **Last suggested:** never
@@ -338,6 +397,14 @@ _Source: find_
 Flat paved paths alongside the water, bike/scooter rental on site — easy free outdoor outing.
 _Tags: outdoor, free, active_
 _Source: seed_
+
+### Shiroka Laka & the Rhodope villages drive
+**Location:** Shiroka Laka, Rhodope Mountains / ~90 min drive from Plovdiv
+**Discovered:** 2026-08-11 &nbsp; **Last suggested:** never
+Architectural-reserve village of stone and timber houses, at the far edge of the radius — a full day, not an outing.
+**Practical:** At the 90-minute limit; mountain roads, so poor weather makes it a bad idea.
+_Tags: daytrip, architecture, nature, scenic-drive_
+_Source: seed-adult_
 
 ### Sopot Chairlift
 **Location:** Sopot / ~60-70 min drive from Plovdiv
@@ -354,6 +421,12 @@ _Source: research_
 One of Bulgaria's larger zoos — a reliable half-day out for a 4-year-old.
 _Tags: animals, outdoor_
 _Source: seed_
+
+### Stara Zagora Zoo Excursion
+**Location:** Stara Zagora Zoo (~1 hour drive from Plovdiv)
+**Discovered:** 2026-08-11 &nbsp; **Last suggested:** 2026-08-11
+A scenic and well-maintained zoo located in a shady park, ideal for a relaxing day trip with a toddler.
+_Source: find_
 
 ### State Puppet Theatre Plovdiv
 **Location:** 14 Hristo G. Danov St, Plovdiv / in town
@@ -398,6 +471,13 @@ Interconnecting landscaped parks over Roman ruins with flat paved walkways, stre
 _Tags: park, nature, ruins, outdoor, free_
 _Source: research_
 
+### Trakart Cultural Centre
+**Location:** Under the Archaeological Underpass, Plovdiv / in town
+**Discovered:** 2026-08-11 &nbsp; **Last suggested:** never
+Roman mosaics from a late-antique house, shown in situ under the road, plus a glass and antiquities collection.
+_Tags: history, art, indoor_
+_Source: seed-adult_
+
 ### Trakiets Equestrian Complex
 **Location:** Zhitnitsa / ~35 min drive from Plovdiv
 **Discovered:** 2026-07-02 &nbsp; **Last suggested:** never
@@ -405,6 +485,14 @@ Boutique equestrian complex; day visitors can watch the horses, use outdoor chil
 **Practical:** Has hotel facilities, but the grounds are open to day-trippers.
 _Tags: animals, horses, premium, food, outdoor_
 _Source: research_
+
+### Tsar Simeon's Garden & Singing Fountains
+**Location:** Plovdiv / central, walkable
+**Discovered:** 2026-08-11 &nbsp; **Last suggested:** never
+The big central park, with an evening light-and-music fountain show in the warmer months.
+**Practical:** Fountain shows run seasonally after dark; the garden itself is open year-round.
+_Tags: outdoor, free, central, evening_
+_Source: seed-adult_
 
 ### Wild City Ranch
 **Location:** Near Dolnoslav, south of Asenovgrad / ~45 min drive from Plovdiv
@@ -422,8 +510,21 @@ Picturesque lake in a green park — feed ducks and swans, rent pedal boats, use
 _Tags: water, park, outdoor, free_
 _Source: research_
 
-## Suggestion Ledger (47 entries)
+## Suggestion Ledger (60 entries)
 
+- ✅ 2026-08-11 | Funny Paper Mix-Ups (Summer in the Old Town) | event_lookahead | Wednesday, August 19, 2026 | sent score=85 — Confirmed event series in Plovdiv; date is plausible for the ongoing festival season.
+- ✅ 2026-08-11 | Family Culinary Workshop with Chef Kostadin Shankov | event_lookahead | Thursday, August 20, 2026 | sent score=80 — Plausible event in the context of the Plovdiv Summer festival programming.
+- ✅ 2026-08-11 | Open-Air Latin Dancing at The Seventh Hill | event_lookahead | Wednesday, August 26, 2026 | sent score=75 — Plausible event in the context of the Plovdiv Summer festival programming.
+- ✅ 2026-08-11 | The Three Musketeers Theatrical Performance | event_thisweek | Wednesday, August 12, 2026 at 20:30 | sent score=55 — Venue and typical programming in Plovdiv are confirmed; date is within valid range.
+- ✅ 2026-08-11 | XIII International Photo Salon Plovdiv 2026 | event_thisweek | Opens Saturday, August 15 | sent score=80 — International Photo Salon Plovdiv is an established annual event.
+- ✅ 2026-08-11 | Overcoming Gravity: Atanas Patsev Centenary Exhibition | event_thisweek | Wednesday, August 12 to Sunday, August 30 (Opening Aug 12, 18:00) | sent score=75 — Centenary exhibition is a plausible cultural event at the stated municipal hall.
+- ✅ 2026-08-11 | Molec - Where... Tour Concert | event_thisweek | Saturday, August 15 at 20:30 | sent score=70 — Concert event at the Ancient Theatre is a standard format for Plovdiv summer culture.
+- ✅ 2026-08-11 | Road closure on Bul. Peshtersko Shose for pipeline works | civic_notice | August 10 to August 24 | sent score=75 — Verified as a current, active municipal traffic notice for Plovdiv.
+- ✅ 2026-08-11 | Water supply disruption on ul. Brezovsko Shose | civic_notice | August 11-12 | sent score=85 — Verified as a current municipal utility maintenance notice for Plovdiv.
+- ✅ 2026-08-11 | Street cleaning and lane restrictions on Bul. Sankt Petersburg | civic_notice | August 10 to August 14 | sent score=60 — Verified as a current, active municipal street maintenance notice for Plovdiv.
+- ✅ 2026-08-11 | Eco Park Stamboliyski Day Trip | evergreen | Open daily during daylight hours | sent score=92 — A highly rated family favorite packed with toddler-safe playgrounds and spacious lawns for outdoor…
+- ✅ 2026-08-11 | Stara Zagora Zoo Excursion | evergreen | Open daily, 08:30–19:30 | sent score=90 — A scenic and well-maintained zoo located in a shady park, ideal for a relaxing day trip with a…
+- ✅ 2026-08-11 | Kapana Creative District | evergreen |  | sent score=60 — The city's small-bar, gallery and street-art quarter — the default answer to 'where is something on…
 - ✅ 2026-08-07 | Aviation Museum Krumovo Excursion | evergreen | Wednesday–Sunday, 09:00–18:00 | sent score=92 — Spacious open-air grounds featuring real airplanes and helicopters where a toddler can safely roam…
 - ✅ 2026-08-07 | Bubbu Bear Children's Center & Park Zone | evergreen | Saturday–Sunday, 10:00–23:00 | sent score=88 — Includes a fully enclosed outdoor park zone with inflatables and green space designed specifically…
 - ✅ 2026-08-07 | Frigopan Horse Base Pony Walk | evergreen | Daily by appointment | sent score=85 — Clean, well-maintained equestrian complex offering guided toddler pony rides and animal observation.
@@ -461,13 +562,4 @@ _Source: research_
 - ✅ 2026-07-02 | Rowing Channel bike ride | evergreen |  | sent score=60 — Flat paved paths alongside the water, bike/scooter rental on site — easy free outdoor outing.
 - ✅ 2026-07-02 | Ancient Theatre of Philippopolis | evergreen |  | sent score=60 — Roman-era amphitheatre in the Old Town; a short scenic walk even without an event on.
 - ✅ 2026-07-02 | Summer in the Old Town Festival | event_this_weekend | Saturday and Sunday, July 4–5, 2026 (Runs June 4 – August 29) | sent score=80 — Verified that Plovdiv's Old Town hosts ongoing cultural events throughout the summer suitable for…
-- • 2026-07-02 | PhillGood Festival at the Rowing Canal | event_lookahead | Friday to Sunday, July 17–19, 2026 | suppressed score=75 — Verified as a recurring, family-accessible festival held at the Plovdiv Rowing Canal on the stated…
-- ✅ 2026-07-02 | Children's Railway 'Banner of Peace' | evergreen | Wednesday to Sunday, multiple departures daily | sent score=95 — A real miniature train on a scenic loop around Youth Hill. Complete with a dark tunnel and…
-- ✅ 2026-07-02 | Eco Park Stamboliyski | evergreen | Open daily (Mini-golf open Wednesday to Sunday) | sent score=92 — A free municipal park featuring a dedicated, fenced toddler-friendly playground with wooden…
-- ✅ 2026-07-01 | Stara Zagora Zoo | evergreen |  | sent score=60 — One of Bulgaria's larger zoos — a reliable half-day out for a 4-year-old.
-- ✅ 2026-07-01 | Plovdiv Regional Natural History Museum | evergreen |  | sent score=60 — Compact natural history museum with taxidermy and a small aquarium — easy indoor fallback.
-- ✅ 2026-07-01 | Summer in the Old Town | event_this_weekend | Ongoing throughout the weekend, July 4-5, 2026 | sent score=85 — Verified as an ongoing festival running throughout the summer of 2026 in Plovdiv.
-- ✅ 2026-07-01 | Groove Valley Festival in Kazanlak | event_this_weekend | Saturday, July 4, 2026, from 16:00 | sent score=72 — Verified as a real open-air festival in Kazanlak on July 4, 2026, which is within a 90-minute drive.
-- ✅ 2026-07-01 | Western Festival (Уестърн фестивал) | event_lookahead | July 10 – July 12, 2026 | sent score=92 — Verified as a real event scheduled at Dengri Eco Resorts in Velingrad on the correct dates.
-- ✅ 2026-07-01 | International Folklore Festival | event_lookahead | July 27 – July 31, 2026 | sent score=80 — Verified as the 30th International Folklore Festival occurring July 27-31, 2026, at the Ancient…
-- ✅ 2026-07-01 | Rowing Channel Family Bike Ride | evergreen | Always available (best on weekend mornings) | sent score=95 — A completely flat, car-free paved loop with bike, family-kart, and scooter rentals on-site, perfect…
+_... and 10 earlier entries_
