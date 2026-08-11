@@ -70,21 +70,25 @@ weekend_concierge.py
   │                narrow. Each path fails independently to [] so one dead path can't cost the
   │                other. candidate_id is assigned AFTER the merge.
   │
-  ├─ Stage 2 · SKEPTIC   (gemini-pro-latest + search) ONE batch call over the merged pool:
+  ├─ Stage 2 · SKEPTIC   (gemini-flash-latest + search) ONE batch call over the merged pool:
   │             verify real existence + date + 90-min radius → keep | correct | kill.
   │             Does NOT judge suitability for anyone, and never applies the radius test to
-  │             civic_opportunity (a new flight route has no venue).
+  │             civic_opportunity (a new flight route has no venue). Also returns `verified`
+  │             (bool) per candidate — separate from the verdict, NOT a gate; see below.
   ├─ Language gate       language_barrier == "blocking" → dropped, before any floor check
+  ├─ Routine-maintenance drop  recurring municipal maintenance rounds (street washing etc.)
+  ├─ Expired-notice drop       civic_notice whose end_date_iso precedes the window start
   ├─ Score floors        family 50 · adult 70 · civic_opportunity 75 · civic_notice 55 ·
   │             evergreens EXEMPT. A missing score is 0 and fails every floor.
   ├─ Five pools          family_events · family_evergreens · adult_events · adult_evergreens ·
   │             civic_items — every downstream consumer is driven from exactly these
   ├─ Anti-repeat filter  state/signals_seen.json — three cooldowns by key prefix (see below)
-  ├─ Stage 3 · CONCIERGE (gemini-pro-latest, no search) writes ONE email in four time-first
+  ├─ Stage 3 · CONCIERGE (gemini-flash-latest, no search) writes ONE email in four time-first
   │             sections from survivors + scores + weather + feedback + taste + memory.
   │             Each candidate carries `audience` and actionable links: real source_url + a
   │             Google Maps link and a search link built deterministically (build_links) so no
-  │             URL is invented.
+  │             URL is invented. A bare-domain source_url is stripped to "" first
+  │             (clean_source_url), which promotes the search link.
   ├─ Memory write        ledger per candidate; grow evergreen catalog (audience-scoped); prune
   ├─ Email               ALWAYS sends Friday (weekly ritual; evergreen guarantees content)
   └─ Always writes state/: weekend_signals.json, weekend_log.md, memory.json/.md, signals_seen.json
@@ -122,7 +126,7 @@ Three more sources were added raw-fetch-only (a plain page-text blob for FIND to
 | `weather.py` | open-meteo (no key) → `week_weather(latlon, today, days=7)` returns a **list** of raw per-day forecast dicts for `today+1 .. today+days`, ordered by date (max/min temp, feels-like, humidity, cloud cover, chance of rain, condition, 3-letter `label`), passed to CONCIERGE as-is so the model reasons over the actual numbers rather than a pre-classified label. `[]` on any failure; never raises. `DAY_FIELDS` names the emitted keys in one place because `weekend_concierge.format_weather()` reads them by name with `.get(k, '?')` — a one-sided rename would print `?` into a live prompt and the model would invent plausible weather, so `test_concierge` builds its stub from `DAY_FIELDS` to bind the two sides. (Replaced `weekend_weather`, which returned a `{"Sat":…, "Sun":…}` dict.) |
 | `memory.py` | `load/save/prune/summarize_for_prompt`; evergreen catalog + suggestion ledger. Evergreen entries carry optional `url` (official page → real "Details" link when emailed), `practical` (hours/fees/season/safety note → injected into prompts), and `audience` (`"family"` or `"adult"` — which FIND path owns the entry); all preserve-on-missing across upserts. `summarize_for_prompt(memory, audience="family")` filters the catalog by audience, so `MAX_PROMPT_EVERGREENS = 10` is now 10 *per audience* and neither starves the other. **`audience` defaults to `"family"` everywhere**, which is what let the 42 pre-existing catalog entries read correctly with no migration — and because `"family"` is a truthy default it acts as the preserve-on-missing sentinel (the `x or existing.get(...)` idiom used for `url`/`practical` cannot work here; see the comment in `record_evergreen`). |
 | `config.py` | Knobs, source registry, seed evergreens, per-stage model roles, prompts, schemas. `SEED_EVERGREEN` holds 42 family entries (5 original + ~37 `source="research"` from a Gemini Deep Research sweep of family attractions within a ~90-min drive of Plovdiv), each with optional `url`/`practical`. `SEED_EVERGREEN_ADULT` holds **10 unvalidated priors** (`source="seed-adult"`) so the adult section is never bare in the first weeks — edit or replace them freely, nothing depends on any single entry. Both are seeded into `state/memory.json` on the first run where the name is absent (52 total), the adult ones with `audience="adult"`. Prompts are per-audience: `SEARCH_FAMILY_PROMPT`/`SEARCH_ADULT_PROMPT`, `FIND_FAMILY_PROMPT`/`FIND_ADULT_PROMPT`, `STAGE1_FAMILY_SCHEMA`/`STAGE1_ADULT_SCHEMA`. |
-| `weekend_concierge.py` | The pipeline (HARVEST→FIND×2→SKEPTIC→language gate→floors→anti-repeat→CONCIERGE→email). `role_for`/`score_field`/`score_of`/`floor_for`/`civic_key`/`evergreen_key(name, audience)` own the routing table above; `filter_seen()` applies the per-category cooldowns; `build_links()` builds each candidate's `(source_url, maps_url, search_url)` before the concierge call. Tests: `test_concierge.py` (offline, stubs `common.llm`/`scrapers.harvest`/`weather.week_weather`, runs `main()` twice to verify state files + suppression + per-audience evergreen rotation, plus unit tests for the `civic\|` prefix, schema↔`role_for` coverage, weather field names, audience isolation, and the score sort key). |
+| `weekend_concierge.py` | The pipeline (HARVEST→FIND×2→SKEPTIC→language gate→routine-maintenance drop→expired-notice drop→floors→anti-repeat→CONCIERGE→email). `role_for`/`score_field`/`score_of`/`floor_for`/`civic_key`/`evergreen_key(name, audience)` own the routing table above; `filter_seen()` applies the per-category cooldowns; `is_recurring_maintenance()` and `civic_notice_expired()` are the two structural civic drops; `clean_source_url()` strips bare-domain citations; `build_links()` builds each candidate's `(source_url, maps_url, search_url)` before the concierge call. Tests: `test_concierge.py` (offline, stubs `common.llm`/`scrapers.harvest`/`weather.week_weather`, runs `main()` twice to verify state files + suppression + per-audience evergreen rotation, plus unit tests for the `civic\|` prefix, schema↔`role_for` coverage, weather field names, audience isolation, the score sort key, bare-domain stripping, the maintenance and expiry drops, and that an unverified item is sent *and* flagged). |
 | `preferences.md` | Hand-edited feedback ("Loved / Not interested / Constraints"), injected into prompts. Constraints also carry factual exclusions (Aqualand closed; Asen's Fortress / Kuklen Waterfall / Belintash too dangerous for a 4-year-old) so FIND/CONCIERGE never propose them. |
 | `taste.md` | The adult equivalent of `preferences.md`: hand-edited, read by `load_taste()`, injected verbatim into `FIND_ADULT_PROMPT` (to score) and `CONCIERGE_PROMPT` (for tone only). **The 16 scored exemplars are the calibration** — the model generalises from them, and four are near-miss pairs isolating one variable each (language, curation, permanence, alcohol-vs-food). Two counter-intuitive low scorers are load-bearing: an alcohol-led event scores ~20 however sophisticated it looks, and cultural prestige alone (grand opera, landmark venue) doesn't earn a high score. Deliberately carries **no percentage weights** — the interview's original weighted rubric could not reproduce its own exemplars (#02 computes to 49.5 against a stated 0) and could not score a civic item at all (zeroing the two inapplicable axes caps any civic item at 60, against stated 100/95/85), so exemplars govern and the axes survive as qualitative prose. Language is not scored here at all; it is the `language_barrier` gate. Editing it is safe and expected. |
 | `.github/workflows/weekly.yml` | Friday 6am UTC, fixed — no DST logic. (A prior two-cron-plus-skip-guard scheme meant to land on 9am Sofia time year-round instead fired both crons every week and skipped both, since GitHub Actions scheduling jitter meant the actual run hour rarely matched the guard's exact expected hour.) Commits `state/`. |
@@ -156,6 +160,36 @@ Three more sources were added raw-fetch-only (a plain page-text blob for FIND to
   `partial` items lower; subtracting points as well is the double-counting that broke the original
   weighted rubric. The prompt also insists the barrier be *established*, not assumed, since a
   listing rarely states its language.
+- **VERIFIED-NOT-A-GATE: SKEPTIC's `verified` boolean is a visibility signal, never a filter.**
+  An uncorroborated item still goes to the reader — gating on it would lose exactly the thinly
+  reported hyperlocal civic notices the civic half exists for. It is surfaced as `UNVERIFIED`
+  per row in `weekend_log.md` plus a summary line naming every uncorroborated item that was
+  sent. **That count is the tuning signal**: if it stays high week after week, tighten
+  `SKEPTIC_PROMPT` or give the stage more search budget. Why it exists: in the 2026-08-11 run
+  SKEPTIC kept 13/14 with zero kills and zero corrections, justifying items with "plausible for
+  the season" and "a standard format for Plovdiv summer culture" — genre reasoning that an
+  invented event in a real venue satisfies just as well. The prompt had literally licensed it
+  (`"keep" (verified or plausible)`). `SKEPTIC_PROMPT` now enumerates the banned justifications
+  and requires a **named source** in `note` for `verified: true`.
+- **EXPIRY-NEEDS-END-DATE: `civic_notice_expired()` must read `end_date_iso` and must NOT fall
+  back to `date_iso`.** `date_iso` is the START date, so using it to decide something has ended
+  is a category error. The 2026-08-11 Peshtersko Shose closure ran 10–24 Aug against a window
+  opening on the 12th — a `date_iso` fallback would have dropped a two-week closure of a road
+  the owner drives, the highest-value item the pipeline has produced. A missing `end_date_iso`
+  therefore **keeps** the item and simply disables the check for it.
+- **ROUTINE-MAINTENANCE: recurring municipal maintenance rounds are dropped in Python, not just
+  by prompt.** The municipality republishes a street-washing schedule every week with a fresh
+  title and a fresh date, so it keys differently each time and the 21-day cooldown can *never*
+  suppress it — left alone it appears in every email forever and trains the reader to skim past
+  the outages that matter. `FIND_ADULT_PROMPT` tells the model to drop these and
+  `is_recurring_maintenance()` guarantees it. Matched on **title only** (`reason` prose
+  mentioning cleaning must not cost a real closure) and only within `CIVIC_CATEGORIES`.
+- **NO-BARE-DOMAIN-LINKS: `clean_source_url()` strips a `source_url` with no path to `""`.**
+  FIND habitually emits the domain of a site it never read — in the 2026-08-11 run *all 14*
+  candidates came back as bare homepages (`https://plovdiv.bg` for a road closure, on a site
+  that had 403'd during harvest). That is a guess dressed as a citation: unusable to a reader
+  and unauditable as provenance. `""` is strictly better because `build_links()` then supplies
+  a search link that actually resolves.
 - **EVERGREEN-EXEMPT: evergreens are exempt from every score floor** (`floor_for()` returns
   `None`). That exemption is what guarantees the email is never empty. Applying a floor to them
   would *look* correct, since most evergreens score well above every threshold.
@@ -209,8 +243,18 @@ Three more sources were added raw-fetch-only (a plain page-text blob for FIND to
 - **Everything Bulgarian in, English out.** Search/scrape Bulgarian sources; write the email in
   English.
 - **Per-stage model roles live in `config.py`** (`MODEL_FIND/SKEPTIC/CONCIERGE`, `GEMINI_MODEL_MAP`,
-  `GEMINI_SEARCH_MODEL`), never as literals in pipeline code. Gemini splits search (lite model)
-  and reasoning (flagship, no tools) — see deal-hunter's `common.py` docs.
+  `GEMINI_SEARCH_MODEL`), never as literals in pipeline code. Gemini splits **search**
+  (`gemini-3.1-flash-lite`, the only model that ever carries the `google_search` tool — the
+  flagships time out ~99% of the time with it attached) from **reasoning**
+  (`gemini-flash-latest`, tools-free) — see deal-hunter's `common.py` docs.
+- **All three reasoning stages run flash on purpose. Do not "upgrade" SKEPTIC or CONCIERGE to
+  pro.** Pro was tried and dropped: multiples of the cost, far more timeouts, and no better
+  output on this workload. When a stage looks under-powered, **suspect its prompt first** — the
+  Aug 2026 review initially blamed the model tier for a toothless SKEPTIC and was wrong. The
+  real causes were a prompt that accepted "plausible" as a verdict and a single batched search
+  call spanning 14 candidates (~200 chars of grounding each). No model verifies 14 distinct
+  claims from that. `common.py` resolves an unmapped model name to flash **silently** via
+  `.get(model, "gemini-flash-latest")`, so a typo in `GEMINI_MODEL_MAP` is not loud.
 - **HARVEST-CAP-FAIRNESS: `harvest()`'s volume cap must interleave per-source results
   round-robin (`_round_robin()`), never concatenate-then-slice.** A plain-concatenation cap
   lets whichever sources are listed first in `config.ENABLED_SOURCES` eat the entire
@@ -297,7 +341,11 @@ Leave SMTP vars unset to test without sending (the send is caught and printed).
   ideal, but its only announcement-shaped nav links are commercial plumbing services
   (`/remonti/…`); `evn.bg` has 7 Plovdiv mentions, `electrohold.bg` has 1 outage-word. Disruptions
   therefore rest entirely on local news (`marica`, `plovdiv24`, `plovdiv_bg` — the last 403-prone
-  from CI) plus web search. **Worth revisiting after a few real runs.**
+  from CI) plus web search. **First real run (2026-08-11): it worked anyway.** All three civic
+  items came through FIND's `google_search` grounding, not the harvest — `plovdiv_bg` 403'd
+  twice that run, `marica` and `plovdiv24` yielded one raw blob each — and two of the three
+  verified exactly. So web search is currently carrying this category alone. That is fragile
+  but not broken; the fix is better sources, not more filtering.
 - **`programata.bg/plovdiv/`** is not usable as an event source: 200/50k chars but **0**
   `div.post-list-entry` cards and only 41 bare `<li><a>` links — a venue directory, matching the
   existing note about `/sofia`.
@@ -320,13 +368,25 @@ Leave SMTP vars unset to test without sending (the send is caught and printed).
 - A web/PWA front-end — the product is deliberately a passive weekly email.
 - Reply-to-email feedback parsing (feedback is the hand-edited `preferences.md` / `taste.md`).
 
-## Open issue, unrelated to any feature
+## Resolved: `state/` persistence
 
-**`state/` has not been committed since 2026-07-17** despite a weekly cron (checked 2026-08-11 —
-24 days). Either CI stopped committing or the runs are failing. This predates the dual-audience
-work and is unrelated to it, but it matters a lot: **if state isn't persisting, none of the
-cooldowns above work in production** — every item would resurface every week. Worth checking the
-Actions logs.
+**Closed 2026-08-11.** `state/` had not been committed since 2026-07-17 (24 days against a
+weekly cron), which would have meant none of the cooldowns above worked in production. The
+2026-08-11 run committed and pushed cleanly (`8740b09..17b2b06`, 5 files, 720 insertions), so
+the workflow's commit step is healthy. Cause of the gap was never established — the runs in
+between were not inspected before the log rotated.
+
+## Known-good calibration point: the 2026-08-11 run
+
+The first real dual-audience email. Eight of its fourteen candidates were independently
+web-verified afterwards; **seven were accurate**, several impressively so (the Peshtersko Shose
+closure matched the municipal notice on dates, lane, both cross streets and the five rerouted
+bus lines). The one that did not corroborate — a water disruption on ul. Brezovsko Shose — was
+the *highest*-scored civic item at 85 and carried a SKEPTIC note reading "Verified as a current
+municipal utility maintenance notice". Nothing in the pipeline could distinguish it from the
+seven real ones, which is what motivated `verified` and the `UNVERIFIED` log line. Treat this
+run as the reference point when tuning: the adult path does find real things in Plovdiv, and
+the failure mode to watch is confident-sounding verification, not empty output.
 
 ## Style
 
