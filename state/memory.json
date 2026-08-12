@@ -1,16 +1,19 @@
 {
   "evergreen": {
     "Stara Zagora Zoo": {
-      "location": "Stara Zagora",
+      "location": "Ayazmoto Park, Stara Zagora (~60 min drive)",
       "area": "~50 min drive from Plovdiv",
-      "description": "One of Bulgaria's larger zoos — a reliable half-day out for a 4-year-old.",
+      "description": "A beautifully renovated woodland zoo nestled inside Ayazmoto Park offering wide paved walks, play areas, and healthy animal habitats.",
       "tags": [
         "animals",
         "outdoor"
       ],
+      "url": "",
+      "practical": "",
       "discovered": "2026-07-01",
       "source": "seed",
-      "last_suggested": null
+      "last_suggested": "2026-08-12",
+      "audience": "family"
     },
     "Plovdiv Regional Natural History Museum": {
       "location": "Plovdiv",
@@ -988,6 +991,30 @@
       "source": "find",
       "last_suggested": "2026-08-11",
       "audience": "family"
+    },
+    "Ostrova Park and Mini Zoo Pazardzhik": {
+      "location": "Svoboda Island, Pazardzhik (~35 min drive)",
+      "area": "",
+      "description": "A top family favorite featuring shady walking paths, extensive play areas, and a mini-zoo with small animals ideal for a 4-year-old.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-08-12",
+      "source": "find",
+      "last_suggested": "2026-08-12",
+      "audience": "family"
+    },
+    "Farmers Market at Ribnitsa Park": {
+      "location": "Ribnitsa Park, Plovdiv",
+      "area": "",
+      "description": "Recurring outdoor morning market for fresh local produce and regional goods, fully accessible without Bulgarian.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-08-12",
+      "source": "find",
+      "last_suggested": "2026-08-12",
+      "audience": "adult"
     }
   },
   "ledger": [
@@ -1650,6 +1677,39 @@
       "score": 60,
       "verdict": "sent",
       "note": "The city's small-bar, gallery and street-art quarter — the default answer to 'where is something on tonight'."
+    },
+    {
+      "date": "2026-08-12",
+      "title": "Ostrova Park and Mini Zoo Pazardzhik",
+      "category": "evergreen",
+      "when": "Open daily",
+      "location": "Svoboda Island, Pazardzhik (~35 min drive)",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "A top family favorite featuring shady walking paths, extensive play areas, and a mini-zoo with small animals ideal for a 4-year-old."
+    },
+    {
+      "date": "2026-08-12",
+      "title": "Stara Zagora Zoo",
+      "category": "evergreen",
+      "when": "Open daily, 09:00 - 18:00",
+      "location": "Ayazmoto Park, Stara Zagora (~60 min drive)",
+      "url": "",
+      "score": 90,
+      "verdict": "sent",
+      "note": "A beautifully renovated woodland zoo nestled inside Ayazmoto Park offering wide paved walks, play areas, and healthy animal habitats."
+    },
+    {
+      "date": "2026-08-12",
+      "title": "Farmers Market at Ribnitsa Park",
+      "category": "evergreen",
+      "when": "Saturdays, 09:00 - 13:00",
+      "location": "Ribnitsa Park, Plovdiv",
+      "url": "",
+      "score": 72,
+      "verdict": "sent",
+      "note": "Recurring outdoor morning market for fresh local produce and regional goods, fully accessible without Bulgarian."
     }
   ]
 }
