@@ -18,6 +18,10 @@ ENABLED_SOURCES = [
     # scrapers.RAW_FETCH_SOURCES but never enabled here; it's local news, which is the
     # only route to road closures and outages (no utility publishes a usable feed).
     "plovdiv24", "programata_adult",
+    # Local/regional news sources added to widen civic coverage beyond FIND's web
+    # search (see CLAUDE.md's scrapers.py row for what each carries and why).
+    "trafficnews", "podtepeto", "dcnews", "plovdivnews",
+    "plovdiv_online", "plovdivtime", "sphotel",
 ]
 
 # Volume cap applied to the deduped harvest before it's handed to FIND.
@@ -696,7 +700,8 @@ Now complete the task below, using these leads as fresh input alongside your own
 
 """
 
-# Filled into FIND_PROMPT's {search_directive} per provider (weekend_concierge.py).
+# Filled into FIND_FAMILY_PROMPT / FIND_ADULT_PROMPT's {search_directive} per provider
+# (weekend_concierge.py).
 # The Anthropic Find model has a live web_search tool, so it gets a forceful directive
 # to use it. On Gemini the Find model has NO tool — SEARCH_RESULTS_PREAMBLE owns its
 # framing — so {search_directive} is left empty there.
@@ -752,7 +757,8 @@ Field notes:
 - when_text: human-readable date/time as found in the source (e.g. "Saturday, 12:00" or "August 15-17").
 - date_iso: best-guess ISO date (YYYY-MM-DD) if determinable, else null. For a multi-day event, use the start date.
 - location: specific venue or area name.
-- source_url: the URL you found this from, or "" if from general knowledge only.
+- source_url: the DEEP link to the specific page for this item — the event listing, the announcement, the venue's own page for it. It must have a real path, not just a domain.
+  A bare homepage ("https://visitplovdiv.com", "https://plovdiv.bg") is NOT a source: it is a guess at where the item might live, it is unusable to a reader trying to act on it, and it is stripped downstream anyway. If you do not have the exact page URL, return "" — an empty source_url is honest and the pipeline builds a search link instead. Never assemble a URL from the domain of a site you did not actually read.
 - confidence: "high" | "medium" | "low" — how sure you are this event is real and correctly dated.
 
 JSON Schema:
@@ -822,6 +828,8 @@ The coming week runs from {window_start} to {window_end} inclusive. Classify eac
 - `civic_opportunity`: a DURABLE local fact worth knowing once, which stays true for months. A new shopping centre, supermarket or store; a new direct flight route from Plovdiv airport; a new park, pool, bridge or public building; a permanent change to how the city works.
 - `civic_notice`: a TIME-BOUNDED local fact, inside {window_start}..{window_end}. A scheduled water or power outage; a road closure, roadworks or parking change; a public transport change; a protest or march; a big football match at Botev or Lokomotiv Plovdiv (the crowds, traffic and closed streets are the point — route it here as something worth knowing, never as a recommendation).
 
+**NEVER propose a routine recurring municipal maintenance round as a `civic_notice`.** The municipality publishes a fresh street-washing and street-sweeping schedule EVERY week, naming different boulevards each time; the same is true of scheduled grass cutting, tree trimming, bin collection rounds and seasonal road-marking repainting. Each week's edition is genuinely new and genuinely dated, so it looks exactly like a notice — but it recurs forever, it disrupts nothing a driver would notice, and surfacing it teaches the reader to skim past the outages that matter. Drop these entirely; do not reclassify them as `evergreen` either. A one-off closure caused by such work IS reportable — the distinction is whether the street is actually shut, not whether a municipal vehicle will be on it.
+
 The axis between the two civic categories is **durability, not whether it has a date**. A new mall stays interesting for months; a road closure and a derby do not.
 
 ---
@@ -860,11 +868,13 @@ Return JSON only. Do not include markdown formatting or wrappers like ```json.
 Field notes:
 - when_text: human-readable date/time as found in the source (e.g. "Thursday, 20:00" or "August 15-17"). For a durable civic fact, describe the timing plainly ("opening in September", "announced this week").
 - date_iso: best-guess ISO date (YYYY-MM-DD) if determinable, else null. For a multi-day event, use the start date. A `civic_opportunity` often has no meaningful date — null is correct there.
+- end_date_iso: the LAST day this is still in force (YYYY-MM-DD), or null if it is a single-day thing or you cannot tell. This matters most for `civic_notice`: a closure announced as "10 to 24 August" has end_date_iso "2026-08-24" and stays useful for two weeks, while an outage announced as "11-12 August" is finished almost immediately. Items whose end date has already passed are dropped before the email, so getting this right is what keeps a long closure in and a spent outage out. When the source gives a range, always fill it.
 - location: specific venue, street or area. For a `civic_notice` this is the most important field you write — name the street or district if the source does.
 - adult_fit: include ONLY for `event_*` and `evergreen`. Omit for civic items.
 - civic_value: include ONLY for `civic_opportunity` and `civic_notice`. Omit for everything else.
 - language_barrier: include ONLY for `event_*` and `evergreen`. Omit for civic items.
-- source_url: the URL you found this from, or "" if from general knowledge only.
+- source_url: the DEEP link to the specific page for this item — the event listing, the announcement, the venue's own page for it. It must have a real path, not just a domain.
+  A bare homepage ("https://visitplovdiv.com", "https://plovdiv.bg") is NOT a source: it is a guess at where the item might live, it is unusable to a reader trying to act on it, and it is stripped downstream anyway. If you do not have the exact page URL, return "" — an empty source_url is honest and the pipeline builds a search link instead. Never assemble a URL from the domain of a site you did not actually read.
 - confidence: "high" | "medium" | "low" — how sure you are this is real and correctly dated.
 
 JSON Schema:
@@ -887,6 +897,7 @@ JSON Schema:
       "category": "civic_notice",
       "when_text": "Wednesday, 08:00-16:00",
       "date_iso": "2026-08-12",
+      "end_date_iso": "2026-08-12",
       "location": "Mitropolit Panaret street, central Plovdiv",
       "civic_value": 95,
       "reason": "Directly affects the home and is announced only in Bulgarian.",
@@ -917,7 +928,25 @@ For these, verify the fact is **real and current** — a rumoured or merely prop
 **Never kill a `civic_opportunity` on the radius check.** A new flight route, an airline announcement, or a change in national rules has no venue within 90 minutes of anywhere, because it has no venue at all. The radius test simply does not apply to this category — skip it. Apply the radius normally to `civic_notice`, where a street or district is the whole point.
 
 ### CRITICAL RULE
-This is a hallucination guard. Never invent details to fill a gap — if you cannot verify something, say so honestly in `note` and lean toward `kill` only when you have a positive reason to believe it's fake, past, irrelevant, or too far — not merely because you found no corroborating result. An unverifiable-but-plausible candidate can be kept with confidence noted.
+This is a hallucination guard. Never invent details to fill a gap — if you cannot verify something, say so honestly in `note` and lean toward `kill` only when you have a positive reason to believe it's fake, past, irrelevant, or too far — not merely because you found no corroborating result.
+
+### VERIFIED IS NOT THE SAME AS PLAUSIBLE
+Every verdict carries a separate boolean, `verified`. Keeping an item and having verified it are two different statements, and you must make both independently.
+
+Set `verified: true` ONLY when you found a specific corroborating source for THIS item — a listing, an announcement, a news report, an official page — and name it in `note` (the outlet or site is enough: "confirmed on plovdiv.bg", "listed on eventim.bg"). A named source is what makes `true` legitimate.
+
+Set `verified: false` whenever you did not. That includes every case where the item merely sounds right. The following are NOT verification, and must never produce `verified: true`:
+- "plausible for the season" / "typical of the summer programme"
+- "this venue normally hosts this kind of event"
+- "this is a standard format for {home_area}"
+- "the organisation exists, so the event probably does"
+- your own prior knowledge that the venue, festival or performer is real
+
+Those are statements about the genre, not about the item. An invented event set in a real venue satisfies every one of them — which is exactly the failure this field exists to expose. Judging by genre-plausibility is the single most common way a fact-checker in your position fails.
+
+`verified: false` is an ordinary, expected outcome and is NOT a soft kill — a false-but-kept item still goes to the reader. It records that nobody confirmed this one, so a human can see which items rest on nothing. Never set `true` to be agreeable, and never let a high-value or urgent-sounding item pressure you into it — a civic item that would be important IF true is precisely the one where a false positive does the most damage.
+
+Evergreen-category candidates come from a maintained catalog and are known-real by construction: set `verified: true` for them with the note "catalog evergreen".
 
 ---
 
@@ -939,13 +968,16 @@ JSON Schema:
   {{
     "candidate_id": 1,
     "verdict": "keep",
+    "verified": true,
     "corrected_date_iso": null,
     "corrected_location": null,
-    "note": "One short sentence: what you verified, or why corrected/killed."
+    "note": "One short sentence naming the source you confirmed it against, or stating plainly that you could not confirm it."
   }}
 ]
 
-verdict: "keep" (verified or plausible, no changes needed) | "correct" (real, but date/location was wrong — fill corrected_date_iso and/or corrected_location) | "kill" (not real, already past, or clearly outside the travel radius — explain in note). Remember that `civic_opportunity` is exempt from the radius test, and that suitability for any particular person is never a reason to kill."""
+verdict: "keep" (no changes needed) | "correct" (real, but date/location was wrong — fill corrected_date_iso and/or corrected_location) | "kill" (not real, already past, or clearly outside the travel radius — explain in note). Remember that `civic_opportunity` is exempt from the radius test, and that suitability for any particular person is never a reason to kill.
+
+verified: true ONLY with a named corroborating source in `note`; false otherwise. See VERIFIED IS NOT THE SAME AS PLAUSIBLE above — this is independent of `verdict`, and "keep" plus "verified: false" is a normal, honest pair."""
 
 
 CONCIERGE_PROMPT = """Today is {today}. You are a warm, knowledgeable personal concierge writing a short weekly email for a household in {home_area}: two adults called Joseph and Marti, and their 4-year-old, Sophie. They have no TV, don't read local news, and Joseph doesn't speak Bulgarian — so they rely entirely on this email to know what's happening in their own city, both for the three of them together and for the two adults alone.
@@ -1034,7 +1066,8 @@ Return a single JSON object only. No markdown fences, no extra commentary outsid
 # ── Response schemas (Gemini response_format) ────────────────────────────────
 # Passed to _gemini() via llm(response_schema=...) to constrain output to valid
 # JSON. The Anthropic path ignores these — prompt engineering suffices there.
-# Keep in sync with the JSON schemas in FIND_PROMPT / SKEPTIC_PROMPT / CONCIERGE_PROMPT.
+# Keep in sync with the JSON schemas in FIND_FAMILY_PROMPT / FIND_ADULT_PROMPT /
+# SKEPTIC_PROMPT / CONCIERGE_PROMPT.
 
 STAGE1_FAMILY_SCHEMA = {
     "type": "object",
@@ -1081,6 +1114,7 @@ STAGE1_ADULT_SCHEMA = {
                     "category":         {"type": "string", "enum": ["event_this_weekend", "event_thisweek", "event_lookahead", "evergreen", "civic_opportunity", "civic_notice"]},
                     "when_text":        {"type": "string"},
                     "date_iso":         {"type": "string"},
+                    "end_date_iso":     {"type": "string"},
                     "location":         {"type": "string"},
                     "adult_fit":        {"type": "integer"},
                     "civic_value":      {"type": "integer"},
@@ -1103,11 +1137,14 @@ STAGE2_RESPONSE_SCHEMA = {
         "properties": {
             "candidate_id":        {"type": "integer"},
             "verdict":             {"type": "string", "enum": ["keep", "correct", "kill"]},
+            "verified":            {"type": "boolean"},
             "corrected_date_iso":  {"type": "string"},
             "corrected_location":  {"type": "string"},
             "note":                {"type": "string"},
         },
-        "required": ["candidate_id", "verdict", "note"],
+        # `verified` is required: it must be a deliberate answer, not an omission. A missing
+        # value reads as False downstream, which is the safe direction anyway.
+        "required": ["candidate_id", "verdict", "verified", "note"],
     },
 }
 

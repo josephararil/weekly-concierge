@@ -1,6 +1,6 @@
-# Weekend Concierge Memory — updated 2026-08-11
+# Weekend Concierge Memory — updated 2026-08-14
 
-## Evergreen Catalog (67 entries)
+## Evergreen Catalog (69 entries)
 
 ### Ancient Theatre of Philippopolis
 **Location:** Plovdiv Old Town / in town
@@ -168,6 +168,12 @@ Hands-on, sensory-rich space of colourful installations and analog games with no
 _Tags: indoor, interactive, art, paid_
 _Source: research_
 
+### Farmers Market at Ribnitsa Park
+**Location:** Ribnitsa Park, Plovdiv
+**Discovered:** 2026-08-12 &nbsp; **Last suggested:** 2026-08-12
+Recurring outdoor morning market for fresh local produce and regional goods, fully accessible without Bulgarian.
+_Source: find_
+
 ### Four Seasons Ostrich Farm
 **Location:** Tazha village (~80 min drive) / ~80-90 min drive from Plovdiv
 **Discovered:** 2026-07-02 &nbsp; **Last suggested:** 2026-07-24
@@ -272,6 +278,12 @@ Flat, child-friendly forest trail dotted with small chapels, gazebos and fountai
 _Tags: hiking, nature, outdoor, free_
 _Source: research_
 
+### Ostrova Park and Mini Zoo Pazardzhik
+**Location:** Svoboda Island, Pazardzhik (~35 min drive)
+**Discovered:** 2026-08-12 &nbsp; **Last suggested:** 2026-08-12
+A top family favorite featuring shady walking paths, extensive play areas, and a mini-zoo with small animals ideal for a 4-year-old.
+_Source: find_
+
 ### Paleontological Museum Asenovgrad
 **Location:** Badelema district, Asenovgrad / ~30 min drive from Plovdiv
 **Discovered:** 2026-07-02 &nbsp; **Last suggested:** never
@@ -330,14 +342,14 @@ _Source: research_
 
 ### Plovdiv City Art Gallery
 **Location:** Plovdiv / in town
-**Discovered:** 2026-08-11 &nbsp; **Last suggested:** never
+**Discovered:** 2026-08-11 &nbsp; **Last suggested:** 2026-08-14
 Permanent Bulgarian painting collection across several central buildings — visual, so no language barrier.
 _Tags: art, indoor, central_
 _Source: seed-adult_
 
 ### Plovdiv Regional Natural History Museum
 **Location:** Plovdiv / in town
-**Discovered:** 2026-07-01 &nbsp; **Last suggested:** never
+**Discovered:** 2026-07-01 &nbsp; **Last suggested:** 2026-08-14
 Compact natural history museum with taxidermy and a small aquarium — easy indoor fallback.
 _Tags: museum, indoor_
 _Source: seed_
@@ -416,9 +428,9 @@ _Tags: ride, mountain, outdoor, paid_
 _Source: research_
 
 ### Stara Zagora Zoo
-**Location:** Stara Zagora / ~50 min drive from Plovdiv
-**Discovered:** 2026-07-01 &nbsp; **Last suggested:** never
-One of Bulgaria's larger zoos — a reliable half-day out for a 4-year-old.
+**Location:** Ayazmoto Park, Stara Zagora (~60 min drive) / ~50 min drive from Plovdiv
+**Discovered:** 2026-07-01 &nbsp; **Last suggested:** 2026-08-12
+A beautifully renovated woodland zoo nestled inside Ayazmoto Park offering wide paved walks, play areas, and healthy animal habitats.
 _Tags: animals, outdoor_
 _Source: seed_
 
@@ -510,8 +522,13 @@ Picturesque lake in a green park — feed ducks and swans, rent pedal boats, use
 _Tags: water, park, outdoor, free_
 _Source: research_
 
-## Suggestion Ledger (60 entries)
+## Suggestion Ledger (65 entries)
 
+- ✅ 2026-08-14 | Plovdiv Regional Natural History Museum | evergreen |  | sent score=60 — Compact natural history museum with taxidermy and a small aquarium — easy indoor fallback.
+- ✅ 2026-08-14 | Plovdiv City Art Gallery | evergreen |  | sent score=60 — Permanent Bulgarian painting collection across several central buildings — visual, so no language…
+- ✅ 2026-08-12 | Ostrova Park and Mini Zoo Pazardzhik | evergreen | Open daily | sent score=95 — A top family favorite featuring shady walking paths, extensive play areas, and a mini-zoo with…
+- ✅ 2026-08-12 | Stara Zagora Zoo | evergreen | Open daily, 09:00 - 18:00 | sent score=90 — A beautifully renovated woodland zoo nestled inside Ayazmoto Park offering wide paved walks, play…
+- ✅ 2026-08-12 | Farmers Market at Ribnitsa Park | evergreen | Saturdays, 09:00 - 13:00 | sent score=72 — Recurring outdoor morning market for fresh local produce and regional goods, fully accessible…
 - ✅ 2026-08-11 | Funny Paper Mix-Ups (Summer in the Old Town) | event_lookahead | Wednesday, August 19, 2026 | sent score=85 — Confirmed event series in Plovdiv; date is plausible for the ongoing festival season.
 - ✅ 2026-08-11 | Family Culinary Workshop with Chef Kostadin Shankov | event_lookahead | Thursday, August 20, 2026 | sent score=80 — Plausible event in the context of the Plovdiv Summer festival programming.
 - ✅ 2026-08-11 | Open-Air Latin Dancing at The Seventh Hill | event_lookahead | Wednesday, August 26, 2026 | sent score=75 — Plausible event in the context of the Plovdiv Summer festival programming.
@@ -557,9 +574,4 @@ _Source: research_
 - ✅ 2026-07-02 | Craft School Plovdiv Workshops | event_this_weekend | Running through Saturday, July 4, 2026 | sent score=75 — Verified as a real entity in Plovdiv hosting workshops suitable for children.
 - ✅ 2026-07-02 | PhillGood Festival at the Rowing Canal | event_lookahead | July 17–19, 2026 | sent score=70 — Verified as a recurring family-friendly event at the Rowing Canal in Plovdiv.
 - ✅ 2026-07-02 | Day Trip to Bachkovo Monastery | evergreen | Always available (best on clear days) | sent score=85 — A highly accessible, beautiful mountain monastery with short walking paths, river views, and local…
-- ✅ 2026-07-02 | Explore the Ancient Theatre of Philippopolis | evergreen | Always available | sent score=80 — A spectacular historical site in the heart of the Old Town, offering an easy and impressive stroll…
-- ✅ 2026-07-02 | Cinema Under the Stars | event_lookahead | Throughout July 2026 | sent score=70 — Outdoor summer cinema screenings are a verified common occurrence in Plovdiv.
-- ✅ 2026-07-02 | Rowing Channel bike ride | evergreen |  | sent score=60 — Flat paved paths alongside the water, bike/scooter rental on site — easy free outdoor outing.
-- ✅ 2026-07-02 | Ancient Theatre of Philippopolis | evergreen |  | sent score=60 — Roman-era amphitheatre in the Old Town; a short scenic walk even without an event on.
-- ✅ 2026-07-02 | Summer in the Old Town Festival | event_this_weekend | Saturday and Sunday, July 4–5, 2026 (Runs June 4 – August 29) | sent score=80 — Verified that Plovdiv's Old Town hosts ongoing cultural events throughout the summer suitable for…
-_... and 10 earlier entries_
+_... and 15 earlier entries_

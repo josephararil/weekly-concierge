@@ -131,6 +131,80 @@ def floor_for(candidate, audience):
     return C.MIN_ADULT_SCORE if audience == "adult" else C.MIN_INCLUDE_SCORE
 
 
+# Routine municipal maintenance rounds that recur on a published weekly schedule. These are
+# real and correctly dated, which is exactly the problem: each week's edition is a fresh
+# title and a fresh date, so it keys differently every time and the 21-day event cooldown can
+# never suppress it. Left alone it appears in every email forever and trains the reader to
+# skim past the outages that matter.
+#
+# FIND_ADULT_PROMPT already tells the model to drop these; this is the deterministic backstop
+# behind that instruction, because "never send street washing" is a guarantee and a prompt is
+# a probability. Matched against the TITLE only -- title is a one-line statement of the civic
+# fact, whereas `reason` is prose that could mention cleaning incidentally and cost us a real
+# closure. A genuine road closure caused by such work does not name the work in its title
+# ("Road closure on Bul. Peshtersko Shose for pipeline works" matches nothing here).
+RECURRING_MAINTENANCE_PATTERNS = (
+    "street cleaning", "street washing", "street sweeping",
+    "machine cleaning", "machine washing", "machine sweeping",
+    "washing of streets", "cleaning of streets", "cleaning schedule", "washing schedule",
+    "grass cutting", "lawn mowing", "tree trimming", "tree pruning",
+    "bin collection", "waste collection", "rubbish collection", "garbage collection",
+)
+
+
+def is_recurring_maintenance(candidate):
+    """True for a routine recurring municipal maintenance round (see the note above)."""
+    if candidate.get("category") not in CIVIC_CATEGORIES:
+        return False
+    title = (candidate.get("title") or "").lower()
+    return any(p in title for p in RECURRING_MAINTENANCE_PATTERNS)
+
+
+def civic_notice_expired(candidate, window_start):
+    """True for a civic_notice that has already finished before the email's window opens.
+
+    A notice is only worth sending while it is still in force. `end_date_iso` is what
+    distinguishes a two-week road closure (keep) from an overnight outage announced days ago
+    (drop) -- both carry a start date in the past, so date_iso alone cannot tell them apart
+    and filtering on it would throw away exactly the long closures that matter most.
+
+    An unknown end date KEEPS the item, and this must NOT fall back to date_iso. date_iso is
+    documented as the START date, so using it to decide something has ENDED is a category
+    error: the Aug 2026 Peshtersko Shose closure started 10 Aug against a window opening on
+    the 12th, and a date_iso fallback would have dropped a two-week closure of a road the
+    owner drives -- the single highest-value item the pipeline has ever produced. Missing a
+    real disruption is the worst thing this pipeline does, so the tie goes to sending it and
+    an absent end_date_iso simply disables the check for that item."""
+    if candidate.get("category") != "civic_notice":
+        return False
+    end = (candidate.get("end_date_iso") or "").strip()
+    if not end:
+        return False
+    return end < window_start   # ISO dates compare correctly as strings
+
+
+def clean_source_url(url):
+    """Return url, or "" if it is a bare homepage.
+
+    FIND has a standing habit of emitting the domain of a site it did not actually read
+    ("https://plovdiv.bg" for a road closure) -- in the Aug 2026 run every single one of the
+    14 candidates came back this way. That is a guess dressed as a citation: it is unusable
+    to a reader trying to act, and it makes provenance unauditable. Dropping it to "" is
+    strictly better, because build_links() then supplies a search link that actually works."""
+    url = (url or "").strip()
+    if not url:
+        return ""
+    try:
+        parts = urllib.parse.urlparse(url)
+    except ValueError:
+        return ""
+    if not parts.netloc:
+        return ""
+    if parts.path.strip("/") == "" and not parts.query:
+        return ""
+    return url
+
+
 def load_feedback():
     try:
         with open("preferences.md", encoding="utf-8") as f:
@@ -273,7 +347,10 @@ def build_links(c):
     """Ready-made links so the reader never has to go googling, and so the concierge
     never has to invent a URL. source_url is the real page FIND/a scraper found (may be
     ""); maps_url and search_url are constructed deterministically and always resolve.
-    Returns (source_url, maps_url, search_url) — any may be "" if unbuildable."""
+    Returns (source_url, maps_url, search_url) — any may be "" if unbuildable. A bare-domain
+    source_url is dropped to "" here (see clean_source_url), which promotes search_url to the
+    item's "look it up" link — the concierge prompt already prefers search_url when
+    source_url is empty, so no link is lost, only a misleading one."""
     title = (c.get("title") or "").strip()
     location = (c.get("location") or "").strip()
     maps_q = location or title
@@ -282,7 +359,7 @@ def build_links(c):
                 if maps_q else "")
     search_url = ("https://www.google.com/search?q=" + urllib.parse.quote_plus(search_q)
                   if search_q else "")
-    return (c.get("source_url") or "").strip(), maps_url, search_url
+    return clean_source_url(c.get("source_url")), maps_url, search_url
 
 
 # --- weather formatting ---
@@ -390,9 +467,22 @@ def write_log(today, candidates, sent_pools, weather_text, subject, llm_note="")
             lines.append(f"- **{c.get('title','?')}** ({c.get('category','?')}, {when}, "
                          f"{c.get('location','')}) — {c.get('reason','')}")
     lines.append("")
+    # Unverified items are NOT dropped (see the survivor loop), so this count is the only
+    # place a human learns how much of the email rests on nothing SKEPTIC could corroborate.
+    # If it stays high week after week, that is the signal to tighten SKEPTIC_PROMPT or give
+    # the stage more search budget -- it is not something the pipeline can fix itself.
+    sent_titles = {c.get("title") for _, items in sent_pools for c in items}
+    unverified_sent = [c for c in candidates
+                       if c.get("title") in sent_titles and not c.get("verified")]
+    if unverified_sent:
+        lines.append(f"_{len(unverified_sent)} of {total_sent} sent item(s) were NOT corroborated "
+                     f"by the skeptic: {', '.join(c.get('title','?') for c in unverified_sent)}._")
+        lines.append("")
+
     lines.append("## All candidates")
     lines.append("_Sorted by score. `fit=` names the field each candidate was actually judged on, "
-                 "with the floor that rejected it where one did._")
+                 "with the floor that rejected it where one did. `UNVERIFIED` means the skeptic "
+                 "found no corroborating source — it is a warning, not a rejection._")
     ranked = sorted(candidates,
                     key=lambda x: score_of(x, x.get("audience", "family")), reverse=True)
     for c in ranked:
@@ -400,7 +490,9 @@ def write_log(today, candidates, sent_pools, weather_text, subject, llm_note="")
         field = score_field(c, audience)
         floor = floor_for(c, audience)
         floor_text = "exempt" if floor is None else f"floor {floor}"
-        lines.append(f"- #{c.get('candidate_id','?')} [{c.get('verdict','?')}] {c.get('title','?')} "
+        verified_text = "" if c.get("verified") else " `UNVERIFIED`"
+        lines.append(f"- #{c.get('candidate_id','?')} [{c.get('verdict','?')}]{verified_text} "
+                     f"{c.get('title','?')} "
                      f"({audience}/{c.get('category','?')}, {field}={c.get(field,'?')}, "
                      f"{floor_text}) — {c.get('note','')}")
     with open("state/weekend_log.md", "w", encoding="utf-8") as f:
@@ -594,12 +686,19 @@ def main():
 
     survivors = []
     for c in candidates:
-        verified = True
         v = verdicts_by_id.get(c["candidate_id"])
         is_evergreen = c.get("category") == "evergreen"
+        # `verified` is SKEPTIC's separate answer to "did I actually corroborate this?", and
+        # is deliberately NOT a gate: an unverified item still goes to the reader, because
+        # killing on "found no result" would lose real but thinly-reported local items --
+        # exactly the hyperlocal civic notices this pipeline exists to surface. It is a
+        # visibility signal, surfaced in weekend_log.md so a human can see which items rest
+        # on nothing. Missing reads as False, which is the safe direction.
+        verified = False
         if v is not None:
             verdict = v.get("verdict", "keep")
             note = v.get("note", "")
+            verified = bool(v.get("verified"))
             if verdict == "correct":
                 if v.get("corrected_date_iso"):
                     c["date_iso"] = v["corrected_date_iso"]
@@ -609,6 +708,7 @@ def main():
             # Evergreens are known-real by construction (maintained catalog) -- no
             # existence check needed even if SKEPTIC didn't return a verdict for it.
             verdict, note = "keep", "evergreen — known-real, no skeptic verdict needed"
+            verified = True
         elif verdicts_by_id:
             # SKEPTIC ran and returned verdicts, just not for this candidate_id --
             # lean toward keep (only a positive reason to believe it's fake should kill it).
@@ -631,6 +731,21 @@ def main():
         c["verdict"], c["note"], c["verified"] = verdict, note, verified
         if verdict == "kill":
             print(f"    [KILL    ] #{c['candidate_id']} {c.get('title', '?')} — {note}")
+            continue
+        # Two structural civic drops, before any score is consulted -- neither is a matter of
+        # degree, so no civic_value could rescue them.
+        if is_recurring_maintenance(c):
+            c["verdict"] = "skipped"
+            c["note"] = f"dropped: routine recurring municipal maintenance; {note}"
+            print(f"    [ROUTINE ] #{c['candidate_id']} {c.get('title', '?')} — "
+                  f"recurring maintenance round, not a disruption")
+            continue
+        if civic_notice_expired(c, window_start):
+            c["verdict"] = "skipped"
+            c["note"] = (f"dropped: ended {c.get('end_date_iso') or c.get('date_iso')}, "
+                         f"before window opens {window_start}; {note}")
+            print(f"    [EXPIRED ] #{c['candidate_id']} {c.get('title', '?')} — "
+                  f"ended before {window_start}")
             continue
         # Language gate, applied BEFORE the floor: a blocking barrier is structural, not a
         # matter of degree, so no score can rescue it. "partial" deliberately carries NO
@@ -790,12 +905,13 @@ def main():
     signals = [{
         "candidate_id": c.get("candidate_id"), "title": c.get("title"), "category": c.get("category"),
         "audience": c.get("audience", "family"),
-        "when_text": c.get("when_text"), "date_iso": c.get("date_iso"), "location": c.get("location"),
+        "when_text": c.get("when_text"), "date_iso": c.get("date_iso"),
+        "end_date_iso": c.get("end_date_iso"), "location": c.get("location"),
         "family_fit": c.get("family_fit"), "adult_fit": c.get("adult_fit"),
         "civic_value": c.get("civic_value"), "language_barrier": c.get("language_barrier"),
         "reason": c.get("reason"), "source_url": c.get("source_url"),
-        "confidence": c.get("confidence"), "verdict": c.get("verdict"), "note": c.get("note"),
-        "verified": c.get("verified", True),
+        "confidence": c.get("confidence"), "verdict": c.get("verdict"),
+        "verified": bool(c.get("verified")), "note": c.get("note"),
     } for c in candidates]
     save_json("weekend_signals.json", {"generated": today_iso, "signals": signals})
     write_log(today_iso, candidates, [
