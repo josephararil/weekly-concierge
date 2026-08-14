@@ -2,3 +2,10 @@ requests>=2.31
 python-dotenv>=1.0
 beautifulsoup4>=4.12
 lxml>=5.0
+
+# The LLM layer, shared with every other pipeline. `v1` is a MOVING tag: a fix pushed
+# there lands here on the next scheduled run with no edit to this repo. That is the
+# point, and it is also why llm-chain's own release flow requires CI green plus a
+# verified real run before the tag is promoted. Public repo -- no token needed.
+# Pinned to a specific commit only to freeze the whole fleet; see llm-chain's README.
+llm-chain @ git+https://github.com/josephararil/llm-chain@v1

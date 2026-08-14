@@ -6,17 +6,27 @@ Guidance for Claude Code when working in this repository.
 
 **Live.** The full pipeline is built, merged to `main`, and running weekly on GitHub Actions
 (first real run succeeded). All modules exist and are wired: `common.py`, `scrapers.py`,
-`weather.py`, `memory.py`, `config.py`, `llm_chain.py`, `weekend_concierge.py`,
+`weather.py`, `memory.py`, `config.py`, `weekend_concierge.py`,
 `.github/workflows/weekly.yml`, `preferences.md`, `taste.md`. Ongoing work is **iteration, not
 construction**: tuning the prompts, and adding/upgrading scrapers (raw-fetch → structured) as new
 sources prove worthwhile.
 
-`llm_chain.py` is the newest module and the only one written to leave this repo: it is
-project-agnostic on purpose, and **extracting it to its own repo is the first task of the
-`deal-hunter` session** that adopts it. Until then all three pipelines still carry the same
-un-chained `common.py`. **Its fallback path is now confirmed against the live API** — see the
-2026-08-14 verification runs below. Both halves fired: the forced-fallback drill (a bogus first
-model returning 404) and, unprompted, a real 503 exhaustion on the concierge stage.
+**`llm_chain` is no longer a file in this repo.** It was extracted to
+<https://github.com/josephararil/llm-chain> and is now an installed dependency, pinned in
+`requirements.txt` to a **moving `v1` tag**. `llm_chain.py` and `test_llm_chain.py` are gone from
+here; do not re-add them, and do not vendor a copy back — copying it into N repos is the exact
+problem the extraction solved (`common.py` was documented as "byte-identical" across three repos
+and had already drifted into three different files). A change to the LLM layer is made in that
+repo, released per its README, and picked up here on the next scheduled run with **no edit to
+this repo**. weekly-concierge is llm-chain's designated **proving consumer**: it is the pipeline
+that must go green before a moved `v1` reaches anything else.
+
+**Its fallback path is confirmed against the live API** — see the 2026-08-14 verification runs
+below. Both halves fired: the forced-fallback drill (a bogus first model returning 404) and,
+unprompted, a real 503 exhaustion on the concierge stage. That verification was done here, from
+this repo's workflow, *before* the extraction, and it is the reason the move could be made without
+re-proving the chain. Re-running the drill is now an upstream job:
+`LLM_MODEL_CHAIN=zzz-not-a-model,gemini-flash-latest python -m llm_chain`.
 
 The **dual-audience** split (adult culture + local civic facts alongside the family
 recommendations) has now been judged against a real email — see the same section. The floors —
@@ -134,8 +144,8 @@ they share `civic_notice`.
 
 | File | Role |
 |---|---|
-| `llm_chain.py` | **The LLM layer.** `call_llm()` → `LLMResult`, plus `parse_json_block()`, `resolved_provider()`, `available_models()`, `resolved_config()`. A two-level loop: retry the same model on a transient status, then advance to the next model in the chain. **Imports only `os/json/time/dataclasses/typing/requests` — never `config`, never `common`, never any project-specific name.** That is what makes it liftable unchanged into `deal-hunter` and `shopping-assistant`, which carry the same defect; it is built here first and extracted to its own repo when deal-hunter adopts it. It is the **only place a model name appears in the codebase**. All 11 knobs are `LLM_*` env vars read at *call* time (not import), defaulting in this file. `python llm_chain.py` prints the resolved config, every model your key can list, and one live ping. Tests: `test_llm_chain.py` (17, fully offline, monkeypatches `requests.post` and `time.sleep`). |
-| `common.py` | `send_email()`, state IO (`load_json`/`save_json`/`today_iso`), and `parse_json_block()`. Its LLM half — `llm()`, `_gemini()`, `_gemini_search()`, `_anthropic()`, `_post_with_retry()`, `resolved_provider()` — is **dead in this project** since `llm_chain.py` landed, and **must not be deleted**: the file is byte-identical to deal-hunter's and shopping-assistant's copies, both of which still call those functions. `parse_json_block` is deliberately duplicated in both modules for the same reason. **Copied from deal-hunter — do not modify beyond the deliberate exception below.** `send_email()` raises `SMTPRecipientsRefused` if `smtplib.send_message()` returns any refused recipients — `send_message()` only raises on *total* failure, so a multi-address `EMAIL_TO` (e.g. `"a@x.com,b@x.com"`) could otherwise have one address silently dropped with no error. |
+| `llm_chain` (**external**) | **The LLM layer — an installed dependency, not a file here.** Lives at <https://github.com/josephararil/llm-chain>; `requirements.txt` pins `llm-chain @ git+…@v1`. Imported unchanged as `import llm_chain as L`, which is why the package deliberately ships **one top-level module** (`py-modules = ["llm_chain"]`) rather than a package directory — a `src/` layout or an `llm_chain/` package would rename the import for every consumer. `call_llm()` → `LLMResult`, plus `parse_json_block()`, `resolved_provider()`, `available_models()`, `resolved_config()`. A two-level loop: retry the same model on a transient status, then advance to the next model in the chain. **Imports only `os/json/time/dataclasses/typing/requests` — never `config`, never `common`, never any project-specific name.** That constraint is what made it liftable, and it still binds: anything project-specific belongs in the caller, since the module is now shared by unrelated pipelines. It is the **only place a model name appears anywhere in the fleet**. All 11 knobs are `LLM_*` env vars read at *call* time (not import), defaulting in that module. Smoke test: `python -m llm_chain` (was `python llm_chain.py` before extraction). Its 17 offline tests now run in **its own** CI, not here. |
+| `common.py` | `send_email()`, state IO (`load_json`/`save_json`/`today_iso`), and `parse_json_block()`. Its LLM half — `llm()`, `_gemini()`, `_gemini_search()`, `_anthropic()`, `_post_with_retry()`, `resolved_provider()` — is **dead in this project** since `llm_chain` landed, and **must not be deleted**: deal-hunter and shopping-assistant still call those functions from their own copies. `parse_json_block` is duplicated between `common.py` and `llm_chain` for the same reason. **Copied from deal-hunter — do not modify beyond the deliberate exception below.** `send_email()` raises `SMTPRecipientsRefused` if `smtplib.send_message()` returns any refused recipients — `send_message()` only raises on *total* failure, so a multi-address `EMAIL_TO` (e.g. `"a@x.com,b@x.com"`) could otherwise have one address silently dropped with no error. |
 | `scrapers.py` | **Landed.** Two-tier per-source registry (raw-fetch default + structured upgrade), `harvest()`, `fetch()`, `text_of()`, `bg_date()`. Structured parsers: `plovdiv2019.eu` (its own JS calendar just navigates to a server-rendered `?f_time=all&page=N` — see the docstring), `bilet.bg`, `ticket.bg` (homepage `div.productItem` cards; no year in the date string, so it assumes the next upcoming occurrence like `bg_date`; pre-filters to the Plovdiv-radius towns plus Sofia, and Sofia only when the event is ≥14 days out), `programata.bg` (`scrape_programata` — Kids category page — and `scrape_programata_adult`, which reuses the identical `_parse_programata` **unmodified** over four adult category pages listed in `PROGRAMATA_ADULT_URLS`: `/kino/`, `/muzika/kontserti-partita/`, `/izlozhbi/`, `/stsena/postanovki/`, each fetched in its own try/except so one dead category doesn't lose the others. `div.post-list-entry` yields 17/12/12/12 cards respectively — so the adult upgrade was a URL-list addition, not a new parser. **The pages are national with a strong Sofia skew** — Plovdiv-vs-Sofia mentions were 2/6 on concerts, 3/14 on exhibitions, 2/3 on theatre — and **no Plovdiv filter is applied here on purpose**: FIND and SKEPTIC own the radius judgement, as they already do for the Sofia-carrying `ticketbg` source. Low yield is expected and accepted at a marginal cost of one URL list. `div.post-list-entry` cards; the site is an editorial/magazine, not a calendar — listing cards have no date/venue field, only free-form prose inside each article, so `date_iso`/`location` are left unset for FIND/SKEPTIC to resolve), `visitplovdiv.com` (its "culture calendar" listing page itself renders empty — its own JS fills it in from an XML AJAX endpoint after load, so the parser calls that endpoint directly and parses XML, not HTML; `location` is left unset since it's only present as free-form prose inside `content`), `plovdiv.bg` (upgraded from HTML-scraping `/category/events/` to the site-wide WordPress RSS feed at `/feed/` — `wp-json` is disabled site-wide, confirmed 404 with a WordPress-branded 404 page rather than a CDN block, both for `/wp-json/` and `/wp-json/wp/v2/categories`, but `/feed/` and `/category/events/feed/` both 200 with real RSS; `/feed/` (the broader one) was chosen because the events-only category never carries the Транспорт/Актуално posts — bus reroutes, road closures, water-main work — that are exactly the highest-value civic_notice content this product wants, and the feed gives a real per-item permalink for free instead of an HTML card scrape. Shares `_parse_news_rss` — see below), `trafficnews.bg` (a national outlet, but its own `/plovdiv/` category — found via a manual href scan of its homepage, not a documented API — publishes a dedicated per-category RSS feed with no `pubDate` field at all, so `date_iso` relies entirely on `bg_date()` finding a date in the short teaser, which is rare; one fetch returns 50 items, no pagination needed), `podtepeto.com` (a dedicated Plovdiv news site — "podtepeto", lit. "under the hills", is itself a Plovdiv nickname — confirmed by the densest signal of every candidate evaluated: 95 Plovdiv mentions across just 10 items in its own default WordPress feed), `dcnews.bg` (its own title tag reads "Новини от Пловдив, Асеновград и региона" — genuinely regional, not just branded; its default feed already carried a water-main reconstruction, toll-camera lane restrictions on the Тракия/Хемус motorways, and a wildfire near Hisar, all inside the ~90-min radius), and `plovdivnews.bg` (its top-level `/feed/` is a general Bulgarian news portal that only happens to be Plovdiv-branded — world news, horoscopes — so the parser instead targets its `/category/plovdiv/feed/`, which is real local news; this overlaps some with `plovdiv_bg`/`dcnews` on the same underlying stories independently written up, which is harmless — `harvest()`'s title+date dedupe absorbs it). All five of the above share one helper, `_parse_news_rss(xml, source, today)`, since they all emit the same RSS 2.0 shape (title/link/description, optionally a richer `content:encoded`) regardless of platform; it prefers `content:encoded` over `description` when present (podtepeto's feed carries the *full article body* there for free — e.g. a kids' LEGO workshop's actual time window and age range — while `description` alone is a one-sentence teaser too thin to extract that from, with no extra per-item fetch needed, unlike `lostinplovdiv`'s detail-fetch enrichment) and strips the "Материалът ... е публикуван за пръв път на ..." ("this post was first published on...") footer several of these sites' RSS plugins append to every item, which is pure noise since the real URL is already in `<link>`. And `lostinplovdiv.com` (`/en/` front-page feed, `post-item` cards; a hand-curated bilingual city guide, not a calendar. The site retired its old `/en/articles` archive listing — now a 404 — after a theme change to Jannah/WordPress, so the parser targets the front-page feed instead: no pagination param needed since one fetch already returns ~50+ cards newest-first, sliced to the newest 30. Most articles are evergreen roundups or local trivia with no event date, left `date_iso=None` for FIND/SKEPTIC, except the recurring "What to do in Plovdiv (DD.MM - DD.MM)" weekly digest whose title embeds its own date range — that date is taken at face value in today's year rather than rolled forward, since it describes the current/just-finished week, not a future one; the listing's own one-sentence blurb is too thin for FIND to extract anything from an actual event/activity guide — e.g. a "which events in June" roundup collapses to a teaser with none of the dozen dates it lists — so `_lostinplovdiv_is_actionable()` heuristically flags titles that read as an activity guide (a numbered listicle, a "where is/are/to" question, or an event/activity keyword) versus pure local-history trivia, and only those get one extra fetch of the full article body (now selected via the `entry-content` class, also renamed by the theme change) via `_fetch_lostinplovdiv_detail()`, capped at `LOSTINPLOVDIV_MAX_DETAIL_FETCHES` extra requests per harvest). Two sources were investigated and deliberately kept raw-fetch: `eventim.bg` — its real event data comes from a JSON API (public-api.eventim.com/websearch/search/api/exploration/v1/productGroups) that 403s at Akamai's edge for every request regardless of correct params (reverse-engineered from the site's own JS), and the suggested `pyventim` fallback pulls in playwright/patchright/curl_cffi/scrapling — the exact heavy headless-browser stack this project avoids — so neither route was adopted (see the comment above `RAW_FETCH_SOURCES` for the full investigation); and `ticketstation.bg` — a client-rendered Vue SPA whose fetched HTML carries only nav/config JSON (no `<urbo-*>` event-listing component renders server-side), leaving no event markup a structured parser could select or be verified against. `ticketstation.bg` also intermittently 403s specifically from GitHub Actions' IP ranges (Cloudflare-fronted) while fetching fine from a residential/corporate network — most likely Cloudflare's bot defense flagging datacenter IPs rather than a code or markup problem; nothing to fix here short of the same headless-browser tradeoff already ruled out for `eventim.bg`. `plovdiv.bg`'s HTML route (`/category/events/`, no longer used) had the same CI-only 403; its RSS route (`/feed/`) does not — confirmed live from GitHub Actions itself via a temporary `workflow_dispatch` probe workflow (added, run, and deleted the same session), which also confirmed `trafficnews.bg`, `podtepeto.com`, `dcnews.bg`, `plovdivnews.bg`, and the three raw-fetch additions below all return real items from CI, not just locally. `eventim.bg`'s HTML route was separately retried with a longer timeout (40s, up from 15s) on the theory its earlier `ReadTimeout` might be transient network slowness rather than the documented Akamai API block — it is not: a `curl -v` trace shows Akamai's edge repeatedly forcing TLS renegotiation before stalling to a hard timeout with zero bytes received, the same edge-protection behavior as the documented API 403, just extended to the HTML route. Not solvable without the headless-browser stack this project has ruled out three times; left raw-fetch, unchanged. `tourist.stara-zagora.bg` was removed from the source list entirely — the domain no longer resolves (confirmed NXDOMAIN via public DNS), and its apparent replacement, `visitstarazagora.bg`, is a client-rendered SPA with no text in its raw HTML, so it wasn't worth adding as a substitute. Three more Plovdiv-adjacent aggregators were evaluated and rejected: `calendarbg.com` is not an independent source at all — its homepage text reads "POWERED BY: BILET.BG" and it has no visible event listing of its own (rendered via a JS widget), it's a promotional funnel for organizers built on top of `bilet.bg`, which this project already scrapes directly; `kulturni-novini.info` is a national culture-news aggregator with zero Plovdiv mentions on its homepage AND zero in its own August "Calendar" section (`/sections/12/news/list/August.2026`) — Sofia-centric with no city filter, same trade-off already documented for `programata.bg`'s non-Kids categories, just with no Plovdiv signal at all rather than a skew; and `novinata.bg` has no working `/category/plovdiv` (its `/category/plovdiv` redirects to `/plovdiv/`, which 404s) and zero Plovdiv mentions anywhere reachable from its homepage. None of the three are worth revisiting absent a structural change on their end (e.g. calendarbg.com's widget becoming server-rendered).
 
 Three more sources were added raw-fetch-only (a plain page-text blob for FIND to parse, no structured parser) since their signal didn't justify a dedicated parser: `plovdiv-online.com` (a Plovdiv-branded outlet, "Новини от Пловдив", but its feed skews crime/tabloid/national-opinion, with only occasional real local content — e.g. a duplicate of the same Тракия/Хемус lane-restriction story `dcnews` also carries — so the signal-to-noise ratio didn't clear the bar for a dedicated parser); `plovdivtime.bg` (no RSS feed — `/feed/` 404s — but its „Ела и виж“ ("Come and See") section runs a genuinely useful recurring feature, a dated "Къде да отидем в <day>, Пловдив" ("Where to go on <day> in Plovdiv") digest visible directly on the homepage, but no feed and no per-item date/link markup to key a parser off); and `sphotel.net/blog` (a hotel's blog, low prestige, but its RSS feed matches exactly what the research lead predicted — recurring seasonal roundups like "17 free things to do in Plovdiv" and "Concerts in Plovdiv 2026" — the blurb in the feed is as thin as `lostinplovdiv`'s was before its detail-fetch enrichment, but the volume here (10 posts, mostly evergreen) didn't justify building the same machinery a second time). The rest of `RAW_FETCH_SOURCES` (`dtp.bg`, `rnhm.org`, `oldplovdiv.bg`, `marica.bg`, `plovdiv24.bg`) — `plovdiv24.bg` was registered but *disabled* until the civic feature needed it, and is now in `ENABLED_SOURCES` (verified 200, 111k chars) — simply haven't been evaluated for a structured upgrade yet — no investigation, just page-text blobs FIND parses; upgrade only if one proves worth the maintenance cost. `scrape_facebook` is a documented stub (raises `NotImplementedError`, caught by `harvest()`) — no auth/anti-bot handling yet. `config.ENABLED_SOURCES`/`MAX_HARVEST_ITEMS` turn sources on/off and cap volume. Adding a raw-fetch source is a one-line entry in `RAW_FETCH_SOURCES` + `ENABLED_SOURCES`. `harvest()`'s volume cap interleaves per-source results round-robin before truncating to `MAX_HARVEST_ITEMS` (`_round_robin()`) rather than concatenating and slicing — a plain-concatenation cap let whichever sources are listed first in `ENABLED_SOURCES` eat the entire budget, which silently zeroed out every source added after it the moment total harvest volume first crossed 200 (found while adding the four RSS sources above: pre-cap volume went from ~180 to 320, and none of the new sources survived the cap at all). Tests: `test_scrapers.py` (offline, mocks network; fixture-backed parse tests in `tests/fixtures/` cover twelve structured sources; a dedicated regression test confirms a high-volume source can't starve a low-volume one under the cap). |
@@ -272,6 +282,9 @@ Three more sources were added raw-fetch-only (a plain page-text blob for FIND to
 - **Everything Bulgarian in, English out.** Search/scrape Bulgarian sources; write the email in
   English.
 - **Model selection lives in `llm_chain.py`'s defaults, overridden by `LLM_*` env vars** — never in
+  this repo. Every `llm_chain.py` reference in the invariants below means the file **in the
+  external `llm-chain` repo**; it is not checked out here. Changing any of it is an upstream
+  change, released per llm-chain's README, and it lands in every consumer at once.
   `config.py` and never as literals in pipeline code. `config.py` no longer names a model at all;
   `MODEL_FIND/SKEPTIC/CONCIERGE`, `GEMINI_MODEL_MAP` and `GEMINI_SEARCH_MODEL` are gone. Gemini still
   splits search (lite model, carries the `google_search` tool) from reasoning (flagship, tools-free):
@@ -302,10 +315,22 @@ Three more sources were added raw-fetch-only (a plain page-text blob for FIND to
   conflate them in the permissive direction and a genuinely malfunctioning SKEPTIC silently stops
   guarding hallucinations while every email still looks normal. `verified` is a **reporting flag
   only** — nothing filters, sorts or gates on it.
-- **COMMON-PY-UNTOUCHED.** `common.py` is byte-identical to deal-hunter's copy and stays that way.
+- **COMMON-PY-UNTOUCHED.** Leave `common.py` alone here. **Correction (2026-08-14):** the reason
+  previously given for this rule — "byte-identical to deal-hunter's copy" — was **factually false**,
+  and had been for some time. The three copies are three different files:
+  weekly-concierge `17310bf6`, deal-hunter `a7d1c256`, shopping-assistant `07d55152` (git blob
+  SHAs). The advice survives; its premise does not. The real reason to leave it alone is narrower
+  and still sufficient: **nothing in this project needs it changed**. Its LLM half is dead code
+  here, this repo is not where a `common.py` fix would be verified, and editing a file that has
+  already drifted three ways invites a fourth divergence for no gain. Do not cite byte-identity to
+  justify anything, and do not "resync" the three copies — the drift is the *evidence* for
+  extraction, and `llm_chain` is the pattern that replaces it. If the shared half of `common.py`
+  (`send_email`, state IO) ever needs a real fix, extract it the same way rather than editing three
+  files.
   Its `llm`, `_gemini`, `_gemini_search`, `_anthropic`, `_post_with_retry` and `resolved_provider` are
-  now dead in this project and **must not be deleted** — deal-hunter and shopping-assistant call them
-  from their own copies. *Why the wrong thing looks correct:* deleting dead code is normally right,
+  dead in this project and **must not be deleted** — deal-hunter and shopping-assistant call them
+  from their own copies, and deleting them here would widen the drift rather than reduce it.
+  *Why the wrong thing looks correct:* deleting dead code is normally right,
   and every test here would still pass. Note the consequence: `common._gemini` and
   `common._gemini_search` still read `C.GEMINI_MODEL_MAP` and `C.GEMINI_SEARCH_MODEL`, which
   `config.py` no longer defines, so calling `common.llm()` **in this repo** now raises
@@ -370,7 +395,9 @@ Volume is otherwise **uncapped** — floors are the only control.
 Every `LLM_*` row above is **optional** — unset means the default, and all ten are already passed
 through in `weekly.yml`, so any of them can be set from the Actions UI with no code change. An
 empty or whitespace-only value resolves to the default, never to an empty list. Run
-`python llm_chain.py` to see which models your key can actually reach before setting a chain.
+`python -m llm_chain` to see which models your key can actually reach before setting a chain.
+These knobs are defined by the external `llm-chain` package, not by anything in this repo — its
+README is the authority on their semantics.
 | `SMTP_HOST/PORT/USER/PASS` | secrets | Email delivery |
 | `EMAIL_TO` / `EMAIL_FROM` | secrets | Recipient / sender (default to SMTP_USER) |
 
@@ -384,21 +411,29 @@ export GEMINI_API_KEY=...  LLM_PROVIDER=gemini
 python weekend_concierge.py   # writes state/; emails if SMTP vars set, else prints the error
 python scrapers.py            # harvest smoke test: prints per-source item counts
 python weather.py             # 7-day forecast smoke test
-python llm_chain.py           # resolved config + available models + one live ping
+python -m llm_chain           # resolved config + available models + one live ping (the
+                              # installed package, NOT a file here -- was `python llm_chain.py`)
 python test_concierge.py      # full pipeline, two runs, fully offline
 python test_scrapers.py       # fixture-backed parse tests, fully offline
-python test_llm_chain.py      # fallback chain control flow, fully offline
 python test_memory.py
 ```
+
+`pip install -r requirements.txt` is now **required**, not merely recommended: `llm_chain` is
+installed from git rather than checked out, so without it `weekend_concierge.py` fails at import.
+The LLM layer's own 17 tests live in the llm-chain repo and run in its CI; there is no
+`test_llm_chain.py` here.
 
 Leave SMTP vars unset to test without sending (the send is caught and printed).
 
 **`.env` works for `weekend_concierge.py` only.** It calls `load_dotenv()` behind a try/except,
-so a `.env` at the repo root supplies `GEMINI_API_KEY`/SMTP for the pipeline. `llm_chain.py`
+so a `.env` at the repo root supplies `GEMINI_API_KEY`/SMTP for the pipeline. `llm_chain`
 deliberately imports nothing but stdlib + `requests` (that portability constraint is the whole
-point of the module), so running it standalone reads the **process** environment only — a `.env`
-is invisible to it and the run reports `HTTP 403 ... unregistered callers`, which looks like a
-dead key rather than an unset one. Export the variable in the shell before `python llm_chain.py`.
+point of the module, and it now binds harder — the module is shared by unrelated pipelines, so a
+dependency added there is imposed on all of them), so running it standalone reads the **process**
+environment only — a `.env` is invisible to it and the run reports
+`HTTP 403 ... unregistered callers`, which looks like a dead key rather than an unset one. Export
+the variable in the shell before `python -m llm_chain`. This is documented in llm-chain's own
+README too, since the trap now belongs to every consumer rather than to this repo alone.
 
 ## Known-bad calibration point: the 2026-08-14 scheduled run
 
@@ -459,9 +494,21 @@ the failure **looking like a quiet week** was.
 - **`programata.bg/plovdiv/`** is not usable as an event source: 200/50k chars but **0**
   `div.post-list-entry` cards and only 41 bare `<li><a>` links — a venue directory, matching the
   existing note about `/sofia`.
-- **`common.py`'s retry policy stays broken here.** 4 attempts, sleeps of 2/4/8, no chain. It is not
-  fixed because `common.py` stays byte-identical across three projects; the fix lives in
-  `llm_chain.py`, and deal-hunter and shopping-assistant get it when they adopt the module.
+- **`common.py`'s retry policy stays broken here.** 4 attempts, sleeps of 2/4/8, no chain. It is
+  not fixed here because nothing in this project calls it any more — the fix lives in the external
+  `llm-chain` package, and deal-hunter and shopping-assistant get it by depending on `@v1`, not by
+  anyone patching their `common.py`. (The old reason given, "`common.py` stays byte-identical
+  across three projects", was not true — see the COMMON-PY-UNTOUCHED invariant.)
+- **The `llm-chain` fallback chain is Gemini-only.** `_anthropic()` passes a **single-element**
+  list to `_run_chain`, so the Anthropic path gets retry-with-backoff, `Retry-After` handling and
+  the budget valve, but **no cross-model fallback**. Accepted: production runs Gemini 100% and
+  Anthropic is a hedge. Documented here and in llm-chain's README so nobody assumes otherwise;
+  widening it means a new env var and a changed failure profile for every consumer.
+- **A moved `v1` tag reaches production with no per-repo review.** That is the deal the extraction
+  makes: one edit propagates everywhere, and there is no lockfile or staged rollout between
+  promoting the tag and a Friday cron emailing a real person. The mitigation is procedural, in
+  llm-chain's release flow — CI green, then verified in this repo as the proving consumer, only
+  then `git tag -f v1`. A breaking change to `call_llm`/`LLMResult` gets a `v2` tag instead.
 - **`common.save_json()`/`load_json()` carry an encoding defect** — `ensure_ascii=False` with no
   `encoding="utf-8"` on `open()`, so a non-ASCII string written on a non-UTF-8 locale (Windows)
   lands as cp1252 and a later UTF-8 read fails. **This project no longer routes through them**
