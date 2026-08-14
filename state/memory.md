@@ -1,4 +1,4 @@
-# Weekend Concierge Memory — updated 2026-08-12
+# Weekend Concierge Memory — updated 2026-08-14
 
 ## Evergreen Catalog (69 entries)
 
@@ -342,14 +342,14 @@ _Source: research_
 
 ### Plovdiv City Art Gallery
 **Location:** Plovdiv / in town
-**Discovered:** 2026-08-11 &nbsp; **Last suggested:** never
+**Discovered:** 2026-08-11 &nbsp; **Last suggested:** 2026-08-14
 Permanent Bulgarian painting collection across several central buildings — visual, so no language barrier.
 _Tags: art, indoor, central_
 _Source: seed-adult_
 
 ### Plovdiv Regional Natural History Museum
 **Location:** Plovdiv / in town
-**Discovered:** 2026-07-01 &nbsp; **Last suggested:** never
+**Discovered:** 2026-07-01 &nbsp; **Last suggested:** 2026-08-14
 Compact natural history museum with taxidermy and a small aquarium — easy indoor fallback.
 _Tags: museum, indoor_
 _Source: seed_
@@ -522,8 +522,10 @@ Picturesque lake in a green park — feed ducks and swans, rent pedal boats, use
 _Tags: water, park, outdoor, free_
 _Source: research_
 
-## Suggestion Ledger (63 entries)
+## Suggestion Ledger (65 entries)
 
+- ✅ 2026-08-14 | Plovdiv Regional Natural History Museum | evergreen |  | sent score=60 — Compact natural history museum with taxidermy and a small aquarium — easy indoor fallback.
+- ✅ 2026-08-14 | Plovdiv City Art Gallery | evergreen |  | sent score=60 — Permanent Bulgarian painting collection across several central buildings — visual, so no language…
 - ✅ 2026-08-12 | Ostrova Park and Mini Zoo Pazardzhik | evergreen | Open daily | sent score=95 — A top family favorite featuring shady walking paths, extensive play areas, and a mini-zoo with…
 - ✅ 2026-08-12 | Stara Zagora Zoo | evergreen | Open daily, 09:00 - 18:00 | sent score=90 — A beautifully renovated woodland zoo nestled inside Ayazmoto Park offering wide paved walks, play…
 - ✅ 2026-08-12 | Farmers Market at Ribnitsa Park | evergreen | Saturdays, 09:00 - 13:00 | sent score=72 — Recurring outdoor morning market for fresh local produce and regional goods, fully accessible…
@@ -572,6 +574,4 @@ _Source: research_
 - ✅ 2026-07-02 | Craft School Plovdiv Workshops | event_this_weekend | Running through Saturday, July 4, 2026 | sent score=75 — Verified as a real entity in Plovdiv hosting workshops suitable for children.
 - ✅ 2026-07-02 | PhillGood Festival at the Rowing Canal | event_lookahead | July 17–19, 2026 | sent score=70 — Verified as a recurring family-friendly event at the Rowing Canal in Plovdiv.
 - ✅ 2026-07-02 | Day Trip to Bachkovo Monastery | evergreen | Always available (best on clear days) | sent score=85 — A highly accessible, beautiful mountain monastery with short walking paths, river views, and local…
-- ✅ 2026-07-02 | Explore the Ancient Theatre of Philippopolis | evergreen | Always available | sent score=80 — A spectacular historical site in the heart of the Old Town, offering an easy and impressive stroll…
-- ✅ 2026-07-02 | Cinema Under the Stars | event_lookahead | Throughout July 2026 | sent score=70 — Outdoor summer cinema screenings are a verified common occurrence in Plovdiv.
-_... and 13 earlier entries_
+_... and 15 earlier entries_

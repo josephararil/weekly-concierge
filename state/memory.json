@@ -23,9 +23,12 @@
         "museum",
         "indoor"
       ],
+      "url": "",
+      "practical": "",
       "discovered": "2026-07-01",
       "source": "seed",
-      "last_suggested": null
+      "last_suggested": "2026-08-14",
+      "audience": "family"
     },
     "Rowing Channel bike ride": {
       "location": "Kanala (Rowing Channel), Plovdiv",
@@ -834,7 +837,7 @@
       "practical": "",
       "discovered": "2026-08-11",
       "source": "seed-adult",
-      "last_suggested": null,
+      "last_suggested": "2026-08-14",
       "audience": "adult"
     },
     "Bunardzhik Hill sunset viewpoint": {
@@ -1710,6 +1713,28 @@
       "score": 72,
       "verdict": "sent",
       "note": "Recurring outdoor morning market for fresh local produce and regional goods, fully accessible without Bulgarian."
+    },
+    {
+      "date": "2026-08-14",
+      "title": "Plovdiv Regional Natural History Museum",
+      "category": "evergreen",
+      "when": "",
+      "location": "Plovdiv",
+      "url": "",
+      "score": 60,
+      "verdict": "sent",
+      "note": "Compact natural history museum with taxidermy and a small aquarium — easy indoor fallback."
+    },
+    {
+      "date": "2026-08-14",
+      "title": "Plovdiv City Art Gallery",
+      "category": "evergreen",
+      "when": "",
+      "location": "Plovdiv",
+      "url": "",
+      "score": 60,
+      "verdict": "sent",
+      "note": "Permanent Bulgarian painting collection across several central buildings — visual, so no language barrier."
     }
   ]
 }
