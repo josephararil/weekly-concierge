@@ -18,12 +18,30 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    # Worst case is ~24 min of LLM if every stage exhausts a three-model chain
+    # (7 logical calls x 3 models x 69s), which LLM_TOTAL_BUDGET_SECONDS caps at 20,
+    # leaving >= 15 min here for harvest. 15 total was not enough to survive one dip.
+    timeout-minutes: 35
     env:
       PYTHONUNBUFFERED: "1"
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       GEMINI_API_KEY:    ${{ secrets.GEMINI_API_KEY }}
       LLM_PROVIDER:      ${{ vars.LLM_PROVIDER }}
+      # Every llm_chain.py knob, passed through whether or not the repo variable exists:
+      # an unset variable expands to "", which llm_chain resolves to its own default. All
+      # ten are listed now so any of them can be set from the Actions UI later with no
+      # code change -- and because a knob missing from this block fails SILENTLY, with the
+      # operator's configuration simply having no effect on the run.
+      LLM_MODEL_CHAIN:          ${{ vars.LLM_MODEL_CHAIN }}
+      LLM_SEARCH_MODEL_CHAIN:   ${{ vars.LLM_SEARCH_MODEL_CHAIN }}
+      LLM_ATTEMPTS_PER_MODEL:   ${{ vars.LLM_ATTEMPTS_PER_MODEL }}
+      LLM_BACKOFF_SECONDS:      ${{ vars.LLM_BACKOFF_SECONDS }}
+      LLM_TIMEOUT_SECONDS:      ${{ vars.LLM_TIMEOUT_SECONDS }}
+      LLM_RETRY_STATUSES:       ${{ vars.LLM_RETRY_STATUSES }}
+      LLM_ADVANCE_STATUSES:     ${{ vars.LLM_ADVANCE_STATUSES }}
+      LLM_TOTAL_BUDGET_SECONDS: ${{ vars.LLM_TOTAL_BUDGET_SECONDS }}
+      LLM_RETRY_AFTER_CAP:      ${{ vars.LLM_RETRY_AFTER_CAP }}
+      LLM_ANTHROPIC_MODEL:      ${{ vars.LLM_ANTHROPIC_MODEL }}
       SMTP_HOST:         ${{ secrets.SMTP_HOST }}
       SMTP_PORT:         ${{ secrets.SMTP_PORT }}
       SMTP_USER:         ${{ secrets.SMTP_USER }}
