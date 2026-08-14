@@ -588,7 +588,12 @@ def main():
                 # what happened on 2026-08-14. Keep the item, flag it UNVERIFIED, and let
                 # the degraded-run banner tell the reader why.
                 verdict = "keep"
-                note = "SKEPTIC unavailable (provider failure) — sent without verification"
+                # ASCII on purpose (the plan's draft used an em dash here). `note` is
+                # persisted by common.save_json(), which writes ensure_ascii=False through
+                # an open() with no encoding= -- so a non-ASCII note written on Windows
+                # lands as cp1252, and CI then reads it back as utf-8 and crashes. Same
+                # reason as the language-gate branch below.
+                note = "SKEPTIC unavailable (provider failure) -- sent without verification"
                 verified = False
 
         c["verdict"], c["note"], c["verified"] = verdict, note, verified

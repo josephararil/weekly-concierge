@@ -262,7 +262,11 @@ they share `civic_notice`.
   Its `llm`, `_gemini`, `_gemini_search`, `_anthropic`, `_post_with_retry` and `resolved_provider` are
   now dead in this project and **must not be deleted** — deal-hunter and shopping-assistant call them
   from their own copies. *Why the wrong thing looks correct:* deleting dead code is normally right,
-  and every test here would still pass.
+  and every test here would still pass. Note the consequence: `common._gemini` and
+  `common._gemini_search` still read `C.GEMINI_MODEL_MAP` and `C.GEMINI_SEARCH_MODEL`, which
+  `config.py` no longer defines, so calling `common.llm()` **in this repo** now raises
+  `AttributeError`. That is a feature — the un-chained path fails loudly instead of quietly working —
+  and it is not a reason to either restore the config names or edit `common.py`.
 
 ### Coverage knobs (`config.py`)
 
