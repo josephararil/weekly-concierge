@@ -2,10 +2,10 @@
 Offline verification for weekend_concierge.py.
 
 Runs the real pipeline in a throwaway temp directory (non-destructive) with:
-  - common.llm stubbed to return canned FIND (Stage 1, family + adult) + SKEPTIC (Stage 2)
-    JSON and a canned CONCIERGE (Stage 3) HTML/text payload, dispatched by response_schema
-    identity -- STAGE1_FAMILY_SCHEMA and STAGE1_ADULT_SCHEMA are distinct objects, so a
-    shared schema would silently cross-feed the two FIND paths.
+  - llm_chain.call_llm stubbed to return canned FIND (Stage 1, family + adult) + SKEPTIC
+    (Stage 2) JSON and a canned CONCIERGE (Stage 3) HTML/text payload, dispatched by
+    response_schema identity -- STAGE1_FAMILY_SCHEMA and STAGE1_ADULT_SCHEMA are distinct
+    objects, so a shared schema would silently cross-feed the two FIND paths.
   - scrapers.harvest / weather.week_weather stubbed to avoid any network access.
   - SMTP env left unset, so common.send_email raises and weekend_concierge.main() catches
     and prints it (email "sends" every run regardless).
@@ -46,6 +46,7 @@ sys.path.insert(0, REPO)
 
 import config as C
 import common as X
+import llm_chain
 import memory as M
 import scrapers
 import weather
@@ -149,17 +150,17 @@ _WEEK_DAYS = [
 ]
 
 
-def _stub_llm(messages, model, max_tokens=2000, want_search=False, response_schema=None,
-              provider=None, search_prompt=None):
+def _stub_llm(prompt, *, stage="", max_tokens=4000, want_search=False, search_prompt=None,
+              search_preamble=None, response_schema=None, provider=None, web_search_max_uses=6):
     if response_schema is C.STAGE1_FAMILY_SCHEMA:
-        return json.dumps(_STAGE1_FAMILY)
+        return llm_chain.LLMResult(text=json.dumps(_STAGE1_FAMILY), ok=True, model="stub", provider="gemini")
     if response_schema is C.STAGE1_ADULT_SCHEMA:
-        return json.dumps(_STAGE1_ADULT)
+        return llm_chain.LLMResult(text=json.dumps(_STAGE1_ADULT), ok=True, model="stub", provider="gemini")
     if response_schema is C.STAGE2_RESPONSE_SCHEMA:
-        return json.dumps(_STAGE2)
+        return llm_chain.LLMResult(text=json.dumps(_STAGE2), ok=True, model="stub", provider="gemini")
     if response_schema is C.CONCIERGE_RESPONSE_SCHEMA:
-        return json.dumps(_STAGE3)
-    raise AssertionError(f"unexpected llm() call with response_schema={response_schema!r}")
+        return llm_chain.LLMResult(text=json.dumps(_STAGE3), ok=True, model="stub", provider="gemini")
+    raise AssertionError(f"unexpected call_llm() call with response_schema={response_schema!r}")
 
 
 def _sent_titles(log_text):
@@ -190,16 +191,16 @@ class WeekendConciergeTest(unittest.TestCase):
         with open("state/signals_seen.json", "w", encoding="utf-8") as f:
             json.dump({"seen": {}, "monthly_count": {}}, f)
 
-        self._real_llm = X.llm
+        self._real_llm = llm_chain.call_llm
         self._real_harvest = scrapers.harvest
         self._real_week_weather = weather.week_weather
-        X.llm = _stub_llm
+        llm_chain.call_llm = _stub_llm
         scrapers.harvest = lambda today=None: []
         weather.week_weather = lambda latlon, today, days=7: list(_WEEK_DAYS)
         os.environ.pop("SMTP_HOST", None)
 
     def tearDown(self):
-        X.llm = self._real_llm
+        llm_chain.call_llm = self._real_llm
         scrapers.harvest = self._real_harvest
         weather.week_weather = self._real_week_weather
         os.chdir(self._cwd)
@@ -290,6 +291,53 @@ class WeekendConciergeTest(unittest.TestCase):
         self.assertTrue(adult_ever2, "adult evergreen fallback should still guarantee non-empty content")
         self.assertFalse(any(ADULT_EVERGREEN_TITLE in l for l in adult_ever2),
                          "adult evergreen still in cooldown must not be re-sent")
+
+    def test_state_files_are_written_as_utf8(self):
+        """Every state file must be UTF-8 regardless of the writing machine's locale.
+
+        common.save_json() passes ensure_ascii=False through an open() with no encoding=, so
+        on Windows it writes cp1252; CI (Linux/UTF-8) then cannot read the file back and the
+        run dies on state it wrote itself. weekend_concierge defines its own save_json/
+        load_json to avoid that, and this test is what keeps them from being quietly reverted
+        to X.save_json -- which would look correct and pass every other test in this file.
+        """
+        WC.main()
+        checked_nonascii = []
+        for name in ("weekend_signals.json", "signals_seen.json", "memory.json",
+                     "weekend_log.md", "memory.md"):
+            raw = open(f"state/{name}", "rb").read()
+            try:
+                raw.decode("utf-8")
+            except UnicodeDecodeError as e:
+                self.fail(f"state/{name} is not UTF-8: {e.reason} at byte {e.start} "
+                          f"(0x{raw[e.start]:02x})")
+            if any(b > 127 for b in raw):
+                checked_nonascii.append(name)
+        # Without this, the assertions above pass vacuously on all-ASCII output and the test
+        # would never have caught the bug it exists for. The notes and log lines this pipeline
+        # writes contain em dashes, so at least one file must carry a non-ASCII byte.
+        self.assertTrue(checked_nonascii,
+                        "no state file contained a non-ASCII byte, so the UTF-8 assertions "
+                        "above proved nothing")
+
+    def test_legacy_cp1252_state_is_recovered_not_discarded(self):
+        """A state file left by an older run on a Windows locale must be read, not dropped.
+
+        Falling through to the caller's default would silently empty signals_seen.json and
+        resurface every suppressed item for a full cooldown cycle -- a data-losing failure
+        that looks exactly like a normal first run.
+        """
+        payload = {"seen": {"some-event|2026-08-01|thisweekend": "2026-08-01"},
+                   "monthly_count": {}, "note": "road closure — Ruski Blvd"}
+        with open("state/legacy.json", "w", encoding="cp1252") as f:
+            json.dump(payload, f, ensure_ascii=False)
+        with self.assertRaises(UnicodeDecodeError):      # the file really is not UTF-8
+            open("state/legacy.json", encoding="utf-8").read()
+
+        self.assertEqual(WC.load_json("legacy.json", {"SENTINEL": True}), payload,
+                         "legacy cp1252 state must be recovered intact, not replaced by the default")
+        WC.save_json("legacy.json", payload)             # and self-heal on the next write
+        open("state/legacy.json", encoding="utf-8").read()
 
     def test_build_links(self):
         # real source_url is passed through untouched; maps + search always constructed
@@ -485,6 +533,84 @@ class WeekendConciergeTest(unittest.TestCase):
         lower = {"title": "Low", "category": "event_thisweek", "adult_fit": 72}
         ranked = WC.select_events([lower, higher], "adult")
         self.assertEqual([c["title"] for c in ranked], ["High", "Low"])
+
+    def test_skeptic_provider_failure_keeps_items_unverified(self):
+        """SKEPTIC-INFRA-IS-NOT-REJECTION: every model in the chain failing on the SKEPTIC
+        call must NOT be treated as a real rejection -- the 2026-08-14 incident was exactly
+        this, and it emptied the whole email. Items should survive, flagged unverified, and
+        the run should announce itself as degraded."""
+        def _stub_skeptic_fails(prompt, *, stage="", max_tokens=4000, want_search=False,
+                                search_prompt=None, search_preamble=None, response_schema=None,
+                                provider=None, web_search_max_uses=6):
+            if response_schema is C.STAGE2_RESPONSE_SCHEMA:
+                return llm_chain.LLMResult(text="", ok=False, error="all models failed")
+            return _stub_llm(prompt, stage=stage, max_tokens=max_tokens, want_search=want_search,
+                             search_prompt=search_prompt, search_preamble=search_preamble,
+                             response_schema=response_schema, provider=provider,
+                             web_search_max_uses=web_search_max_uses)
+
+        llm_chain.call_llm = _stub_skeptic_fails
+        sent_subjects = []
+        sent_bodies = []
+        real_send_email = X.send_email
+        X.send_email = lambda subject, html, text: (sent_subjects.append(subject), sent_bodies.append(text))
+        try:
+            WC.main()
+        finally:
+            X.send_email = real_send_email
+
+        signals = json.load(open("state/weekend_signals.json", encoding="utf-8"))
+        by_title = {s["title"]: s for s in signals["signals"]}
+        non_evergreen = {t: s for t, s in by_title.items()
+                         if s["category"] not in ("evergreen",)}
+        # A survivor's verdict is "keep" only transiently -- selection later overwrites it
+        # to "sent" (selected) or leaves it "keep" (not selected this run, still off-cooldown
+        # or beaten to a slot). Either way it must not be "kill": that's the invariant under
+        # test. "verified" is the flag this test actually cares about.
+        kept_unverified = [s for s in non_evergreen.values()
+                          if s["verdict"] != "kill" and s["verified"] is False]
+        self.assertTrue(kept_unverified, "at least one non-evergreen candidate should be kept, unverified")
+        self.assertTrue(any("SKEPTIC unavailable" in s["note"] for s in kept_unverified))
+
+        self.assertTrue(sent_subjects, "send_email should have been called")
+        self.assertTrue(sent_subjects[0].startswith("[degraded] "),
+                        f"subject should be prefixed [degraded]: {sent_subjects[0]!r}")
+        self.assertIn("Heads up: this email is incomplete", sent_bodies[0])
+
+    def test_skeptic_ran_but_empty_still_kills(self):
+        """Guard proving the invariant did not slip in the permissive direction: SKEPTIC
+        running successfully but returning no verdicts is still a real rejection."""
+        def _stub_skeptic_empty(prompt, *, stage="", max_tokens=4000, want_search=False,
+                                search_prompt=None, search_preamble=None, response_schema=None,
+                                provider=None, web_search_max_uses=6):
+            if response_schema is C.STAGE2_RESPONSE_SCHEMA:
+                return llm_chain.LLMResult(text="[]", ok=True, model="stub", provider="gemini")
+            return _stub_llm(prompt, stage=stage, max_tokens=max_tokens, want_search=want_search,
+                             search_prompt=search_prompt, search_preamble=search_preamble,
+                             response_schema=response_schema, provider=provider,
+                             web_search_max_uses=web_search_max_uses)
+
+        llm_chain.call_llm = _stub_skeptic_empty
+        sent_subjects = []
+        real_send_email = X.send_email
+        X.send_email = lambda subject, html, text: sent_subjects.append(subject)
+        try:
+            WC.main()
+        finally:
+            X.send_email = real_send_email
+
+        # See the comment above in test_skeptic_provider_failure_keeps_items_unverified:
+        # the "kill" note contains an em dash, so this must not force utf-8 either.
+        signals = json.load(open("state/weekend_signals.json", encoding="utf-8"))
+        by_title = {s["title"]: s for s in signals["signals"]}
+        non_evergreen = {t: s for t, s in by_title.items() if s["category"] != "evergreen"}
+        self.assertTrue(non_evergreen)
+        for title, s in non_evergreen.items():
+            self.assertEqual(s["verdict"], "kill", f"{title} should be killed when SKEPTIC ran but returned nothing")
+
+        self.assertTrue(sent_subjects, "send_email should have been called")
+        self.assertFalse(sent_subjects[0].startswith("[degraded] "),
+                         f"subject should NOT be prefixed [degraded]: {sent_subjects[0]!r}")
 
 
 if __name__ == "__main__":
