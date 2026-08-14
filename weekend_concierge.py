@@ -29,6 +29,7 @@ state/signals_seen.json.
 """
 
 import json
+import os
 import re
 import urllib.parse
 import datetime as dt
@@ -150,10 +151,46 @@ def load_taste():
         return "(no taste calibration recorded yet)"
 
 
+# --- state IO ---
+# This project reads and writes state/*.json itself rather than through
+# common.save_json()/load_json(), which pass ensure_ascii=False but open() with no
+# encoding= -- so on a non-UTF-8 locale (Windows) they write cp1252, and CI then fails to
+# read the file back as UTF-8, killing the run on state it wrote itself. common.py is shared
+# with two sibling projects and is not ours to fix here, so the fix lives on this side of the
+# boundary. memory.py has always done its own UTF-8 IO; these two bring the rest of state/
+# in line with it.
+
+def save_json(name, data):
+    os.makedirs(X.STATE_DIR, exist_ok=True)
+    with open(os.path.join(X.STATE_DIR, name), "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+
+def load_json(name, default):
+    path = os.path.join(X.STATE_DIR, name)
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return default
+    except UnicodeDecodeError:
+        # A state file written by an earlier run on a non-UTF-8 locale. Read it with the
+        # encoding it was actually written in; the next save_json() rewrites it as UTF-8, so
+        # this self-heals in one run. Falling through to `default` instead would silently
+        # empty signals_seen.json and resurface every suppressed item for a whole cycle.
+        print(f"  [state] {name} is not UTF-8 (written by an older run); "
+              f"reading as the platform default and rewriting")
+        try:
+            with open(path) as f:
+                return json.load(f)
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            return default
+
+
 # --- anti-repeat state ---
 
 def load_seen():
-    return X.load_json("signals_seen.json", {"seen": {}, "monthly_count": {}})
+    return load_json("signals_seen.json", {"seen": {}, "monthly_count": {}})
 
 
 def prune_seen(state):
@@ -588,12 +625,7 @@ def main():
                 # what happened on 2026-08-14. Keep the item, flag it UNVERIFIED, and let
                 # the degraded-run banner tell the reader why.
                 verdict = "keep"
-                # ASCII on purpose (the plan's draft used an em dash here). `note` is
-                # persisted by common.save_json(), which writes ensure_ascii=False through
-                # an open() with no encoding= -- so a non-ASCII note written on Windows
-                # lands as cp1252, and CI then reads it back as utf-8 and crashes. Same
-                # reason as the language-gate branch below.
-                note = "SKEPTIC unavailable (provider failure) -- sent without verification"
+                note = "SKEPTIC unavailable (provider failure) — sent without verification"
                 verified = False
 
         c["verdict"], c["note"], c["verified"] = verdict, note, verified
@@ -609,10 +641,6 @@ def main():
             # Say so in the note too: this is the one drop the log can't otherwise explain,
             # since the score and floor columns will show a passing score (a blocking item is
             # often high-scoring) and read as though it should have been sent.
-            # Keep this ASCII. `note` is serialised by common.save_json(), which passes
-            # ensure_ascii=False but opens the file without encoding="utf-8" -- so on a
-            # non-UTF-8 locale (Windows) a non-ASCII note writes cp1252 and the next read
-            # fails. common.py is copied from deal-hunter and not ours to fix here.
             c["note"] = f"dropped: language_barrier=blocking; {note}"
             print(f"    [LANG-BLOCK] #{c['candidate_id']} {c.get('title', '?')} — "
                   f"unattendable without Bulgarian")
@@ -769,7 +797,7 @@ def main():
         "confidence": c.get("confidence"), "verdict": c.get("verdict"), "note": c.get("note"),
         "verified": c.get("verified", True),
     } for c in candidates]
-    X.save_json("weekend_signals.json", {"generated": today_iso, "signals": signals})
+    save_json("weekend_signals.json", {"generated": today_iso, "signals": signals})
     write_log(today_iso, candidates, [
         ("Family events", selected_family_events),
         ("Adult events", selected_adult_events),
@@ -789,7 +817,7 @@ def main():
     except Exception as e:
         print(f"  [FAIL] email send error: {type(e).__name__}: {e}")
 
-    X.save_json("signals_seen.json", seen_state)
+    save_json("signals_seen.json", seen_state)
 
     _section("RUN COMPLETE")
     print(f"  {len(candidates)} found -> {len(survivors)} survived skeptic -> "

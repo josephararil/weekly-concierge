@@ -287,6 +287,53 @@ class WeekendConciergeTest(unittest.TestCase):
         self.assertFalse(any(ADULT_EVERGREEN_TITLE in l for l in adult_ever2),
                          "adult evergreen still in cooldown must not be re-sent")
 
+    def test_state_files_are_written_as_utf8(self):
+        """Every state file must be UTF-8 regardless of the writing machine's locale.
+
+        common.save_json() passes ensure_ascii=False through an open() with no encoding=, so
+        on Windows it writes cp1252; CI (Linux/UTF-8) then cannot read the file back and the
+        run dies on state it wrote itself. weekend_concierge defines its own save_json/
+        load_json to avoid that, and this test is what keeps them from being quietly reverted
+        to X.save_json -- which would look correct and pass every other test in this file.
+        """
+        WC.main()
+        checked_nonascii = []
+        for name in ("weekend_signals.json", "signals_seen.json", "memory.json",
+                     "weekend_log.md", "memory.md"):
+            raw = open(f"state/{name}", "rb").read()
+            try:
+                raw.decode("utf-8")
+            except UnicodeDecodeError as e:
+                self.fail(f"state/{name} is not UTF-8: {e.reason} at byte {e.start} "
+                          f"(0x{raw[e.start]:02x})")
+            if any(b > 127 for b in raw):
+                checked_nonascii.append(name)
+        # Without this, the assertions above pass vacuously on all-ASCII output and the test
+        # would never have caught the bug it exists for. The notes and log lines this pipeline
+        # writes contain em dashes, so at least one file must carry a non-ASCII byte.
+        self.assertTrue(checked_nonascii,
+                        "no state file contained a non-ASCII byte, so the UTF-8 assertions "
+                        "above proved nothing")
+
+    def test_legacy_cp1252_state_is_recovered_not_discarded(self):
+        """A state file left by an older run on a Windows locale must be read, not dropped.
+
+        Falling through to the caller's default would silently empty signals_seen.json and
+        resurface every suppressed item for a full cooldown cycle -- a data-losing failure
+        that looks exactly like a normal first run.
+        """
+        payload = {"seen": {"some-event|2026-08-01|thisweekend": "2026-08-01"},
+                   "monthly_count": {}, "note": "road closure — Ruski Blvd"}
+        with open("state/legacy.json", "w", encoding="cp1252") as f:
+            json.dump(payload, f, ensure_ascii=False)
+        with self.assertRaises(UnicodeDecodeError):      # the file really is not UTF-8
+            open("state/legacy.json", encoding="utf-8").read()
+
+        self.assertEqual(WC.load_json("legacy.json", {"SENTINEL": True}), payload,
+                         "legacy cp1252 state must be recovered intact, not replaced by the default")
+        WC.save_json("legacy.json", payload)             # and self-heal on the next write
+        open("state/legacy.json", encoding="utf-8").read()
+
     def test_build_links(self):
         # real source_url is passed through untouched; maps + search always constructed
         src, maps, search = WC.build_links(
@@ -396,12 +443,7 @@ class WeekendConciergeTest(unittest.TestCase):
         finally:
             X.send_email = real_send_email
 
-        # Opened WITHOUT forcing utf-8: common.save_json() writes with the platform's
-        # default encoding (no encoding= passed), and this note contains an em dash --
-        # on Windows that round-trips through cp1252, not utf-8. See the comment in the
-        # language-gate branch of weekend_concierge.py for the full explanation; not ours
-        # to fix since common.py is copied verbatim from deal-hunter.
-        signals = json.load(open("state/weekend_signals.json"))
+        signals = json.load(open("state/weekend_signals.json", encoding="utf-8"))
         by_title = {s["title"]: s for s in signals["signals"]}
         non_evergreen = {t: s for t, s in by_title.items()
                          if s["category"] not in ("evergreen",)}
@@ -443,7 +485,7 @@ class WeekendConciergeTest(unittest.TestCase):
 
         # See the comment above in test_skeptic_provider_failure_keeps_items_unverified:
         # the "kill" note contains an em dash, so this must not force utf-8 either.
-        signals = json.load(open("state/weekend_signals.json"))
+        signals = json.load(open("state/weekend_signals.json", encoding="utf-8"))
         by_title = {s["title"]: s for s in signals["signals"]}
         non_evergreen = {t: s for t, s in by_title.items() if s["category"] != "evergreen"}
         self.assertTrue(non_evergreen)
