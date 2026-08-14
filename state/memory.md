@@ -1,6 +1,6 @@
 # Weekend Concierge Memory — updated 2026-08-14
 
-## Evergreen Catalog (69 entries)
+## Evergreen Catalog (71 entries)
 
 ### Ancient Theatre of Philippopolis
 **Location:** Plovdiv Old Town / in town
@@ -65,6 +65,12 @@ _Source: research_
 **Location:** Plovdiv
 **Discovered:** 2026-08-07 &nbsp; **Last suggested:** 2026-08-07
 Includes a fully enclosed outdoor park zone with inflatables and green space designed specifically for young kids.
+_Source: find_
+
+### Bunardzhik Hill Sunset Viewpoint
+**Location:** Bunardzhik (Liberators Hill), Central Plovdiv
+**Discovered:** 2026-08-14 &nbsp; **Last suggested:** 2026-08-14
+Easily walkable central climb with panoramic sunset views over the Thracian plain; no booking required and entirely language-neutral.
 _Source: find_
 
 ### Bunardzhik Hill sunset viewpoint
@@ -161,9 +167,9 @@ A spectacular historical site in the heart of the Old Town, offering an easy and
 _Source: find_
 
 ### Fantasy NeMuseum
-**Location:** Central Plovdiv (Stage Park area) / in town
-**Discovered:** 2026-07-02 &nbsp; **Last suggested:** never
-Hands-on, sensory-rich space of colourful installations and analog games with no 'do not touch' rules — a good rainy-day option.
+**Location:** Plovdiv / in town
+**Discovered:** 2026-07-02 &nbsp; **Last suggested:** 2026-08-14
+Hands-on sensory museum with colorful interactive installations and analog play where children are encouraged to touch and explore everything.
 **Practical:** Entry roughly 25 BGN for a parent + child combo.
 _Tags: indoor, interactive, art, paid_
 _Source: research_
@@ -191,6 +197,12 @@ Modern 26-decare equestrian complex with indoor and outdoor arenas — clean, we
 **Link:** https://konnabazafrigopan.com
 _Tags: animals, horses, indoor, outdoor, paid_
 _Source: research_
+
+### Frigopan Horse Base Pony Rides
+**Location:** Tsarimir (~15 min drive from Plovdiv)
+**Discovered:** 2026-08-14 &nbsp; **Last suggested:** 2026-08-14
+Clean and modern equestrian centre offering guided pony walks and friendly animal viewing suited for younger children.
+_Source: find_
 
 ### Frigopan Horse Base Pony Walk
 **Location:** Tsaratsovo (~15 min drive from Plovdiv)
@@ -522,10 +534,20 @@ Picturesque lake in a green park — feed ducks and swans, rent pedal boats, use
 _Tags: water, park, outdoor, free_
 _Source: research_
 
-## Suggestion Ledger (65 entries)
+## Suggestion Ledger (75 entries)
 
 - ✅ 2026-08-14 | Plovdiv Regional Natural History Museum | evergreen |  | sent score=60 — Compact natural history museum with taxidermy and a small aquarium — easy indoor fallback.
 - ✅ 2026-08-14 | Plovdiv City Art Gallery | evergreen |  | sent score=60 — Permanent Bulgarian painting collection across several central buildings — visual, so no language…
+- ✅ 2026-08-14 | Shake That Hill: Eldoria 2026 | event_lookahead | August 28–30, 2026 | sent score=80 — Confirmed on the official Shake That Hill website (shakethathill.com) for August 28–30, 2026.
+- ✅ 2026-08-14 | Overcoming Gravity: Atanas Patsev Centenary Exhibition | event_this_weekend | 12.08.2026 – 30.08.2026 | sent score=75 — Confirmed on the Plovdiv City Art Gallery official website (galleryplovdiv.com) listings for Hall…
+- ✅ 2026-08-14 | Molec – 'Where...' Live Tour Concert | event_this_weekend | Saturday, 15 August 2026, 20:30 | sent score=70 — Confirmed on Eventim.bg for the Molec concert at the Ancient Theatre.
+- ✅ 2026-08-14 | Sweeney Todd: The Demon Barber of Fleet Street | event_thisweek | Wednesday, 19 August 2026, 21:00 | sent score=75 — Confirmed on Eventim.bg for the Sweeney Todd performance at the Ancient Theatre.
+- ✅ 2026-08-14 | Shake That Hill: Eldoria 2026 Urban Arts & Music Festival | event_lookahead | 28.08.2026 – 30.08.2026 | sent score=85 — Confirmed on the official Shake That Hill website (shakethathill.com) for August 28–30, 2026.
+- ✅ 2026-08-14 | Lane closure and bus detours on Blvd. Peshtersko Shose for heating pipe works | civic_notice | 10.08.2026 – 24.08.2026 | sent score=80 — Confirmed via EVN Bulgaria announcement regarding heating pipe maintenance in Plovdiv.
+- ✅ 2026-08-14 | Construction begins on 80-decare Kan Krum Park renovation in Trakia | civic_opportunity | Groundbreaking announced August 2026 | sent score=80 — Confirmed by Plovdiv Municipality (plovdiv.bg) regarding the Kan Krum Park reconstruction project.
+- ✅ 2026-08-14 | Frigopan Horse Base Pony Rides | evergreen | Open daily (advance booking recommended) | sent score=83 — Clean and modern equestrian centre offering guided pony walks and friendly animal viewing suited…
+- ✅ 2026-08-14 | Fantasy NeMuseum | evergreen | Open Tuesday to Sunday, 10:00 - 19:00 | sent score=82 — Hands-on sensory museum with colorful interactive installations and analog play where children are…
+- ✅ 2026-08-14 | Bunardzhik Hill Sunset Viewpoint | evergreen | Open daily, best at sunset | sent score=75 — Easily walkable central climb with panoramic sunset views over the Thracian plain; no booking…
 - ✅ 2026-08-12 | Ostrova Park and Mini Zoo Pazardzhik | evergreen | Open daily | sent score=95 — A top family favorite featuring shady walking paths, extensive play areas, and a mini-zoo with…
 - ✅ 2026-08-12 | Stara Zagora Zoo | evergreen | Open daily, 09:00 - 18:00 | sent score=90 — A beautifully renovated woodland zoo nestled inside Ayazmoto Park offering wide paved walks, play…
 - ✅ 2026-08-12 | Farmers Market at Ribnitsa Park | evergreen | Saturdays, 09:00 - 13:00 | sent score=72 — Recurring outdoor morning market for fresh local produce and regional goods, fully accessible…
@@ -564,14 +586,4 @@ _Source: research_
 - ✅ 2026-07-10 | Festival of Fun for Children | event_lookahead | Monday, July 20 and July 27, 2026 (17:00–21:30) | sent score=95 — Plovdiv Stage Park at Youth Hill is a real venue that regularly hosts family-friendly outdoor…
 - ✅ 2026-07-10 | International Folklore Festival Street Parade | event_lookahead | July 27–31, 2026 (Daily parade at 17:30) | sent score=80 — The International Folklore Festival is a real recurring event in Plovdiv, and the street parades…
 - ✅ 2026-07-10 | Day Trip to Park-Island 'Svoboda' in Pazardzhik | evergreen | Always available (Best on sunny days) | sent score=100 — Highly rated by the family; features fantastic playgrounds and a small zoo area, making it a…
-- ✅ 2026-07-10 | Byala Reka Ecotrail Hike | evergreen | Always available | sent score=90 — A highly accessible, child-friendly trail of sturdy wooden bridges over a river, matching the…
-- ✅ 2026-07-03 | Light Up the Neighborhood – Theatre in the Park | event_lookahead | July 6 – July 14, 2026 | sent score=80 — Plovdiv regularly hosts outdoor cultural initiatives in July, making this plausible and…
-- ✅ 2026-07-03 | Regional Natural History Museum Visit | evergreen | Daily, 09:00 - 18:00 | sent score=98 — Directly loved by your daughter; this local gem features an aquarium, a terrarium, a digital…
-- ✅ 2026-07-03 | Children's Railway 'Banner of Peace' | evergreen | Wednesday - Sunday (midday break around 13:00) | sent score=95 — An absolute favorite for 4-year-olds: a real miniature train taking a safe, scenic loop complete…
-- ✅ 2026-07-03 | Aviation Museum Krumovo | evergreen | Wednesday - Sunday, 09:00 - 18:00 | sent score=90 — Spacious, safe, open-air grounds with dozens of massive airplanes and helicopters where your…
-- ✅ 2026-07-03 | Ayazmoto Park & Hall of Laughter | evergreen | Daily | sent score=85 — A massive, shady park with wide paths and a 'Hall of Laughter' filled with curved sensory mirrors.…
-- ✅ 2026-07-02 | State Puppet Theatre Weekend Performances | event_this_weekend | Saturday and Sunday, July 4-5, 2026, at 10:30 and 11:45 | sent score=95 — Verified as a real, family-friendly venue in Plovdiv with regular weekend performances suitable for…
-- ✅ 2026-07-02 | Craft School Plovdiv Workshops | event_this_weekend | Running through Saturday, July 4, 2026 | sent score=75 — Verified as a real entity in Plovdiv hosting workshops suitable for children.
-- ✅ 2026-07-02 | PhillGood Festival at the Rowing Canal | event_lookahead | July 17–19, 2026 | sent score=70 — Verified as a recurring family-friendly event at the Rowing Canal in Plovdiv.
-- ✅ 2026-07-02 | Day Trip to Bachkovo Monastery | evergreen | Always available (best on clear days) | sent score=85 — A highly accessible, beautiful mountain monastery with short walking paths, river views, and local…
-_... and 15 earlier entries_
+_... and 25 earlier entries_

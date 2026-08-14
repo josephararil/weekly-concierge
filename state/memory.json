@@ -228,9 +228,9 @@
       "last_suggested": null
     },
     "Fantasy NeMuseum": {
-      "location": "Central Plovdiv (Stage Park area)",
+      "location": "Plovdiv",
       "area": "in town",
-      "description": "Hands-on, sensory-rich space of colourful installations and analog games with no 'do not touch' rules — a good rainy-day option.",
+      "description": "Hands-on sensory museum with colorful interactive installations and analog play where children are encouraged to touch and explore everything.",
       "tags": [
         "indoor",
         "interactive",
@@ -241,7 +241,8 @@
       "practical": "Entry roughly 25 BGN for a parent + child combo.",
       "discovered": "2026-07-02",
       "source": "research",
-      "last_suggested": null
+      "last_suggested": "2026-08-14",
+      "audience": "family"
     },
     "State Puppet Theatre Plovdiv": {
       "location": "14 Hristo G. Danov St, Plovdiv",
@@ -1018,6 +1019,30 @@
       "source": "find",
       "last_suggested": "2026-08-12",
       "audience": "adult"
+    },
+    "Frigopan Horse Base Pony Rides": {
+      "location": "Tsarimir (~15 min drive from Plovdiv)",
+      "area": "",
+      "description": "Clean and modern equestrian centre offering guided pony walks and friendly animal viewing suited for younger children.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-08-14",
+      "source": "find",
+      "last_suggested": "2026-08-14",
+      "audience": "family"
+    },
+    "Bunardzhik Hill Sunset Viewpoint": {
+      "location": "Bunardzhik (Liberators Hill), Central Plovdiv",
+      "area": "",
+      "description": "Easily walkable central climb with panoramic sunset views over the Thracian plain; no booking required and entirely language-neutral.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-08-14",
+      "source": "find",
+      "last_suggested": "2026-08-14",
+      "audience": "adult"
     }
   },
   "ledger": [
@@ -1735,6 +1760,116 @@
       "score": 60,
       "verdict": "sent",
       "note": "Permanent Bulgarian painting collection across several central buildings — visual, so no language barrier."
+    },
+    {
+      "date": "2026-08-14",
+      "title": "Shake That Hill: Eldoria 2026",
+      "category": "event_lookahead",
+      "when": "August 28–30, 2026",
+      "location": "Youth Hill (Mladezhki Halm), Plovdiv",
+      "url": "",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Confirmed on the official Shake That Hill website (shakethathill.com) for August 28–30, 2026."
+    },
+    {
+      "date": "2026-08-14",
+      "title": "Overcoming Gravity: Atanas Patsev Centenary Exhibition",
+      "category": "event_this_weekend",
+      "when": "12.08.2026 – 30.08.2026",
+      "location": "Hall '2019' (Gladstone 32), Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Confirmed on the Plovdiv City Art Gallery official website (galleryplovdiv.com) listings for Hall 2019."
+    },
+    {
+      "date": "2026-08-14",
+      "title": "Molec – 'Where...' Live Tour Concert",
+      "category": "event_this_weekend",
+      "when": "Saturday, 15 August 2026, 20:30",
+      "location": "Ancient Theatre, Plovdiv",
+      "url": "",
+      "score": 70,
+      "verdict": "sent",
+      "note": "Confirmed on Eventim.bg for the Molec concert at the Ancient Theatre."
+    },
+    {
+      "date": "2026-08-14",
+      "title": "Sweeney Todd: The Demon Barber of Fleet Street",
+      "category": "event_thisweek",
+      "when": "Wednesday, 19 August 2026, 21:00",
+      "location": "Ancient Theatre, Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Confirmed on Eventim.bg for the Sweeney Todd performance at the Ancient Theatre."
+    },
+    {
+      "date": "2026-08-14",
+      "title": "Shake That Hill: Eldoria 2026 Urban Arts & Music Festival",
+      "category": "event_lookahead",
+      "when": "28.08.2026 – 30.08.2026",
+      "location": "Youth Hill (Mladezhki Halm), Plovdiv",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Confirmed on the official Shake That Hill website (shakethathill.com) for August 28–30, 2026."
+    },
+    {
+      "date": "2026-08-14",
+      "title": "Lane closure and bus detours on Blvd. Peshtersko Shose for heating pipe works",
+      "category": "civic_notice",
+      "when": "10.08.2026 – 24.08.2026",
+      "location": "Blvd. Peshtersko Shose (between ul. Tsarevets and ul. Raya), Zapaden district, Plovdiv",
+      "url": "",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Confirmed via EVN Bulgaria announcement regarding heating pipe maintenance in Plovdiv."
+    },
+    {
+      "date": "2026-08-14",
+      "title": "Construction begins on 80-decare Kan Krum Park renovation in Trakia",
+      "category": "civic_opportunity",
+      "when": "Groundbreaking announced August 2026",
+      "location": "Kan Krum Park, Trakia district, Plovdiv",
+      "url": "",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Confirmed by Plovdiv Municipality (plovdiv.bg) regarding the Kan Krum Park reconstruction project."
+    },
+    {
+      "date": "2026-08-14",
+      "title": "Frigopan Horse Base Pony Rides",
+      "category": "evergreen",
+      "when": "Open daily (advance booking recommended)",
+      "location": "Tsarimir (~15 min drive from Plovdiv)",
+      "url": "",
+      "score": 83,
+      "verdict": "sent",
+      "note": "Clean and modern equestrian centre offering guided pony walks and friendly animal viewing suited for younger children."
+    },
+    {
+      "date": "2026-08-14",
+      "title": "Fantasy NeMuseum",
+      "category": "evergreen",
+      "when": "Open Tuesday to Sunday, 10:00 - 19:00",
+      "location": "Plovdiv",
+      "url": "",
+      "score": 82,
+      "verdict": "sent",
+      "note": "Hands-on sensory museum with colorful interactive installations and analog play where children are encouraged to touch and explore everything."
+    },
+    {
+      "date": "2026-08-14",
+      "title": "Bunardzhik Hill Sunset Viewpoint",
+      "category": "evergreen",
+      "when": "Open daily, best at sunset",
+      "location": "Bunardzhik (Liberators Hill), Central Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Easily walkable central climb with panoramic sunset views over the Thracian plain; no booking required and entirely language-neutral."
     }
   ]
 }
