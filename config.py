@@ -24,32 +24,10 @@ ENABLED_SOURCES = [
 MAX_HARVEST_ITEMS = 200
 
 # ── LLM models ──────────────────────────────────────────────────────────────
-# Per-stage model roles. Values are canonical Anthropic model names; Gemini
-# equivalents are looked up in GEMINI_MODEL_MAP below.
-MODEL_FIND      = "claude-haiku-4-5-20251001"  # Stage 1: fast + web-search capable, consolidates harvest+leads
-MODEL_SKEPTIC   = "claude-haiku-4-5-20251001"          # Stage 2: stronger reasoning, the hallucination guard
-MODEL_CONCIERGE = "claude-haiku-4-5-20251001"          # Stage 3: strong prose writer, no search
-
-# Maps Anthropic model names (canonical keys) to Gemini equivalents.
-# Used when LLM_PROVIDER=gemini. Add a new entry here whenever a new model role
-# is added; never hard-code Gemini model names anywhere else.
-#
-# On Gemini, search and reasoning are split across THREE models (see common._gemini):
-#   1. GEMINI_SEARCH_MODEL below — does the live google_search grounding only.
-#   2. gemini-flash-latest        — Stage 1 Find: parses grounding, scores candidates.
-#   3. gemini-pro-latest          — Stage 2/3 Skeptic + Concierge: verify and write.
-# Only model #1 ever carries the google_search tool; #2 and #3 run tools-free.
-GEMINI_MODEL_MAP = {
-    "claude-haiku-4-5-20251001": "gemini-flash-latest",   # Stage 1 Find reasoning
-    "claude-sonnet-4-6":         "gemini-pro-latest",      # Stage 2/3 Skeptic + Concierge reasoning
-}
-
-# Model that performs the live web-search grounding (google_search tool).
-# Flagship models (flash-latest / pro-latest) time out ~99% of the time when
-# google_search is attached — Google's grounding gateway is capacity-starved for
-# them. The lite tier survives it reliably. Change this freely; it is the only
-# place the search model is named.
-GEMINI_SEARCH_MODEL = "gemini-3.1-flash-lite"
+# Deliberately empty. Model selection, the fallback chain and all retry/backoff
+# knobs live in llm_chain.py's defaults, overridden by LLM_* environment
+# variables (GitHub repo variables in CI). Never name a model here again --
+# llm_chain.py is shared across projects and is the single source of truth.
 
 # Optional per-stage provider overrides. None = use the global LLM_PROVIDER env var.
 # Set to "anthropic" or "gemini" to run a specific stage on a different provider.

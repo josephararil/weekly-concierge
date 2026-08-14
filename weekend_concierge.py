@@ -38,6 +38,7 @@ except ImportError:
     pass
 import config as C
 import common as X
+import llm_chain as L
 import memory as M
 import scrapers
 import weather
@@ -271,6 +272,28 @@ def format_weather(days):
     return "\n".join(lines)
 
 
+def degraded_summary(stage_results):
+    """(subject_prefix, banner_html, banner_text, log_line) for a run where any LLM stage
+    failed outright. A stage that merely fell back to a later model is the chain WORKING --
+    it gets a log line only, never a banner, or the flag stops meaning anything."""
+    failed = [name for name, r in stage_results if not r.ok]
+    fell   = [name for name, r in stage_results if r.ok and r.fell_back]
+    log = ""
+    if failed or fell:
+        log = (f"- LLM: {len(failed)} stage(s) failed ({', '.join(failed) or 'none'}); "
+               f"{len(fell)} fell back to a later model ({', '.join(fell) or 'none'})")
+    if not failed:
+        return "", "", "", log
+    stages = ", ".join(failed)
+    banner_html = ('<p><b>Heads up:</b> this email is incomplete. The following stage(s) could not be '
+                   f'reached after retrying every configured model: {stages}. Sections below may be '
+                   'thin or missing, and some items were sent without verification.</p>')
+    banner_text = ("Heads up: this email is incomplete. The following stage(s) could not be reached "
+                   f"after retrying every configured model: {stages}. Sections below may be thin or "
+                   "missing, and some items were sent without verification.\n")
+    return "[degraded] ", banner_html, banner_text, log
+
+
 # --- fallback email (used only if CONCIERGE fails or returns incomplete output) ---
 
 def _fallback_email(sections, today):
@@ -306,7 +329,7 @@ def _fallback_email(sections, today):
 
 # --- markdown log ---
 
-def write_log(today, candidates, sent_pools, weather_text, subject):
+def write_log(today, candidates, sent_pools, weather_text, subject, llm_note=""):
     """sent_pools: list of (pool_name, items) — the five candidate pools, so every item sent is
     attributable to a pool, and every drop is attributable to a score against a named floor.
     That is what the owner tunes the floors from."""
@@ -317,6 +340,8 @@ def write_log(today, candidates, sent_pools, weather_text, subject):
     lines += [f"- {day}" for day in weather_text.splitlines()]
     lines.append("")
     lines.append(f"_{len(candidates)} candidate(s) considered · {total_sent} sent._")
+    if llm_note:
+        lines.append(llm_note)
     lines.append("")
     lines.append("## Sent this run")
     for pool_name, items in sent_pools:
@@ -370,16 +395,19 @@ def filter_seen(pool, seen_state):
 
 # --- stage 1 ---
 
-def _run_find(label, prompt_text, search_text, schema):
+def _run_find(label, prompt_text, search_text, schema, stage_results):
     """One Stage-1 FIND call. Each path fails independently to []: one dead path must never
     cost us the other, mirroring the per-source resilience in scrapers.harvest()."""
     try:
-        raw = X.llm(
-            messages=[{"role": "user", "content": prompt_text}],
-            model=C.MODEL_FIND, max_tokens=C.MAX_TOKENS_FIND, want_search=True,
-            response_schema=schema, provider=C.PROVIDER_FIND, search_prompt=search_text,
-        )
-        found = (X.parse_json_block(raw) or {}).get("candidates", [])
+        res = L.call_llm(prompt_text, stage=f"find-{label}", max_tokens=C.MAX_TOKENS_FIND,
+                         want_search=True, search_prompt=search_text,
+                         search_preamble=C.SEARCH_RESULTS_PREAMBLE, response_schema=schema,
+                         provider=C.PROVIDER_FIND, web_search_max_uses=C.WEB_SEARCH_MAX_USES)
+        stage_results.append((f"find-{label}", res))
+        if not res.ok:
+            print(f"  [FAIL] Stage 1 ({label}) unavailable: {res.error} — treating as 0 candidates")
+            return []
+        found = (X.parse_json_block(res.text) or {}).get("candidates", [])
     except Exception as e:
         print(f"  [FAIL] Stage 1 ({label}) LLM/parse error: {type(e).__name__}: {e} "
               f"— treating as 0 candidates")
@@ -392,8 +420,9 @@ def _run_find(label, prompt_text, search_text, schema):
 def main():
     today_iso = X.today_iso()
     today = dt.date.today()
-    _section(f"WEEKEND CONCIERGE · {today_iso} · provider={X.PROVIDER}")
-    print(f"  models: find={C.MODEL_FIND} · skeptic={C.MODEL_SKEPTIC} · concierge={C.MODEL_CONCIERGE}")
+    stage_results = []
+    _section(f"WEEKEND CONCIERGE · {today_iso} · provider={L.resolved_provider()}")
+    print(f"  llm config: {L.resolved_config()}")
 
     # Memory + feedback, loaded once and injected into every stage prompt. Seed the
     # evergreen catalog with SEED_EVERGREEN on first run only (existing entries win).
@@ -445,7 +474,7 @@ def main():
     # rather than a widening of it.
     _section("STAGE 1 · FIND")
     find_directive = (C.SEARCH_DIRECTIVE_ANTHROPIC
-                      if X.resolved_provider(C.PROVIDER_FIND) == "anthropic" else "")
+                      if L.resolved_provider(C.PROVIDER_FIND) == "anthropic" else "")
     window = {"window_start": window_start, "window_end": window_end}
 
     family_found = _run_find(
@@ -458,6 +487,7 @@ def main():
                                       radius_minutes=C.RADIUS_MINUTES,
                                       lookahead_weeks=C.LOOKAHEAD_WEEKS),
         C.STAGE1_FAMILY_SCHEMA,
+        stage_results,
     )
     for c in family_found:
         c["audience"] = "family"
@@ -472,6 +502,7 @@ def main():
                                      radius_minutes=C.RADIUS_MINUTES,
                                      lookahead_weeks=C.LOOKAHEAD_WEEKS),
         C.STAGE1_ADULT_SCHEMA,
+        stage_results,
     )
     for c in adult_found:
         c["audience"] = "adult"
@@ -497,18 +528,22 @@ def main():
     # Stage 2: SKEPTIC -- one batch verification call, the hallucination guard.
     _section("STAGE 2 · SKEPTIC")
     verdicts_by_id = {}
+    skeptic_available = False
     if candidates:
         try:
-            raw2 = X.llm(
-                messages=[{"role": "user", "content": C.SKEPTIC_PROMPT.format(
+            res2 = L.call_llm(
+                C.SKEPTIC_PROMPT.format(
                     today=today_iso, home_area=C.HOME_AREA, radius_minutes=C.RADIUS_MINUTES,
                     candidates=json.dumps(candidates, ensure_ascii=False, indent=2),
                     memory=mem_text_shared,
-                )}],
-                model=C.MODEL_SKEPTIC, max_tokens=C.MAX_TOKENS_SKEPTIC, want_search=True,
+                ),
+                stage="skeptic", max_tokens=C.MAX_TOKENS_SKEPTIC, want_search=True,
+                search_prompt=None, search_preamble=C.SEARCH_RESULTS_PREAMBLE,
                 response_schema=C.STAGE2_RESPONSE_SCHEMA, provider=C.PROVIDER_SKEPTIC,
             )
-            verdicts = X.parse_json_block(raw2) or []
+            stage_results.append(("skeptic", res2))
+            skeptic_available = res2.ok
+            verdicts = X.parse_json_block(res2.text) or []
         except Exception as e:
             print(f"  [FAIL] Stage 2 LLM/parse error: {type(e).__name__}: {e}")
             verdicts = []
@@ -522,6 +557,7 @@ def main():
 
     survivors = []
     for c in candidates:
+        verified = True
         v = verdicts_by_id.get(c["candidate_id"])
         is_evergreen = c.get("category") == "evergreen"
         if v is not None:
@@ -541,11 +577,21 @@ def main():
             # lean toward keep (only a positive reason to believe it's fake should kill it).
             verdict, note = "keep", "no skeptic verdict matched — kept by default"
         else:
-            # SKEPTIC failed outright (no verdicts at all): non-evergreen items are
-            # entirely unverified, so drop them rather than risk a hallucination.
-            verdict, note = "kill", "skeptic verification failed — dropping unverified event"
+            # No verdicts at all -- two very different causes, and conflating them is
+            # Invariant SKEPTIC-INFRA-IS-NOT-REJECTION.
+            if skeptic_available:
+                # SKEPTIC ran and returned nothing usable: treat as a real rejection.
+                verdict, note = "kill", "skeptic verification failed — dropping unverified event"
+            else:
+                # SKEPTIC never executed (every model in the chain failed). Killing here
+                # would let one provider outage empty the whole email, which is exactly
+                # what happened on 2026-08-14. Keep the item, flag it UNVERIFIED, and let
+                # the degraded-run banner tell the reader why.
+                verdict = "keep"
+                note = "SKEPTIC unavailable (provider failure) — sent without verification"
+                verified = False
 
-        c["verdict"], c["note"] = verdict, note
+        c["verdict"], c["note"], c["verified"] = verdict, note, verified
         if verdict == "kill":
             print(f"    [KILL    ] #{c['candidate_id']} {c.get('title', '?')} — {note}")
             continue
@@ -642,16 +688,17 @@ def main():
 
     subject, html, text = None, "", ""
     try:
-        raw3 = X.llm(
-            messages=[{"role": "user", "content": C.CONCIERGE_PROMPT.format(
+        res3 = L.call_llm(
+            C.CONCIERGE_PROMPT.format(
                 today=today_iso, home_area=C.HOME_AREA,
                 candidates=json.dumps(concierge_candidates, ensure_ascii=False, indent=2),
                 weather=weather_text, feedback=feedback, memory=mem_text_shared, taste=taste,
-            )}],
-            model=C.MODEL_CONCIERGE, max_tokens=C.MAX_TOKENS_CONCIERGE, want_search=False,
+            ),
+            stage="concierge", max_tokens=C.MAX_TOKENS_CONCIERGE, want_search=False,
             response_schema=C.CONCIERGE_RESPONSE_SCHEMA, provider=C.PROVIDER_CONCIERGE,
         )
-        out = X.parse_json_block(raw3) or {}
+        stage_results.append(("concierge", res3))
+        out = X.parse_json_block(res3.text) or {}
         subject, html, text = out.get("subject"), out.get("html", ""), out.get("text", "")
     except Exception as e:
         print(f"  [FAIL] Stage 3 LLM/parse error: {type(e).__name__}: {e} — using fallback email")
@@ -674,6 +721,11 @@ def main():
         html = html or fallback_html
         text = text or fallback_text
     subject = subject or f"Weekend Concierge — {today_iso}"
+
+    degraded_prefix, banner_html, banner_text, llm_log_line = degraded_summary(stage_results)
+    html = banner_html + html
+    text = banner_text + text
+    subject = degraded_prefix + subject
 
     # Memory write: ledger entry per candidate that reached Stage 2; evergreen catalog
     # grows with anything new SKEPTIC confirmed, and included evergreens get last_suggested
@@ -710,6 +762,7 @@ def main():
         "civic_value": c.get("civic_value"), "language_barrier": c.get("language_barrier"),
         "reason": c.get("reason"), "source_url": c.get("source_url"),
         "confidence": c.get("confidence"), "verdict": c.get("verdict"), "note": c.get("note"),
+        "verified": c.get("verified", True),
     } for c in candidates]
     X.save_json("weekend_signals.json", {"generated": today_iso, "signals": signals})
     write_log(today_iso, candidates, [
@@ -718,7 +771,7 @@ def main():
         ("Good to know — civic", selected_civic),
         ("Family evergreens", selected_family_evergreens),
         ("Adult evergreens", selected_adult_evergreens),
-    ], weather_text, subject)
+    ], weather_text, subject, llm_note=llm_log_line)
     print("  wrote state/weekend_signals.json, state/weekend_log.md")
 
     # Email -- always sends (weekly ritual; evergreen guarantees non-empty content).
