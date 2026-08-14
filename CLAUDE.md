@@ -14,17 +14,15 @@ sources prove worthwhile.
 `llm_chain.py` is the newest module and the only one written to leave this repo: it is
 project-agnostic on purpose, and **extracting it to its own repo is the first task of the
 `deal-hunter` session** that adopts it. Until then all three pipelines still carry the same
-un-chained `common.py`. Its fallback path has **not been exercised against the live API** — only
-against canned responses — so the forced-fallback drill (a deliberately bogus first model in
-`LLM_MODEL_CHAIN`) is the check that matters and has not yet been run.
+un-chained `common.py`. **Its fallback path is now confirmed against the live API** — see the
+2026-08-14 verification runs below. Both halves fired: the forced-fallback drill (a bogus first
+model returning 404) and, unprompted, a real 503 exhaustion on the concierge stage.
 
 The **dual-audience** split (adult culture + local civic facts alongside the family
-recommendations) has landed but has **not yet been judged against a real email**. The floors —
-`MIN_ADULT_SCORE = 70` especially — are deliberate first guesses and expect tuning against the
-`[LOW-FIT ]` lines in `state/weekend_log.md` after ~3 weeks of real runs. Nothing in the test
-suite says anything about whether `adult_fit` actually tracks the owner's taste, whether the
-email reads as one artifact rather than two stapled newsletters, or whether the adult path finds
-anything at all in Plovdiv.
+recommendations) has now been judged against a real email — see the same section. The floors —
+`MIN_ADULT_SCORE = 70` especially — are still deliberate first guesses and expect tuning against
+the `[LOW-FIT ]` lines in `state/weekend_log.md` after ~3 weeks of real runs. One good email is
+not calibration.
 
 - `plan.md` captures the original design rationale and the intended end-state; consult it when
   a change might conflict with a core design decision.
@@ -358,9 +356,9 @@ Volume is otherwise **uncapped** — floors are the only control.
 | `GEMINI_API_KEY` | secret | Gemini LLM calls (default provider) |
 | `ANTHROPIC_API_KEY` | secret | Anthropic LLM calls (if `LLM_PROVIDER=anthropic`) |
 | `LLM_PROVIDER` | repo variable | `"gemini"` (default) or `"anthropic"` |
-| `LLM_MODEL_CHAIN` | repo variable, optional | Reasoning models, comma-separated, tried left to right. Default `gemini-flash-latest,gemini-3.1-flash-lite` |
+| `LLM_MODEL_CHAIN` | repo variable, optional | Reasoning models, comma-separated, tried left to right. Default `gemini-flash-latest,gemini-3.1-flash-lite`. **Set in production to explicit numbered models** rather than `-latest`, which resolves to the newest and most load-shed flash — see the 2026-08-14 verification runs. |
 | `LLM_SEARCH_MODEL_CHAIN` | repo variable, optional | Search-step models. Default `gemini-3.1-flash-lite,gemini-flash-latest` |
-| `LLM_ATTEMPTS_PER_MODEL` | repo variable, optional | HTTP attempts per model before advancing. Default `4` |
+| `LLM_ATTEMPTS_PER_MODEL` | repo variable, optional | HTTP attempts per model before advancing. Default `4`. **Lower this before raising `LLM_BACKOFF_SECONDS`** — advancing beats waiting on a shedding model. |
 | `LLM_BACKOFF_SECONDS` | repo variable, optional | Sleep between attempts; the last value repeats. Default `5,15,45` |
 | `LLM_TIMEOUT_SECONDS` | repo variable, optional | Per-request HTTP timeout. Default `180` |
 | `LLM_RETRY_STATUSES` | repo variable, optional | Retry the **same** model on these. Default `429,500,502,503,504` |
@@ -395,7 +393,16 @@ python test_memory.py
 
 Leave SMTP vars unset to test without sending (the send is caught and printed).
 
-## Known-bad calibration point: the 2026-08-14 run
+**`.env` works for `weekend_concierge.py` only.** It calls `load_dotenv()` behind a try/except,
+so a `.env` at the repo root supplies `GEMINI_API_KEY`/SMTP for the pipeline. `llm_chain.py`
+deliberately imports nothing but stdlib + `requests` (that portability constraint is the whole
+point of the module), so running it standalone reads the **process** environment only — a `.env`
+is invisible to it and the run reports `HTTP 403 ... unregistered callers`, which looks like a
+dead key rather than an unset one. Export the variable in the shell before `python llm_chain.py`.
+
+## Known-bad calibration point: the 2026-08-14 scheduled run
+
+(Not to be confused with the 2026-08-14 *manual* verification runs below, which succeeded.)
 
 The run produced a **blank email**. Do not re-diagnose this as a model-quality or prompt problem —
 it was infrastructure, and the evidence is specific:
@@ -498,6 +505,56 @@ municipal utility maintenance notice". Nothing in the pipeline could distinguish
 seven real ones, which is what motivated `verified` and the `UNVERIFIED` log line. Treat this
 run as the reference point when tuning: the adult path does find real things in Plovdiv, and
 the failure mode to watch is confident-sounding verification, not empty output.
+
+## Known-good calibration point: the 2026-08-14 manual verification runs
+
+Two `workflow_dispatch` runs after PR #17 merged, which together closed the two things the test
+suite structurally cannot reach.
+
+**The fallback chain works live, on both trigger paths.** With
+`LLM_MODEL_CHAIN=zzz-not-a-real-model,gemini-flash-latest` the log read
+`zzz-not-a-real-model exhausted (HTTP 404); advancing to gemini-flash-latest` — the 404
+advance-without-retry path. Then in the clean run the chain fired *unprompted* on a real outage:
+`gemini-3.7-flash` 503'd four times on the concierge stage and the run completed on
+`gemini-3.6-flash`. The email arrived complete, and — correctly — with **no** `[degraded]` prefix:
+`weekend_log.md` recorded `0 stage(s) failed (none); 1 fell back to a later model (concierge)`.
+That is the fall-back-is-not-failure distinction behaving exactly as designed. **This is the run
+to point at if anyone proposes simplifying the two-level retry loop.**
+
+**`gemini-flash-latest` is the model that sheds, and its numbered equivalent sheds identically.**
+Across the clean run `gemini-3.7-flash` returned 503 on **9 of 12** reasoning attempts while
+`gemini-3.6-flash` served 1/1 and `gemini-3.1-flash-lite` served 3/3 search calls on the same key
+in the same window — the same signature as the blank-email run's 13-of-14, which suggests
+`-latest` simply resolves to the newest flash and that the newest flash is the congested one.
+**Consequence for tuning: prefer a lower `LLM_ATTEMPTS_PER_MODEL` over a longer backoff.** Four
+attempts against the congested model spent ~140s sleeping to reach an answer the next model in
+the chain would have given immediately; the chain is the resilience mechanism, the retry loop is
+only there for a genuine blip. Do not "fix" a 503-heavy log by lengthening
+`LLM_BACKOFF_SECONDS` — that spends `LLM_TOTAL_BUDGET_SECONDS` to wait on a model that is
+shedding load on purpose.
+
+**The email reads as one artifact.** The clearest evidence is that the two FIND paths
+independently surfaced the same festival (Shake That Hill, `family_fit=80` and `adult_fit=85`)
+and CONCIERGE wrote it as a **single paragraph** that hands off from daytime craft corners to the
+evening electronic stages — the dual-audience intent working in one sentence rather than two
+sections. Note the cost, accepted: there is no cross-path dedupe, so one event consumed 2 of the
+10 sent slots. Keys differed only because the two titles slugged differently; identical
+title+date across paths would collide on one key, and whichever path was written first would
+claim it.
+
+**SKEPTIC has teeth now.** 2 kills of 14 with specific reasons ("Could not confirm the existence
+of a 'Kids Expo Plovdiv' for these dates"), against 2026-08-11's 13-of-14 keep with zero kills.
+Both `UNVERIFIED` items were among the killed, so **zero uncorroborated items were sent** — the
+tuning signal reading clean for the first time. One caveat worth keeping in view: the surviving
+notes cite named sources (`galleryplovdiv.com`, Eventim.bg, an EVN announcement), which is
+exactly the shape of the one 2026-08-11 item that was confidently sourced and still wrong.
+
+**Watch item, not yet a defect:** the Peshtersko Shose closure re-sent a week later under a
+different title (framed as heating-pipe works rather than the original closure notice), so it
+keyed differently and the 21-day cooldown did not suppress it. Re-announcing a still-active
+closure is defensible. A *third* appearance under a third title would make it the street-washing
+failure mode in a new coat, and `is_recurring_maintenance()`'s title-only matching would not
+catch it.
 
 ## Style
 
