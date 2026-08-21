@@ -855,7 +855,7 @@
       "practical": "Paved path most of the way; nothing to book, nothing to pay.",
       "discovered": "2026-08-11",
       "source": "seed-adult",
-      "last_suggested": null,
+      "last_suggested": "2026-08-21",
       "audience": "adult"
     },
     "Roman Stadium of Philippopolis": {
@@ -1043,6 +1043,18 @@
       "source": "find",
       "last_suggested": "2026-08-14",
       "audience": "adult"
+    },
+    "Island Park Svoboda (Остров Свобода)": {
+      "location": "Island Park Svoboda, Pazardzhik",
+      "area": "",
+      "description": "A top family favorite featuring extensive play grounds, shaded walking trails, and small animals on a river island.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-08-21",
+      "source": "find",
+      "last_suggested": "2026-08-21",
+      "audience": "family"
     }
   },
   "ledger": [
@@ -1870,6 +1882,149 @@
       "score": 75,
       "verdict": "sent",
       "note": "Easily walkable central climb with panoramic sunset views over the Thracian plain; no booking required and entirely language-neutral."
+    },
+    {
+      "date": "2026-08-21",
+      "title": "TheatAir 2026 (13th International Street Arts Festival)",
+      "category": "event_lookahead",
+      "when": "September 4–7, 2026",
+      "location": "Open-air public spaces, Plovdiv",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com for September 4–7, 2026."
+    },
+    {
+      "date": "2026-08-21",
+      "title": "Kose Bose (Косе Босе) Puppet Show",
+      "category": "event_lookahead",
+      "when": "Saturday, September 12, 2026",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 92,
+      "verdict": "sent",
+      "note": "Confirmed on the State Puppet Theatre Plovdiv website for September 12, 2026."
+    },
+    {
+      "date": "2026-08-21",
+      "title": "Festival #BeActive Asenovgrad",
+      "category": "event_lookahead",
+      "when": "September 1–6, 2026",
+      "location": "Various sports clubs & parks, Asenovgrad",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Confirmed on asenovgrad.bg and plovdivnow.bg for September 1–6, 2026 in Asenovgrad."
+    },
+    {
+      "date": "2026-08-21",
+      "title": "Stand-up Comedy in English: Elena Gabrielle – \"Disturb the Vibe\"",
+      "category": "event_lookahead",
+      "when": "Wednesday, September 23, 2026",
+      "location": "The Comedy Club Plovdiv, 15 Gladstone St, Plovdiv",
+      "url": "https://www.eventbrite.com",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on eventbrite.com and elenagabrielle.com for September 23, 2026 at Comedy Club Plovdiv."
+    },
+    {
+      "date": "2026-08-21",
+      "title": "Rock Opera: \"Jesus Christ Superstar\" at Opera Open 2026",
+      "category": "event_this_weekend",
+      "when": "Saturday, August 22, 2026, 21:00",
+      "location": "Ancient Theatre of Plovdiv (Античен театър), Old Town, Plovdiv",
+      "url": "https://www.eventim.bg",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Confirmed on eventim.bg and visitplovdiv.com for August 22, 2026 at the Ancient Theatre."
+    },
+    {
+      "date": "2026-08-21",
+      "title": "Concert: \"A Night at the Opera with the Music of Queen\"",
+      "category": "event_thisweek",
+      "when": "Monday, August 24, 2026, 20:30",
+      "location": "Ancient Theatre of Plovdiv, Old Town, Plovdiv",
+      "url": "https://allevents.in",
+      "score": 72,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and operabase.com for August 24, 2026 at the Ancient Theatre."
+    },
+    {
+      "date": "2026-08-21",
+      "title": "Live Outdoor Concert: Italian Singer Al Bano",
+      "category": "event_lookahead",
+      "when": "Sunday, August 30, 2026, 20:00",
+      "location": "Ancient Theatre of Plovdiv, Old Town, Plovdiv",
+      "url": "https://allevents.in",
+      "score": 70,
+      "verdict": "sent",
+      "note": "Confirmed on stubhub.com and eventim.bg for August 30, 2026 at the Ancient Theatre."
+    },
+    {
+      "date": "2026-08-21",
+      "title": "Slow. Art. Consumption. Festival of Analog Art",
+      "category": "event_lookahead",
+      "when": "September 4–26, 2026",
+      "location": "Elysium Cultural Center, 2 Dusho Hadzhidekov St, Plovdiv",
+      "url": "",
+      "score": 74,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com for September 4–26, 2026 at Elysium Cultural Center."
+    },
+    {
+      "date": "2026-08-21",
+      "title": "New Commercial Retail Park: EastRoad Retail Park",
+      "category": "civic_opportunity",
+      "when": "Newly opened / ongoing",
+      "location": "Eastern Ring Road (near Skobeleva Maika cloverleaf & Skutare turnoff), Plovdiv",
+      "url": "https://citybuild.bg",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Confirmed on citybuild.bg regarding the opening of EastRoad Retail Park on the eastern ring road of Plovdiv."
+    },
+    {
+      "date": "2026-08-21",
+      "title": "Major Central Street Closure on Dr. G. M. Dimitrov Street",
+      "category": "civic_notice",
+      "when": "Until September 13, 2026",
+      "location": "Ul. Dr. G. M. Dimitrov (between Tsar Asen I St and Avksentiy Veleshki St), Central Plovdiv",
+      "url": "https://plovdivnow.bg",
+      "score": 90,
+      "verdict": "sent",
+      "note": "Confirmed on 24chasa.bg for road reconstruction and closure until September 13, 2026."
+    },
+    {
+      "date": "2026-08-21",
+      "title": "Football Match Traffic Disruption: Lokomotiv Plovdiv vs. Arda Kardzhali",
+      "category": "civic_notice",
+      "when": "Sunday, August 23, 2026",
+      "location": "Lokomotiv Stadium (Lauta Park), Plovdiv",
+      "url": "https://bnr.bg",
+      "score": 65,
+      "verdict": "sent",
+      "note": "Confirmed on forebet.com and oddspedia.com for August 23, 2026 at Lokomotiv Stadium."
+    },
+    {
+      "date": "2026-08-21",
+      "title": "Island Park Svoboda (Остров Свобода)",
+      "category": "evergreen",
+      "when": "Open daily",
+      "location": "Island Park Svoboda, Pazardzhik",
+      "url": "",
+      "score": 96,
+      "verdict": "sent",
+      "note": "A top family favorite featuring extensive play grounds, shaded walking trails, and small animals on a river island."
+    },
+    {
+      "date": "2026-08-21",
+      "title": "Bunardzhik Hill sunset viewpoint",
+      "category": "evergreen",
+      "when": "",
+      "location": "Bunardzhik (Hill of the Liberators), Plovdiv",
+      "url": "",
+      "score": 60,
+      "verdict": "sent",
+      "note": "A short climb to the best free view over the city — a genuinely good hour around sunset."
     }
   ]
 }

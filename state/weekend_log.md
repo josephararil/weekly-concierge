@@ -1,50 +1,55 @@
-# Weekend Concierge — 2026-08-14
+# Weekend Concierge — 2026-08-21
 
-**Subject:** Plovdiv Weekly: Open-Air Nights, Centenary Art & Weekend Ideas
+**Subject:** Plovdiv this week: Rock opera under the stars, shady island escapes & street closures
 
 **Weather:**
 
-- Sat (2026-08-15): partly cloudy, 16.0-28.8°C (feels 15.4-27.3°C), 44% humidity, 40% cloud cover, 0% chance of rain
-- Sun (2026-08-16): partly cloudy, 15.9-30.3°C (feels 15.4-30.6°C), 47% humidity, 5% cloud cover, 0% chance of rain
-- Mon (2026-08-17): mainly clear, 15.3-33.7°C (feels 14.6-33.3°C), 43% humidity, 1% cloud cover, 0% chance of rain
-- Tue (2026-08-18): overcast, 17.9-35.1°C (feels 17.9-35.5°C), 43% humidity, 29% cloud cover, 5% chance of rain
-- Wed (2026-08-19): overcast, 21.6-34.4°C (feels 22.0-35.1°C), 44% humidity, 47% cloud cover, 5% chance of rain
-- Thu (2026-08-20): clear sky, 25.4-35.8°C (feels 25.1-36.3°C), 38% humidity, 0% cloud cover, 1% chance of rain
-- Fri (2026-08-21): clear sky, 24.1-34.7°C (feels 24.0-34.8°C), 40% humidity, 0% cloud cover, 6% chance of rain
+- Sat (2026-08-22): overcast, 19.6-37.1°C (feels 22.3-38.4°C), 56% humidity, 11% cloud cover, 0% chance of rain
+- Sun (2026-08-23): slight rain showers, 21.8-37.0°C (feels 23.1-39.0°C), 45% humidity, 31% cloud cover, 35% chance of rain
+- Mon (2026-08-24): slight rain showers, 22.7-30.3°C (feels 25.1-32.8°C), 61% humidity, 81% cloud cover, 30% chance of rain
+- Tue (2026-08-25): overcast, 20.8-32.5°C (feels 23.8-34.1°C), 63% humidity, 67% cloud cover, 35% chance of rain
+- Wed (2026-08-26): overcast, 21.2-25.2°C (feels 23.2-28.3°C), 74% humidity, 84% cloud cover, 21% chance of rain
+- Thu (2026-08-27): overcast, 19.0-29.0°C (feels 20.5-29.5°C), 60% humidity, 24% cloud cover, 25% chance of rain
+- Fri (2026-08-28): partly cloudy, 17.6-29.1°C (feels 17.0-29.0°C), 46% humidity, 28% cloud cover, 4% chance of rain
 
-_14 candidate(s) considered · 10 sent._
-- LLM: 0 stage(s) failed (none); 1 fell back to a later model (concierge)
+_16 candidate(s) considered · 13 sent._
+- LLM: 0 stage(s) failed (none); 1 fell back to a later model (find-family)
 
 ## Sent this run
-### Family events (1)
-- **Shake That Hill: Eldoria 2026** (event_lookahead, August 28–30, 2026, Youth Hill (Mladezhki Halm), Plovdiv) — Open-air summer festival with daytime arts, craft corners, and grassy meadow space around the base of the hill for kids to run safely.
-### Adult events (4)
-- **Shake That Hill: Eldoria 2026 Urban Arts & Music Festival** (event_lookahead, 28.08.2026 – 30.08.2026, Youth Hill (Mladezhki Halm), Plovdiv) — Multi-stage open-air urban festival covering electronic, funk, and street culture in a relaxed outdoor hill park setting.
-- **Overcoming Gravity: Atanas Patsev Centenary Exhibition** (event_this_weekend, 12.08.2026 – 30.08.2026, Hall '2019' (Gladstone 32), Plovdiv) — Curated fine art retrospective of a prominent Bulgarian modernist painter; completely visual with zero language barrier.
-- **Sweeney Todd: The Demon Barber of Fleet Street** (event_thisweek, Wednesday, 19 August 2026, 21:00, Ancient Theatre, Plovdiv) — High-production musical staging of Sondheim's classic thriller in the open-air Roman venue.
-- **Molec – 'Where...' Live Tour Concert** (event_this_weekend, Saturday, 15 August 2026, 20:30, Ancient Theatre, Plovdiv) — Large-scale live open-air performance by Bulgaria's top contemporary indie pop/alt act at the Roman amphitheatre.
-### Good to know — civic (2)
-- **Lane closure and bus detours on Blvd. Peshtersko Shose for heating pipe works** (civic_notice, 10.08.2026 – 24.08.2026, Blvd. Peshtersko Shose (between ul. Tsarevets and ul. Raya), Zapaden district, Plovdiv) — Direct traffic disruption and public transit reroutes affecting major west Plovdiv thoroughfare.
-- **Construction begins on 80-decare Kan Krum Park renovation in Trakia** (civic_opportunity, Groundbreaking announced August 2026, Kan Krum Park, Trakia district, Plovdiv) — Durable city development adding over 1,000 trees, walking paths, security infrastructure, and an event stage in a €5M green transformation.
-### Family evergreens (2)
-- **Frigopan Horse Base Pony Rides** (evergreen, Open daily (advance booking recommended), Tsarimir (~15 min drive from Plovdiv)) — Clean and modern equestrian centre offering guided pony walks and friendly animal viewing suited for younger children.
-- **Fantasy NeMuseum** (evergreen, Open Tuesday to Sunday, 10:00 - 19:00, Plovdiv) — Hands-on sensory museum with colorful interactive installations and analog play where children are encouraged to touch and explore everything.
+### Family events (3)
+- **TheatAir 2026 (13th International Street Arts Festival)** (event_lookahead, September 4–7, 2026, Open-air public spaces, Plovdiv) — A vibrant outdoor street festival packed with puppetry, circus acts, and interactive family performances across city spaces.
+- **Kose Bose (Косе Босе) Puppet Show** (event_lookahead, Saturday, September 12, 2026, State Puppet Theatre, Plovdiv) — A classic fairytale puppet show specifically staged for young children at Plovdiv's dedicated puppet theatre.
+- **Festival #BeActive Asenovgrad** (event_lookahead, September 1–6, 2026, Various sports clubs & parks, Asenovgrad) — A short 25-minute drive away, offering free sports, outdoor movement sessions, and fun physical activities suitable for kids.
+### Adult events (5)
+- **Stand-up Comedy in English: Elena Gabrielle – "Disturb the Vibe"** (event_lookahead, Wednesday, September 23, 2026, The Comedy Club Plovdiv, 15 Gladstone St, Plovdiv) — Touring English-language stand-up comedian performing right in central Plovdiv; fully legible and matches high-priority taste profile.
+- **Rock Opera: "Jesus Christ Superstar" at Opera Open 2026** (event_this_weekend, Saturday, August 22, 2026, 21:00, Ancient Theatre of Plovdiv (Античен театър), Old Town, Plovdiv) — State Opera Plovdiv production of Andrew Lloyd Webber's classic rock opera under the stars in the Roman amphitheatre.
+- **Slow. Art. Consumption. Festival of Analog Art** (event_lookahead, September 4–26, 2026, Elysium Cultural Center, 2 Dusho Hadzhidekov St, Plovdiv) — Multi-genre festival dedicated to analog visual art, contemplative experience, and exhibitions in central Plovdiv.
+- **Concert: "A Night at the Opera with the Music of Queen"** (event_thisweek, Monday, August 24, 2026, 20:30, Ancient Theatre of Plovdiv, Old Town, Plovdiv) — Symphonic and vocal rock tribute performance honoring Queen as part of Opera Open 2026; non-verbal / English rock music.
+- **Live Outdoor Concert: Italian Singer Al Bano** (event_lookahead, Sunday, August 30, 2026, 20:00, Ancient Theatre of Plovdiv, Old Town, Plovdiv) — Legendary Italian pop artist live performance at the open-air Ancient Theatre.
+### Good to know — civic (3)
+- **Major Central Street Closure on Dr. G. M. Dimitrov Street** (civic_notice, Until September 13, 2026, Ul. Dr. G. M. Dimitrov (between Tsar Asen I St and Avksentiy Veleshki St), Central Plovdiv) — Complete closure to vehicular traffic for major road and sidewalk reconstruction right by the central pedestrian area.
+- **New Commercial Retail Park: EastRoad Retail Park** (civic_opportunity, Newly opened / ongoing, Eastern Ring Road (near Skobeleva Maika cloverleaf & Skutare turnoff), Plovdiv) — New retail zone on the eastern bypass featuring international home and lifestyle stores as well as specialized food markets.
+- **Football Match Traffic Disruption: Lokomotiv Plovdiv vs. Arda Kardzhali** (civic_notice, Sunday, August 23, 2026, Lokomotiv Stadium (Lauta Park), Plovdiv) — First Professional Football League match causing localized crowds, road diversions, and congestion in and around Lauta Park.
+### Family evergreens (1)
+- **Island Park Svoboda (Остров Свобода)** (evergreen, Open daily, Island Park Svoboda, Pazardzhik) — A top family favorite featuring extensive play grounds, shaded walking trails, and small animals on a river island.
 ### Adult evergreens (1)
-- **Bunardzhik Hill Sunset Viewpoint** (evergreen, Open daily, best at sunset, Bunardzhik (Liberators Hill), Central Plovdiv) — Easily walkable central climb with panoramic sunset views over the Thracian plain; no booking required and entirely language-neutral.
+- **Bunardzhik Hill sunset viewpoint** (evergreen, , Bunardzhik (Hill of the Liberators), Plovdiv) — A short climb to the best free view over the city — a genuinely good hour around sunset.
 
 ## All candidates
 _Sorted by score. `fit=` names the field each candidate was actually judged on, with the floor that rejected it where one did. `UNVERIFIED` means the skeptic found no corroborating source — it is a warning, not a rejection._
-- #1 [kill] `UNVERIFIED` Kids Expo Plovdiv 2026 (family/event_lookahead, family_fit=92, floor 50) — Could not confirm the existence of a 'Kids Expo Plovdiv' for these dates in 2026.
-- #3 [keep] Aviation Museum Krumovo (family/evergreen, family_fit=88, exempt) — catalog evergreen
-- #4 [keep] Bubbu Bear Children's Center & Park Zone (family/evergreen, family_fit=85, exempt) — catalog evergreen
-- #13 [sent] Shake That Hill: Eldoria 2026 Urban Arts & Music Festival (adult/event_lookahead, adult_fit=85, floor 70) — Confirmed on the official Shake That Hill website (shakethathill.com) for August 28–30, 2026.
-- #5 [sent] Frigopan Horse Base Pony Rides (family/evergreen, family_fit=83, exempt) — catalog evergreen
-- #6 [sent] Fantasy NeMuseum (family/evergreen, family_fit=82, exempt) — catalog evergreen
-- #2 [sent] Shake That Hill: Eldoria 2026 (family/event_lookahead, family_fit=80, floor 50) — Confirmed on the official Shake That Hill website (shakethathill.com) for August 28–30, 2026.
-- #7 [sent] Lane closure and bus detours on Blvd. Peshtersko Shose for heating pipe works (adult/civic_notice, civic_value=80, floor 55) — Confirmed via EVN Bulgaria announcement regarding heating pipe maintenance in Plovdiv.
-- #9 [sent] Construction begins on 80-decare Kan Krum Park renovation in Trakia (adult/civic_opportunity, civic_value=80, floor 75) — Confirmed by Plovdiv Municipality (plovdiv.bg) regarding the Kan Krum Park reconstruction project.
-- #8 [kill] `UNVERIFIED` Public hearing on the delayed 2026 Plovdiv Municipal Budget (€400M) (adult/civic_notice, civic_value=75, floor 55) — Could not verify a specific public hearing for the municipal budget on these dates.
-- #10 [sent] Overcoming Gravity: Atanas Patsev Centenary Exhibition (adult/event_this_weekend, adult_fit=75, floor 70) — Confirmed on the Plovdiv City Art Gallery official website (galleryplovdiv.com) listings for Hall 2019.
-- #12 [sent] Sweeney Todd: The Demon Barber of Fleet Street (adult/event_thisweek, adult_fit=75, floor 70) — Confirmed on Eventim.bg for the Sweeney Todd performance at the Ancient Theatre.
-- #14 [sent] Bunardzhik Hill Sunset Viewpoint (adult/evergreen, adult_fit=75, exempt) — catalog evergreen
-- #11 [sent] Molec – 'Where...' Live Tour Concert (adult/event_this_weekend, adult_fit=70, floor 70) — Confirmed on Eventim.bg for the Molec concert at the Ancient Theatre.
+- #5 [sent] Island Park Svoboda (Остров Свобода) (family/evergreen, family_fit=96, exempt) — catalog evergreen
+- #2 [sent] TheatAir 2026 (13th International Street Arts Festival) (family/event_lookahead, family_fit=95, floor 50) — Confirmed on visitplovdiv.com for September 4–7, 2026.
+- #8 [sent] Stand-up Comedy in English: Elena Gabrielle – "Disturb the Vibe" (adult/event_lookahead, adult_fit=95, floor 70) — Confirmed on eventbrite.com and elenagabrielle.com for September 23, 2026 at Comedy Club Plovdiv.
+- #13 [kill] `UNVERIFIED` Daily Direct Flights from Plovdiv Airport to London Luton (adult/civic_opportunity, civic_value=95, floor 75) — Refuted by Wizz Air in marica.bg on July 27, 2026; daily flight expansion was denied and frequency is 5 times weekly instead.
+- #6 [keep] Stara Zagora Zoo (family/evergreen, family_fit=94, exempt) — catalog evergreen
+- #3 [sent] Kose Bose (Косе Босе) Puppet Show (family/event_lookahead, family_fit=92, floor 50) — Confirmed on the State Puppet Theatre Plovdiv website for September 12, 2026.
+- #7 [keep] Aviation Museum Krumovo (family/evergreen, family_fit=90, exempt) — catalog evergreen
+- #15 [sent] Major Central Street Closure on Dr. G. M. Dimitrov Street (adult/civic_notice, civic_value=90, floor 55) — Confirmed on 24chasa.bg for road reconstruction and closure until September 13, 2026.
+- #4 [sent] Festival #BeActive Asenovgrad (family/event_lookahead, family_fit=85, floor 50) — Confirmed on asenovgrad.bg and plovdivnow.bg for September 1–6, 2026 in Asenovgrad.
+- #14 [sent] New Commercial Retail Park: EastRoad Retail Park (adult/civic_opportunity, civic_value=80, floor 75) — Confirmed on citybuild.bg regarding the opening of EastRoad Retail Park on the eastern ring road of Plovdiv.
+- #9 [sent] Rock Opera: "Jesus Christ Superstar" at Opera Open 2026 (adult/event_this_weekend, adult_fit=75, floor 70) — Confirmed on eventim.bg and visitplovdiv.com for August 22, 2026 at the Ancient Theatre.
+- #12 [sent] Slow. Art. Consumption. Festival of Analog Art (adult/event_lookahead, adult_fit=74, floor 70) — Confirmed on visitplovdiv.com for September 4–26, 2026 at Elysium Cultural Center.
+- #10 [sent] Concert: "A Night at the Opera with the Music of Queen" (adult/event_thisweek, adult_fit=72, floor 70) — Confirmed on visitplovdiv.com and operabase.com for August 24, 2026 at the Ancient Theatre.
+- #11 [sent] Live Outdoor Concert: Italian Singer Al Bano (adult/event_lookahead, adult_fit=70, floor 70) — Confirmed on stubhub.com and eventim.bg for August 30, 2026 at the Ancient Theatre.
+- #16 [sent] Football Match Traffic Disruption: Lokomotiv Plovdiv vs. Arda Kardzhali (adult/civic_notice, civic_value=65, floor 55) — Confirmed on forebet.com and oddspedia.com for August 23, 2026 at Lokomotiv Stadium.
+- #1 [skipped] OPERA OPEN 2026: Jesus Christ Superstar (family/event_this_weekend, family_fit=42, floor 50) — Confirmed on eventim.bg and visitplovdiv.com for August 22, 2026 at the Ancient Theatre.

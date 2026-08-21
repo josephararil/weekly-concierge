@@ -1,6 +1,6 @@
-# Weekend Concierge Memory — updated 2026-08-14
+# Weekend Concierge Memory — updated 2026-08-21
 
-## Evergreen Catalog (71 entries)
+## Evergreen Catalog (72 entries)
 
 ### Ancient Theatre of Philippopolis
 **Location:** Plovdiv Old Town / in town
@@ -75,7 +75,7 @@ _Source: find_
 
 ### Bunardzhik Hill sunset viewpoint
 **Location:** Bunardzhik (Hill of the Liberators), Plovdiv / central, walkable
-**Discovered:** 2026-08-11 &nbsp; **Last suggested:** never
+**Discovered:** 2026-08-11 &nbsp; **Last suggested:** 2026-08-21
 A short climb to the best free view over the city — a genuinely good hour around sunset.
 **Practical:** Paved path most of the way; nothing to book, nothing to pay.
 _Tags: outdoor, free, view, central_
@@ -225,6 +225,12 @@ _Source: research_
 Mineral baths and Roman walls — the nearest thing to a spa day without a real drive.
 _Tags: spa, daytrip, history_
 _Source: seed-adult_
+
+### Island Park Svoboda (Остров Свобода)
+**Location:** Island Park Svoboda, Pazardzhik
+**Discovered:** 2026-08-21 &nbsp; **Last suggested:** 2026-08-21
+A top family favorite featuring extensive play grounds, shaded walking trails, and small animals on a river island.
+_Source: find_
 
 ### Kapana Creative District
 **Location:** Kapana, Plovdiv / central, walkable
@@ -534,8 +540,21 @@ Picturesque lake in a green park — feed ducks and swans, rent pedal boats, use
 _Tags: water, park, outdoor, free_
 _Source: research_
 
-## Suggestion Ledger (75 entries)
+## Suggestion Ledger (88 entries)
 
+- ✅ 2026-08-21 | TheatAir 2026 (13th International Street Arts Festival) | event_lookahead | September 4–7, 2026 | sent score=95 — Confirmed on visitplovdiv.com for September 4–7, 2026.
+- ✅ 2026-08-21 | Kose Bose (Косе Босе) Puppet Show | event_lookahead | Saturday, September 12, 2026 | sent score=92 — Confirmed on the State Puppet Theatre Plovdiv website for September 12, 2026.
+- ✅ 2026-08-21 | Festival #BeActive Asenovgrad | event_lookahead | September 1–6, 2026 | sent score=85 — Confirmed on asenovgrad.bg and plovdivnow.bg for September 1–6, 2026 in Asenovgrad.
+- ✅ 2026-08-21 | Stand-up Comedy in English: Elena Gabrielle – "Disturb the Vibe" | event_lookahead | Wednesday, September 23, 2026 | sent score=95 — Confirmed on eventbrite.com and elenagabrielle.com for September 23, 2026 at Comedy Club Plovdiv.
+- ✅ 2026-08-21 | Rock Opera: "Jesus Christ Superstar" at Opera Open 2026 | event_this_weekend | Saturday, August 22, 2026, 21:00 | sent score=75 — Confirmed on eventim.bg and visitplovdiv.com for August 22, 2026 at the Ancient Theatre.
+- ✅ 2026-08-21 | Concert: "A Night at the Opera with the Music of Queen" | event_thisweek | Monday, August 24, 2026, 20:30 | sent score=72 — Confirmed on visitplovdiv.com and operabase.com for August 24, 2026 at the Ancient Theatre.
+- ✅ 2026-08-21 | Live Outdoor Concert: Italian Singer Al Bano | event_lookahead | Sunday, August 30, 2026, 20:00 | sent score=70 — Confirmed on stubhub.com and eventim.bg for August 30, 2026 at the Ancient Theatre.
+- ✅ 2026-08-21 | Slow. Art. Consumption. Festival of Analog Art | event_lookahead | September 4–26, 2026 | sent score=74 — Confirmed on visitplovdiv.com for September 4–26, 2026 at Elysium Cultural Center.
+- ✅ 2026-08-21 | New Commercial Retail Park: EastRoad Retail Park | civic_opportunity | Newly opened / ongoing | sent score=80 — Confirmed on citybuild.bg regarding the opening of EastRoad Retail Park on the eastern ring road of…
+- ✅ 2026-08-21 | Major Central Street Closure on Dr. G. M. Dimitrov Street | civic_notice | Until September 13, 2026 | sent score=90 — Confirmed on 24chasa.bg for road reconstruction and closure until September 13, 2026.
+- ✅ 2026-08-21 | Football Match Traffic Disruption: Lokomotiv Plovdiv vs. Arda Kardzhali | civic_notice | Sunday, August 23, 2026 | sent score=65 — Confirmed on forebet.com and oddspedia.com for August 23, 2026 at Lokomotiv Stadium.
+- ✅ 2026-08-21 | Island Park Svoboda (Остров Свобода) | evergreen | Open daily | sent score=96 — A top family favorite featuring extensive play grounds, shaded walking trails, and small animals on…
+- ✅ 2026-08-21 | Bunardzhik Hill sunset viewpoint | evergreen |  | sent score=60 — A short climb to the best free view over the city — a genuinely good hour around sunset.
 - ✅ 2026-08-14 | Plovdiv Regional Natural History Museum | evergreen |  | sent score=60 — Compact natural history museum with taxidermy and a small aquarium — easy indoor fallback.
 - ✅ 2026-08-14 | Plovdiv City Art Gallery | evergreen |  | sent score=60 — Permanent Bulgarian painting collection across several central buildings — visual, so no language…
 - ✅ 2026-08-14 | Shake That Hill: Eldoria 2026 | event_lookahead | August 28–30, 2026 | sent score=80 — Confirmed on the official Shake That Hill website (shakethathill.com) for August 28–30, 2026.
@@ -573,17 +592,4 @@ _Source: research_
 - ✅ 2026-07-31 | Byala Reka Ecotrail | evergreen | Daily during daylight hours | sent score=85 — A gentle, scenic ecotrail featuring easy wooden bridges over mountain streams that feel like an…
 - ✅ 2026-07-24 | Cinema Under the Stars - Open Air Screenings | event_this_weekend | Saturday & Sunday evenings, July 25–26, 2026 | sent score=82 — Plovdiv frequently hosts outdoor cinema screenings in city parks during summer.
 - ✅ 2026-07-24 | World Rowing Under 19 Championships | event_lookahead | August 6–9, 2026 | sent score=85 — The World Rowing U19 Championships at the Rowing Canal in Plovdiv are confirmed for 2026.
-- ✅ 2026-07-24 | Shake That Hill: Eldoria 2026 Festival | event_lookahead | August 28–30, 2026 | sent score=80 — Shake That Hill is a verified annual open-air festival held on Youth Hill in Plovdiv.
-- ✅ 2026-07-24 | Regional Natural History Museum Plovdiv | evergreen | Tuesday–Sunday, 08:30–17:00 | sent score=98 — Explicitly loved by the family; features an impressive sea aquarium, terrarium, live butterfly…
-- ✅ 2026-07-24 | Day Trip to Stara Zagora Zoo | evergreen | Daily, 09:00–18:00 | sent score=95 — Explicitly highlighted as a family favorite; set in a deeply shaded forest park with wide, gentle…
-- ✅ 2026-07-24 | Four Seasons Ostrich Farm | evergreen | Wednesday–Sunday, 10:00–17:00 | sent score=84 — A memorable countryside excursion where young children can safely observe giant ostriches up close…
-- ✅ 2026-07-17 | State Puppet Theatre Weekend Performances | event_this_weekend | Saturday and Sunday at 10:30 and 11:45 | sent score=95 — State Puppet Theatre is a verified venue in Plovdiv with weekend shows suitable for young children.
-- ✅ 2026-07-17 | PhillGood Festival 2026 | event_this_weekend | July 17 – 19, 2026 | sent score=65 — The Rowing Canal is a real venue in Plovdiv; the music festival is a verified public event.
-- ✅ 2026-07-17 | Eco Park Stamboliyski | evergreen | Wednesday – Sunday, 08:00 - 20:00 (midday break) | sent score=98 — Explicitly loved by the family; features a secure, fenced toddler playground filled with wooden…
-- ✅ 2026-07-17 | Damascena Biopark | evergreen | Daily, 09:00 - 17:00 | sent score=85 — A beautiful rose distillery gardens that function as an eco-park, with safe paths to see…
-- ✅ 2026-07-17 | Batak Reservoir & Tsigov Chark | evergreen | Daily | sent score=82 — A wonderful destination to escape the high July temperatures of Plovdiv, offering wide grassy…
-- ✅ 2026-07-10 | Disney Summer of Stories at the Singing Fountains | event_this_weekend | Thursday, Friday, and Saturday evenings, July 2026 | sent score=95 — The Singing Fountains are a verified, family-friendly location in Plovdiv known for evening shows;…
-- ✅ 2026-07-10 | Festival of Fun for Children | event_lookahead | Monday, July 20 and July 27, 2026 (17:00–21:30) | sent score=95 — Plovdiv Stage Park at Youth Hill is a real venue that regularly hosts family-friendly outdoor…
-- ✅ 2026-07-10 | International Folklore Festival Street Parade | event_lookahead | July 27–31, 2026 (Daily parade at 17:30) | sent score=80 — The International Folklore Festival is a real recurring event in Plovdiv, and the street parades…
-- ✅ 2026-07-10 | Day Trip to Park-Island 'Svoboda' in Pazardzhik | evergreen | Always available (Best on sunny days) | sent score=100 — Highly rated by the family; features fantastic playgrounds and a small zoo area, making it a…
-_... and 25 earlier entries_
+_... and 38 earlier entries_
