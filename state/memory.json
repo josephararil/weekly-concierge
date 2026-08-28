@@ -113,9 +113,9 @@
       "last_suggested": null
     },
     "Keffa Children's Farm": {
-      "location": "Stroevo village, near Plovdiv",
+      "location": "Near Plovdiv (20-25 min drive)",
       "area": "~20-25 min drive from Plovdiv",
-      "description": "A working dairy farm's educational annex — hands-on encounters with sheep, cows, pigs and donkeys plus simple workshops for young children.",
+      "description": "Hands-on, gentle farm animal encounters with sheep, cows, and donkeys tailored specifically for preschoolers.",
       "tags": [
         "animals",
         "farm",
@@ -127,7 +127,8 @@
       "practical": "Open year-round; reserve ahead for non-group visits so staff are on hand.",
       "discovered": "2026-07-02",
       "source": "research",
-      "last_suggested": null
+      "last_suggested": "2026-08-28",
+      "audience": "family"
     },
     "Han Krum Horse Base": {
       "location": "Voyvodinovo village, near Plovdiv",
@@ -1055,6 +1056,30 @@
       "source": "find",
       "last_suggested": "2026-08-21",
       "audience": "family"
+    },
+    "Bubbu Bear Children's Center Park Zone": {
+      "location": "Plovdiv",
+      "area": "",
+      "description": "Secure outdoor park zone with inflatables and play equipment that lets a 4-year-old burn energy safely.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-08-28",
+      "source": "find",
+      "last_suggested": "2026-08-28",
+      "audience": "family"
+    },
+    "LUCKY House of Cinema: Subtitled Original Audio Screenings": {
+      "location": "LUCKY House of Cinema, 1 William Gladstone St, Central Plovdiv",
+      "area": "",
+      "description": "Central boutique cinema showing international film releases in their original audio with Bulgarian subtitles rather than local dubbing.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-08-28",
+      "source": "find",
+      "last_suggested": "2026-08-28",
+      "audience": "adult"
     }
   },
   "ledger": [
@@ -2025,6 +2050,182 @@
       "score": 60,
       "verdict": "sent",
       "note": "A short climb to the best free view over the city — a genuinely good hour around sunset."
+    },
+    {
+      "date": "2026-08-28",
+      "title": "Shake That Hill: Eldoria 2026 Festival",
+      "category": "event_this_weekend",
+      "when": "August 28–30, 2026",
+      "location": "Youth Hill (Plovdiv Stage Park), Plovdiv",
+      "url": "",
+      "score": 88,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and livepass.bg for August 28–30, 2026."
+    },
+    {
+      "date": "2026-08-28",
+      "title": "Puppet Show: Chuk & Puk (Чук и Пук)",
+      "category": "event_lookahead",
+      "when": "Saturday, September 19, 2026 at 11:45 AM",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com for September 19, 2026 at State Puppet Theatre Plovdiv."
+    },
+    {
+      "date": "2026-08-28",
+      "title": "Plovdiv Old Town Celebrations 2026",
+      "category": "event_lookahead",
+      "when": "September 16–23, 2026",
+      "location": "Old Town squares (Lapidarium, Balabanov House), Plovdiv",
+      "url": "",
+      "score": 82,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and Old Town Plovdiv official calendar for September 16–23, 2026."
+    },
+    {
+      "date": "2026-08-28",
+      "title": "Puppet Show: Thumbelina (Палечка)",
+      "category": "event_lookahead",
+      "when": "Saturday, September 26, 2026 at 10:30 AM & 11:45 AM",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com and grabo.bg for September 26, 2026 at State Puppet Theatre Plovdiv."
+    },
+    {
+      "date": "2026-08-28",
+      "title": "19th PolineROOOCK Festival (Headlined by Ronnie Romero)",
+      "category": "event_this_weekend",
+      "when": "Friday to Sunday, August 28–30, 2026 (Headliner on Sunday from 18:00)",
+      "location": "Bunardzhika Summer Theatre (Летен театър Бунарджик), Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and marica.bg for August 28–30, 2026."
+    },
+    {
+      "date": "2026-08-28",
+      "title": "Shake That Hill 2026: Eldoria Open-Air Music & Arts Festival",
+      "category": "event_this_weekend",
+      "when": "Friday to Sunday, August 28–30, 2026",
+      "location": "Youth Hill (Младежки хълм), Plovdiv",
+      "url": "",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and livepass.bg for August 28–30, 2026."
+    },
+    {
+      "date": "2026-08-28",
+      "title": "National Autumn Exhibitions 2026: 'Mirrors of the City' (Огледала на града)",
+      "category": "event_thisweek",
+      "when": "Opening Tuesday, September 1, 2026 at 18:00 (Runs through September)",
+      "location": "Lapidarium (Atanas Krastev Sq.) and historic Old Town courtyards, Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Confirmed on plovdiv.bg and visitplovdiv.com for opening September 1, 2026."
+    },
+    {
+      "date": "2026-08-28",
+      "title": "Opera Open 2026: Tchaikovsky's 'Swan Lake' Ballet",
+      "category": "event_thisweek",
+      "when": "Friday, September 4, 2026 at 20:30",
+      "location": "Ancient Theatre (Античен театър), Old Town, Plovdiv",
+      "url": "",
+      "score": 72,
+      "verdict": "sent",
+      "note": "Confirmed on eventim.bg and operaplovdiv.bg for September 4, 2026."
+    },
+    {
+      "date": "2026-08-28",
+      "title": "Olvido Ruiz & Daniel Stawinski – 'The Voice of Cuba' Latin Jazz Concert",
+      "category": "event_lookahead",
+      "when": "Tuesday, September 15, 2026 at 21:00",
+      "location": "Malkite Konyushni Outdoor Stage (Малките конюшни), Old Town, Plovdiv",
+      "url": "",
+      "score": 78,
+      "verdict": "sent",
+      "note": "Confirmed on plovdiv.bg and kapana.bg for September 15, 2026 at Malkite Konyushni stage."
+    },
+    {
+      "date": "2026-08-28",
+      "title": "Septicflesh with Orchestra & Choir: 'Ancient Whispers'",
+      "category": "event_lookahead",
+      "when": "Saturday, September 19, 2026 at 20:00",
+      "location": "Ancient Theatre (Античен театър), Old Town, Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Confirmed on eventim.bg and visitplovdiv.com for September 19, 2026."
+    },
+    {
+      "date": "2026-08-28",
+      "title": "Major Traffic Shutdown for Botev Plovdiv vs. Levski Sofia Football Match",
+      "category": "civic_notice",
+      "when": "Sunday, August 30, 2026, 17:00–23:00 (19:00 kickoff)",
+      "location": "Hristo Botev Stadium area: Iztochen Blvd, Bogomil St, Lev Tolstoy St, Plovdiv",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Confirmed on plovdiv.bg and marica.bg for August 30, 2026."
+    },
+    {
+      "date": "2026-08-28",
+      "title": "Road Closure and Bus Rerouting on 6th September Boulevard",
+      "category": "civic_notice",
+      "when": "In effect until September 14, 2026",
+      "location": "6th September Blvd (between Vladivostok St. and Turgenev St.), West Plovdiv",
+      "url": "",
+      "score": 78,
+      "verdict": "sent",
+      "note": "Confirmed on podtepeto.com and EVN official announcements for closures through September 14, 2026."
+    },
+    {
+      "date": "2026-08-28",
+      "title": "Plovdiv Airport: 8 New Direct European Flight Routes Announced",
+      "category": "civic_opportunity",
+      "when": "Announced late August 2026 (Operations starting March 2027)",
+      "location": "Plovdiv Airport (PDV), Krumovo",
+      "url": "",
+      "score": 82,
+      "verdict": "sent",
+      "note": "Confirmed on bnr.bg and marica.bg via Plovdiv Airport director announcement on August 27, 2026."
+    },
+    {
+      "date": "2026-08-28",
+      "title": "Keffa Children's Farm",
+      "category": "evergreen",
+      "when": "Saturday–Sunday, 10:00–17:00",
+      "location": "Near Plovdiv (20-25 min drive)",
+      "url": "",
+      "score": 90,
+      "verdict": "sent",
+      "note": "Hands-on, gentle farm animal encounters with sheep, cows, and donkeys tailored specifically for preschoolers."
+    },
+    {
+      "date": "2026-08-28",
+      "title": "Bubbu Bear Children's Center Park Zone",
+      "category": "evergreen",
+      "when": "Saturday–Sunday, 10:00–23:00",
+      "location": "Plovdiv",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Secure outdoor park zone with inflatables and play equipment that lets a 4-year-old burn energy safely."
+    },
+    {
+      "date": "2026-08-28",
+      "title": "LUCKY House of Cinema: Subtitled Original Audio Screenings",
+      "category": "evergreen",
+      "when": "Daily screenings throughout the week",
+      "location": "LUCKY House of Cinema, 1 William Gladstone St, Central Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Central boutique cinema showing international film releases in their original audio with Bulgarian subtitles rather than local dubbing."
     }
   ]
 }
