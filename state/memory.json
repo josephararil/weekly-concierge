@@ -872,7 +872,7 @@
       "practical": "The street-level section is free; the small multimedia exhibition is ticketed.",
       "discovered": "2026-08-11",
       "source": "seed-adult",
-      "last_suggested": null,
+      "last_suggested": "2026-09-04",
       "audience": "adult"
     },
     "Trakart Cultural Centre": {
@@ -1080,6 +1080,18 @@
       "source": "find",
       "last_suggested": "2026-08-28",
       "audience": "adult"
+    },
+    "Bubbu Bear Children's Park & Center": {
+      "location": "Plovdiv",
+      "area": "",
+      "description": "Enclosed, safe outdoor park zone equipped with inflatables and play equipment tailored specifically for toddlers and young preschoolers.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-09-04",
+      "source": "find",
+      "last_suggested": "2026-09-04",
+      "audience": "family"
     }
   },
   "ledger": [
@@ -2226,6 +2238,204 @@
       "score": 75,
       "verdict": "sent",
       "note": "Central boutique cinema showing international film releases in their original audio with Bulgarian subtitles rather than local dubbing."
+    },
+    {
+      "date": "2026-09-04",
+      "title": "TheatAir 2026 (International Street Arts & Puppet Festival)",
+      "category": "event_this_weekend",
+      "when": "September 4–7, 2026 (Various daytime and evening outdoor slots)",
+      "location": "Main Pedestrian Street, Roman Stadium Square, and Park Ribnitsa, Plovdiv",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and bta.bg for September 4–7, 2026."
+    },
+    {
+      "date": "2026-09-04",
+      "title": "Plovdiv Unification Day Historical Reenactment & Festivities",
+      "category": "event_this_weekend",
+      "when": "Sunday, September 6, 2026 (Reenactment at 19:00)",
+      "location": "Roman Stadium Square and Unification Square, Plovdiv",
+      "url": "",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and podtepeto.com for September 6, 2026."
+    },
+    {
+      "date": "2026-09-04",
+      "title": "Singing Fountains Musical & Water Screen Show (Season 2)",
+      "category": "event_this_weekend",
+      "when": "Saturday, September 5, 2026 at 20:30",
+      "location": "Tsar Simeon Garden, Plovdiv",
+      "url": "",
+      "score": 82,
+      "verdict": "sent",
+      "note": "Confirmed on plovdiv.bg and marica.bg for Saturday evenings in September 2026."
+    },
+    {
+      "date": "2026-09-04",
+      "title": "Plovdiv Puppet Theatre: 'Koseto Bose' (Косе Босе)",
+      "category": "event_lookahead",
+      "when": "Saturday, September 12, 2026 at 11:45 AM",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com and grabo.bg for September 12, 2026 at 11:45 AM."
+    },
+    {
+      "date": "2026-09-04",
+      "title": "Night of the Angels (Нощ на Ангелите) Charity Family Festival",
+      "category": "event_lookahead",
+      "when": "September 11–13, 2026",
+      "location": "Rowing Canal (Гребна база), Plovdiv",
+      "url": "",
+      "score": 90,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and angelsnight.bg for September 11–13, 2026."
+    },
+    {
+      "date": "2026-09-04",
+      "title": "Kids Expo & Beerland Festival 2026",
+      "category": "event_lookahead",
+      "when": "September 11–13, 2026",
+      "location": "Lauta Park / Bratska Mogila area, Plovdiv",
+      "url": "",
+      "score": 88,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and eventibg.com for September 11–13, 2026."
+    },
+    {
+      "date": "2026-09-04",
+      "title": "PlayCity Kids Festival & Expo 2026",
+      "category": "event_lookahead",
+      "when": "September 26–27, 2026 (All Day)",
+      "location": "International Fair Plovdiv",
+      "url": "",
+      "score": 96,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and bilet.bg for September 26–27, 2026."
+    },
+    {
+      "date": "2026-09-04",
+      "title": "International Street Arts Festival TheatAir 2026",
+      "category": "event_this_weekend",
+      "when": "Friday, September 4 to Monday, September 7, 2026",
+      "location": "Central streets, Kamenitsa stairs, Tsar Simeon Garden, and Ribnitsa Park, Plovdiv",
+      "url": "https://visitplovdiv.com",
+      "score": 82,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and bta.bg for September 4–7, 2026."
+    },
+    {
+      "date": "2026-09-04",
+      "title": "Slow. Art. Consumption. – Festival of Analog Art",
+      "category": "event_this_weekend",
+      "when": "September 4 – September 26, 2026",
+      "location": "Elysium Cultural Center, Plovdiv",
+      "url": "https://visitplovdiv.com",
+      "score": 74,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and vplovdiv.com for September 4–26, 2026."
+    },
+    {
+      "date": "2026-09-04",
+      "title": "Stand-Up Comedy in English with Elena Gabrielle",
+      "category": "event_lookahead",
+      "when": "Wednesday, September 23, 2026",
+      "location": "Comedy Club Plovdiv, Gladstone St 15 (Boris Hristov House of Culture), Plovdiv",
+      "url": "https://comedyclub.bg",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on comedyclub.bg and elenagabrielle.com for September 23, 2026."
+    },
+    {
+      "date": "2026-09-04",
+      "title": "GuitArt Festival 2026: Yamandu Costa Solo Concert",
+      "category": "event_lookahead",
+      "when": "Sunday, October 4, 2026 at 19:00",
+      "location": "Boris Hristov House of Culture, Plovdiv",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Confirmed on eventim.bg and guitart.bg for October 4, 2026."
+    },
+    {
+      "date": "2026-09-04",
+      "title": "Festival of the Hills (Фестивал на тепетата)",
+      "category": "event_lookahead",
+      "when": "Saturday, September 26 – Sunday, September 27, 2026",
+      "location": "Across four Plovdiv hills (Old Town / Three Hills, Sahat Tepe, Bunardzhika, Youth Hill)",
+      "url": "",
+      "score": 78,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and marica.bg for September 26–27, 2026."
+    },
+    {
+      "date": "2026-09-04",
+      "title": "Major Street Closures, Checkpoints, and Drone Ban for Unification Day",
+      "category": "civic_notice",
+      "when": "Sunday, September 6, 2026 (15:00 onwards; ceremony at 20:30)",
+      "location": "Saedinenie Square and 6th September Blvd (between Tsar Boris III and Ruski Blvd), Central Plovdiv",
+      "url": "https://plovdiv.bg",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on plovdiv.bg and marica.bg for September 6, 2026."
+    },
+    {
+      "date": "2026-09-04",
+      "title": "Complete Road Closure on Dr. G. M. Dimitrov Street",
+      "category": "civic_notice",
+      "when": "Ongoing through September 13, 2026",
+      "location": "Dr. G. M. Dimitrov Street (between Tsar Asen I St and Avksentiy Veleshki St), Central Plovdiv",
+      "url": "https://marica.bg",
+      "score": 90,
+      "verdict": "sent",
+      "note": "Confirmed on 24chasa.bg for ongoing road closure through September 13, 2026."
+    },
+    {
+      "date": "2026-09-04",
+      "title": "6th September Boulevard Section Closure and Bus Route Detours",
+      "category": "civic_notice",
+      "when": "Ongoing through September 14, 2026",
+      "location": "6th September Blvd (between Vladivostok St and Turgenev St), Plovdiv",
+      "url": "https://podtepeto.com",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Confirmed on plovdiv.bg and podtepeto.com for closure through September 14, 2026."
+    },
+    {
+      "date": "2026-09-04",
+      "title": "Plovdiv Football Derby: Botev Plovdiv vs. Lokomotiv Plovdiv",
+      "category": "civic_notice",
+      "when": "Sunday, September 13, 2026",
+      "location": "Hristo Botev Stadium (Kolezha) and surrounding central streets, Plovdiv",
+      "url": "https://sportal.bg",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Confirmed on sportal.bg and botevplovdiv.bg for September 13, 2026."
+    },
+    {
+      "date": "2026-09-04",
+      "title": "Bubbu Bear Children's Park & Center",
+      "category": "evergreen",
+      "when": "Open daily, 10:00–22:00",
+      "location": "Plovdiv",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Enclosed, safe outdoor park zone equipped with inflatables and play equipment tailored specifically for toddlers and young preschoolers."
+    },
+    {
+      "date": "2026-09-04",
+      "title": "Roman Stadium of Philippopolis",
+      "category": "evergreen",
+      "when": "",
+      "location": "Dzhumaya Square, Plovdiv",
+      "url": "",
+      "score": 60,
+      "verdict": "sent",
+      "note": "The excavated end of a 240-metre Roman stadium sunk beneath the main pedestrian street."
     }
   ]
 }
