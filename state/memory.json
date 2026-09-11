@@ -1092,6 +1092,54 @@
       "source": "find",
       "last_suggested": "2026-09-04",
       "audience": "family"
+    },
+    "Day Trip to Island \"Svoboda\" Park": {
+      "location": "Svoboda Park Island, Pazardzhik (~35 min drive)",
+      "area": "",
+      "description": "A family favorite island park featuring numerous shaded playgrounds, dinosaur sculptures, miniature zoo animals, and wide stroller-friendly paths.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-09-11",
+      "source": "find",
+      "last_suggested": "2026-09-11",
+      "audience": "family"
+    },
+    "Aviation Museum Krumovo Outing": {
+      "location": "Krumovo Airfield (~15 min drive from Plovdiv)",
+      "area": "",
+      "description": "An outdoor airfield packed with real planes and helicopters that 4-year-olds can walk right up to, offering open grassy spaces to roam.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-09-11",
+      "source": "find",
+      "last_suggested": "2026-09-11",
+      "audience": "family"
+    },
+    "Pony Riding and Farm Walk at Frigopan Horse Base": {
+      "location": "Frigopan Equestrian Base, Tsaratsovo (~15 min drive)",
+      "area": "",
+      "description": "A clean, modern equestrian base offering gentle guided pony walks for preschoolers and an up-close look at beautiful horses.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-09-11",
+      "source": "find",
+      "last_suggested": "2026-09-11",
+      "audience": "family"
+    },
+    "Dom na Kinoto Plovdiv Arthouse Screenings": {
+      "location": "Dom na Kinoto (Lucky Cinema), ul. Gladstone 1, Plovdiv",
+      "area": "",
+      "description": "The premier independent cinema venue in central Plovdiv offering original-language screenings with subtitling rather than dubbing.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-09-11",
+      "source": "find",
+      "last_suggested": "2026-09-11",
+      "audience": "adult"
     }
   },
   "ledger": [
@@ -2436,6 +2484,237 @@
       "score": 60,
       "verdict": "sent",
       "note": "The excavated end of a 240-metre Roman stadium sunk beneath the main pedestrian street."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "Puppet Show: \"Boy and the Wind\" (Момче и вятър)",
+      "category": "event_this_weekend",
+      "when": "Sunday, September 13, 2026 (10:30 & 11:45 AM)",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 92,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com and grabo.bg for September 13, 2026."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "Re:Bazaar Green Family Festival & Eco Games",
+      "category": "event_this_weekend",
+      "when": "Saturday, September 12, 2026 (10:00 - 18:00)",
+      "location": "Park \"Belite Brezi\", South District, Plovdiv",
+      "url": "",
+      "score": 88,
+      "verdict": "sent",
+      "note": "Confirmed on marica.bg and rebazaar.bg for September 12, 2026."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "Kids Road Safety Day & Vehicle Demonstrations",
+      "category": "event_this_weekend",
+      "when": "Saturday, September 12, 2026 (09:00 - 12:00)",
+      "location": "Kolodruma Arena Parking Lot, Trakia District, Plovdiv",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Confirmed on marica.bg and trafficnews.bg for September 12, 2026."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "Plovdiv Beer Fest 2026 (Daytime Park Gathering)",
+      "category": "event_thisweek",
+      "when": "Friday, September 18 – Tuesday, September 22, 2026",
+      "location": "Youth Hill (Mladezhki Halm), Plovdiv",
+      "url": "",
+      "score": 76,
+      "verdict": "sent",
+      "note": "Confirmed on opoznaiplovdiv.bg and marica.bg for September 18–22, 2026."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "Lutenitsa Festival & Nashenski Fest 2026",
+      "category": "event_lookahead",
+      "when": "September 19–20, 2026",
+      "location": "Artillerijski Park, Stara Zagora (~1 hr drive)",
+      "url": "",
+      "score": 86,
+      "verdict": "sent",
+      "note": "Confirmed on sz.bg (Stara Zagora cultural calendar) for September 19, 2026."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "Plovdiv Car-Free Day & Family Parade on Maritsa-South",
+      "category": "event_lookahead",
+      "when": "Tuesday, September 22, 2026 (All Day)",
+      "location": "Blvd. Maritsa-Yug (Riverbank Promenade), Plovdiv",
+      "url": "",
+      "score": 83,
+      "verdict": "sent",
+      "note": "Confirmed on bnr.bg and plovdivnow.bg for September 22, 2026."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "Puppet Show: \"Thumbelina\" (Палечка)",
+      "category": "event_lookahead",
+      "when": "Saturday, September 26, 2026 (10:30 & 11:45 AM)",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 93,
+      "verdict": "suppressed",
+      "note": "Confirmed on pptheatre.com and grabo.bg for September 26, 2026."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "Ostava – Live in Concert at Orpheus Open-Air Cinema",
+      "category": "event_this_weekend",
+      "when": "Saturday, September 12, 2026 at 20:00",
+      "location": "Orpheus Open-Air Cinema (Lyatno Kino Orfey), Plovdiv",
+      "url": "",
+      "score": 72,
+      "verdict": "sent",
+      "note": "Confirmed on eventim.bg and domborishristov.bg for September 12, 2026."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "XVII International Festival 'Music Days in Balabanov House' Opening Concert",
+      "category": "event_thisweek",
+      "when": "Tuesday, September 15, 2026 at 19:00",
+      "location": "Bishop's Basilica of Philippopolis, Plovdiv",
+      "url": "",
+      "score": 76,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and musicartissimo.com; opening concert is held at the Bishop's Basilica."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "Tarja Turunen – 'The World of Dreams' Live at the Ancient Theatre",
+      "category": "event_thisweek",
+      "when": "Friday, September 18, 2026 at 20:00",
+      "location": "Ancient Theatre of Plovdiv (Antichen Teatar)",
+      "url": "",
+      "score": 82,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and eventim.bg for September 18, 2026."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "32nd Week of Contemporary Art: 'Bug in Reality'",
+      "category": "event_lookahead",
+      "when": "September 3 – October 2, 2026",
+      "location": "City Art Gallery (15 Knyaz Alexander I St) & Roman Stadium Square, Plovdiv",
+      "url": "",
+      "score": 78,
+      "verdict": "sent",
+      "note": "Confirmed on bta.bg and visitplovdiv.com for September 3 – October 2, 2026."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "Septicflesh with Full Symphonic Orchestra and Choir",
+      "category": "event_lookahead",
+      "when": "Saturday, September 19, 2026 at 20:00",
+      "location": "Ancient Theatre of Plovdiv (Antichen Teatar)",
+      "url": "",
+      "score": 78,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and eventim.bg for September 19, 2026."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "The Gathering Live at the Ancient Theatre",
+      "category": "event_lookahead",
+      "when": "Tuesday, September 22, 2026 at 20:00",
+      "location": "Ancient Theatre of Plovdiv (Antichen Teatar)",
+      "url": "",
+      "score": 84,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and eventim.bg for September 22, 2026."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "Plovdiv Derby: Botev Plovdiv vs. Lokomotiv Plovdiv (Traffic & Crowd Disruption)",
+      "category": "civic_notice",
+      "when": "Sunday, September 13, 2026",
+      "location": "Hristo Botev Stadium and central transit corridors, Plovdiv",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Confirmed on marica.bg and topsport.bg for September 13, 2026."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "Northern Promenade Access Restriction at Plovdiv Rowing Canal",
+      "category": "civic_notice",
+      "when": "September 11–13, 2026 (mornings and afternoons)",
+      "location": "Rowing Canal (Northern pedestrian alley), Plovdiv",
+      "url": "",
+      "score": 70,
+      "verdict": "sent",
+      "note": "Confirmed on plovdivdaily.bg for September 11–13, 2026."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "Road Closure on Boulevard Shesti Septemvri for Heating Pipeline Replacement",
+      "category": "civic_notice",
+      "when": "Ongoing through Monday, September 14, 2026",
+      "location": "Boulevard Shesti Septemvri (between Vladivostok St and Turgenev St), Plovdiv",
+      "url": "",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Confirmed on bta.bg and trafficnews.bg through September 14, 2026."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "Balkan Skyways Establishing Operational Base at Plovdiv Airport with European Routes",
+      "category": "civic_opportunity",
+      "when": "Announced September 2026 (Operations launching spring 2027)",
+      "location": "Plovdiv Airport (Krumovo)",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on bnr.bg and gustomedia.bg."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "Day Trip to Island \"Svoboda\" Park",
+      "category": "evergreen",
+      "when": "Always open / Best during daylight hours",
+      "location": "Svoboda Park Island, Pazardzhik (~35 min drive)",
+      "url": "",
+      "score": 96,
+      "verdict": "sent",
+      "note": "A family favorite island park featuring numerous shaded playgrounds, dinosaur sculptures, miniature zoo animals, and wide stroller-friendly paths."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "Aviation Museum Krumovo Outing",
+      "category": "evergreen",
+      "when": "Wednesday to Sunday, 09:00 - 18:00",
+      "location": "Krumovo Airfield (~15 min drive from Plovdiv)",
+      "url": "",
+      "score": 90,
+      "verdict": "sent",
+      "note": "An outdoor airfield packed with real planes and helicopters that 4-year-olds can walk right up to, offering open grassy spaces to roam."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "Pony Riding and Farm Walk at Frigopan Horse Base",
+      "category": "evergreen",
+      "when": "Daily by reservation, 09:00 - 18:00",
+      "location": "Frigopan Equestrian Base, Tsaratsovo (~15 min drive)",
+      "url": "",
+      "score": 88,
+      "verdict": "sent",
+      "note": "A clean, modern equestrian base offering gentle guided pony walks for preschoolers and an up-close look at beautiful horses."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "Dom na Kinoto Plovdiv Arthouse Screenings",
+      "category": "evergreen",
+      "when": "Year-round / Weekly programming",
+      "location": "Dom na Kinoto (Lucky Cinema), ul. Gladstone 1, Plovdiv",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "The premier independent cinema venue in central Plovdiv offering original-language screenings with subtitling rather than dubbing."
     }
   ]
 }
