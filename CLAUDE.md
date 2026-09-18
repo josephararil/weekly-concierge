@@ -38,6 +38,12 @@ not calibration.
   a change might conflict with a core design decision.
 - `common.py` is deal-hunter's infrastructure reused verbatim by design — don't modify it here.
 
+## Git workflow
+
+**Auto-merge is authorized in this repo.** Work on a feature branch, open a PR, and once CI is
+green merge it to `main` yourself (`gh pr merge <n> --merge --delete-branch`) rather than leaving
+it open for review. Never commit directly to `main`.
+
 ## What this is
 
 A personal weekly concierge for a household near Plovdiv, Bulgaria: two adults and a 4-year-old.
