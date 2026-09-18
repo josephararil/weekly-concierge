@@ -650,7 +650,7 @@ class WeekendConciergeTest(unittest.TestCase):
         self.assertTrue(any("SKEPTIC unavailable" in s["note"] for s in kept_unverified))
 
         self.assertTrue(sent_subjects, "send_email should have been called")
-        self.assertTrue(sent_subjects[0].startswith("[degraded] "),
+        self.assertTrue(sent_subjects[0].startswith("[concierge] [degraded] "),
                         f"subject should be prefixed [degraded]: {sent_subjects[0]!r}")
         self.assertIn("Heads up: this email is incomplete", sent_bodies[0])
 
@@ -686,8 +686,10 @@ class WeekendConciergeTest(unittest.TestCase):
             self.assertEqual(s["verdict"], "kill", f"{title} should be killed when SKEPTIC ran but returned nothing")
 
         self.assertTrue(sent_subjects, "send_email should have been called")
-        self.assertFalse(sent_subjects[0].startswith("[degraded] "),
+        self.assertFalse(sent_subjects[0].startswith("[concierge] [degraded] "),
                          f"subject should NOT be prefixed [degraded]: {sent_subjects[0]!r}")
+        self.assertTrue(sent_subjects[0].startswith("[concierge] "),
+                        f"subject should always be prefixed [concierge]: {sent_subjects[0]!r}")
 
 
 if __name__ == "__main__":

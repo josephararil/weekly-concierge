@@ -116,6 +116,8 @@ weekend_concierge.py
   │             subject "[degraded] " and open the email with a "this email is incomplete"
   │             banner. A stage that merely FELL BACK to a later model is the chain working:
   │             it gets a weekend_log.md line only, never a banner.
+  ├─ Subject prefix      SUBJECT_PREFIX = "[concierge] " prepended in Python (never by the
+  │             LLM), ahead of any "[degraded] " marker: "[concierge] [degraded] ...".
   ├─ Email               ALWAYS sends Friday (weekly ritual; evergreen guarantees content)
   └─ Always writes state/: weekend_signals.json, weekend_log.md, memory.json/.md, signals_seen.json
 ```
