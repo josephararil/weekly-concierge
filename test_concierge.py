@@ -39,6 +39,7 @@ import os
 import shutil
 import sys
 import tempfile
+import urllib.parse
 import unittest
 
 REPO = os.path.dirname(os.path.abspath(__file__))
@@ -359,6 +360,82 @@ class WeekendConciergeTest(unittest.TestCase):
         self.assertEqual(src, "")
         self.assertIn("Some+Parade", maps)
         self.assertIn("Some+Parade", search)
+
+    def test_parse_when_times(self):
+        self.assertEqual(WC.parse_when_times("Thursday, 20:00"), ((20, 0), None))
+        self.assertEqual(WC.parse_when_times("Saturday, 11:00 AM"), ((11, 0), None))
+        self.assertEqual(WC.parse_when_times("Sunday, 7:30 pm"), ((19, 30), None))
+        self.assertEqual(WC.parse_when_times("Wednesday, 08:00-16:00"), ((8, 0), (16, 0)))
+        self.assertEqual(WC.parse_when_times("Sunday, 15:00 to 21:00"), ((15, 0), (21, 0)))
+        # Two separate showings are NOT a range -- the entry starts at the first one.
+        self.assertEqual(WC.parse_when_times("Sunday, 10:30 & 11:45 AM"), ((10, 30), None))
+        # A date range has no colon and must never read as a clock time.
+        self.assertEqual(WC.parse_when_times("September 26-27"), (None, None))
+        self.assertEqual(WC.parse_when_times(""), (None, None))
+        self.assertEqual(WC.parse_when_times(None), (None, None))
+        self.assertEqual(WC.parse_when_times("at 99:99"), (None, None))
+
+    def test_build_calendar_url(self):
+        def q(url):
+            return dict(urllib.parse.parse_qsl(urllib.parse.urlparse(url).query))
+
+        # Dated + timed single day -> a real appointment in local wall-clock time.
+        p = q(WC.build_calendar_url({
+            "title": "The Gathering", "date_iso": "2026-09-22", "when_text": "Tuesday, 20:00",
+            "location": "Ancient Theatre, Plovdiv", "reason": "Post-rock in a Roman theatre.",
+            "source_url": "https://bilet.bg/the-gathering"}))
+        self.assertEqual(p["dates"], "20260922T200000/20260922T220000")
+        self.assertEqual(p["ctz"], "Europe/Sofia")
+        self.assertEqual(p["text"], "The Gathering")
+        self.assertEqual(p["location"], "Ancient Theatre, Plovdiv")
+        self.assertIn("https://bilet.bg/the-gathering", p["details"])
+
+        # An explicit end time wins over the 2h default.
+        self.assertEqual(q(WC.build_calendar_url({
+            "title": "Derby", "date_iso": "2026-09-20",
+            "when_text": "Sunday, 15:00-21:00"}))["dates"],
+            "20260920T150000/20260920T210000")
+
+        # Multi-day -> all-day, and Google's end is EXCLUSIVE, so 26-27 ends on the 28th.
+        p = q(WC.build_calendar_url({
+            "title": "Kids Festival", "date_iso": "2026-09-26", "end_date_iso": "2026-09-27",
+            "when_text": "September 26-27"}))
+        self.assertEqual(p["dates"], "20260926/20260928")
+        self.assertNotIn("ctz", p)
+
+        # Dated but untimed single day -> a one-day all-day entry.
+        self.assertEqual(q(WC.build_calendar_url({
+            "title": "Craft Fair", "date_iso": "2026-10-01"}))["dates"], "20261001/20261002")
+
+        # Undated (every evergreen, most civic_opportunity items) -> no button at all.
+        self.assertEqual(WC.build_calendar_url(
+            {"title": "Children's Railway", "location": "Youth Hill"}), "")
+        self.assertEqual(WC.build_calendar_url({"date_iso": "2026-10-01"}), "")
+        self.assertEqual(WC.build_calendar_url(
+            {"title": "Broken", "date_iso": "next Tuesday"}), "")
+
+    def test_calendar_url_reaches_the_concierge(self):
+        """The button is the email's CTA, so the link has to be in the prompt payload.
+
+        build_calendar_url() being correct is worth nothing if main() never calls it: the
+        concierge is told never to invent a URL, so an absent field means no button."""
+        seen = {}
+
+        def capture(prompt, **kw):
+            if kw.get("response_schema") is C.CONCIERGE_RESPONSE_SCHEMA:
+                seen["prompt"] = prompt
+            return _stub_llm(prompt, **kw)
+
+        llm_chain.call_llm = capture
+        WC.main()
+        prompt = seen["prompt"]
+        # The circus is "Saturday, 11:00" on EVENT_DATE, so its button must be a timed entry.
+        self.assertIn("dates=20990103T110000%2F20990103T130000", prompt)
+        self.assertIn("ctz=Europe%2FSofia", prompt)
+        self.assertIn('"calendar_url": "https://calendar.google.com/calendar/render?', prompt)
+        # The undated evergreens are in the same batch and must carry "" -- the prompt's
+        # "never invent a URL" rule only holds if an empty field really reaches it.
+        self.assertIn('"calendar_url": ""', prompt)
 
     def test_unverified_item_is_sent_but_flagged(self):
         """`verified` is a visibility signal, NOT a gate — both halves matter.

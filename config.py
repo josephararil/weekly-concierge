@@ -754,8 +754,9 @@ Score how good a fit this is for a 4-year-old plus two adults: enjoyment for the
 Return JSON only. Do not include markdown formatting or wrappers like ```json.
 
 Field notes:
-- when_text: human-readable date/time as found in the source (e.g. "Saturday, 12:00" or "August 15-17").
+- when_text: human-readable date/time as found in the source (e.g. "Saturday, 12:00" or "August 15-17"). **Include the start time whenever the source gives one**, written as a 24-hour clock ("Saturday, 19:30"): this is the only field carrying a time, and it is what turns the email's add-to-calendar button into a real appointment rather than an all-day placeholder. A genuine start-to-end range ("10:00-17:00") is read as one; two separate showings are better written as "10:30 & 11:45".
 - date_iso: best-guess ISO date (YYYY-MM-DD) if determinable, else null. For a multi-day event, use the start date.
+- end_date_iso: the LAST day of a multi-day event (YYYY-MM-DD), or null for a single-day one. A festival running "26-27 September" has end_date_iso "2026-09-27", which is what lets it land on the calendar as a two-day entry instead of a one-day one. Never guess: null is correct whenever the source does not give an end date.
 - location: specific venue or area name.
 - source_url: the DEEP link to the specific page for this item — the event listing, the announcement, the venue's own page for it. It must have a real path, not just a domain.
   A bare homepage ("https://visitplovdiv.com", "https://plovdiv.bg") is NOT a source: it is a guess at where the item might live, it is unusable to a reader trying to act on it, and it is stripped downstream anyway. If you do not have the exact page URL, return "" — an empty source_url is honest and the pipeline builds a search link instead. Never assemble a URL from the domain of a site you did not actually read.
@@ -769,6 +770,7 @@ JSON Schema:
       "category": "event_this_weekend",
       "when_text": "Saturday, 11:00",
       "date_iso": "2026-07-04",
+      "end_date_iso": null,
       "location": "Ancient Theatre, Plovdiv Old Town",
       "family_fit": 78,
       "reason": "One line on why this fits a 4-year-old and the family.",
@@ -1029,11 +1031,20 @@ Use this to pitch adult items in language that lands: lead with what he'd actual
 ---
 
 ### LINKS (make it actionable — this matters)
-The reader relies on this email and shouldn't have to go googling. Each candidate carries up to three ready-made links — use ONLY these exact strings, never invent, guess, or modify a URL:
+The reader relies on this email and shouldn't have to go googling. Each candidate carries up to four ready-made links — use ONLY these exact strings, never invent, guess, or modify a URL:
 - source_url: the real official event/venue/ticket page (may be ""). When present, prefer it — link the item's name or add a "Details & tickets" link.
 - maps_url: a Google Maps link for the location (present whenever there's a location). Add an "Open in Maps" / directions link for anything they'd physically travel to (especially evergreen places and venues).
 - search_url: a Google search for the item. Use it as a "Look it up" link ONLY when source_url is empty.
+- calendar_url: a ready-made "add this to Google Calendar" link, already carrying the right title, date, time and venue. Present on every dated item; "" on anything with no date (the standing ideas, and most durable civic facts).
 Weave links in naturally as <a> tags where they genuinely help someone act (an event to book, a place to navigate to) — don't bolt a link onto every line, and omit any link whose field is "".
+
+**The calendar link is the one exception to "don't bolt a link onto every line", and it is the single most important thing in this email.** Reading about a festival three weeks out is worthless if it has to be remembered; the whole point is that one tap puts it in the diary. So: **every item that carries a non-empty `calendar_url` gets an Add-to-calendar button, without exception** — the dated events in all three time sections, and the dated civic notices in "Good to know" too (a match that will close roads and an outage that will cut the water are exactly the things worth having on the day). Items with an empty `calendar_url` get nothing; never fabricate one, and never reuse another item's.
+
+In the HTML, render it as a button by copying this exact snippet and substituting only the URL and, if you like, the item's own name after the emoji:
+
+<p><a href="CALENDAR_URL" style="display:inline-block;padding:8px 14px;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:4px;font-size:13px;font-weight:bold">&#128197; Add to calendar</a></p>
+
+Put it directly under the item it belongs to, so there is never any doubt which event a button will add. In the plain-text version, give the same thing as its own line: `Add to calendar: <the URL>`.
 
 Some candidates also carry a `practical` field (opening hours, entry fees, seasonality, reservation or safety notes). When present, weave the useful bits into your prose naturally — a quick "open Wed–Sun, kids under 7 free" or "book the pony ride ahead" saves the reader a click. Never dump it verbatim; fold it in as a friendly aside, and pair it with the weather where it helps (e.g. a shaded zoo on a hot day).
 
@@ -1081,6 +1092,9 @@ STAGE1_FAMILY_SCHEMA = {
                     "category":    {"type": "string", "enum": ["event_this_weekend", "event_thisweek", "event_lookahead", "evergreen"]},
                     "when_text":   {"type": "string"},
                     "date_iso":    {"type": "string"},
+                    # Optional, like its adult-schema twin: a single-day event has no end date,
+                    # and Gemini's response_schema cannot express "required only sometimes".
+                    "end_date_iso": {"type": "string"},
                     "location":    {"type": "string"},
                     "family_fit":  {"type": "integer"},
                     "reason":      {"type": "string"},
