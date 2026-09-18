@@ -92,6 +92,10 @@ _ROLE_BY_CATEGORY = {
 EVENT_CATEGORIES = ("event_this_weekend", "event_thisweek", "event_lookahead")
 CIVIC_CATEGORIES = ("civic_opportunity", "civic_notice")
 
+# Prefixed onto every outgoing subject, before any "[degraded] " marker, so the weekly
+# email is filterable in a mailbox regardless of what CONCIERGE wrote.
+SUBJECT_PREFIX = "[concierge] "
+
 
 def role_for(category):
     return _ROLE_BY_CATEGORY[category]
@@ -980,7 +984,8 @@ def main():
     degraded_prefix, banner_html, banner_text, llm_log_line = degraded_summary(stage_results)
     html = banner_html + html
     text = banner_text + text
-    subject = degraded_prefix + subject
+    # Always tag the subject so the weekly email threads/filters cleanly in a mailbox.
+    subject = SUBJECT_PREFIX + degraded_prefix + subject
 
     # Memory write: ledger entry per candidate that reached Stage 2; evergreen catalog
     # grows with anything new SKEPTIC confirmed, and included evergreens get last_suggested
