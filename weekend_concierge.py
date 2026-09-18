@@ -362,6 +362,108 @@ def build_links(c):
     return clean_source_url(c.get("source_url")), maps_url, search_url
 
 
+# Times as they appear in when_text: "Saturday, 11:00", "Thursday, 20:00", "11:00 AM".
+# A range ("08:00-16:00", "19:00 to 22:00") gives a real end time; anything else gets
+# CALENDAR_DEFAULT_HOURS. Written to match a leading hour only, so a date like "26-27"
+# (no colon) never reads as a time.
+_TIME_RE  = re.compile(r"\b(\d{1,2}):(\d{2})\s*(a\.?m\.?|p\.?m\.?)?", re.I)
+_RANGE_RE = re.compile(
+    r"\b(\d{1,2}):(\d{2})\s*(a\.?m\.?|p\.?m\.?)?\s*(?:-|–|—|to|until|till)\s*"
+    r"(\d{1,2}):(\d{2})\s*(a\.?m\.?|p\.?m\.?)?", re.I)
+
+CALENDAR_TZ = "Europe/Sofia"
+CALENDAR_DEFAULT_HOURS = 2
+CALENDAR_DETAILS_CHARS = 400
+
+
+def _to_24h(hour, minute, meridiem):
+    """(hour, minute) in 24h, or None if the clock reading is not a real time."""
+    hour, minute = int(hour), int(minute)
+    m = (meridiem or "").replace(".", "").lower()
+    if m == "pm" and hour < 12:
+        hour += 12
+    elif m == "am" and hour == 12:
+        hour = 0
+    if hour > 23 or minute > 59:
+        return None
+    return hour, minute
+
+
+def parse_when_times(when_text):
+    """Return (start, end) as (hour, minute) tuples parsed out of when_text; either may be None.
+
+    when_text is free prose written by FIND from the source listing, and it is the only place
+    a start time exists at all -- neither FIND schema has a time field. Two separate showings
+    ("10:30 & 11:45") deliberately do NOT read as a range: only an explicit dash/"to" does, so
+    the calendar entry starts at the first showing rather than spanning both."""
+    text = when_text or ""
+    r = _RANGE_RE.search(text)
+    if r:
+        start = _to_24h(r.group(1), r.group(2), r.group(3))
+        end   = _to_24h(r.group(4), r.group(5), r.group(6))
+        if start:
+            return start, end
+    m = _TIME_RE.search(text)
+    if m:
+        return _to_24h(m.group(1), m.group(2), m.group(3)), None
+    return None, None
+
+
+def build_calendar_url(c):
+    """A Google Calendar "add event" link for a dated candidate, or "" if it has no date.
+
+    This is the email's call to action: without it the reader has to retype a title, date,
+    time and venue by hand, which in practice means an event three weeks out is simply
+    forgotten. Everything in the URL is copied from fields already fact-checked by SKEPTIC --
+    nothing here invents a date.
+
+    Timed when when_text yields a start time AND the item is single-day; all-day otherwise
+    (Google's all-day end is exclusive, so a 26-27 event ends on the 28th). Local wall-clock
+    times are passed with ctz=Europe/Sofia rather than converted to UTC, so no DST arithmetic
+    happens here. An undated item -- every evergreen, and most civic_opportunity items -- gets
+    "" on purpose: there is nothing to put on a calendar."""
+    title = (c.get("title") or "").strip()
+    start_iso = (c.get("date_iso") or "").strip()
+    if not title or not start_iso:
+        return ""
+    try:
+        start_date = dt.date.fromisoformat(start_iso)
+        end_iso = (c.get("end_date_iso") or "").strip()
+        end_date = dt.date.fromisoformat(end_iso) if end_iso else start_date
+    except ValueError:
+        return ""
+    if end_date < start_date:
+        end_date = start_date
+
+    params = {"action": "TEMPLATE", "text": title}
+    start_time, end_time = parse_when_times(c.get("when_text"))
+    if start_time and start_date == end_date:
+        begin = dt.datetime.combine(start_date, dt.time(*start_time))
+        finish = (dt.datetime.combine(start_date, dt.time(*end_time)) if end_time
+                  else begin + dt.timedelta(hours=CALENDAR_DEFAULT_HOURS))
+        if finish <= begin:                       # e.g. 22:00-01:00, which runs past midnight
+            finish += dt.timedelta(days=1)
+        fmt = "%Y%m%dT%H%M%S"
+        params["dates"] = f"{begin.strftime(fmt)}/{finish.strftime(fmt)}"
+        params["ctz"] = CALENDAR_TZ
+    else:
+        fmt = "%Y%m%d"
+        params["dates"] = (f"{start_date.strftime(fmt)}/"
+                           f"{(end_date + dt.timedelta(days=1)).strftime(fmt)}")
+
+    location = (c.get("location") or "").strip()
+    if location:
+        params["location"] = location
+    details = [(c.get("reason") or "").strip()[:CALENDAR_DETAILS_CHARS]]
+    source_url = clean_source_url(c.get("source_url"))
+    if source_url:
+        details.append(source_url)
+    details = "\n\n".join(d for d in details if d)
+    if details:
+        params["details"] = details
+    return "https://calendar.google.com/calendar/render?" + urllib.parse.urlencode(params)
+
+
 # --- weather formatting ---
 
 def format_weather(days):
@@ -431,6 +533,10 @@ def _fallback_email(sections, today):
             if maps_url:
                 link_html.append(f'<a href="{maps_url}">map</a>')
                 link_text.append(f"map: {maps_url}")
+            calendar_url = build_calendar_url(c)
+            if calendar_url:
+                link_html.append(f'<a href="{calendar_url}">add to calendar</a>')
+                link_text.append(f"add to calendar: {calendar_url}")
             links_h = (" — " + " · ".join(link_html)) if link_html else ""
             links_t = ("  [" + " | ".join(link_text) + "]") if link_text else ""
             html.append(f"<li><b>{c.get('title','?')}</b> ({when}, {c.get('location','')}) "
@@ -826,6 +932,7 @@ def main():
             "date_iso": c.get("date_iso"), "location": c.get("location"), "reason": c.get("reason"),
             "practical": c.get("practical", ""),
             "source_url": source_url, "maps_url": maps_url, "search_url": search_url,
+            "calendar_url": build_calendar_url(c),
         }
         # Exactly one score per candidate, under its own name -- the prompt is told all three
         # are internal-only ranking signals and must never reach the copy.
