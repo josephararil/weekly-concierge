@@ -1,66 +1,65 @@
-# Weekend Concierge — 2026-09-11
+# Weekend Concierge — 2026-09-18
 
-**Subject:** Plovdiv weekend & week ahead: puppet shows, riverside strolls, and live music
+**Subject:** Warm late-summer afternoons, ancient amphitheatre sets, and a miniature railway
 
 **Weather:**
 
-- Sat (2026-09-12): overcast, 17.5-30.9°C (feels 18.7-31.3°C), 62% humidity, 60% cloud cover, 78% chance of rain
-- Sun (2026-09-13): slight rain showers, 17.4-24.4°C (feels 15.9-24.1°C), 59% humidity, 77% cloud cover, 85% chance of rain
-- Mon (2026-09-14): partly cloudy, 14.0-25.9°C (feels 14.2-24.9°C), 63% humidity, 23% cloud cover, 0% chance of rain
-- Tue (2026-09-15): overcast, 14.5-25.7°C (feels 14.5-25.0°C), 59% humidity, 87% cloud cover, 23% chance of rain
-- Wed (2026-09-16): slight rain showers, 16.7-20.9°C (feels 17.1-21.9°C), 76% humidity, 83% cloud cover, 21% chance of rain
-- Thu (2026-09-17): overcast, 16.1-23.8°C (feels 15.1-24.3°C), 68% humidity, 47% cloud cover, 10% chance of rain
-- Fri (2026-09-18): slight rain showers, 16.8-26.6°C (feels 18.0-24.7°C), 69% humidity, 63% cloud cover, 13% chance of rain
+- Sat (2026-09-19): overcast, 12.9-29.6°C (feels 12.2-28.2°C), 50% humidity, 33% cloud cover, 0% chance of rain
+- Sun (2026-09-20): overcast, 14.3-29.6°C (feels 14.3-29.1°C), 53% humidity, 32% cloud cover, 0% chance of rain
+- Mon (2026-09-21): overcast, 15.4-28.9°C (feels 15.4-27.6°C), 51% humidity, 55% cloud cover, 10% chance of rain
+- Tue (2026-09-22): overcast, 15.7-23.2°C (feels 12.6-19.5°C), 34% humidity, 77% cloud cover, 18% chance of rain
+- Wed (2026-09-23): partly cloudy, 12.3-21.3°C (feels 9.2-18.1°C), 44% humidity, 28% cloud cover, 1% chance of rain
+- Thu (2026-09-24): overcast, 14.3-23.8°C (feels 11.4-21.5°C), 39% humidity, 40% cloud cover, 0% chance of rain
+- Fri (2026-09-25): light drizzle, 15.2-23.9°C (feels 13.2-21.4°C), 45% humidity, 81% cloud cover, 5% chance of rain
 
-_21 candidate(s) considered · 20 sent._
+_20 candidate(s) considered · 18 sent._
 
 ## Sent this run
-### Family events (6)
-- **Puppet Show: "Boy and the Wind" (Момче и вятър)** (event_this_weekend, Sunday, September 13, 2026 (10:30 & 11:45 AM), State Puppet Theatre, Plovdiv) — A charming, gentle Bulgarian fairy tale staged with colorful puppets, perfectly timed and suited for a 4-year-old's attention span.
-- **Re:Bazaar Green Family Festival & Eco Games** (event_this_weekend, Saturday, September 12, 2026 (10:00 - 18:00), Park "Belite Brezi", South District, Plovdiv) — An open-air eco-fair in a shaded park featuring hands-on children's workshops, educational games with Green Balkans, and plenty of space to play.
-- **Lutenitsa Festival & Nashenski Fest 2026** (event_lookahead, September 19–20, 2026, Artillerijski Park, Stara Zagora (~1 hr drive)) — A festive culinary celebration with a giant cauldron of freshly cooked lutenitsa, a children's cooking corner, and craft workshops.
-- **Kids Road Safety Day & Vehicle Demonstrations** (event_this_weekend, Saturday, September 12, 2026 (09:00 - 12:00), Kolodruma Arena Parking Lot, Trakia District, Plovdiv) — An exciting morning where children can explore emergency and retro vehicles up close and participate in interactive road safety games.
-- **Plovdiv Car-Free Day & Family Parade on Maritsa-South** (event_lookahead, Tuesday, September 22, 2026 (All Day), Blvd. Maritsa-Yug (Riverbank Promenade), Plovdiv) — The riverside boulevard closes to vehicle traffic for safe scootering, balance biking, family costume contests, and open-air games.
-- **Plovdiv Beer Fest 2026 (Daytime Park Gathering)** (event_thisweek, Friday, September 18 – Tuesday, September 22, 2026, Youth Hill (Mladezhki Halm), Plovdiv) — Spacious open-air park setting with delicious street food, wide lawns for toddlers to run, and the Children's Railway right next door.
+### Family events (7)
+- **Kids Festival & Expo 2026 – PlayCity** (event_lookahead, September 26 – 27, 2026, International Fair Plovdiv, Plovdiv) — Dedicated weekend children's expo packed with interactive play zones, creative activities, and toddler entertainment.
+- **Puppet Show: 'Sick Carries Healthy' (Болен здрав носи)** (event_lookahead, Sunday, September 27, 2026 at 10:30 & 11:45 AM, State Puppet Theatre, Plovdiv) — A funny and engaging 45-minute Bulgarian folk fairytale staged with puppets, ideal morning entertainment for a 4-year-old.
+- **Puppet Show: 'What a Crocodile!' (Ама че крокодил!)** (event_lookahead, Saturday, October 3, 2026 at 10:30 & 11:45 AM, State Puppet Theatre, Plovdiv) — An imaginative puppet performance using live sand-art drawings integrated into the storytelling, perfectly captivating for a preschooler.
+- **Plovdiv Land - Attractions Festival** (event_thisweek, September 25 – October 4, 2026, Amusement Festival Zone, Plovdiv) — Outdoor family carnival zone featuring gentle rides, games, and food stalls that a 4-year-old will love.
+- **Puppet Show: 'Grandpa\'s Mitten' (Дядовата ръкавичка)** (event_lookahead, Saturday, September 26, 2026 at 11:00 AM, Drama & Puppet Theatre 'Konstantin Velichkov', Pazardzhik) — Classic woodland animal story staged for young children, easily paired with a visit to the nearby Island Park in Pazardzhik.
+- **Plovdiv Fantasy Week** (event_thisweek, September 21 – 27, 2026, Stefan Stambolov Square, Plovdiv) — An open-air urban festival right in the city centre with daytime interactive creative workshops, games, and storytelling suited for young kids.
+- **Autumn Craft Fair Plovdiv 2026 (Есенен панаир на занаятите)** (event_lookahead, October 1 – 4, 2026, Rayko Daskalov Street (Little Main Street), Plovdiv) — A pedestrian street festival with live craft demonstrations, musical instrument workshops, and kid-friendly open-air games.
 ### Adult events (6)
-- **The Gathering Live at the Ancient Theatre** (event_lookahead, Tuesday, September 22, 2026 at 20:00, Ancient Theatre of Plovdiv (Antichen Teatar)) — Dutch atmospheric post-rock and progressive group performing their headline tour in English at the Roman theatre.
-- **Tarja Turunen – 'The World of Dreams' Live at the Ancient Theatre** (event_thisweek, Friday, September 18, 2026 at 20:00, Ancient Theatre of Plovdiv (Antichen Teatar)) — Former Nightwish vocalist headlining an English-language symphonic rock show at Plovdiv's Roman open-air amphitheatre.
-- **32nd Week of Contemporary Art: 'Bug in Reality'** (event_lookahead, September 3 – October 2, 2026, City Art Gallery (15 Knyaz Alexander I St) & Roman Stadium Square, Plovdiv) — Curated international and Bulgarian contemporary visual art installations exploring systemic glitches; fully visual and barrier-free.
-- **Septicflesh with Full Symphonic Orchestra and Choir** (event_lookahead, Saturday, September 19, 2026 at 20:00, Ancient Theatre of Plovdiv (Antichen Teatar)) — Large-scale symphonic performance backing Greek metal pioneers in the Roman theatre; non-verbal symphonic elements and English lyrics.
-- **XVII International Festival 'Music Days in Balabanov House' Opening Concert** (event_thisweek, Tuesday, September 15, 2026 at 19:00, Bishop's Basilica of Philippopolis, Plovdiv) — Prestigious chamber music festival opening with soloists from La Scala and the Vienna Philharmonic in an intimate historic setting.
-- **Ostava – Live in Concert at Orpheus Open-Air Cinema** (event_this_weekend, Saturday, September 12, 2026 at 20:00, Orpheus Open-Air Cinema (Lyatno Kino Orfey), Plovdiv) — Bulgarian indie rock veterans playing their back catalogue in an open-air amphitheatre; melodic guitar rock accessible despite Bulgarian lyrics.
-### Good to know — civic (4)
-- **Balkan Skyways Establishing Operational Base at Plovdiv Airport with European Routes** (civic_opportunity, Announced September 2026 (Operations launching spring 2027), Plovdiv Airport (Krumovo)) — Durable infrastructure development adding eight direct international European flight routes directly out of Plovdiv.
-- **Plovdiv Derby: Botev Plovdiv vs. Lokomotiv Plovdiv (Traffic & Crowd Disruption)** (civic_notice, Sunday, September 13, 2026, Hristo Botev Stadium and central transit corridors, Plovdiv) — Major local football derby bringing extensive police checkpoints, road closures, and traffic congestion across central routes.
-- **Road Closure on Boulevard Shesti Septemvri for Heating Pipeline Replacement** (civic_notice, Ongoing through Monday, September 14, 2026, Boulevard Shesti Septemvri (between Vladivostok St and Turgenev St), Plovdiv) — Full vehicular closure and municipal bus rerouting (#10, #15, #17) due to central infrastructure pipe works.
-- **Northern Promenade Access Restriction at Plovdiv Rowing Canal** (civic_notice, September 11–13, 2026 (mornings and afternoons), Rowing Canal (Northern pedestrian alley), Plovdiv) — Pedestrian access along the northern promenade and non-competing boat traffic are strictly restricted for the Balkan Rowing Championships.
-### Family evergreens (3)
-- **Day Trip to Island "Svoboda" Park** (evergreen, Always open / Best during daylight hours, Svoboda Park Island, Pazardzhik (~35 min drive)) — A family favorite island park featuring numerous shaded playgrounds, dinosaur sculptures, miniature zoo animals, and wide stroller-friendly paths.
-- **Aviation Museum Krumovo Outing** (evergreen, Wednesday to Sunday, 09:00 - 18:00, Krumovo Airfield (~15 min drive from Plovdiv)) — An outdoor airfield packed with real planes and helicopters that 4-year-olds can walk right up to, offering open grassy spaces to roam.
-- **Pony Riding and Farm Walk at Frigopan Horse Base** (evergreen, Daily by reservation, 09:00 - 18:00, Frigopan Equestrian Base, Tsaratsovo (~15 min drive)) — A clean, modern equestrian base offering gentle guided pony walks for preschoolers and an up-close look at beautiful horses.
+- **Festival of the Hills (Festival na Tepetata)** (event_lookahead, Saturday, 26 September – Sunday, 27 September 2026, Nebet Tepe, Sahat Tepe, Bunardzhika, and Youth Hill, Plovdiv) — Inaugural city festival transforming all four landmark hills into open-air culture stages with open-air cinema on Nebet Tepe, classical/French acoustic sets on Bunardzhika, and jazz on Sahat Tepe.
+- **The Gathering Live in Concert** (event_thisweek, Tuesday, 22 September 2026 at 20:00, Ancient Theatre of Plovdiv, 4 Tsar Ivaylo St, Central Plovdiv) — Renowned Dutch atmospheric post-rock and progressive metal band performing in English at the Roman theatre under the Autumn Salon of the Arts.
+- **Septicflesh Live in Concert** (event_this_weekend, Saturday, 19 September 2026, Ancient Theatre of Plovdiv, Central Plovdiv) — Internationally renowned Greek symphonic metal act performing with full orchestration in an ancient Roman amphitheatre; completely accessible in English/instrumental form.
+- **GuitArt Festival X (10th Anniversary International Guitar Festival)** (event_lookahead, Thursday, 1 October – Sunday, 4 October 2026, Boris Hristov House of Culture & Central Plovdiv Venues) — Major international guitar festival bringing world-class virtuosic performers across classical, jazz, and fingerstyle disciplines; purely instrumental music with zero language barrier.
+- **Plovdiv Fantasy Week 2026** (event_thisweek, Monday, 21 September – Sunday, 27 September 2026, Stefan Stambolov Square & Fantasy Non-Museum, Central Plovdiv) — Urban storytelling and interactive media festival featuring visual arts, comic exhibitions, gaming, and multimedia installations right in the town centre.
+- **Beloslava & Rushi Live Open-Air Concert** (event_thisweek, Friday, 25 September 2026 at 19:30, Orpheus Summer Cinema, Central Plovdiv) — Sophisticated neo-soul and quality pop collaboration in a scenic outdoor park cinema setting.
+### Good to know — civic (2)
+- **Lokomotiv Plovdiv vs. CSKA Sofia Football Match: Major Traffic Restrictions & Bus Detours** (civic_notice, Sunday, 20 September 2026 (15:00 - 21:00; kick-off at 17:45), Lokomotiv Stadium (Lauta Park) & surrounding streets (ul. Lev Tolstoy, ul. Prof. Tsvetan Lazarov, ul. Dimitar Rizov)) — High-profile First League fixture will draw heavy crowds, heavy police deployment, and shut major transit arteries around Lauta Park, detouring buses #9, 10, 21, 25, 29, 66, and 99.
+- **Emergency Water Outage & Bus Route Changes in Proslav District** (civic_notice, Sunday, 20 September 2026 (09:30 - 17:00), ul. Boris Petrov No. 16 area, Proslav District, Plovdiv) — Urgent water main repairs will shut off water supply for the daytime and force route detours on five city bus lines (#6, 15, 24, 66, 222).
+### Family evergreens (2)
+- **Children's Railway 'Banner of Peace'** (evergreen, Wednesday – Sunday, Daytime, Youth Hill (Mladezhki Halm), Plovdiv) — A miniature operating passenger train taking a gentle, thrilling loop with tunnels and bridges through parkland, a proven hit for 4-year-olds.
+- **Aviation Museum Krumovo** (evergreen, Wednesday – Sunday, 09:00 – 18:00, Plovdiv Airport, Krumovo (~15 min drive)) — Spacious, secure open-air grounds with real airplanes and helicopters where a preschooler can roam and run freely on green grass.
 ### Adult evergreens (1)
-- **Dom na Kinoto Plovdiv Arthouse Screenings** (evergreen, Year-round / Weekly programming, Dom na Kinoto (Lucky Cinema), ul. Gladstone 1, Plovdiv) — The premier independent cinema venue in central Plovdiv offering original-language screenings with subtitling rather than dubbing.
+- **LUCKY House of Cinema (Dom na Kinoto Plovdiv)** (evergreen, Daily screenings (afternoon & evening programmes), 1 William Gladstone St (Dom na Tehnikata), Central Plovdiv) — The city's dedicated arthouse and festival cinema, consistently showing European, indie, and international cinema in original languages with subtitles rather than dubbing.
+
+_1 of 18 sent item(s) were NOT corroborated by the skeptic: Emergency Water Outage & Bus Route Changes in Proslav District._
 
 ## All candidates
 _Sorted by score. `fit=` names the field each candidate was actually judged on, with the floor that rejected it where one did. `UNVERIFIED` means the skeptic found no corroborating source — it is a warning, not a rejection._
-- #8 [sent] Day Trip to Island "Svoboda" Park (family/evergreen, family_fit=96, exempt) — catalog evergreen
-- #14 [sent] Balkan Skyways Establishing Operational Base at Plovdiv Airport with European Routes (adult/civic_opportunity, civic_value=95, floor 75) — Confirmed on bnr.bg and gustomedia.bg.
-- #7 [suppressed] Puppet Show: "Thumbelina" (Палечка) (family/event_lookahead, family_fit=93, floor 50) — Confirmed on pptheatre.com and grabo.bg for September 26, 2026.
-- #1 [sent] Puppet Show: "Boy and the Wind" (Момче и вятър) (family/event_this_weekend, family_fit=92, floor 50) — Confirmed on pptheatre.com and grabo.bg for September 13, 2026.
-- #9 [sent] Aviation Museum Krumovo Outing (family/evergreen, family_fit=90, exempt) — catalog evergreen
-- #2 [sent] Re:Bazaar Green Family Festival & Eco Games (family/event_this_weekend, family_fit=88, floor 50) — Confirmed on marica.bg and rebazaar.bg for September 12, 2026.
-- #10 [sent] Pony Riding and Farm Walk at Frigopan Horse Base (family/evergreen, family_fit=88, exempt) — catalog evergreen
-- #5 [sent] Lutenitsa Festival & Nashenski Fest 2026 (family/event_lookahead, family_fit=86, floor 50) — Confirmed on sz.bg (Stara Zagora cultural calendar) for September 19, 2026.
-- #3 [sent] Kids Road Safety Day & Vehicle Demonstrations (family/event_this_weekend, family_fit=85, floor 50) — Confirmed on marica.bg and trafficnews.bg for September 12, 2026.
-- #11 [sent] Plovdiv Derby: Botev Plovdiv vs. Lokomotiv Plovdiv (Traffic & Crowd Disruption) (adult/civic_notice, civic_value=85, floor 55) — Confirmed on marica.bg and topsport.bg for September 13, 2026.
-- #21 [sent] Dom na Kinoto Plovdiv Arthouse Screenings (adult/evergreen, adult_fit=85, exempt) — catalog evergreen
-- #20 [sent] The Gathering Live at the Ancient Theatre (adult/event_lookahead, adult_fit=84, floor 70) — Confirmed on visitplovdiv.com and eventim.bg for September 22, 2026.
-- #6 [sent] Plovdiv Car-Free Day & Family Parade on Maritsa-South (family/event_lookahead, family_fit=83, floor 50) — Confirmed on bnr.bg and plovdivnow.bg for September 22, 2026.
-- #17 [sent] Tarja Turunen – 'The World of Dreams' Live at the Ancient Theatre (adult/event_thisweek, adult_fit=82, floor 70) — Confirmed on visitplovdiv.com and eventim.bg for September 18, 2026.
-- #13 [sent] Road Closure on Boulevard Shesti Septemvri for Heating Pipeline Replacement (adult/civic_notice, civic_value=80, floor 55) — Confirmed on bta.bg and trafficnews.bg through September 14, 2026.
-- #18 [sent] 32nd Week of Contemporary Art: 'Bug in Reality' (adult/event_lookahead, adult_fit=78, floor 70) — Confirmed on bta.bg and visitplovdiv.com for September 3 – October 2, 2026.
-- #19 [sent] Septicflesh with Full Symphonic Orchestra and Choir (adult/event_lookahead, adult_fit=78, floor 70) — Confirmed on visitplovdiv.com and eventim.bg for September 19, 2026.
-- #4 [sent] Plovdiv Beer Fest 2026 (Daytime Park Gathering) (family/event_thisweek, family_fit=76, floor 50) — Confirmed on opoznaiplovdiv.bg and marica.bg for September 18–22, 2026.
-- #16 [sent] XVII International Festival 'Music Days in Balabanov House' Opening Concert (adult/event_thisweek, adult_fit=76, floor 70) — Confirmed on visitplovdiv.com and musicartissimo.com; opening concert is held at the Bishop's Basilica.
-- #15 [sent] Ostava – Live in Concert at Orpheus Open-Air Cinema (adult/event_this_weekend, adult_fit=72, floor 70) — Confirmed on eventim.bg and domborishristov.bg for September 12, 2026.
-- #12 [sent] Northern Promenade Access Restriction at Plovdiv Rowing Canal (adult/civic_notice, civic_value=70, floor 55) — Confirmed on plovdivdaily.bg for September 11–13, 2026.
+- #9 [sent] Children's Railway 'Banner of Peace' (family/evergreen, family_fit=96, exempt) — catalog evergreen
+- #3 [sent] Kids Festival & Expo 2026 – PlayCity (family/event_lookahead, family_fit=95, floor 50) — Confirmed on visitplovdiv.com and fair.bg for September 26–27, 2026.
+- #13 [kill] `UNVERIFIED` Wizz Air Expands Direct Plovdiv–London Flights to Daily Frequency (adult/civic_opportunity, civic_value=95, floor 75) — Factually refuted; Wizz Air officially denied plans to increase to daily flights as reported in marica.bg.
+- #5 [sent] Puppet Show: 'Sick Carries Healthy' (Болен здрав носи) (family/event_lookahead, family_fit=92, floor 50) — Confirmed on pptheatre.com and grabo.bg for September 27, 2026.
+- #4 [suppressed] Festival of the Hills (Фестивал на тепетата) (family/event_lookahead, family_fit=90, floor 50) — Confirmed on tourismplovdiv.org and 24chasa.bg for September 26–27, 2026.
+- #8 [sent] Puppet Show: 'What a Crocodile!' (Ама че крокодил!) (family/event_lookahead, family_fit=90, floor 50) — Confirmed on pptheatre.com and grabo.bg for October 3, 2026.
+- #10 [sent] Aviation Museum Krumovo (family/evergreen, family_fit=90, exempt) — catalog evergreen
+- #2 [sent] Plovdiv Land - Attractions Festival (family/event_thisweek, family_fit=88, floor 50) — Confirmed on trakia-plovdiv.bg and eventibg.com for September 25 – October 4, 2026.
+- #6 [sent] Puppet Show: 'Grandpa\'s Mitten' (Дядовата ръкавичка) (family/event_lookahead, family_fit=86, floor 50) — Confirmed on kupibileti.bg for September 26, 2026 at Drama & Puppet Theatre Konstantin Velichkov.
+- #1 [sent] Plovdiv Fantasy Week (family/event_thisweek, family_fit=85, floor 50) — Confirmed on focus-news.net and plovdiv-online.com for September 21–27, 2026.
+- #11 [sent] Lokomotiv Plovdiv vs. CSKA Sofia Football Match: Major Traffic Restrictions & Bus Detours (adult/civic_notice, civic_value=85, floor 55) — Confirmed on sportal.bg and gol.bg for fixture on September 20, 2026.
+- #20 [sent] LUCKY House of Cinema (Dom na Kinoto Plovdiv) (adult/evergreen, adult_fit=85, exempt) — catalog evergreen
+- #18 [sent] Festival of the Hills (Festival na Tepetata) (adult/event_lookahead, adult_fit=84, floor 70) — Confirmed on tourismplovdiv.org and 24chasa.bg for September 26–27, 2026.
+- #7 [sent] Autumn Craft Fair Plovdiv 2026 (Есенен панаир на занаятите) (family/event_lookahead, family_fit=82, floor 50) — Confirmed on visitplovdiv.com and rzk-plovdiv.bg for October 1–4, 2026.
+- #15 [sent] The Gathering Live in Concert (adult/event_thisweek, adult_fit=82, floor 70) — Confirmed on gathering.nl and eventim.bg for September 22, 2026.
+- #14 [sent] Septicflesh Live in Concert (adult/event_this_weekend, adult_fit=78, floor 70) — Confirmed on eventim.bg and visitplovdiv.com for September 19, 2026.
+- #19 [sent] GuitArt Festival X (10th Anniversary International Guitar Festival) (adult/event_lookahead, adult_fit=76, floor 70) — Confirmed on guitart.bg and plovdiv-online.com for October 1–4, 2026.
+- #16 [sent] Plovdiv Fantasy Week 2026 (adult/event_thisweek, adult_fit=75, floor 70) — Confirmed on focus-news.net and plovdiv-online.com for September 21–27, 2026.
+- #17 [sent] Beloslava & Rushi Live Open-Air Concert (adult/event_thisweek, adult_fit=72, floor 70) — Confirmed on bilet.bg and life.dir.bg for September 25, 2026.
+- #12 [sent] `UNVERIFIED` Emergency Water Outage & Bus Route Changes in Proslav District (adult/civic_notice, civic_value=65, floor 55) — Could not confirm scheduled outage or bus detours on vik-plovdiv.bg or plovdiv.bg.

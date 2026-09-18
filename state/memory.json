@@ -183,7 +183,7 @@
     "Children's Railway 'Banner of Peace'": {
       "location": "Youth Hill (Mladezhki Halm), Plovdiv",
       "area": "in town",
-      "description": "An absolute favorite for 4-year-olds: a real miniature train taking a safe, scenic loop complete with a dark tunnel and drawbridges.",
+      "description": "A miniature operating passenger train taking a gentle, thrilling loop with tunnels and bridges through parkland, a proven hit for 4-year-olds.",
       "tags": [
         "ride",
         "park",
@@ -194,7 +194,8 @@
       "practical": "Tickets ~1 BGN; Wed-Sun (closed Mon/Tue); midday break around 13:00; shorter winter hours.",
       "discovered": "2026-07-02",
       "source": "research",
-      "last_suggested": "2026-07-03"
+      "last_suggested": "2026-09-18",
+      "audience": "family"
     },
     "Lauta Rope Park": {
       "location": "Park Lauta, Trakiya District, Plovdiv",
@@ -700,15 +701,16 @@
       "last_suggested": null
     },
     "Aviation Museum Krumovo": {
-      "location": "Krumovo (~15-20 min drive from Plovdiv)",
+      "location": "Plovdiv Airport, Krumovo (~15 min drive)",
       "area": "",
-      "description": "Spacious, safe, open-air grounds with dozens of massive airplanes and helicopters where your toddler can run freely on the grass while marveling at the big machines.",
+      "description": "Spacious, secure open-air grounds with real airplanes and helicopters where a preschooler can roam and run freely on green grass.",
       "tags": [],
       "url": "",
       "practical": "",
       "discovered": "2026-07-02",
       "source": "find",
-      "last_suggested": "2026-07-03"
+      "last_suggested": "2026-09-18",
+      "audience": "family"
     },
     "Regional Natural History Museum Visit": {
       "location": "Regional Natural History Museum, Plovdiv",
@@ -1139,6 +1141,18 @@
       "discovered": "2026-09-11",
       "source": "find",
       "last_suggested": "2026-09-11",
+      "audience": "adult"
+    },
+    "LUCKY House of Cinema (Dom na Kinoto Plovdiv)": {
+      "location": "1 William Gladstone St (Dom na Tehnikata), Central Plovdiv",
+      "area": "",
+      "description": "The city's dedicated arthouse and festival cinema, consistently showing European, indie, and international cinema in original languages with subtitles rather than dubbing.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-09-18",
+      "source": "find",
+      "last_suggested": "2026-09-18",
       "audience": "adult"
     }
   },
@@ -2715,6 +2729,215 @@
       "score": 85,
       "verdict": "sent",
       "note": "The premier independent cinema venue in central Plovdiv offering original-language screenings with subtitling rather than dubbing."
+    },
+    {
+      "date": "2026-09-18",
+      "title": "Plovdiv Fantasy Week",
+      "category": "event_thisweek",
+      "when": "September 21 – 27, 2026",
+      "location": "Stefan Stambolov Square, Plovdiv",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Confirmed on focus-news.net and plovdiv-online.com for September 21–27, 2026."
+    },
+    {
+      "date": "2026-09-18",
+      "title": "Plovdiv Land - Attractions Festival",
+      "category": "event_thisweek",
+      "when": "September 25 – October 4, 2026",
+      "location": "Amusement Festival Zone, Plovdiv",
+      "url": "",
+      "score": 88,
+      "verdict": "sent",
+      "note": "Confirmed on trakia-plovdiv.bg and eventibg.com for September 25 – October 4, 2026."
+    },
+    {
+      "date": "2026-09-18",
+      "title": "Kids Festival & Expo 2026 – PlayCity",
+      "category": "event_lookahead",
+      "when": "September 26 – 27, 2026",
+      "location": "International Fair Plovdiv, Plovdiv",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and fair.bg for September 26–27, 2026."
+    },
+    {
+      "date": "2026-09-18",
+      "title": "Festival of the Hills (Фестивал на тепетата)",
+      "category": "event_lookahead",
+      "when": "September 26 – 27, 2026",
+      "location": "Youth Hill (Mladezhki Halm) & Bunardzhika, Plovdiv",
+      "url": "",
+      "score": 90,
+      "verdict": "suppressed",
+      "note": "Confirmed on tourismplovdiv.org and 24chasa.bg for September 26–27, 2026."
+    },
+    {
+      "date": "2026-09-18",
+      "title": "Puppet Show: 'Sick Carries Healthy' (Болен здрав носи)",
+      "category": "event_lookahead",
+      "when": "Sunday, September 27, 2026 at 10:30 & 11:45 AM",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 92,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com and grabo.bg for September 27, 2026."
+    },
+    {
+      "date": "2026-09-18",
+      "title": "Puppet Show: 'Grandpa\\'s Mitten' (Дядовата ръкавичка)",
+      "category": "event_lookahead",
+      "when": "Saturday, September 26, 2026 at 11:00 AM",
+      "location": "Drama & Puppet Theatre 'Konstantin Velichkov', Pazardzhik",
+      "url": "",
+      "score": 86,
+      "verdict": "sent",
+      "note": "Confirmed on kupibileti.bg for September 26, 2026 at Drama & Puppet Theatre Konstantin Velichkov."
+    },
+    {
+      "date": "2026-09-18",
+      "title": "Autumn Craft Fair Plovdiv 2026 (Есенен панаир на занаятите)",
+      "category": "event_lookahead",
+      "when": "October 1 – 4, 2026",
+      "location": "Rayko Daskalov Street (Little Main Street), Plovdiv",
+      "url": "",
+      "score": 82,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and rzk-plovdiv.bg for October 1–4, 2026."
+    },
+    {
+      "date": "2026-09-18",
+      "title": "Puppet Show: 'What a Crocodile!' (Ама че крокодил!)",
+      "category": "event_lookahead",
+      "when": "Saturday, October 3, 2026 at 10:30 & 11:45 AM",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 90,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com and grabo.bg for October 3, 2026."
+    },
+    {
+      "date": "2026-09-18",
+      "title": "Septicflesh Live in Concert",
+      "category": "event_this_weekend",
+      "when": "Saturday, 19 September 2026",
+      "location": "Ancient Theatre of Plovdiv, Central Plovdiv",
+      "url": "",
+      "score": 78,
+      "verdict": "sent",
+      "note": "Confirmed on eventim.bg and visitplovdiv.com for September 19, 2026."
+    },
+    {
+      "date": "2026-09-18",
+      "title": "The Gathering Live in Concert",
+      "category": "event_thisweek",
+      "when": "Tuesday, 22 September 2026 at 20:00",
+      "location": "Ancient Theatre of Plovdiv, 4 Tsar Ivaylo St, Central Plovdiv",
+      "url": "",
+      "score": 82,
+      "verdict": "sent",
+      "note": "Confirmed on gathering.nl and eventim.bg for September 22, 2026."
+    },
+    {
+      "date": "2026-09-18",
+      "title": "Plovdiv Fantasy Week 2026",
+      "category": "event_thisweek",
+      "when": "Monday, 21 September – Sunday, 27 September 2026",
+      "location": "Stefan Stambolov Square & Fantasy Non-Museum, Central Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Confirmed on focus-news.net and plovdiv-online.com for September 21–27, 2026."
+    },
+    {
+      "date": "2026-09-18",
+      "title": "Beloslava & Rushi Live Open-Air Concert",
+      "category": "event_thisweek",
+      "when": "Friday, 25 September 2026 at 19:30",
+      "location": "Orpheus Summer Cinema, Central Plovdiv",
+      "url": "",
+      "score": 72,
+      "verdict": "sent",
+      "note": "Confirmed on bilet.bg and life.dir.bg for September 25, 2026."
+    },
+    {
+      "date": "2026-09-18",
+      "title": "Festival of the Hills (Festival na Tepetata)",
+      "category": "event_lookahead",
+      "when": "Saturday, 26 September – Sunday, 27 September 2026",
+      "location": "Nebet Tepe, Sahat Tepe, Bunardzhika, and Youth Hill, Plovdiv",
+      "url": "",
+      "score": 84,
+      "verdict": "sent",
+      "note": "Confirmed on tourismplovdiv.org and 24chasa.bg for September 26–27, 2026."
+    },
+    {
+      "date": "2026-09-18",
+      "title": "GuitArt Festival X (10th Anniversary International Guitar Festival)",
+      "category": "event_lookahead",
+      "when": "Thursday, 1 October – Sunday, 4 October 2026",
+      "location": "Boris Hristov House of Culture & Central Plovdiv Venues",
+      "url": "",
+      "score": 76,
+      "verdict": "sent",
+      "note": "Confirmed on guitart.bg and plovdiv-online.com for October 1–4, 2026."
+    },
+    {
+      "date": "2026-09-18",
+      "title": "Lokomotiv Plovdiv vs. CSKA Sofia Football Match: Major Traffic Restrictions & Bus Detours",
+      "category": "civic_notice",
+      "when": "Sunday, 20 September 2026 (15:00 - 21:00; kick-off at 17:45)",
+      "location": "Lokomotiv Stadium (Lauta Park) & surrounding streets (ul. Lev Tolstoy, ul. Prof. Tsvetan Lazarov, ul. Dimitar Rizov)",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Confirmed on sportal.bg and gol.bg for fixture on September 20, 2026."
+    },
+    {
+      "date": "2026-09-18",
+      "title": "Emergency Water Outage & Bus Route Changes in Proslav District",
+      "category": "civic_notice",
+      "when": "Sunday, 20 September 2026 (09:30 - 17:00)",
+      "location": "ul. Boris Petrov No. 16 area, Proslav District, Plovdiv",
+      "url": "",
+      "score": 65,
+      "verdict": "sent",
+      "note": "Could not confirm scheduled outage or bus detours on vik-plovdiv.bg or plovdiv.bg."
+    },
+    {
+      "date": "2026-09-18",
+      "title": "Children's Railway 'Banner of Peace'",
+      "category": "evergreen",
+      "when": "Wednesday – Sunday, Daytime",
+      "location": "Youth Hill (Mladezhki Halm), Plovdiv",
+      "url": "",
+      "score": 96,
+      "verdict": "sent",
+      "note": "A miniature operating passenger train taking a gentle, thrilling loop with tunnels and bridges through parkland, a proven hit for 4-year-olds."
+    },
+    {
+      "date": "2026-09-18",
+      "title": "Aviation Museum Krumovo",
+      "category": "evergreen",
+      "when": "Wednesday – Sunday, 09:00 – 18:00",
+      "location": "Plovdiv Airport, Krumovo (~15 min drive)",
+      "url": "",
+      "score": 90,
+      "verdict": "sent",
+      "note": "Spacious, secure open-air grounds with real airplanes and helicopters where a preschooler can roam and run freely on green grass."
+    },
+    {
+      "date": "2026-09-18",
+      "title": "LUCKY House of Cinema (Dom na Kinoto Plovdiv)",
+      "category": "evergreen",
+      "when": "Daily screenings (afternoon & evening programmes)",
+      "location": "1 William Gladstone St (Dom na Tehnikata), Central Plovdiv",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "The city's dedicated arthouse and festival cinema, consistently showing European, indie, and international cinema in original languages with subtitles rather than dubbing."
     }
   ]
 }
