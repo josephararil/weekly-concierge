@@ -890,7 +890,7 @@
       "practical": "",
       "discovered": "2026-08-11",
       "source": "seed-adult",
-      "last_suggested": null,
+      "last_suggested": "2026-09-25",
       "audience": "adult"
     },
     "Regional Ethnographic Museum Plovdiv": {
@@ -1154,6 +1154,18 @@
       "source": "find",
       "last_suggested": "2026-09-18",
       "audience": "adult"
+    },
+    "Byala Reka Ecotrail Walk": {
+      "location": "Near Kalofer (~50 min drive from Plovdiv)",
+      "area": "",
+      "description": "Safe and scenic walk along sturdy wooden bridges and railings over a mountain river, without dangerous steep cliffs.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-09-25",
+      "source": "find",
+      "last_suggested": "2026-09-25",
+      "audience": "family"
     }
   },
   "ledger": [
@@ -2938,6 +2950,215 @@
       "score": 85,
       "verdict": "sent",
       "note": "The city's dedicated arthouse and festival cinema, consistently showing European, indie, and international cinema in original languages with subtitles rather than dubbing."
+    },
+    {
+      "date": "2026-09-25",
+      "title": "Puppet Show: Thumbelina (Палечка)",
+      "category": "event_this_weekend",
+      "when": "Saturday, 26 September 2026, 10:30 & 11:45",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 92,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com for September 26, 2026."
+    },
+    {
+      "date": "2026-09-25",
+      "title": "Circus Arlekino in Plovdiv (Цирк Арлекино)",
+      "category": "event_this_weekend",
+      "when": "September 26 – October 18, 2026",
+      "location": "Trakia District (opposite Forum Shopping Center), Plovdiv",
+      "url": "",
+      "score": 88,
+      "verdict": "sent",
+      "note": "Confirmed on Circus Arlekino official Facebook page for September 26 – October 18, 2026."
+    },
+    {
+      "date": "2026-09-25",
+      "title": "DECATHLON Color Run & Family Sports Fest",
+      "category": "event_this_weekend",
+      "when": "Saturday, 26 September 2026, 11:00",
+      "location": "Decathlon Grounds, 43A Osvobozhdenie Blvd, Trakia, Plovdiv",
+      "url": "",
+      "score": 84,
+      "verdict": "sent",
+      "note": "Confirmed on activities.decathlon.bg for September 26, 2026."
+    },
+    {
+      "date": "2026-09-25",
+      "title": "Kyuchuk Paris Neighborhood Festival (Празникът на Кючука)",
+      "category": "event_this_weekend",
+      "when": "September 25–27, 2026",
+      "location": "Studenets Park (Raycho Kirkov Park), South District, Plovdiv",
+      "url": "",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Confirmed on marica.bg and plovdiv-news.bg for September 25–27, 2026."
+    },
+    {
+      "date": "2026-09-25",
+      "title": "Plovdiv Book Alley (Алея на книгата)",
+      "category": "event_thisweek",
+      "when": "September 28 – October 4, 2026",
+      "location": "Central Square (Площад Централен), Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Confirmed on impressio.bg for September 28 – October 4, 2026."
+    },
+    {
+      "date": "2026-09-25",
+      "title": "Puppet Show: Doctor Dolittle (Доктор Дулитъл)",
+      "category": "event_lookahead",
+      "when": "Sunday, 4 October 2026, 10:30 & 11:45",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 94,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com for October 4, 2026."
+    },
+    {
+      "date": "2026-09-25",
+      "title": "Musical Fantasy Show: Frozen Heart (Замръзналото сърце)",
+      "category": "event_lookahead",
+      "when": "Sunday, 18 October 2026, 17:00",
+      "location": "SILA Complex, Plovdiv",
+      "url": "",
+      "score": 86,
+      "verdict": "sent",
+      "note": "Confirmed on eventim.bg for October 18, 2026."
+    },
+    {
+      "date": "2026-09-25",
+      "title": "Mustafa Algiyadi – Stand Up Comedy in English",
+      "category": "event_lookahead",
+      "when": "Saturday, 17 October 2026",
+      "location": "Comedy Club Plovdiv, Plovdiv",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on comedyclub.bg for October 17, 2026."
+    },
+    {
+      "date": "2026-09-25",
+      "title": "Symphony Concert: New Conductors of Europe",
+      "category": "event_this_weekend",
+      "when": "Saturday, 26 September 2026, 19:00",
+      "location": "Boris Hristov House of Culture, Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Confirmed on eventim.bg and visitplovdiv.com for September 26, 2026."
+    },
+    {
+      "date": "2026-09-25",
+      "title": "32nd Week of Contemporary Art: 'Bug in Reality' Exhibition",
+      "category": "event_thisweek",
+      "when": "Daily until Friday, 2 October 2026",
+      "location": "City Art Gallery (Temporary Exhibition Halls), 15 Knyaz Alexander I St, Plovdiv",
+      "url": "",
+      "score": 76,
+      "verdict": "sent",
+      "note": "Confirmed on bta.bg and visitplovdiv.com through October 2, 2026."
+    },
+    {
+      "date": "2026-09-25",
+      "title": "GuitArt X Festival 2026 Opening Concert: Tu Le & Samuel Solomon",
+      "category": "event_thisweek",
+      "when": "Thursday, 1 October 2026",
+      "location": "First Studio of Radio Plovdiv, Plovdiv",
+      "url": "",
+      "score": 74,
+      "verdict": "sent",
+      "note": "Confirmed on eventim.bg and guitart.bg for October 1, 2026 at First Studio of Radio Plovdiv."
+    },
+    {
+      "date": "2026-09-25",
+      "title": "Alley of the Book (Алея на книгата) Open-Air Market",
+      "category": "event_thisweek",
+      "when": "Monday, 28 September – Sunday, 4 October 2026",
+      "location": "Central Square (Площад Централен), Plovdiv",
+      "url": "",
+      "score": 70,
+      "verdict": "sent",
+      "note": "Confirmed on impressio.bg for September 28 – October 4, 2026."
+    },
+    {
+      "date": "2026-09-25",
+      "title": "Introduction of Low Emission Zone 'Small Ring' in Central Plovdiv",
+      "category": "civic_notice",
+      "when": "Takes effect Thursday, 1 October 2026 (through 30 April 2027)",
+      "location": "Central District / Small Ring Zone, Plovdiv",
+      "url": "",
+      "score": 90,
+      "verdict": "sent",
+      "note": "Confirmed on plovdiv.bg and marica.bg for October 1, 2026."
+    },
+    {
+      "date": "2026-09-25",
+      "title": "Temporary Traffic Stoppages on Blvd. Shipka and Blvd. Tsar Simeon for Decathlon Color Run",
+      "category": "civic_notice",
+      "when": "Saturday, 26 September 2026, 10:00–13:00",
+      "location": "Blvd. Shipka & Blvd. Tsar Simeon (Trakia District), Plovdiv",
+      "url": "",
+      "score": 72,
+      "verdict": "sent",
+      "note": "Confirmed on plovdiv-news.bg for September 26, 2026."
+    },
+    {
+      "date": "2026-09-25",
+      "title": "Cobblestone Repaving and Parking Disruptions on Prolet Street by Roman Stadium",
+      "category": "civic_notice",
+      "when": "Ongoing",
+      "location": "Prolet Street, Central District, Plovdiv",
+      "url": "",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Could not find specific corroborating source or municipal notice for cobblestone repaving on Prolet Street."
+    },
+    {
+      "date": "2026-09-25",
+      "title": "Construction and Phased Opening of Retail Park Ostromila",
+      "category": "civic_opportunity",
+      "when": "Ongoing commercial development",
+      "location": "146 Dimitar Talev St, Plovdiv",
+      "url": "",
+      "score": 78,
+      "verdict": "sent",
+      "note": "Confirmed on marica.bg for retail park development on Dimitar Talev St."
+    },
+    {
+      "date": "2026-09-25",
+      "title": "Plovdiv Airport Autumn/Winter Direct Scheduled Flights",
+      "category": "civic_opportunity",
+      "when": "Autumn/Winter 2026/2027 schedule active",
+      "location": "Plovdiv Airport (Krumovo), Plovdiv",
+      "url": "",
+      "score": 88,
+      "verdict": "sent",
+      "note": "Confirmed on plovdivairport.com official flight schedule."
+    },
+    {
+      "date": "2026-09-25",
+      "title": "Byala Reka Ecotrail Walk",
+      "category": "evergreen",
+      "when": "Open daily during daylight hours",
+      "location": "Near Kalofer (~50 min drive from Plovdiv)",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Safe and scenic walk along sturdy wooden bridges and railings over a mountain river, without dangerous steep cliffs."
+    },
+    {
+      "date": "2026-09-25",
+      "title": "Trakart Cultural Centre",
+      "category": "evergreen",
+      "when": "",
+      "location": "Under the Archaeological Underpass, Plovdiv",
+      "url": "",
+      "score": 60,
+      "verdict": "sent",
+      "note": "Roman mosaics from a late-antique house, shown in situ under the road, plus a glass and antiquities collection."
     }
   ]
 }
