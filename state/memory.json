@@ -1166,64 +1166,45 @@
       "source": "find",
       "last_suggested": "2026-09-25",
       "audience": "family"
+    },
+    "Aviation Museum Krumovo (Музей на авиацията)": {
+      "location": "Krumovo Airport grounds (~15 min drive from Plovdiv)",
+      "area": "",
+      "description": "Dozens of full-size vintage airplanes and helicopters scattered across flat, open outdoor grounds where a toddler can wander freely.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-10-02",
+      "source": "find",
+      "last_suggested": "2026-10-02",
+      "audience": "family"
+    },
+    "Byala Reka Ecotrail Hike (Екопътека Бяла река)": {
+      "location": "Near Kalofer (~55 min drive from Plovdiv)",
+      "area": "",
+      "description": "A gentle mountain trail made of sturdy, railed wooden walkways crossing a rushing river, safe and manageable for a 4-year-old.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-10-02",
+      "source": "find",
+      "last_suggested": "2026-10-02",
+      "audience": "family"
+    },
+    "Hisarya Mineral Baths & Roman Heritage Day Out": {
+      "location": "Hisarya (~40 min drive from Plovdiv)",
+      "area": "",
+      "description": "Easy weekend spa escape for thermal swimming and ancient Roman fortifications within short driving distance.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-10-02",
+      "source": "find",
+      "last_suggested": "2026-10-02",
+      "audience": "adult"
     }
   },
   "ledger": [
-    {
-      "date": "2026-07-01",
-      "title": "Stara Zagora Zoo",
-      "category": "evergreen",
-      "when": "",
-      "location": "Stara Zagora",
-      "url": "",
-      "score": 60,
-      "verdict": "sent",
-      "note": "One of Bulgaria's larger zoos — a reliable half-day out for a 4-year-old."
-    },
-    {
-      "date": "2026-07-01",
-      "title": "Plovdiv Regional Natural History Museum",
-      "category": "evergreen",
-      "when": "",
-      "location": "Plovdiv",
-      "url": "",
-      "score": 60,
-      "verdict": "sent",
-      "note": "Compact natural history museum with taxidermy and a small aquarium — easy indoor fallback."
-    },
-    {
-      "date": "2026-07-01",
-      "title": "Summer in the Old Town",
-      "category": "event_this_weekend",
-      "when": "Ongoing throughout the weekend, July 4-5, 2026",
-      "location": "Various venues in the Old Town, Plovdiv",
-      "url": "https://www.visitplovdiv.com",
-      "score": 85,
-      "verdict": "sent",
-      "note": "Verified as an ongoing festival running throughout the summer of 2026 in Plovdiv."
-    },
-    {
-      "date": "2026-07-01",
-      "title": "Groove Valley Festival in Kazanlak",
-      "category": "event_this_weekend",
-      "when": "Saturday, July 4, 2026, from 16:00",
-      "location": "Melody Park, Kazanlak",
-      "url": "https://bilet.bg",
-      "score": 72,
-      "verdict": "sent",
-      "note": "Verified as a real open-air festival in Kazanlak on July 4, 2026, which is within a 90-minute drive."
-    },
-    {
-      "date": "2026-07-01",
-      "title": "Western Festival (Уестърн фестивал)",
-      "category": "event_lookahead",
-      "when": "July 10 – July 12, 2026",
-      "location": "Dengri Eco Resorts, Velingrad",
-      "url": "https://bilet.bg",
-      "score": 92,
-      "verdict": "sent",
-      "note": "Verified as a real event scheduled at Dengri Eco Resorts in Velingrad on the correct dates."
-    },
     {
       "date": "2026-07-01",
       "title": "International Folklore Festival",
@@ -3159,6 +3140,270 @@
       "score": 60,
       "verdict": "sent",
       "note": "Roman mosaics from a late-antique house, shown in situ under the road, plus a glass and antiquities collection."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "Dog Breed Parade (Парад на породите)",
+      "category": "event_this_weekend",
+      "when": "Saturday–Sunday, October 3–4, 2026",
+      "location": "Tsar Simeon Garden, Plovdiv",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on plovdiv-online.com and marica.bg for October 3–4, 2026."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "Puppet Show: What a Crocodile! (Ама че крокодил!)",
+      "category": "event_this_weekend",
+      "when": "Saturday, October 3, 2026, 10:30 & 11:45",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 92,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com and sofiastage.com for October 3, 2026."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "Festival of Bread (Празник на хляба)",
+      "category": "event_this_weekend",
+      "when": "Saturday, October 3, 2026 at 11:00",
+      "location": "Krustevich village, Hisarya Municipality (~50 min from Plovdiv)",
+      "url": "",
+      "score": 84,
+      "verdict": "sent",
+      "note": "Confirmed on hisarya.bg and pbnovini.com for October 3, 2026."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "Autumn Crafts Fair (Есенен панаир на занаятите)",
+      "category": "event_this_weekend",
+      "when": "Thursday–Sunday, October 1–4, 2026",
+      "location": "Rayko Daskalov St (Little Main Street), Plovdiv",
+      "url": "",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Confirmed on plovdiv.bg and podtepeto.com for October 1–4, 2026."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "Kapana Fest – Autumn Edition",
+      "category": "event_this_weekend",
+      "when": "Friday–Sunday, October 2–4, 2026",
+      "location": "Central Square / Gladstone Street, Plovdiv",
+      "url": "",
+      "score": 78,
+      "verdict": "sent",
+      "note": "Confirmed on podtepeto.com and marica.bg for October 2–4, 2026."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "Charity Cross-Voyage (Крос-Воаяж на Гребната база)",
+      "category": "event_this_weekend",
+      "when": "Saturday, October 3, 2026 at 10:00",
+      "location": "Rowing Canal (near the Tower), Plovdiv",
+      "url": "",
+      "score": 82,
+      "verdict": "sent",
+      "note": "Confirmed on bnrnews.bg and novini247.com for October 3, 2026."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "Children's Play: The Story of Cinderella (Историята на Пепеляшка)",
+      "category": "event_thisweek",
+      "when": "Tuesday, October 6, 2026 at 11:30",
+      "location": "Boris Hristov House of Culture, Plovdiv",
+      "url": "",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Confirmed on domborishristov.bg and marica.bg for October 6, 2026."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "Puppet Show: Winnie the Pooh (Мечо Пух)",
+      "category": "event_lookahead",
+      "when": "Saturday, October 10, 2026, 10:30 & 11:45",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 94,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com and how2plovdiv.com for October 10, 2026."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "Gifts of Thrace Regional Fair (Даровете на Тракия)",
+      "category": "event_lookahead",
+      "when": "Friday–Sunday, October 9–11, 2026",
+      "location": "Arapovo Monastery 'Sv. Nedelya', near Asenovgrad (~25 min drive)",
+      "url": "",
+      "score": 83,
+      "verdict": "sent",
+      "note": "Confirmed on festivali.eu for October 9–11, 2026 at Arapovo Monastery."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "Colors of Autumn Festival (Багрите на есента)",
+      "category": "event_lookahead",
+      "when": "Saturday, October 10, 2026",
+      "location": "Town Center, Hisarya (~45 min from Plovdiv)",
+      "url": "",
+      "score": 82,
+      "verdict": "sent",
+      "note": "Could not find a corroborating source confirming this festival on October 10, 2026."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "Puppet Show: Peter Rabbit (Зайчето Питър)",
+      "category": "event_lookahead",
+      "when": "Sunday, October 25, 2026, 10:30 & 11:45",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 90,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com and how2plovdiv.com for October 25, 2026."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "Station Street Festival 2026",
+      "category": "event_this_weekend",
+      "when": "October 2–4, 2026",
+      "location": "Ivan Vazov Street / Central Square, Plovdiv",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and eventibg.com for October 2–4, 2026."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "Kapana Fest 2026 (Autumn Edition)",
+      "category": "event_this_weekend",
+      "when": "October 2–4 and October 9–11, 2026",
+      "location": "Space above Gladstone Street / Central Square, Plovdiv",
+      "url": "",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Confirmed on podtepeto.com and marica.bg for October 2–4 and October 9–11, 2026."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "GuitArt Festival: Vlatko Stefanovski Trio Live",
+      "category": "event_this_weekend",
+      "when": "Saturday, 3 October 2026, 20:00",
+      "location": "The King's Little Stables (Малките конюшни), Plovdiv",
+      "url": "",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and podtepeto.com for October 3, 2026."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "GuitArt Festival: Yamandu Costa Live in Concert",
+      "category": "event_this_weekend",
+      "when": "Sunday, 4 October 2026, 19:30",
+      "location": "Boris Hristov House of Culture, Plovdiv",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Confirmed on domborishristov.bg and plovdiv.bg for October 4, 2026."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "In Jazz: Bobi Valchev Concert",
+      "category": "event_this_weekend",
+      "when": "Saturday, 3 October 2026, 19:00",
+      "location": "Orpheus Summer Cinema, Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Confirmed on impressio.bg and bilet.bg for October 3, 2026 at Orpheus Summer Cinema."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "Pianist Ivan Donchev: Beethoven Piano Sonatas Cycle",
+      "category": "event_thisweek",
+      "when": "Wednesday, 7 October 2026, 19:00",
+      "location": "AMTII Concert Hall, Academy of Music, Dance and Fine Arts, Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Confirmed on plovdiv.bg and plovdiv-online.com for October 7, 2026."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "Vasil Stoev: 'Between Light and Shadow' Solo Exhibition",
+      "category": "event_thisweek",
+      "when": "6–25 October 2026",
+      "location": "2019 Exhibition Hall, Gladstone St, Plovdiv",
+      "url": "",
+      "score": 70,
+      "verdict": "sent",
+      "note": "Confirmed on plovdiv.bg and sbh.bg for October 6–25, 2026."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "International Photography Meetings 2026 ('Memory and Identity')",
+      "category": "event_lookahead",
+      "when": "16–31 October 2026 (Opening 16 October, 18:00)",
+      "location": "Balabanov House, Old Town, Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and marica.bg for October 16–31, 2026."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "Low Emission Zone (LEZ) Driving Restrictions Introduced in Central Plovdiv",
+      "category": "civic_notice",
+      "when": "Effective 1 October 2026 for 7 months",
+      "location": "Central Plovdiv (Small Ring / Zone 1)",
+      "url": "",
+      "score": 90,
+      "verdict": "sent",
+      "note": "Confirmed on bnr.bg and marica.bg as active starting October 1, 2026."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "Plovdiv Public Transport Real-time Bus Tracking Live in Google Maps",
+      "category": "civic_opportunity",
+      "when": "Active October 2026",
+      "location": "Plovdiv citywide",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Confirmed on mobilebulgaria.com and vplovdiv.com as active in October 2026."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "Aviation Museum Krumovo (Музей на авиацията)",
+      "category": "evergreen",
+      "when": "Wednesday–Sunday, 09:00-16:30",
+      "location": "Krumovo Airport grounds (~15 min drive from Plovdiv)",
+      "url": "",
+      "score": 90,
+      "verdict": "sent",
+      "note": "Dozens of full-size vintage airplanes and helicopters scattered across flat, open outdoor grounds where a toddler can wander freely."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "Byala Reka Ecotrail Hike (Екопътека Бяла река)",
+      "category": "evergreen",
+      "when": "Open daily during daylight hours",
+      "location": "Near Kalofer (~55 min drive from Plovdiv)",
+      "url": "",
+      "score": 88,
+      "verdict": "sent",
+      "note": "A gentle mountain trail made of sturdy, railed wooden walkways crossing a rushing river, safe and manageable for a 4-year-old."
+    },
+    {
+      "date": "2026-10-02",
+      "title": "Hisarya Mineral Baths & Roman Heritage Day Out",
+      "category": "evergreen",
+      "when": "Year-round / Weekends",
+      "location": "Hisarya (~40 min drive from Plovdiv)",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Easy weekend spa escape for thermal swimming and ancient Roman fortifications within short driving distance."
     }
   ]
 }
