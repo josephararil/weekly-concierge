@@ -906,7 +906,7 @@
       "practical": "",
       "discovered": "2026-08-11",
       "source": "seed-adult",
-      "last_suggested": null,
+      "last_suggested": "2026-10-09",
       "audience": "adult"
     },
     "Dom na Kinoto Plovdiv": {
@@ -1202,207 +1202,21 @@
       "source": "find",
       "last_suggested": "2026-10-02",
       "audience": "adult"
+    },
+    "Damascena Biopark & Rose Gardens": {
+      "location": "Skobelevo (~80 min drive)",
+      "area": "",
+      "description": "A beautifully landscaped botanical park featuring gentle flat paths, wooden bridges, playground corners, and free-roaming swans and deer.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-10-09",
+      "source": "find",
+      "last_suggested": "2026-10-09",
+      "audience": "family"
     }
   },
   "ledger": [
-    {
-      "date": "2026-07-01",
-      "title": "International Folklore Festival",
-      "category": "event_lookahead",
-      "when": "July 27 – July 31, 2026",
-      "location": "Ancient Theatre, Plovdiv",
-      "url": "https://www.visitplovdiv.com",
-      "score": 80,
-      "verdict": "sent",
-      "note": "Verified as the 30th International Folklore Festival occurring July 27-31, 2026, at the Ancient Theatre."
-    },
-    {
-      "date": "2026-07-01",
-      "title": "Rowing Channel Family Bike Ride",
-      "category": "evergreen",
-      "when": "Always available (best on weekend mornings)",
-      "location": "Rowing Canal (Grebi Kanal), Plovdiv",
-      "url": "",
-      "score": 95,
-      "verdict": "sent",
-      "note": "A completely flat, car-free paved loop with bike, family-kart, and scooter rentals on-site, perfect for an active but easy outdoor morning with a toddler."
-    },
-    {
-      "date": "2026-07-02",
-      "title": "State Puppet Theatre Weekend Performances",
-      "category": "event_this_weekend",
-      "when": "Saturday and Sunday, July 4-5, 2026, at 10:30 and 11:45",
-      "location": "State Puppet Theatre, Plovdiv",
-      "url": "https://puppet.bg",
-      "score": 95,
-      "verdict": "sent",
-      "note": "Verified as a real, family-friendly venue in Plovdiv with regular weekend performances suitable for a 4-year-old."
-    },
-    {
-      "date": "2026-07-02",
-      "title": "Craft School Plovdiv Workshops",
-      "category": "event_this_weekend",
-      "when": "Running through Saturday, July 4, 2026",
-      "location": "Various locations, Plovdiv",
-      "url": "https://visitplovdiv.com",
-      "score": 75,
-      "verdict": "sent",
-      "note": "Verified as a real entity in Plovdiv hosting workshops suitable for children."
-    },
-    {
-      "date": "2026-07-02",
-      "title": "PhillGood Festival at the Rowing Canal",
-      "category": "event_lookahead",
-      "when": "July 17–19, 2026",
-      "location": "Rowing Canal, Plovdiv",
-      "url": "https://ticketstation.bg",
-      "score": 70,
-      "verdict": "sent",
-      "note": "Verified as a recurring family-friendly event at the Rowing Canal in Plovdiv."
-    },
-    {
-      "date": "2026-07-02",
-      "title": "Day Trip to Bachkovo Monastery",
-      "category": "evergreen",
-      "when": "Always available (best on clear days)",
-      "location": "Bachkovo Monastery (~40-minute drive from Plovdiv)",
-      "url": "",
-      "score": 85,
-      "verdict": "sent",
-      "note": "A highly accessible, beautiful mountain monastery with short walking paths, river views, and local stalls, making for a perfect half-day family trip."
-    },
-    {
-      "date": "2026-07-02",
-      "title": "Explore the Ancient Theatre of Philippopolis",
-      "category": "evergreen",
-      "when": "Always available",
-      "location": "Ancient Theatre, Plovdiv Old Town",
-      "url": "",
-      "score": 80,
-      "verdict": "sent",
-      "note": "A spectacular historical site in the heart of the Old Town, offering an easy and impressive stroll without needing to book an event."
-    },
-    {
-      "date": "2026-07-02",
-      "title": "Cinema Under the Stars",
-      "category": "event_lookahead",
-      "when": "Throughout July 2026",
-      "location": "Various outdoor venues, Plovdiv",
-      "url": "https://visitplovdiv.com",
-      "score": 70,
-      "verdict": "sent",
-      "note": "Outdoor summer cinema screenings are a verified common occurrence in Plovdiv."
-    },
-    {
-      "date": "2026-07-02",
-      "title": "Rowing Channel bike ride",
-      "category": "evergreen",
-      "when": "",
-      "location": "Kanala (Rowing Channel), Plovdiv",
-      "url": "",
-      "score": 60,
-      "verdict": "sent",
-      "note": "Flat paved paths alongside the water, bike/scooter rental on site — easy free outdoor outing."
-    },
-    {
-      "date": "2026-07-02",
-      "title": "Ancient Theatre of Philippopolis",
-      "category": "evergreen",
-      "when": "",
-      "location": "Plovdiv Old Town",
-      "url": "",
-      "score": 60,
-      "verdict": "sent",
-      "note": "Roman-era amphitheatre in the Old Town; a short scenic walk even without an event on."
-    },
-    {
-      "date": "2026-07-02",
-      "title": "Summer in the Old Town Festival",
-      "category": "event_this_weekend",
-      "when": "Saturday and Sunday, July 4–5, 2026 (Runs June 4 – August 29)",
-      "location": "Various locations, Plovdiv Old Town",
-      "url": "https://www.visitplovdiv.com",
-      "score": 80,
-      "verdict": "sent",
-      "note": "Verified that Plovdiv's Old Town hosts ongoing cultural events throughout the summer suitable for families."
-    },
-    {
-      "date": "2026-07-02",
-      "title": "PhillGood Festival at the Rowing Canal",
-      "category": "event_lookahead",
-      "when": "Friday to Sunday, July 17–19, 2026",
-      "location": "Rowing Canal, Plovdiv",
-      "url": "https://www.visitplovdiv.com",
-      "score": 75,
-      "verdict": "suppressed",
-      "note": "Verified as a recurring, family-accessible festival held at the Plovdiv Rowing Canal on the stated dates."
-    },
-    {
-      "date": "2026-07-02",
-      "title": "Children's Railway 'Banner of Peace'",
-      "category": "evergreen",
-      "when": "Wednesday to Sunday, multiple departures daily",
-      "location": "Youth Hill (Mladezhki Halm), Plovdiv",
-      "url": "",
-      "score": 95,
-      "verdict": "sent",
-      "note": "A real miniature train on a scenic loop around Youth Hill. Complete with a dark tunnel and drawbridges, it is a safe and absolute favorite for 4-year-olds."
-    },
-    {
-      "date": "2026-07-02",
-      "title": "Eco Park Stamboliyski",
-      "category": "evergreen",
-      "when": "Open daily (Mini-golf open Wednesday to Sunday)",
-      "location": "Stamboliyski (approx. 30-minute drive from Plovdiv)",
-      "url": "",
-      "score": 92,
-      "verdict": "sent",
-      "note": "A free municipal park featuring a dedicated, fenced toddler-friendly playground with wooden climbing structures and sensory play boards."
-    },
-    {
-      "date": "2026-07-03",
-      "title": "Light Up the Neighborhood – Theatre in the Park",
-      "category": "event_lookahead",
-      "when": "July 6 – July 14, 2026",
-      "location": "Various green parks in Plovdiv neighborhoods",
-      "url": "https://www.visitplovdiv.com",
-      "score": 80,
-      "verdict": "sent",
-      "note": "Plovdiv regularly hosts outdoor cultural initiatives in July, making this plausible and family-relevant."
-    },
-    {
-      "date": "2026-07-03",
-      "title": "Regional Natural History Museum Visit",
-      "category": "evergreen",
-      "when": "Daily, 09:00 - 18:00",
-      "location": "Regional Natural History Museum, Plovdiv",
-      "url": "",
-      "score": 98,
-      "verdict": "sent",
-      "note": "Directly loved by your daughter; this local gem features an aquarium, a terrarium, a digital planetarium, and highly engaging exhibits for early-years exploration."
-    },
-    {
-      "date": "2026-07-03",
-      "title": "Children's Railway 'Banner of Peace'",
-      "category": "evergreen",
-      "when": "Wednesday - Sunday (midday break around 13:00)",
-      "location": "Youth Hill (Mladezhki Halm), Plovdiv",
-      "url": "",
-      "score": 95,
-      "verdict": "sent",
-      "note": "An absolute favorite for 4-year-olds: a real miniature train taking a safe, scenic loop complete with a dark tunnel and drawbridges."
-    },
-    {
-      "date": "2026-07-03",
-      "title": "Aviation Museum Krumovo",
-      "category": "evergreen",
-      "when": "Wednesday - Sunday, 09:00 - 18:00",
-      "location": "Krumovo (~15-20 min drive from Plovdiv)",
-      "url": "",
-      "score": 90,
-      "verdict": "sent",
-      "note": "Spacious, safe, open-air grounds with dozens of massive airplanes and helicopters where your toddler can run freely on the grass while marveling at the big machines."
-    },
     {
       "date": "2026-07-03",
       "title": "Ayazmoto Park & Hall of Laughter",
@@ -3404,6 +3218,204 @@
       "score": 75,
       "verdict": "sent",
       "note": "Easy weekend spa escape for thermal swimming and ancient Roman fortifications within short driving distance."
+    },
+    {
+      "date": "2026-10-09",
+      "title": "Children's Scooter Race at Freedom Island Park",
+      "category": "event_this_weekend",
+      "when": "Saturday, October 10, 2026",
+      "location": "Freedom Island Park (Парк-остров \"Свобода\"), Pazardzhik (~35 min drive)",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on pazardzhik.bg and marica.bg for October 10, 2026."
+    },
+    {
+      "date": "2026-10-09",
+      "title": "Clever Peter (Хитър Петър) Puppet Show",
+      "category": "event_this_weekend",
+      "when": "Sunday, October 11, 2026, 10:30 & 11:45",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 92,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com and grabo.bg for October 11, 2026."
+    },
+    {
+      "date": "2026-10-09",
+      "title": "Parade of Nations & Culture Festival",
+      "category": "event_this_weekend",
+      "when": "Saturday, October 10, 2026, 11:00-15:00",
+      "location": "Kamenitsa Stairs to City Garden (Градска градина), Plovdiv",
+      "url": "",
+      "score": 88,
+      "verdict": "sent",
+      "note": "Could not find a corroborating source confirming this festival on October 10, 2026."
+    },
+    {
+      "date": "2026-10-09",
+      "title": "Gourmet under the Hills 2026 (Гурмето под тепето)",
+      "category": "event_this_weekend",
+      "when": "Friday–Sunday, October 9–11, 2026",
+      "location": "Lapidarium, Old Town, Plovdiv",
+      "url": "",
+      "score": 82,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and marica.bg for October 9–11, 2026."
+    },
+    {
+      "date": "2026-10-09",
+      "title": "Camping & Caravaning Expo Plovdiv",
+      "category": "event_this_weekend",
+      "when": "Saturday–Sunday, October 10–11, 2026",
+      "location": "Rowing Base (Гребна база), Plovdiv",
+      "url": "",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and expo.camping.bg for October 10–11, 2026."
+    },
+    {
+      "date": "2026-10-09",
+      "title": "Live Dinosaurs – In Search of the Egg (Живи Динозаври)",
+      "category": "event_lookahead",
+      "when": "Sunday, October 18, 2026, 13:30",
+      "location": "Complex S.I.L.A., Plovdiv",
+      "url": "",
+      "score": 90,
+      "verdict": "sent",
+      "note": "Confirmed on eventim.bg and visitplovdiv.com for October 18, 2026."
+    },
+    {
+      "date": "2026-10-09",
+      "title": "Peter Rabbit (Зайчето Питър) Guest Puppet Show",
+      "category": "event_lookahead",
+      "when": "Sunday, October 25, 2026, 10:30 & 11:45",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 93,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com and how2plovdiv.com for October 25, 2026."
+    },
+    {
+      "date": "2026-10-09",
+      "title": "English Stand-Up: Mustafa Algiyadi – 'Your Finest Second Cheapest Wine Please'",
+      "category": "event_lookahead",
+      "when": "Saturday, 17 October 2026",
+      "location": "The Comedy Club Plovdiv, Central Plovdiv",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on comedyclub.bg and fienta.com for October 17, 2026."
+    },
+    {
+      "date": "2026-10-09",
+      "title": "Disco Music Fest: Back to the '80s & '90s",
+      "category": "event_this_weekend",
+      "when": "Friday & Saturday, 9–10 October 2026, 20:00",
+      "location": "Kolodruma Arena, Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Confirmed on eventim.bg and kolodrumplovdiv.com for October 9–10, 2026."
+    },
+    {
+      "date": "2026-10-09",
+      "title": "Plovdiv Jazz Fest 2026 (Autumn Edition)",
+      "category": "event_lookahead",
+      "when": "6–8 November 2026",
+      "location": "Boris Hristov House of Culture, Plovdiv",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Confirmed on eventim.bg and visitplovdiv.com for November 6–8, 2026."
+    },
+    {
+      "date": "2026-10-09",
+      "title": "Exhibition: 'Design from Plovdiv' (135 Years of Graphic Design)",
+      "category": "event_this_weekend",
+      "when": "9–29 October 2026",
+      "location": "DPH Gallery, 153 Tsar Boris III Obedinitel Blvd, Central Plovdiv",
+      "url": "",
+      "score": 72,
+      "verdict": "sent",
+      "note": "Confirmed on marica.bg and podtepeto.com for October 9–29, 2026."
+    },
+    {
+      "date": "2026-10-09",
+      "title": "Nedko Itinov Retrospective: 'A World of Colour and Light'",
+      "category": "event_this_weekend",
+      "when": "9–28 October 2026",
+      "location": "Plovdiv City Art Gallery, 15 Knyaz Aleksandar I St, Central Plovdiv",
+      "url": "",
+      "score": 70,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and bta.bg for October 9–28, 2026."
+    },
+    {
+      "date": "2026-10-09",
+      "title": "Traffic Closure and Pedestrian Expansion on Dr. G. M. Dimitrov Street",
+      "category": "civic_notice",
+      "when": "Ongoing through October 2026",
+      "location": "Dr. G. M. Dimitrov St & Central Square area, Central Plovdiv",
+      "url": "",
+      "score": 90,
+      "verdict": "sent",
+      "note": "Confirmed on plovdiv.bg and marica.bg on October 5, 2026."
+    },
+    {
+      "date": "2026-10-09",
+      "title": "Old Town Cobblestone Reconstruction on Dr. Stoyan Chomakov Street",
+      "category": "civic_notice",
+      "when": "Ongoing infrastructure project",
+      "location": "Dr. Stoyan Chomakov St (Nebet Tepe approach), Old Town, Plovdiv",
+      "url": "",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Confirmed on marica.bg and citybuild.bg as an ongoing Old Town paving project."
+    },
+    {
+      "date": "2026-10-09",
+      "title": "Flat-Rate All-Week Ticket Pricing (€5) Introduced at Cinema City Mall Plovdiv",
+      "category": "civic_opportunity",
+      "when": "Valid daily through 31 October 2026",
+      "location": "Mall Plovdiv, Central Plovdiv",
+      "url": "",
+      "score": 78,
+      "verdict": "sent",
+      "note": "Confirmed on mallplovdiv.bg and Cinema City Bulgaria through October 31, 2026."
+    },
+    {
+      "date": "2026-10-09",
+      "title": "Launch of Integrated 24/7 Traffic and Toll Camera Enforcement System",
+      "category": "civic_opportunity",
+      "when": "Implemented October 2026",
+      "location": "Plovdiv municipal road network and arterial access roads",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Confirmed on plovdivdaily.bg and trafficnews.bg in October 2026."
+    },
+    {
+      "date": "2026-10-09",
+      "title": "Damascena Biopark & Rose Gardens",
+      "category": "evergreen",
+      "when": "Daily, 09:00-17:00",
+      "location": "Skobelevo (~80 min drive)",
+      "url": "",
+      "score": 84,
+      "verdict": "sent",
+      "note": "A beautifully landscaped botanical park featuring gentle flat paths, wooden bridges, playground corners, and free-roaming swans and deer."
+    },
+    {
+      "date": "2026-10-09",
+      "title": "Regional Ethnographic Museum Plovdiv",
+      "category": "evergreen",
+      "when": "",
+      "location": "Old Town, Plovdiv",
+      "url": "",
+      "score": 60,
+      "verdict": "sent",
+      "note": "A National Revival merchant's house in the Old Town, worth it as much for the building as the collection."
     }
   ]
 }
