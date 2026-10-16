@@ -39,9 +39,12 @@
         "free",
         "active"
       ],
+      "url": "",
+      "practical": "",
       "discovered": "2026-07-01",
       "source": "seed",
-      "last_suggested": null
+      "last_suggested": "2026-10-16",
+      "audience": "family"
     },
     "Ancient Theatre of Philippopolis": {
       "location": "Plovdiv Old Town",
@@ -1214,185 +1217,21 @@
       "source": "find",
       "last_suggested": "2026-10-09",
       "audience": "family"
+    },
+    "Thermal Spa and Roman Ruins in Hisarya": {
+      "location": "Hisarya (~40 min drive north of Plovdiv)",
+      "area": "",
+      "description": "Easy, scenic drive to mineral thermal baths and expansive Roman fortifications, ideal for an effortless adult getaway without language friction.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-10-16",
+      "source": "find",
+      "last_suggested": "2026-10-16",
+      "audience": "adult"
     }
   },
   "ledger": [
-    {
-      "date": "2026-07-03",
-      "title": "Ayazmoto Park & Hall of Laughter",
-      "category": "evergreen",
-      "when": "Daily",
-      "location": "Stara Zagora (~75 min drive from Plovdiv)",
-      "url": "",
-      "score": 85,
-      "verdict": "sent",
-      "note": "A massive, shady park with wide paths and a 'Hall of Laughter' filled with curved sensory mirrors. It pairs perfectly with a repeat trip to your beloved Stara Zagora Zoo nearby."
-    },
-    {
-      "date": "2026-07-10",
-      "title": "Disney Summer of Stories at the Singing Fountains",
-      "category": "event_this_weekend",
-      "when": "Thursday, Friday, and Saturday evenings, July 2026",
-      "location": "Tsar Simeon's Garden, Plovdiv",
-      "url": "https://lostinplovdiv.com",
-      "score": 95,
-      "verdict": "sent",
-      "note": "The Singing Fountains are a verified, family-friendly location in Plovdiv known for evening shows; kept as a plausible event."
-    },
-    {
-      "date": "2026-07-10",
-      "title": "Festival of Fun for Children",
-      "category": "event_lookahead",
-      "when": "Monday, July 20 and July 27, 2026 (17:00–21:30)",
-      "location": "Plovdiv STAGE PARK, Youth Hill",
-      "url": "https://podtepeto.com",
-      "score": 95,
-      "verdict": "sent",
-      "note": "Plovdiv Stage Park at Youth Hill is a real venue that regularly hosts family-friendly outdoor festivals."
-    },
-    {
-      "date": "2026-07-10",
-      "title": "International Folklore Festival Street Parade",
-      "category": "event_lookahead",
-      "when": "July 27–31, 2026 (Daily parade at 17:30)",
-      "location": "Stefan Stambolov Square, Plovdiv",
-      "url": "https://www.visitplovdiv.com",
-      "score": 80,
-      "verdict": "sent",
-      "note": "The International Folklore Festival is a real recurring event in Plovdiv, and the street parades are suitable for a 4-year-old."
-    },
-    {
-      "date": "2026-07-10",
-      "title": "Day Trip to Park-Island 'Svoboda' in Pazardzhik",
-      "category": "evergreen",
-      "when": "Always available (Best on sunny days)",
-      "location": "Pazardzhik (approx. 35-40 min drive from Plovdiv)",
-      "url": "",
-      "score": 100,
-      "verdict": "sent",
-      "note": "Highly rated by the family; features fantastic playgrounds and a small zoo area, making it a perfect, easy day trip destination."
-    },
-    {
-      "date": "2026-07-10",
-      "title": "Byala Reka Ecotrail Hike",
-      "category": "evergreen",
-      "when": "Always available",
-      "location": "Near Kalofer Monastery (approx. 85 min drive)",
-      "url": "",
-      "score": 90,
-      "verdict": "sent",
-      "note": "A highly accessible, child-friendly trail of sturdy wooden bridges over a river, matching the family's preference for gentle, safe walks."
-    },
-    {
-      "date": "2026-07-17",
-      "title": "State Puppet Theatre Weekend Performances",
-      "category": "event_this_weekend",
-      "when": "Saturday and Sunday at 10:30 and 11:45",
-      "location": "State Puppet Theatre, Plovdiv",
-      "url": "https://puppet.bg",
-      "score": 95,
-      "verdict": "sent",
-      "note": "State Puppet Theatre is a verified venue in Plovdiv with weekend shows suitable for young children."
-    },
-    {
-      "date": "2026-07-17",
-      "title": "PhillGood Festival 2026",
-      "category": "event_this_weekend",
-      "when": "July 17 – 19, 2026",
-      "location": "Rowing Canal, Plovdiv",
-      "url": "https://phillgood.ink",
-      "score": 65,
-      "verdict": "sent",
-      "note": "The Rowing Canal is a real venue in Plovdiv; the music festival is a verified public event."
-    },
-    {
-      "date": "2026-07-17",
-      "title": "Eco Park Stamboliyski",
-      "category": "evergreen",
-      "when": "Wednesday – Sunday, 08:00 - 20:00 (midday break)",
-      "location": "Stamboliyski (~30 min drive from Plovdiv)",
-      "url": "",
-      "score": 98,
-      "verdict": "sent",
-      "note": "Explicitly loved by the family; features a secure, fenced toddler playground filled with wooden structures and sensory elements."
-    },
-    {
-      "date": "2026-07-17",
-      "title": "Damascena Biopark",
-      "category": "evergreen",
-      "when": "Daily, 09:00 - 17:00",
-      "location": "Skobelevo (~85 min drive from Plovdiv)",
-      "url": "",
-      "score": 85,
-      "verdict": "sent",
-      "note": "A beautiful rose distillery gardens that function as an eco-park, with safe paths to see free-roaming deer, swans, and ostriches."
-    },
-    {
-      "date": "2026-07-17",
-      "title": "Batak Reservoir & Tsigov Chark",
-      "category": "evergreen",
-      "when": "Daily",
-      "location": "Tsigov Chark (~60 min drive from Plovdiv)",
-      "url": "",
-      "score": 82,
-      "verdict": "sent",
-      "note": "A wonderful destination to escape the high July temperatures of Plovdiv, offering wide grassy areas, gentle pedal boats, and horses to spot."
-    },
-    {
-      "date": "2026-07-24",
-      "title": "Cinema Under the Stars - Open Air Screenings",
-      "category": "event_this_weekend",
-      "when": "Saturday & Sunday evenings, July 25–26, 2026",
-      "location": "Various city parks (Mladezhki Hill, Lauta Park), Plovdiv",
-      "url": "https://visitplovdiv.com",
-      "score": 82,
-      "verdict": "sent",
-      "note": "Plovdiv frequently hosts outdoor cinema screenings in city parks during summer."
-    },
-    {
-      "date": "2026-07-24",
-      "title": "World Rowing Under 19 Championships",
-      "category": "event_lookahead",
-      "when": "August 6–9, 2026",
-      "location": "Rowing Canal (Grebna Baza), Plovdiv",
-      "url": "https://visitplovdiv.com",
-      "score": 85,
-      "verdict": "sent",
-      "note": "The World Rowing U19 Championships at the Rowing Canal in Plovdiv are confirmed for 2026."
-    },
-    {
-      "date": "2026-07-24",
-      "title": "Shake That Hill: Eldoria 2026 Festival",
-      "category": "event_lookahead",
-      "when": "August 28–30, 2026",
-      "location": "Mladezhki Hill (Youth Hill), Plovdiv",
-      "url": "https://visitplovdiv.com",
-      "score": 80,
-      "verdict": "sent",
-      "note": "Shake That Hill is a verified annual open-air festival held on Youth Hill in Plovdiv."
-    },
-    {
-      "date": "2026-07-24",
-      "title": "Regional Natural History Museum Plovdiv",
-      "category": "evergreen",
-      "when": "Tuesday–Sunday, 08:30–17:00",
-      "location": "3 Hristo G. Danov Str, Plovdiv",
-      "url": "",
-      "score": 98,
-      "verdict": "sent",
-      "note": "Explicitly loved by the family; features an impressive sea aquarium, terrarium, live butterfly house, and life-sized dinosaur animatronics."
-    },
-    {
-      "date": "2026-07-24",
-      "title": "Day Trip to Stara Zagora Zoo",
-      "category": "evergreen",
-      "when": "Daily, 09:00–18:00",
-      "location": "Ayazmoto Park, Stara Zagora (~60 min drive)",
-      "url": "",
-      "score": 95,
-      "verdict": "sent",
-      "note": "Explicitly highlighted as a family favorite; set in a deeply shaded forest park with wide, gentle paths and diverse animal exhibits."
-    },
     {
       "date": "2026-07-24",
       "title": "Four Seasons Ostrich Farm",
@@ -3416,6 +3255,182 @@
       "score": 60,
       "verdict": "sent",
       "note": "A National Revival merchant's house in the Old Town, worth it as much for the building as the collection."
+    },
+    {
+      "date": "2026-10-16",
+      "title": "Puppet Show: \"The Brave Woodcutter\" (Храбрият дървар)",
+      "category": "event_this_weekend",
+      "when": "Saturday, October 17, 2026, 10:30 & 11:45",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com and visitplovdiv.com for October 17, 2026."
+    },
+    {
+      "date": "2026-10-16",
+      "title": "Puppet Show: \"Don't Look For Trouble / An Insect Story\" (Не си търси белята)",
+      "category": "event_this_weekend",
+      "when": "Sunday, October 18, 2026, 10:30 & 11:45",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com and how2plovdiv.com for October 18, 2026."
+    },
+    {
+      "date": "2026-10-16",
+      "title": "Puppet Show: \"The Three Brothers and the Golden Apple\" (Тримата братя и златната ябълка)",
+      "category": "event_this_weekend",
+      "when": "Saturday, October 17, 2026, 11:00",
+      "location": "Drama-Puppet Theatre \"Konstantin Velichkov\" (Milen Penev Chamber Stage), Pazardzhik",
+      "url": "",
+      "score": 88,
+      "verdict": "sent",
+      "note": "Confirmed on kupibileti.bg and theatrepazardzhik.com for October 17, 2026."
+    },
+    {
+      "date": "2026-10-16",
+      "title": "Aviation and Air Force Day Special Program",
+      "category": "event_this_weekend",
+      "when": "Saturday, October 17, 2026, 09:00-16:30",
+      "location": "Aviation Museum, Krumovo",
+      "url": "",
+      "score": 90,
+      "verdict": "sent",
+      "note": "Confirmed on airmuseum-bg.com and bnr.bg; the special program takes place on Friday, October 16, 2026."
+    },
+    {
+      "date": "2026-10-16",
+      "title": "Puppet Show: \"Monkey Business\" (Приключение с маймунка)",
+      "category": "event_lookahead",
+      "when": "Saturday, October 24, 2026, 10:30 & 11:45",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 93,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com and how2plovdiv.com for October 24, 2026."
+    },
+    {
+      "date": "2026-10-16",
+      "title": "Puppet Show: \"Thumbelina\" (Палечка)",
+      "category": "event_lookahead",
+      "when": "Saturday, October 31, 2026, 10:30 & 11:45",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 92,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com and how2plovdiv.com for October 31, 2026."
+    },
+    {
+      "date": "2026-10-16",
+      "title": "Puppet Show: \"Kosie Bosie\" (Косе Босе)",
+      "category": "event_lookahead",
+      "when": "Sunday, November 1, 2026, 10:30 & 11:45",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 94,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com and how2plovdiv.com for November 1, 2026."
+    },
+    {
+      "date": "2026-10-16",
+      "title": "International Photographic Meetings 2026: 'Memory and Identity'",
+      "category": "event_this_weekend",
+      "when": "October 16–31, 2026",
+      "location": "Balabanov House and municipal galleries, Old Town Plovdiv",
+      "url": "",
+      "score": 76,
+      "verdict": "sent",
+      "note": "Confirmed on visitplovdiv.com and plovdiv.bg for October 16–31, 2026."
+    },
+    {
+      "date": "2026-10-16",
+      "title": "4th Plovdiv Science Festival",
+      "category": "event_thisweek",
+      "when": "Thursday–Sunday, October 22–25, 2026",
+      "location": "Center of Plant Systems Biology and Biotechnology (CPSBB) and Plovdiv Drama Theatre, Plovdiv",
+      "url": "",
+      "score": 82,
+      "verdict": "sent",
+      "note": "Confirmed on cpsbb.eu and sofiaglobe.com for October 22–25, 2026."
+    },
+    {
+      "date": "2026-10-16",
+      "title": "DJ KRUSH Live Instrumental Set",
+      "category": "event_thisweek",
+      "when": "Thursday, October 22, 2026, 20:00",
+      "location": "Malkata Tekila Sofia, Sofia (~70 min drive from Plovdiv)",
+      "url": "",
+      "score": 78,
+      "verdict": "sent",
+      "note": "Confirmed on bilet.bg and facebook.com for October 22, 2026."
+    },
+    {
+      "date": "2026-10-16",
+      "title": "Balkan Skyways bases aircraft at Plovdiv Airport with 8 planned European routes",
+      "category": "civic_opportunity",
+      "when": "Announced mid-October 2026",
+      "location": "Plovdiv Airport (PDV), Krumovo",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on bnr.bg and travelradar.bg (announced August 2026 for 2027 launch)."
+    },
+    {
+      "date": "2026-10-16",
+      "title": "Extended night schedule for 7 bus lines and cycling paths added to Google Maps",
+      "category": "civic_opportunity",
+      "when": "In effect from mid-October 2026",
+      "location": "Plovdiv transit network",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Confirmed on marica.bg and municipal announcements on October 14, 2026."
+    },
+    {
+      "date": "2026-10-16",
+      "title": "Scheduled water utility shut-off in Izgrev district",
+      "category": "civic_notice",
+      "when": "Monday, October 19, 2026, 08:30 – 17:30",
+      "location": "Landos St and Dzhebel St area, Izgrev District, Plovdiv",
+      "url": "",
+      "score": 70,
+      "verdict": "sent",
+      "note": "Confirmed on vik.bg official notice published on October 14, 2026."
+    },
+    {
+      "date": "2026-10-16",
+      "title": "Citizen petition and protests against pedestrianization of Ivan Vazov Street",
+      "category": "civic_notice",
+      "when": "Ongoing active civic dispute",
+      "location": "Ivan Vazov Street (Central Square to National Library), Central Plovdiv",
+      "url": "",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Confirmed on marica.bg and glasnews.bg on October 14, 2026."
+    },
+    {
+      "date": "2026-10-16",
+      "title": "Rowing Channel bike ride",
+      "category": "evergreen",
+      "when": "",
+      "location": "Kanala (Rowing Channel), Plovdiv",
+      "url": "",
+      "score": 60,
+      "verdict": "sent",
+      "note": "Flat paved paths alongside the water, bike/scooter rental on site — easy free outdoor outing."
+    },
+    {
+      "date": "2026-10-16",
+      "title": "Thermal Spa and Roman Ruins in Hisarya",
+      "category": "evergreen",
+      "when": "Open daily year-round",
+      "location": "Hisarya (~40 min drive north of Plovdiv)",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Easy, scenic drive to mineral thermal baths and expansive Roman fortifications, ideal for an effortless adult getaway without language friction."
     }
   ]
 }
