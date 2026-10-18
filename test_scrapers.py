@@ -321,6 +321,28 @@ class TestParsePlovdivBgFixture(unittest.TestCase):
         washing = next(item for item in items if "миенето" in item["title"])
         self.assertEqual(washing["date_iso"], "2026-08-07")
 
+    def test_scrape_adds_fresh_category_feed(self):
+        # The Актуално feed reaches back ~10 days where 2 pages of /feed/ reach ~3.5, so
+        # weekend-posted closures like this derby one now make it into the harvest.
+        feeds = {scrapers.PLOVDIV_BG_FEED_URL: load_fixture("plovdiv_bg_feed.xml"),
+                 scrapers.PLOVDIV_BG_FRESH_FEED_URL: load_fixture("plovdiv_bg_fresh_feed.xml")}
+        with patch("scrapers.fetch", side_effect=lambda url, *a, **k: feeds.get(url)):
+            items = scrapers.scrape_plovdiv_bg()
+        self.assertEqual(len(items), 6)  # 3 site-wide + 3 Актуално; page 2 is empty here
+        derby = next(item for item in items if "мача" in item["title"])
+        self.assertEqual(
+            derby["url"],
+            "https://www.plovdiv.bg/ogranichavat-dvizhenieto-v-sabota-zaradi-macha-mezhdu-botev-plovdiv-i-slaviya-sofiya/",
+        )
+        self.assertTrue(all(item["source"] == "plovdiv_bg" for item in items))
+
+    def test_fresh_feed_survives_dead_sitewide_feed(self):
+        fresh = load_fixture("plovdiv_bg_fresh_feed.xml")
+        with patch("scrapers.fetch",
+                   side_effect=lambda url, *a, **k: fresh if url == scrapers.PLOVDIV_BG_FRESH_FEED_URL else None):
+            items = scrapers.scrape_plovdiv_bg()
+        self.assertEqual(len(items), 3)
+
 
 class TestParseTrafficnewsFixture(unittest.TestCase):
     def test_parses_items_from_rss_fixture(self):

@@ -593,6 +593,16 @@ def scrape_visitplovdiv(lookahead_days=None):
 PLOVDIV_BG_BASE = "https://www.plovdiv.bg"
 PLOVDIV_BG_FEED_URL = f"{PLOVDIV_BG_BASE}/feed/"
 PLOVDIV_BG_PAGES = 2  # WordPress feed paginates via ?paged=N, ~10 posts/page.
+PLOVDIV_BG_FRESH_FEED_URL = f"{PLOVDIV_BG_BASE}/category/fresh/feed/"
+# The "Актуално" category feed, fetched in addition to /feed/. The city posts ~5 items a
+# day site-wide, so 2 pages of /feed/ reach back only ~3.5 days against a weekly run:
+# anything posted Friday afternoon to Monday never reached FIND. Checked 2026-10-18 --
+# a derby road closure and a district traffic reroute sat on pages 3-4. Актуално is
+# almost all traffic/closure/municipal notices and its 10 items span ~10 days, so one
+# extra request covers the week where more /feed/ pages would mostly be cut by
+# MAX_HARVEST_ITEMS. Overlap with /feed/ is absorbed by harvest()'s title+date dedupe.
+# (/en/feed/ and /en/category/*/feed/ are NOT an alternative: the same Bulgarian posts
+# titled "(Български) ..." with "only available in Български" bodies, two of them 404.)
 # Upgraded from HTML-scraping the /category/events/ listing to the site-wide RSS feed.
 # The events-only category never carries the Транспорт/Актуално posts — bus reroutes,
 # road closures, water-main work — that are exactly the highest-value civic_notice
@@ -672,7 +682,8 @@ def _parse_plovdiv_bg(xml, today=None):
 def scrape_plovdiv_bg(pages=PLOVDIV_BG_PAGES):
     """Structured parser for plovdiv.bg's site-wide RSS feed. Fetches up to `pages`
     (newest first; WordPress paginates a feed via ?paged=N) and delegates parsing to
-    _parse_plovdiv_bg; stops early once a page yields no items."""
+    _parse_plovdiv_bg; stops early once a page yields no items. Then fetches the
+    Актуално category feed regardless, so a dead /feed/ doesn't cost the civic notices."""
     items = []
     for page in range(1, pages + 1):
         url = PLOVDIV_BG_FEED_URL if page == 1 else f"{PLOVDIV_BG_FEED_URL}?paged={page}"
@@ -683,6 +694,9 @@ def scrape_plovdiv_bg(pages=PLOVDIV_BG_PAGES):
         if not page_items:
             break
         items.extend(page_items)
+    xml = fetch(PLOVDIV_BG_FRESH_FEED_URL)
+    if xml:
+        items.extend(_parse_plovdiv_bg(xml))
     return items
 
 
