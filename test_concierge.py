@@ -164,6 +164,12 @@ def _stub_llm(prompt, *, stage="", max_tokens=4000, want_search=False, search_pr
     raise AssertionError(f"unexpected call_llm() call with response_schema={response_schema!r}")
 
 
+_REDIRECT = "https://vertexaisearch.cloud.google.com/grounding-api-redirect/"
+_SOURCES = [{"uri": _REDIRECT + "AAA", "title": "plovdiv.bg"},
+            {"uri": _REDIRECT + "BBB", "title": "plovdiv.bg"},
+            {"uri": _REDIRECT + "CCC", "title": "pptheatre.com"}]
+
+
 def _sent_titles(log_text):
     """Titles listed under '## Sent this run' in weekend_log.md."""
     section = log_text.split("## Sent this run", 1)[1].split("## All candidates", 1)[0]
@@ -707,6 +713,107 @@ class WeekendConciergeTest(unittest.TestCase):
                          f"subject should NOT be prefixed [degraded]: {sent_subjects[0]!r}")
         self.assertTrue(sent_subjects[0].startswith("[concierge] "),
                         f"subject should always be prefixed [concierge]: {sent_subjects[0]!r}")
+
+    def test_source_audit_helpers(self):
+        self.assertEqual(WC.note_domains("confirmed on plovdiv.bg"), ["plovdiv.bg"])
+        self.assertEqual(WC.note_domains("Confirmed on pptheatre.com and how2plovdiv.com"),
+                         ["pptheatre.com", "how2plovdiv.com"])
+        self.assertEqual(WC.note_domains("listed on www.eventim.bg, e.g. the 10.30 show"), ["eventim.bg"])
+        self.assertEqual(WC.note_domains("road reconstruction completed per plovdivcentral.org."),
+                         ["plovdivcentral.org"])
+        self.assertEqual(WC.note_domains("see https://www.Visitplovdiv.com/en/events?x=1"),
+                         ["visitplovdiv.com"])
+        self.assertEqual(WC.note_domains("confirmed on the municipality's website"), [])
+        self.assertEqual(WC.source_domains(_SOURCES + [
+            {"uri": _REDIRECT + "DDD", "title": "Some Page Title"},
+            {"uri": "https://tourism.plovdiv.bg/x", "title": ""}]),
+            {"plovdiv.bg", "pptheatre.com", "tourism.plovdiv.bg"})
+        self.assertEqual(WC.audit_source({"note": "listed on events.pptheatre.com", "verified": True},
+                                         {"pptheatre.com"}), "ok")
+        self.assertEqual(WC.audit_source({"note": "completed per plovdivcentral.org", "verified": False},
+                                         {"plovdiv.bg"}), "unsourced")
+        self.assertEqual(WC.audit_source({"note": "confirmed on the municipality's website", "verified": True},
+                                         {"plovdiv.bg"}), "no-domain")
+        self.assertIsNone(WC.audit_source({"note": "could not find any corroborating source",
+                                           "verified": False}, {"plovdiv.bg"}))
+        self.assertFalse(WC.domains_match("how2plovdiv.com", "plovdiv.com"))
+
+    def test_source_audit_in_log(self):
+        """The audit is visible in the log and signals, and is never a gate
+        (Invariant SOURCE-AUDIT-NOT-A-GATE): an `unsourced` item is still sent."""
+        stage2 = [dict(v) for v in _STAGE2]
+        stage2[2]["note"] = "confirmed on plovdivcentral.org"           # id 3, verified True
+        stage2[3]["note"] = "confirmed on the municipality's website"   # id 4, verified True
+
+        def _stub_with_sources(prompt, *, response_schema=None, **kw):
+            if response_schema is C.STAGE2_RESPONSE_SCHEMA:
+                return llm_chain.LLMResult(text=json.dumps(stage2), ok=True, model="stub",
+                                           provider="gemini", sources=_SOURCES)
+            return _stub_llm(prompt, response_schema=response_schema, **kw)
+
+        llm_chain.call_llm = _stub_with_sources
+        WC.main()
+        log = open("state/weekend_log.md", encoding="utf-8").read()
+        self.assertIn("- SKEPTIC source audit: 3 grounding source(s) across 2 domain(s) "
+                      "(plovdiv.bg, pptheatre.com). Of 5 verdict(s) making a source claim: "
+                      "3 cited a returned domain, 1 cited only domains the search never returned, "
+                      "1 were verified without naming any domain.", log)
+        by_id = {line.split(" ", 2)[1]: line for line in log.splitlines() if line.startswith("- #")}
+        self.assertIn("`SRC:unsourced`", by_id["#3"])
+        self.assertIn("`SRC:no-domain`", by_id["#4"])
+        self.assertNotIn("SRC:", by_id["#1"])
+        warning = [l for l in log.splitlines()
+                   if "sent item(s) have a skeptic source claim that failed the audit" in l]
+        self.assertEqual(len(warning), 1)
+        self.assertIn(ADULT_HIGH_TITLE, warning[0])
+        self.assertIn(ADULT_LOW_TITLE, warning[0])
+        sent = "\n".join(_sent_titles(log))
+        self.assertIn(ADULT_HIGH_TITLE, sent)
+        self.assertIn(ADULT_LOW_TITLE, sent)
+
+        signals = json.load(open("state/weekend_signals.json", encoding="utf-8"))
+        self.assertEqual(list(signals), ["generated", "skeptic_sources", "signals"])
+        self.assertEqual(signals["skeptic_sources"], ["plovdiv.bg", "pptheatre.com"])
+        s3 = next(s for s in signals["signals"] if s["candidate_id"] == 3)
+        self.assertEqual(s3["source_audit"], "unsourced")
+        self.assertIs(s3["verified"], True)
+
+    def test_source_audit_skipped_without_sources(self):
+        """Invariant EMPTY-SOURCES-IS-UNAUDITABLE: no sources is `skipped`, never `unsourced`."""
+        WC.main()
+        log = open("state/weekend_log.md", encoding="utf-8").read()
+        self.assertIn("- SKEPTIC source audit: skipped -- the search step returned no grounding "
+                      "sources, so cited sources cannot be checked.", log)
+        self.assertNotIn("SRC:", log.split("## All candidates", 1)[1].split("\n", 2)[2])
+        signals = json.load(open("state/weekend_signals.json", encoding="utf-8"))
+        self.assertTrue(all(s["source_audit"] is None for s in signals["signals"]))
+        self.assertEqual(signals["skeptic_sources"], [])
+
+    def test_skeptic_result_without_sources_field_kills_nothing(self):
+        """Invariant SOURCES-READ-BY-GETATTR: an llm-chain older than LLMResult.sources must
+        not raise inside SKEPTIC's try -- that empties the verdicts with SKEPTIC 'available'
+        and kills every non-evergreen as 'skeptic verification failed'."""
+        def _stub_old_chain(prompt, *, response_schema=None, **kw):
+            res = _stub_llm(prompt, response_schema=response_schema, **kw)
+            if response_schema is C.STAGE2_RESPONSE_SCHEMA:
+                del res.sources
+            return res
+
+        llm_chain.call_llm = _stub_old_chain
+        WC.main()
+        signals = json.load(open("state/weekend_signals.json", encoding="utf-8"))
+        self.assertFalse([s["title"] for s in signals["signals"] if s["verdict"] == "kill"])
+
+    def test_source_audit_absent_when_skeptic_failed(self):
+        def _stub_skeptic_fails(prompt, *, response_schema=None, **kw):
+            if response_schema is C.STAGE2_RESPONSE_SCHEMA:
+                return llm_chain.LLMResult(text="", ok=False, error="all models failed")
+            return _stub_llm(prompt, response_schema=response_schema, **kw)
+
+        llm_chain.call_llm = _stub_skeptic_fails
+        WC.main()
+        log = open("state/weekend_log.md", encoding="utf-8").read()
+        self.assertNotIn("SKEPTIC source audit", log)
 
 
 class RunCorrectnessTest(unittest.TestCase):

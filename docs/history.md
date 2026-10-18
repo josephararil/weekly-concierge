@@ -431,3 +431,50 @@ weekly cron), which would have meant none of the cooldowns above worked in produ
 2026-08-11 run committed and pushed cleanly (`8740b09..17b2b06`, 5 files, 720 insertions), so
 the workflow's commit step is healthy. Cause of the gap was never established — the runs in
 between were not inspected before the log rotated.
+
+## 2026-10-18 — SKEPTIC grounding sources
+
+SKEPTIC writes notes like "Confirmed on pptheatre.com and how2plovdiv.com" and sets
+`verified: true`. Nothing could check those claims, because `llm_chain._gemini()` read only the
+search model's prose and dropped `candidates[0].groundingMetadata`. llm-chain 1.1.0
+(josephararil/llm-chain#1, released by moving `v1`) carries the grounding chunk list out as
+`LLMResult.sources`; `weekend_concierge.py` compares each SKEPTIC note's cited domains against
+the domains its own search returned. Log-only (SOURCE-AUDIT-NOT-A-GATE).
+
+### Live probe results (2026-10-18, one call per model)
+
+Query: three Plovdiv items (puppet theatre this weekend, central road works Oct 2026, Ancient
+Theatre concerts Oct 2026), `tools: [{google_search: {}}]`, same body shape as `build_search()`.
+
+| | `gemini-flash-latest` | `gemini-3.1-flash-lite` |
+|---|---|---|
+| `groundingMetadata` keys | groundingChunks, groundingSupports, searchEntryPoint, webSearchQueries | same |
+| chunks | 13, all `{"web": {"uri", "title"}}` | 8, same shape |
+| `uri` host | `vertexaisearch.cloud.google.com` in 13/13 | 8/8 |
+| `title` | bare domain in 13/13 (`pptheatre.com`, `plovdiv.bg`, `eventim.bg`, …) | 8/8 |
+| duplicates | yes (`plovdiv.bg` ×2, `operaplovdiv.bg` ×2, `eventim.bg` ×2) | — |
+| redirect | `HEAD` without follow → `302`, `Location: https://pptheatre.com/en/schedule` | same |
+
+So: **`title` is the usable domain; `uri` is an opaque redirect.** No resolution of redirects is
+needed or planned. Both models in the production search chain return the same shape.
+
+### What the live data said before the audit existed
+
+`state/weekend_signals.json` (run of 2026-10-16): 17 signals; 15 non-evergreen, all `verified: true`,
+all notes naming exactly two domains ("Confirmed on X and Y for <date>"). Every `source_url` is
+empty. How many of those 15 would fail the audit was unknown until the first run with sources.
+
+### Proving runs (2026-10-18, local, real Gemini, no email)
+
+- **Run 1:** SKEPTIC's search answered (9,948 chars) but returned no grounding chunks, so the log
+  read `- SKEPTIC source audit: skipped -- ...`. A raw SKEPTIC-shaped search sent straight
+  afterwards returned 64 chunks, and `_gemini_sources()` parsed all 64. The plumbing is sound; the
+  search model sometimes answers a SKEPTIC prompt without grounding. Watch how often `skipped`
+  appears in the Friday logs.
+- **Run 2:**
+  `- SKEPTIC source audit: 47 grounding source(s) across 33 domain(s) (...). Of 10 verdict(s) making a source claim: 8 cited a returned domain, 1 cited only domains the search never returned, 1 were verified without naming any domain.`
+  The two flagged items were both still sent (not a gate): a water-supply notice "confirmed on
+  ... (vik.bg)", a domain the search never returned (`SRC:unsourced`), and an A4 bridge-repair
+  notice "confirmed on Road Infrastructure Agency (API) traffic bulletin and Ministry of Interior
+  updates", verified with no domain named (`SRC:no-domain`). No `vertexaisearch` host leaked into
+  the domain list, and nothing was killed as "skeptic verification failed".
