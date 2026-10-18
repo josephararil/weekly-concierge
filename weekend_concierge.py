@@ -230,6 +230,83 @@ def clean_source_url(url):
     return url
 
 
+# --- SKEPTIC source audit (log-only; Invariant SOURCE-AUDIT-NOT-A-GATE) ---
+# SKEPTIC's notes name domains ("confirmed on plovdiv.bg"). llm-chain returns the domains its
+# search step actually saw (LLMResult.sources). A cited domain the search never returned came
+# from somewhere else -- the candidate, memory, or nowhere. One batch search serves every
+# candidate, so "ok" only means the domain was seen, not that it confirmed this item.
+
+_DOMAIN_RE = re.compile(r"(?<![\w@.-])((?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,})(?![\w-])",
+                        re.IGNORECASE)
+_GROUNDING_REDIRECT_HOST = "vertexaisearch.cloud.google.com"
+
+
+def _norm_host(host):
+    host = (host or "").strip().lower().rstrip(".")
+    return host[4:] if host.startswith("www.") else host
+
+
+def domain_of(url):
+    if not url:
+        return ""
+    return _norm_host(urllib.parse.urlparse(url if "//" in url else "//" + url).hostname or "")
+
+
+def note_domains(note):
+    out = []
+    for m in _DOMAIN_RE.findall(note or ""):
+        d = _norm_host(m)
+        if d not in out:
+            out.append(d)
+    return out
+
+
+def source_domains(sources):
+    """Grounding chunk titles are normally the bare domain; the uri is a redirect. Fall back
+    to the uri host only when the title isn't domain-shaped and the uri isn't the redirect."""
+    out = set()
+    for s in sources or []:
+        title = _norm_host((s or {}).get("title", ""))
+        if title and " " not in title and "." in title:
+            out.add(title)
+            continue
+        host = domain_of((s or {}).get("uri", ""))
+        if host and host != _GROUNDING_REDIRECT_HOST:
+            out.add(host)
+    return out
+
+
+def domains_match(a, b):
+    return a == b or a.endswith("." + b) or b.endswith("." + a)
+
+
+def audit_source(verdict, grounded_domains):
+    cited = note_domains((verdict or {}).get("note", ""))
+    if not cited:
+        return "no-domain" if (verdict or {}).get("verified") else None
+    if any(domains_match(c, g) for c in cited for g in grounded_domains):
+        return "ok"
+    return "unsourced"
+
+
+def source_audit_summary(candidates, sources, skeptic_ran):
+    """One weekend_log.md line, or "" when SKEPTIC never ran (the degraded banner covers that).
+    No sources means unauditable, never failed (Invariant EMPTY-SOURCES-IS-UNAUDITABLE)."""
+    if not skeptic_ran:
+        return ""
+    domains = source_domains(sources)
+    if not domains:
+        return ("- SKEPTIC source audit: skipped -- the search step returned no grounding "
+                "sources, so cited sources cannot be checked.")
+    audits = [c.get("source_audit") for c in candidates if c.get("source_audit")]
+    ok, uns, nod = (sum(1 for a in audits if a == s) for s in ("ok", "unsourced", "no-domain"))
+    return (f"- SKEPTIC source audit: {len(sources)} grounding source(s) across "
+            f"{len(domains)} domain(s) ({', '.join(sorted(domains))}). Of {len(audits)} "
+            f"verdict(s) making a source claim: {ok} cited a returned domain, "
+            f"{uns} cited only domains the search never returned, "
+            f"{nod} were verified without naming any domain.")
+
+
 def load_feedback():
     try:
         with open("preferences.md", encoding="utf-8") as f:
@@ -638,11 +715,21 @@ def write_log(today, candidates, sent_pools, weather_text, subject, llm_note="")
         lines.append(f"_{len(unverified_sent)} of {total_sent} sent item(s) were NOT corroborated "
                      f"by the skeptic: {', '.join(c.get('title','?') for c in unverified_sent)}._")
         lines.append("")
+    failed_audit_sent = [c for c in candidates if c.get("title") in sent_titles
+                         and c.get("source_audit") in ("unsourced", "no-domain")]
+    if failed_audit_sent:
+        lines.append(f"_{len(failed_audit_sent)} of {total_sent} sent item(s) have a skeptic "
+                     f"source claim that failed the audit (`SRC:` tags below): "
+                     f"{', '.join(c.get('title','?') for c in failed_audit_sent)}._")
+        lines.append("")
 
     lines.append("## All candidates")
     lines.append("_Sorted by score. `fit=` names the field each candidate was actually judged on, "
                  "with the floor that rejected it where one did. `UNVERIFIED` means the skeptic "
-                 "found no corroborating source — it is a warning, not a rejection._")
+                 "found no corroborating source — it is a warning, not a rejection. "
+                 "`SRC:unsourced` means the skeptic's note names only domains its own web search "
+                 "never returned; `SRC:no-domain` means it claimed verification without naming "
+                 "one. Both are warnings, not rejections._")
     ranked = sorted(candidates,
                     key=lambda x: score_of(x, x.get("audience", "family")), reverse=True)
     for c in ranked:
@@ -651,7 +738,9 @@ def write_log(today, candidates, sent_pools, weather_text, subject, llm_note="")
         floor = floor_for(c, audience)
         floor_text = "exempt" if floor is None else f"floor {floor}"
         verified_text = "" if c.get("verified") else " `UNVERIFIED`"
-        lines.append(f"- #{c.get('candidate_id','?')} [{c.get('verdict','?')}]{verified_text} "
+        audit_text = (f" `SRC:{c['source_audit']}`"
+                      if c.get("source_audit") in ("unsourced", "no-domain") else "")
+        lines.append(f"- #{c.get('candidate_id','?')} [{c.get('verdict','?')}]{verified_text}{audit_text} "
                      f"{c.get('title','?')} "
                      f"({audience}/{c.get('category','?')}, {field}={c.get(field,'?')}, "
                      f"{floor_text}) — {c.get('note','')}")
@@ -818,6 +907,7 @@ def main():
     _section("STAGE 2 · SKEPTIC")
     verdicts_by_id = {}
     skeptic_available = False
+    skeptic_sources = []
     if candidates:
         try:
             res2 = L.call_llm(
@@ -832,6 +922,10 @@ def main():
             )
             stage_results.append(("skeptic", res2))
             skeptic_available = res2.ok
+            # getattr, not res2.sources (Invariant SOURCES-READ-BY-GETATTR): on an llm-chain
+            # without the field, an AttributeError here would empty `verdicts` with
+            # skeptic_available already True -- which kills every candidate.
+            skeptic_sources = getattr(res2, "sources", None) or []
             verdicts = X.parse_json_block(res2.text) or []
         except Exception as e:
             print(f"  [FAIL] Stage 2 LLM/parse error: {type(e).__name__}: {e}")
@@ -844,6 +938,7 @@ def main():
     else:
         print("  nothing to verify")
 
+    skeptic_domains = source_domains(skeptic_sources)
     survivors = []
     for c in candidates:
         v = verdicts_by_id.get(c["candidate_id"])
@@ -889,6 +984,8 @@ def main():
                 verified = False
 
         c["verdict"], c["note"], c["verified"] = verdict, note, verified
+        c["source_audit"] = (audit_source(v, skeptic_domains)
+                             if v is not None and not is_evergreen and skeptic_domains else None)
         if verdict == "kill":
             print(f"    [KILL    ] #{c['candidate_id']} {c.get('title', '?')} — {note}")
             continue
@@ -1079,8 +1176,11 @@ def main():
         "reason": c.get("reason"), "source_url": c.get("source_url"),
         "confidence": c.get("confidence"), "verdict": c.get("verdict"),
         "verified": bool(c.get("verified")), "note": c.get("note"),
+        "source_audit": c.get("source_audit"),
     } for c in candidates]
-    save_json("weekend_signals.json", {"generated": today_iso, "signals": signals})
+    save_json("weekend_signals.json", {"generated": today_iso,
+                                       "skeptic_sources": sorted(skeptic_domains),
+                                       "signals": signals})
     write_log(today_iso, candidates, [
         ("Family events", selected_family_events),
         ("Adult events", selected_adult_events),
@@ -1089,6 +1189,7 @@ def main():
         ("Adult evergreens", selected_adult_evergreens),
     ], weather_text, subject, llm_note="\n".join(filter(None, [
         llm_log_line,
+        source_audit_summary(candidates, skeptic_sources, skeptic_available),
         (f"- HARVEST: structured parser returned 0 items for {', '.join(scrapers.EMPTY_STRUCTURED)}"
          f" -- check whether the site's markup changed") if scrapers.EMPTY_STRUCTURED else "",
     ])))
