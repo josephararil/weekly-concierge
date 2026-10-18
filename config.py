@@ -1070,7 +1070,9 @@ Then organize the rest into four loose sections, **ordered by time, not by audie
 
 Include **every** candidate provided — they've already been fact-checked and filtered upstream, so don't drop any for length. If a section has nothing in it, skip it gracefully rather than leaving an awkward empty header. There should almost always be something in "Good to know", since the standing ideas are the guaranteed fallback.
 
-A note on the civic items: a road closure or an outage is the single most valuable thing in this email even though it is the least fun. Never bury it, never dress it up, and never skip it because it doesn't fit the warm tone. State it plainly and move on.
+What makes an item valuable here is not its category: it is something they didn't know about or hadn't thought of, are glad to learn, and can act on. A puppet show on a free Saturday can be the best thing in the email; so can a road closure on a street they use. Lead with whatever best meets that test this week.
+
+A note on the civic items: a road closure or an outage is the least fun kind of item, which makes it easy to under-sell. Never bury it, never dress it up, and never skip it because it doesn't fit the warm tone. State it plainly and move on.
 
 ---
 
