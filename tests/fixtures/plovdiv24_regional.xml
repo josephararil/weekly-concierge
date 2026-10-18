@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"  xmlns:content="http://purl.org/rss/1.0/modules/content/"  xmlns:media="http://search.yahoo.com/mrss/">
+<channel>
+	<atom:link href="https://www.plovdiv24.bg/rss.php?cat=2" rel="self" type="application/rss+xml" />
+	<title>Plovdiv24.bg</title>
+	<link>https://www.plovdiv24.bg</link>
+	<description></description>
+	<language>bg</language>
+	<item>
+		          <title>Свлачището между Смолян и Пампорово застрашава предстоящия туристически сезон</title>
+		          <link>https://www.plovdiv24.bg/novini/regionalni/Svlachishteto-mezhdu-Smolyan-i-Pamporovo-zastrashava-predstoyashtiya-turisticheski-sezon-3041465</link>
+		          <guid>https://www.plovdiv24.bg/novini/regionalni/Svlachishteto-mezhdu-Smolyan-i-Pamporovo-zastrashava-predstoyashtiya-turisticheski-sezon-3041465</guid>
+		          <description>Сериозно инфраструктурно предизвикателство може да помрачи предстоящия зимен сезон в Родопите заради процедурите по възстановяването на пътния ...</description>
+		          <pubDate>Sun, 18 Oct 2026 08:11:36 +0300</pubDate>
+		          <enclosure url="https://i.id24.bg/i/3041465.webp" length="289296" type="image/webp"/>
+		          <category>Регионални</category>
+	</item>
+<item>
+		          <title>Голям ритейл парк расте до ''Кауфланд&quot; в най-големия необластен град в България</title>
+		          <link>https://www.plovdiv24.bg/novini/regionalni/Golyam-riteil-park-raste-do-Kaufland-v-nai-golemiya-neoblasten-grad-v-Bulgariya-3041081</link>
+		          <guid>https://www.plovdiv24.bg/novini/regionalni/Golyam-riteil-park-raste-do-Kaufland-v-nai-golemiya-neoblasten-grad-v-Bulgariya-3041081</guid>
+		          <description>Строителни машини ще работят и през нощта на площадката на новия ритейл парк до &quot;Кауфланд“ в най-големия необластен град в България - ...</description>
+		          <pubDate>Sat, 17 Oct 2026 05:10:00 +0300</pubDate>
+		          <enclosure url="https://i.id24.bg/i/3041081.webp" length="308760" type="image/webp"/>
+		          <category>Регионални</category>
+	</item>
+<item>
+		          <title>Затвориха пътя между 2 пловдивски села заради тежко ПТП</title>
+		          <link>https://www.plovdiv24.bg/novini/regionalni/Zatvoriha-putya-mezhdu-2-plovdivski-sela-zaradi-tezhko-PTP-3039439</link>
+		          <guid>https://www.plovdiv24.bg/novini/regionalni/Zatvoriha-putya-mezhdu-2-plovdivski-sela-zaradi-tezhko-PTP-3039439</guid>
+		          <description>За тежка катастрофа недалеч от Пловдив научи Plovdiv24.bg. Пътнотранспортното произшествие е станало на пътя между селата Калековец и Стряма.  ...</description>
+		          <pubDate>Wed, 14 Oct 2026 10:27:36 +0300</pubDate>
+		          <enclosure url="https://i.id24.bg/i/3039439.webp" length="143498" type="image/webp"/>
+		          <category>Регионални</category>
+	</item>
+</channel>
+</rss>

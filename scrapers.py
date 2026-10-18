@@ -788,6 +788,29 @@ def scrape_plovdivnews():
     return _parse_plovdivnews(xml)
 
 
+PLOVDIV24_FEED_URL = "https://www.plovdiv24.bg/rss.php?cat=2"
+# plovdiv24.bg's "Регионални" (regional) category feed. Was raw-fetch only (one homepage
+# text blob); the raw entry stays as the fallback if this returns nothing. Of its feeds
+# (listed at /novini/rss.html), checked 2026-10-18: the default rss.php is mostly
+# national/international and 30 items cover ~18h; cat=1 "Plovdiv" covers ~2 days and skews
+# opinion/crime; cat=2 covers ~13 days and carried a road closed between two villages, a
+# retail park going up, and a landslide on the Smolyan-Pamporovo road. Teasers are only
+# ~150 chars and there is no content:encoded, so FIND gets title + one sentence.
+
+
+def _parse_plovdiv24(xml, today=None):
+    """Pure parse of plovdiv24.bg's regional RSS feed. See _parse_news_rss."""
+    return _parse_news_rss(xml, "plovdiv24", today)
+
+
+def scrape_plovdiv24():
+    """Structured parser for plovdiv24.bg's rss.php?cat=2 (regional news)."""
+    xml = fetch(PLOVDIV24_FEED_URL)
+    if not xml:
+        return []
+    return _parse_plovdiv24(xml)
+
+
 LOSTINPLOVDIV_BASE = "https://lostinplovdiv.com"
 # The site dropped its old /en/articles archive listing (now 404) after a theme change
 # (Jannah/WordPress) and its front page is now the newest-first feed instead. Cards are
@@ -939,6 +962,7 @@ SCRAPERS = {
     "podtepeto": scrape_podtepeto,
     "dcnews": scrape_dcnews,
     "plovdivnews": scrape_plovdivnews,
+    "plovdiv24": scrape_plovdiv24,
     "facebook": scrape_facebook,
 }
 
@@ -980,10 +1004,15 @@ def _round_robin(per_source_items):
     return out
 
 
+EMPTY_STRUCTURED = []  # filled by harvest(): structured sources that returned 0 items
+
+
 def harvest(today=None):
     """Run every source in config.ENABLED_SOURCES inside try/except and return the
     combined, deduped, volume-capped list of RawItems. A single dead source never
-    takes down the run — its failure is logged and it contributes []."""
+    takes down the run — its failure is logged and it contributes []. Structured sources
+    that came back empty are left in EMPTY_STRUCTURED for the run log."""
+    EMPTY_STRUCTURED.clear()
     per_source_items = []
     for source in C.ENABLED_SOURCES:
         has_structured = source in SCRAPERS
@@ -998,6 +1027,13 @@ def harvest(today=None):
                 items = SCRAPERS[source]()
             except Exception as exc:
                 print(f"  [harvest] {source}: structured parser FAILED ({type(exc).__name__}: {exc})")
+            # A structured parser returning nothing is the signature of a markup change, and
+            # it fails silently: the run carries on (possibly on the raw-fetch fallback) and
+            # simply looks like a quiet week for that source. Name it so weekend_log.md can.
+            if not items and source != "facebook":
+                print(f"  [harvest] [WARN] {source}: structured parser returned 0 items "
+                      f"-- site markup may have changed")
+                EMPTY_STRUCTURED.append(source)
 
         if not items and has_raw_fetch:
             path = "raw-fetch fallback" if has_structured else "raw-fetch"

@@ -344,6 +344,29 @@ class TestParsePlovdivBgFixture(unittest.TestCase):
         self.assertEqual(len(items), 3)
 
 
+class TestParsePlovdiv24Fixture(unittest.TestCase):
+    def test_parses_regional_feed(self):
+        items = scrapers._parse_plovdiv24(load_fixture("plovdiv24_regional.xml"),
+                                          today=dt.date(2026, 10, 18))
+        self.assertEqual(len(items), 3)
+        road = next(item for item in items if "Затвориха пътя" in item["title"])
+        self.assertEqual(road["source"], "plovdiv24")
+        self.assertTrue(road["url"].endswith("-3039439"))
+        self.assertIn("Калековец", road["description"])
+
+    def test_registered_as_structured_with_raw_fallback(self):
+        self.assertIs(scrapers.SCRAPERS["plovdiv24"], scrapers.scrape_plovdiv24)
+        self.assertIn("plovdiv24", scrapers.RAW_FETCH_SOURCES)
+
+
+class TestHarvestEmptyStructuredWarning(unittest.TestCase):
+    def test_empty_structured_source_is_named(self):
+        item = scrapers._make_item("good", "Something")
+        with patch("scrapers.SCRAPERS", {"dead": lambda: [], "good": lambda: [item]}),              patch("scrapers.RAW_FETCH_SOURCES", {}),              patch.object(C, "ENABLED_SOURCES", ["dead", "good"]):
+            scrapers.harvest()
+        self.assertEqual(scrapers.EMPTY_STRUCTURED, ["dead"])
+
+
 class TestParseTrafficnewsFixture(unittest.TestCase):
     def test_parses_items_from_rss_fixture(self):
         xml = load_fixture("trafficnews.xml")

@@ -7,8 +7,8 @@ Runs the real pipeline in a throwaway temp directory (non-destructive) with:
     response_schema identity -- STAGE1_FAMILY_SCHEMA and STAGE1_ADULT_SCHEMA are distinct
     objects, so a shared schema would silently cross-feed the two FIND paths.
   - scrapers.harvest / weather.week_weather stubbed to avoid any network access.
-  - SMTP env left unset, so common.send_email raises and weekend_concierge.main() catches
-    and prints it (email "sends" every run regardless).
+  - common.send_email stubbed to a no-op, since a failed send now exits 1 and saves no
+    cooldown state (see test_failed_send_saves_no_cooldown_state).
 
 Runs main() twice on the same day to verify:
   - state/weekend_signals.json, state/weekend_log.md, state/memory.json/.md,
@@ -199,11 +199,14 @@ class WeekendConciergeTest(unittest.TestCase):
         scrapers.harvest = lambda today=None: []
         weather.week_weather = lambda latlon, today, days=7: list(_WEEK_DAYS)
         os.environ.pop("SMTP_HOST", None)
+        self._real_send_email = X.send_email
+        X.send_email = lambda subject, html, text: None
 
     def tearDown(self):
         llm_chain.call_llm = self._real_llm
         scrapers.harvest = self._real_harvest
         weather.week_weather = self._real_week_weather
+        X.send_email = self._real_send_email
         os.chdir(self._cwd)
         shutil.rmtree(self.sandbox, ignore_errors=True)
 
@@ -654,6 +657,20 @@ class WeekendConciergeTest(unittest.TestCase):
                         f"subject should be prefixed [degraded]: {sent_subjects[0]!r}")
         self.assertIn("Heads up: this email is incomplete", sent_bodies[0])
 
+    def test_failed_send_saves_no_cooldown_state(self):
+        """A failed send must not put the week's items on cooldown unseen, and must fail the
+        job so the Actions run goes red instead of green."""
+        def _boom(subject, html, text):
+            raise ConnectionRefusedError("smtp down")
+        X.send_email = _boom
+        before_seen = open("state/signals_seen.json", encoding="utf-8").read()
+        before_mem = open("state/memory.json", encoding="utf-8").read()
+        with self.assertRaises(SystemExit) as cm:
+            WC.main()
+        self.assertEqual(cm.exception.code, 1)
+        self.assertEqual(open("state/signals_seen.json", encoding="utf-8").read(), before_seen)
+        self.assertEqual(open("state/memory.json", encoding="utf-8").read(), before_mem)
+
     def test_skeptic_ran_but_empty_still_kills(self):
         """Guard proving the invariant did not slip in the permissive direction: SKEPTIC
         running successfully but returning no verdicts is still a real rejection."""
@@ -690,6 +707,49 @@ class WeekendConciergeTest(unittest.TestCase):
                          f"subject should NOT be prefixed [degraded]: {sent_subjects[0]!r}")
         self.assertTrue(sent_subjects[0].startswith("[concierge] "),
                         f"subject should always be prefixed [concierge]: {sent_subjects[0]!r}")
+
+
+class RunCorrectnessTest(unittest.TestCase):
+    WINDOW_START = "2026-10-17"
+
+    def test_event_corrected_to_before_window_is_past(self):
+        # The 2026-10-16 air-museum case: SKEPTIC moved it to the run day, filed "this weekend".
+        c = {"category": "event_this_weekend", "date_iso": "2026-10-16"}
+        self.assertTrue(WC.event_already_past(c, self.WINDOW_START))
+
+    def test_running_exhibition_with_end_date_is_kept(self):
+        c = {"category": "event_this_weekend", "date_iso": "2026-10-16", "end_date_iso": "2026-10-31"}
+        self.assertFalse(WC.event_already_past(c, self.WINDOW_START))
+
+    def test_undated_and_non_event_items_are_kept(self):
+        self.assertFalse(WC.event_already_past({"category": "event_thisweek"}, self.WINDOW_START))
+        self.assertFalse(WC.event_already_past(
+            {"category": "civic_notice", "date_iso": "2026-10-01"}, self.WINDOW_START))
+        self.assertFalse(WC.event_already_past(
+            {"category": "evergreen", "date_iso": "2026-10-01"}, self.WINDOW_START))
+
+    def test_truncated_stage_degrades_the_run(self):
+        ok = llm_chain.LLMResult(text="{}", ok=True, model="m", provider="gemini")
+        cut = llm_chain.LLMResult(text="{", ok=True, model="m", provider="gemini", truncated=True)
+        prefix, html, text, log = WC.degraded_summary([("find-family", ok), ("concierge", cut)])
+        self.assertEqual(prefix, "[degraded] ")
+        self.assertIn("cut-off", text)
+        self.assertIn("concierge", log)
+        self.assertEqual(WC.degraded_summary([("find-family", ok)])[0], "")
+
+    def test_venue_cap_keeps_top_two_per_cyrillic_venue(self):
+        theatre = "Държавен куклен театър – Пловдив"
+        events = [{"title": f"Show {i}", "location": theatre, "family_fit": 90 - i,
+                   "category": "event_this_weekend"} for i in range(4)]
+        events.append({"title": "Zoo day", "location": "Зоопарк Пловдив", "family_fit": 50,
+                       "category": "event_this_weekend"})
+        events.append({"title": "No venue", "location": "", "family_fit": 40,
+                       "category": "event_this_weekend"})
+        picks = WC.select_events(events, "family")
+        self.assertEqual([c["title"] for c in picks], ["Show 0", "Show 1", "Zoo day", "No venue"])
+        self.assertTrue(all(c["verdict"] == "skipped" for c in events[2:4]))
+        # Different Cyrillic venues must not collapse to one key the way slug() would.
+        self.assertNotEqual(WC.venue_key(theatre), WC.venue_key("Зоопарк Пловдив"))
 
 
 if __name__ == "__main__":

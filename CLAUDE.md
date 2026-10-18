@@ -104,6 +104,8 @@ weekend_concierge.py
   │                empty parse kills them as before. See SKEPTIC-INFRA-IS-NOT-REJECTION.
   ├─ Language gate       language_barrier == "blocking" → dropped, before any floor check
   ├─ Routine-maintenance drop  recurring municipal maintenance rounds (street washing etc.)
+  ├─ Past-event drop           event whose end_date_iso (else date_iso) precedes the window
+  │             start -- re-checked AFTER SKEPTIC corrections (event_already_past)
   ├─ Expired-notice drop       civic_notice whose end_date_iso precedes the window start
   ├─ Score floors        family 50 · adult 70 · civic_opportunity 75 · civic_notice 55 ·
   │             evergreens EXEMPT. A missing score is 0 and fails every floor.
@@ -125,6 +127,8 @@ weekend_concierge.py
   ├─ Subject prefix      SUBJECT_PREFIX = "[concierge] " prepended in Python (never by the
   │             LLM), ahead of any "[degraded] " marker: "[concierge] [degraded] ...".
   ├─ Email               ALWAYS sends Friday (weekly ritual; evergreen guarantees content)
+  │             Cooldown state (signals_seen.json, memory.json) is saved only AFTER a
+  │             successful send; a failed send exits 1 so the Actions run goes red.
   └─ Always writes state/: weekend_signals.json, weekend_log.md, memory.json/.md, signals_seen.json
 ```
 
@@ -299,6 +303,9 @@ Three more sources were added raw-fetch-only (a plain page-text blob for FIND to
   evergreens use `evergreen|adult|slug(name)`. If no evergreen is off-cooldown, fall back to the
   least-recently-suggested catalog entry **of that audience** so the email is never empty and an
   adult evergreen can never fill the family slot.
+- **EMAIL-BEFORE-STATE: cooldown state is saved only after `send_email` succeeds.** Saving it first
+  meant one SMTP failure put a whole week's items on a 21-day cooldown unseen, on a green job. Do
+  not move `M.save(mem)` / `save_json("signals_seen.json")` back above the send.
 - **The email always sends on Friday** (the weekly ritual is the point). Evergreen fallback
   guarantees non-empty content even on a dead-event weekend, in both audiences.
 - **Weather is fed to the LLM as raw data, not a pre-classified label.** `weather.py` returns
@@ -397,6 +404,8 @@ Three more sources were added raw-fetch-only (a plain page-text blob for FIND to
 | `CIVIC_OPPORTUNITY_COOLDOWN_DAYS` | 180 | A new mall is interesting once. |
 | `MAX_TOKENS_SKEPTIC` | 20000 | was 12000; the batch now spans both paths. |
 | `MAX_TOKENS_CONCIERGE` | 24000 | was 12000; four sections, uncapped items, body emitted twice (HTML + text). |
+| `MAX_EVENTS_PER_VENUE` | 2 | per audience, highest-scored first (`select_events`). Over-cap items are not marked seen, so they return in a later week. Added after six of seven family events in one email were puppet shows from one theatre. |
+| `MAX_HARVEST_ITEMS` | 350 | was 200, which was cutting 282 items and squeezing every new source. |
 
 The token budgets are **load-bearing, not cosmetic**: `config.py`'s own comment warns that
 exceeding `maxOutputTokens` truncates the JSON and "looks like a quiet weekend" — i.e. a silent
@@ -440,7 +449,7 @@ No RapidAPI/hotel/weather keys (open-meteo needs none).
 ```bash
 pip install -r requirements.txt
 export GEMINI_API_KEY=...  LLM_PROVIDER=gemini
-python weekend_concierge.py   # writes state/; emails if SMTP vars set, else prints the error
+python weekend_concierge.py   # emails if SMTP vars set; else prints the error, saves NO cooldown state, exits 1
 python scrapers.py            # harvest smoke test: prints per-source item counts
 python weather.py             # 7-day forecast smoke test
 python -m llm_chain           # resolved config + available models + one live ping (the
@@ -455,7 +464,9 @@ installed from git rather than checked out, so without it `weekend_concierge.py`
 The LLM layer's own 17 tests live in the llm-chain repo and run in its CI; there is no
 `test_llm_chain.py` here.
 
-Leave SMTP vars unset to test without sending (the send is caught and printed).
+Leave SMTP vars unset to test without sending: the send error is printed, `weekend_signals.json` and
+`weekend_log.md` are still written, but cooldown state is not saved and the process exits 1. That is
+deliberate (see EMAIL-BEFORE-STATE); the offline tests stub `send_email` instead.
 
 **`.env` works for `weekend_concierge.py` only.** It calls `load_dotenv()` behind a try/except,
 so a `.env` at the repo root supplies `GEMINI_API_KEY`/SMTP for the pipeline. `llm_chain`
