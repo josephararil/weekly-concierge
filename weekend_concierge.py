@@ -31,6 +31,7 @@ state/signals_seen.json.
 import json
 import os
 import re
+import sys
 import urllib.parse
 import datetime as dt
 try:
@@ -187,6 +188,26 @@ def civic_notice_expired(candidate, window_start):
     return end < window_start   # ISO dates compare correctly as strings
 
 
+def event_already_past(candidate, window_start):
+    """True for a dated event that is over before the email's window opens.
+
+    FIND is asked for events inside the window, and SKEPTIC can correct a date -- but nothing
+    re-checked the window after a correction. On 2026-10-16 SKEPTIC moved an air-museum
+    special programme to the 16th (the run day), the item stayed filed under "this weekend",
+    and the email told the reader to go on Saturday to what would have been an empty museum.
+
+    Unlike civic_notice_expired(), falling back to date_iso IS right here: for a single-day
+    event the start date is also the end date. The cost, accepted: a multi-day exhibition
+    that started before the window and arrives with no end_date_iso is dropped. Both FIND
+    schemas carry end_date_iso for exactly this. Undated events are kept."""
+    if candidate.get("category") not in EVENT_CATEGORIES:
+        return False
+    last_day = (candidate.get("end_date_iso") or candidate.get("date_iso") or "").strip()
+    if not last_day:
+        return False
+    return last_day < window_start   # ISO dates compare correctly as strings
+
+
 def clean_source_url(url):
     """Return url, or "" if it is a bare homepage.
 
@@ -305,12 +326,30 @@ def mark_seen(state, key):
 
 # --- selection ---
 
+def venue_key(location):
+    """Normalised venue string for the per-venue cap. Not slug(): that keeps only [a-z0-9],
+    so every Cyrillic venue name would collapse to "" and share one key. Best effort -- two
+    spellings of one venue still count separately."""
+    return re.sub(r"\W+", "-", (location or "").lower()).strip("-")
+
+
 def select_events(fresh_events, audience):
     """All non-evergreen survivors for one audience, ranked by that audience's score (for the
     concierge's prioritization only), already filtered for anti-repeat cooldown by the caller.
-    No count cap — every survivor that passed FIND + SKEPTIC + anti-repeat goes to the
-    concierge."""
-    return sorted(fresh_events, key=lambda c: score_of(c, audience), reverse=True)
+    No overall count cap, but at most MAX_EVENTS_PER_VENUE per venue, highest-scored first.
+    An over-cap item is left unmarked in signals_seen, so it can be sent in a later week."""
+    picks, per_venue = [], {}
+    for c in sorted(fresh_events, key=lambda c: score_of(c, audience), reverse=True):
+        venue = venue_key(c.get("location"))
+        if venue and per_venue.get(venue, 0) >= C.MAX_EVENTS_PER_VENUE:
+            c["verdict"] = "skipped"
+            c["note"] = f"dropped: venue cap ({C.MAX_EVENTS_PER_VENUE}/venue); {c.get('note', '')}"
+            print(f"    [VENUE-CAP] {c.get('title', '?')} — already {C.MAX_EVENTS_PER_VENUE} "
+                  f"from this venue")
+            continue
+        per_venue[venue] = per_venue.get(venue, 0) + 1
+        picks.append(c)
+    return picks
 
 
 def select_evergreens(evergreen_survivors, mem, audience="family"):
@@ -498,19 +537,30 @@ def degraded_summary(stage_results):
     it gets a log line only, never a banner, or the flag stops meaning anything."""
     failed = [name for name, r in stage_results if not r.ok]
     fell   = [name for name, r in stage_results if r.ok and r.fell_back]
+    # A stage that answered but hit its output-token limit (finishReason != STOP) returns
+    # cut-off JSON, which parses to nothing and reads exactly like a quiet week -- the
+    # failure this banner exists to expose. So truncation degrades the run like a failure.
+    cut    = [name for name, r in stage_results if r.ok and r.truncated]
     log = ""
-    if failed or fell:
+    if failed or fell or cut:
         log = (f"- LLM: {len(failed)} stage(s) failed ({', '.join(failed) or 'none'}); "
+               f"{len(cut)} truncated at the token limit ({', '.join(cut) or 'none'}); "
                f"{len(fell)} fell back to a later model ({', '.join(fell) or 'none'})")
-    if not failed:
+    if not failed and not cut:
         return "", "", "", log
-    stages = ", ".join(failed)
-    banner_html = ('<p><b>Heads up:</b> this email is incomplete. The following stage(s) could not be '
-                   f'reached after retrying every configured model: {stages}. Sections below may be '
-                   'thin or missing, and some items were sent without verification.</p>')
-    banner_text = ("Heads up: this email is incomplete. The following stage(s) could not be reached "
-                   f"after retrying every configured model: {stages}. Sections below may be thin or "
-                   "missing, and some items were sent without verification.\n")
+    reasons = []
+    if failed:
+        reasons.append("could not be reached after retrying every configured model: "
+                       + ", ".join(failed))
+    if cut:
+        reasons.append("ran out of output space and returned a cut-off answer: " + ", ".join(cut))
+    why = "; ".join(reasons)
+    banner_html = ('<p><b>Heads up:</b> this email is incomplete. Some stage(s) ' + why +
+                   '. Sections below may be thin or missing, and some items may have been sent '
+                   'without verification.</p>')
+    banner_text = ("Heads up: this email is incomplete. Some stage(s) " + why +
+                   ". Sections below may be thin or missing, and some items may have been sent "
+                   "without verification.\n")
     return "[degraded] ", banner_html, banner_text, log
 
 
@@ -850,6 +900,13 @@ def main():
             print(f"    [ROUTINE ] #{c['candidate_id']} {c.get('title', '?')} — "
                   f"recurring maintenance round, not a disruption")
             continue
+        if event_already_past(c, window_start):
+            c["verdict"] = "skipped"
+            c["note"] = (f"dropped: event date {c.get('end_date_iso') or c.get('date_iso')} is "
+                         f"before window opens {window_start}; {note}")
+            print(f"    [PAST    ] #{c['candidate_id']} {c.get('title', '?')} — "
+                  f"dated before {window_start}")
+            continue
         if civic_notice_expired(c, window_start):
             c["verdict"] = "skipped"
             c["note"] = (f"dropped: ended {c.get('end_date_iso') or c.get('date_iso')}, "
@@ -1011,8 +1068,6 @@ def main():
                             verdict="sent", note=c.get("reason", ""))
 
     M.prune(mem)
-    M.save(mem)
-    print(f"  memory written: {len(mem['evergreen'])} evergreen(s), {len(mem['ledger'])} ledger entry(s)")
 
     signals = [{
         "candidate_id": c.get("candidate_id"), "title": c.get("title"), "category": c.get("category"),
@@ -1032,19 +1087,30 @@ def main():
         ("Good to know — civic", selected_civic),
         ("Family evergreens", selected_family_evergreens),
         ("Adult evergreens", selected_adult_evergreens),
-    ], weather_text, subject, llm_note=llm_log_line)
+    ], weather_text, subject, llm_note="\n".join(filter(None, [
+        llm_log_line,
+        (f"- HARVEST: structured parser returned 0 items for {', '.join(scrapers.EMPTY_STRUCTURED)}"
+         f" -- check whether the site's markup changed") if scrapers.EMPTY_STRUCTURED else "",
+    ])))
     print("  wrote state/weekend_signals.json, state/weekend_log.md")
 
     # Email -- always sends (weekly ritual; evergreen guarantees non-empty content).
-    # Anti-repeat marks are already applied above regardless of send outcome, so a
-    # transient SMTP failure doesn't leave the run in a half-updated state.
+    # Cooldown state (signals_seen.json, and memory.json's last_suggested) is saved ONLY
+    # after a successful send. Saving it first meant one SMTP failure put the whole week's
+    # items on a 21-day cooldown without the reader ever seeing them, on a green job. A
+    # failed send now leaves both files untouched and exits non-zero, so the Actions run
+    # goes red and the "Persist state" step is skipped -- re-running sends the same email.
     _section("EMAIL")
     try:
         X.send_email(subject, html, text)
         print(f"  [EMAIL SENT] {subject}")
     except Exception as e:
         print(f"  [FAIL] email send error: {type(e).__name__}: {e}")
+        print("  cooldown state NOT saved (signals_seen.json, memory.json) -- exiting 1")
+        sys.exit(1)
 
+    M.save(mem)
+    print(f"  memory written: {len(mem['evergreen'])} evergreen(s), {len(mem['ledger'])} ledger entry(s)")
     save_json("signals_seen.json", seen_state)
 
     _section("RUN COMPLETE")

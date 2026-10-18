@@ -11,7 +11,9 @@ RADIUS_MINUTES = 90  # max one-way travel time from Plovdiv worth suggesting
 # a documented stub — left disabled until auth/anti-bot is worth solving.
 ENABLED_SOURCES = [
     "plovdiv2019", "bilet",
-    "eventim", "ticketstation", "ticketbg", "dtp", "rnhm", "oldplovdiv",
+    # "eventim" is disabled: Akamai stalls every request to a hard timeout (see the note
+    # above scrapers.RAW_FETCH_SOURCES), so it only ever cost ~15s and returned nothing.
+    "ticketstation", "ticketbg", "dtp", "rnhm", "oldplovdiv",
     "programata", "plovdiv_bg", "visitplovdiv", "marica",
     "lostinplovdiv",
     # Adult + civic sources. "plovdiv24" was already registered in
@@ -25,7 +27,10 @@ ENABLED_SOURCES = [
 ]
 
 # Volume cap applied to the deduped harvest before it's handed to FIND.
-MAX_HARVEST_ITEMS = 200
+# Was 200; raised 2026-10-18 when the cap was cutting 282 items to 200 and every newly added
+# source squeezed the rest. Gemini's context takes the larger prompt easily; this is roughly
+# the full current volume with headroom, so the cap is a guard again, not a filter.
+MAX_HARVEST_ITEMS = 350
 
 # ── LLM models ──────────────────────────────────────────────────────────────
 # Deliberately empty. Model selection, the fallback chain and all retry/backoff
@@ -75,6 +80,11 @@ MIN_ADULT_SCORE             = 70  # adult_fit floor for adult events + evergreen
 MIN_CIVIC_OPPORTUNITY_SCORE = 75  # civic_value floor for durable civic facts (a high bar)
 MIN_CIVIC_NOTICE_SCORE      = 55  # civic_value floor for time-bounded notices (low bar —
                                   # missing a road closure is the worst failure mode)
+
+# At most this many events from one venue per audience. The 2026-10-16 email sent six puppet
+# shows from one theatre out of seven family events. Over-cap items are NOT marked seen, so
+# they come back in a later week instead of being lost.
+MAX_EVENTS_PER_VENUE = 2
 
 # ── Anti-repeat knobs ────────────────────────────────────────────────────────
 EVENT_TTL_DAYS          = 21  # cooldown before the same event can resurface
