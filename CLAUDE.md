@@ -79,6 +79,8 @@ weekend_concierge.py
   │             civic_notice. candidate_id is assigned AFTER the merge.
   ├─ Stage 2 · SKEPTIC   (search) ONE batch call over the merged pool: verify existence + date
   │             + 90-min radius → keep | correct | kill, plus a `verified` bool (not a gate).
+  │             Its search's grounding domains (LLMResult.sources) audit each note's cited
+  │             domains → `SRC:` tags + one summary line in weekend_log.md (log only).
   ├─ Language gate       language_barrier == "blocking" → dropped, before any floor check
   ├─ Routine-maintenance drop  recurring municipal rounds (street washing etc.), title match
   ├─ Past-event drop     event whose end_date_iso (else date_iso) precedes the window start,
@@ -125,7 +127,7 @@ road closure does not.
 
 | File | Role |
 |---|---|
-| `weekend_concierge.py` | The pipeline. `role_for`/`score_field`/`score_of`/`floor_for`/`civic_key`/`evergreen_key` own the routing table; `filter_seen()` applies cooldowns; `select_events()` ranks and applies the venue cap; `is_recurring_maintenance()`, `event_already_past()`, `civic_notice_expired()` are the structural drops; `clean_source_url()`, `build_links()`, `build_calendar_url()`, `parse_when_times()` build links; `save_json()`/`load_json()` are the UTF-8-safe state IO; `degraded_summary()` builds the banner. |
+| `weekend_concierge.py` | The pipeline. `role_for`/`score_field`/`score_of`/`floor_for`/`civic_key`/`evergreen_key` own the routing table; `filter_seen()` applies cooldowns; `select_events()` ranks and applies the venue cap; `is_recurring_maintenance()`, `event_already_past()`, `civic_notice_expired()` are the structural drops; `clean_source_url()`, `build_links()`, `build_calendar_url()`, `parse_when_times()` build links; `save_json()`/`load_json()` are the UTF-8-safe state IO; `degraded_summary()` builds the banner; `note_domains()`/`source_domains()`/`audit_source()`/`source_audit_summary()` own the source audit. |
 | `scrapers.py` | Two-tier per-source registry: `RAW_FETCH_SOURCES` (page-text blob for FIND) plus `SCRAPERS` (structured upgrade, falls back to raw on empty/failure). `harvest()` runs everything, dedupes on title+date, interleaves round-robin, caps at `MAX_HARVEST_ITEMS`. Most news sources are RSS and share `_parse_news_rss()`. Every source's quirks and every rejected source are in `docs/history.md` and in the comment above each parser. |
 | `config.py` | Knobs, `ENABLED_SOURCES`, seed evergreens (42 family + 10 adult priors), per-audience prompts and schemas. **Names no model.** |
 | `memory.py` | Evergreen catalog + suggestion ledger. `summarize_for_prompt(mem, audience)` filters the catalog per audience. Entries default to `audience="family"`, which is how pre-audience entries read correctly without migration. |
@@ -153,6 +155,7 @@ Long-form evidence for each is in `docs/history.md`.
 - **CIVIC-RADIUS:** never kill a `civic_opportunity` on radius (a flight route has no venue). Radius still applies to `civic_notice`.
 - **VERIFIED-NOT-A-GATE:** `verified` is a visibility flag (`UNVERIFIED` in the log), never a filter. Gating would drop thinly reported real items.
 - **SKEPTIC-INFRA-IS-NOT-REJECTION:** no verdicts + `ok=False` (never ran) keeps candidates flagged unverified; no verdicts + `ok=True` kills them. Conflating these either empties the email on an outage or silently disables the hallucination guard.
+- **SOURCE-AUDIT-NOT-A-GATE:** `source_audit` (`ok`/`unsourced`/`no-domain`) is log-only, like `verified`. No sources means *unauditable* (log says `skipped`), never *unsourced*. Read `sources` with `getattr` inside SKEPTIC's `try`: an AttributeError there kills every candidate. Making the audit a gate is the owner's call.
 
 **Filtering**
 - **LANG-GATE:** `language_barrier == "blocking"` drops before the floor check; `"partial"` gets no numeric penalty in Python (the prompt already scores it lower).
@@ -234,7 +237,7 @@ which looks like a dead key.
 
 - **Scraping is brittle**; Facebook is a stub. FIND's web search compensates partly.
 - **No headless browser, ever.** It has been ruled out three times; `eventim.bg`, `ticketstation.bg` and every Plovdiv cinema site need one, so cinema arrives only via FIND's web search.
-- **SKEPTIC's named sources are unaudited.** llm-chain discards Gemini's grounding URLs, so "confirmed on X" cannot be checked in Python. Passing them through is an upstream change.
+- **SKEPTIC's source audit is domain-level.** One batch search serves every candidate, so `ok` means the cited domain was among what the search returned, not that it confirmed this item; `unsourced` is the strong signal. SKEPTIC is deliberately not shown the source list (it would just cite from it). The Anthropic path returns no sources, so the audit skips.
 - **No cross-path dedupe:** one festival found by both FIND paths uses two slots.
 - **Civic geography is inferred from "central Plovdiv"**, not configured streets.
 - **The family path spans 7 days** (owner's call); weekday kids' events add some noise.
