@@ -413,7 +413,7 @@ Volume is otherwise **uncapped** — floors are the only control.
 | `GEMINI_API_KEY` | secret | Gemini LLM calls (default provider) |
 | `ANTHROPIC_API_KEY` | secret | Anthropic LLM calls (if `LLM_PROVIDER=anthropic`) |
 | `LLM_PROVIDER` | repo variable | `"gemini"` (default) or `"anthropic"` |
-| `LLM_MODEL_CHAIN` | repo variable, optional | Reasoning models, comma-separated, tried left to right. Default `gemini-flash-latest,gemini-3.1-flash-lite`. **Set in production to explicit numbered models** rather than `-latest`, which resolves to the newest and most load-shed flash — see the 2026-08-14 verification runs. |
+| `LLM_MODEL_CHAIN` | repo variable, optional | Reasoning models, comma-separated, tried left to right. Default `gemini-flash-latest,gemini-3.1-flash-lite`. **Production (since 2026-10-18) sets both this and `LLM_SEARCH_MODEL_CHAIN` to `gemini-flash-latest,gemini-3.1-flash-lite`** — the owner's call, so no numbered model has to be bumped by hand as Google ships new flashes. Accepted cost: `-latest` resolves to the newest flash, which was the load-shed one in the 2026-08-14 verification runs; the lite fallback is the hedge. If 503-driven fallbacks become routine in `weekend_log.md`, putting a numbered flash between the two is the fix. |
 | `LLM_SEARCH_MODEL_CHAIN` | repo variable, optional | Search-step models. Default `gemini-3.1-flash-lite,gemini-flash-latest` |
 | `LLM_ATTEMPTS_PER_MODEL` | repo variable, optional | HTTP attempts per model before advancing. Default `4`. **Lower this before raising `LLM_BACKOFF_SECONDS`** — advancing beats waiting on a shedding model. |
 | `LLM_BACKOFF_SECONDS` | repo variable, optional | Sleep between attempts; the last value repeats. Default `5,15,45` |
