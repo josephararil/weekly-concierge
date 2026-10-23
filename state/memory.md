@@ -1,6 +1,6 @@
-# Weekend Concierge Memory — updated 2026-10-16
+# Weekend Concierge Memory — updated 2026-10-23
 
-## Evergreen Catalog (86 entries)
+## Evergreen Catalog (87 entries)
 
 ### Ancient Theatre of Philippopolis
 **Location:** Plovdiv Old Town / in town
@@ -31,9 +31,9 @@ Dozens of full-size vintage airplanes and helicopters scattered across flat, ope
 _Source: find_
 
 ### Aviation Museum Krumovo Excursion
-**Location:** Krumovo (~15 min drive from Plovdiv)
-**Discovered:** 2026-08-07 &nbsp; **Last suggested:** 2026-08-07
-Spacious open-air grounds featuring real airplanes and helicopters where a toddler can safely roam and explore huge machines.
+**Location:** Plovdiv Airport grounds, Krumovo (~15-20 min drive)
+**Discovered:** 2026-08-07 &nbsp; **Last suggested:** 2026-10-23
+Spacious, flat outdoor airfield where toddlers can safely wander and marvel at full-sized airplanes and helicopters.
 _Source: find_
 
 ### Aviation Museum Krumovo Outing
@@ -114,9 +114,9 @@ _Tags: hiking, nature, outdoor, free_
 _Source: research_
 
 ### Byala Reka Ecotrail Hike
-**Location:** Near Kalofer Monastery (approx. 85 min drive)
-**Discovered:** 2026-07-10 &nbsp; **Last suggested:** 2026-07-10
-A highly accessible, child-friendly trail of sturdy wooden bridges over a river, matching the family's preference for gentle, safe walks.
+**Location:** Near Kalofer (~80 min drive from Plovdiv)
+**Discovered:** 2026-07-10 &nbsp; **Last suggested:** 2026-10-23
+Gentle, secure wooden bridge trail crossing scenic river streams, directly matching family preferences for safe nature walks.
 _Source: find_
 
 ### Byala Reka Ecotrail Hike (Екопътека Бяла река)
@@ -331,6 +331,12 @@ Former royal hunting lodge in a botanical park; flat, stroller-friendly paths, f
 **Practical:** Guided tours (~1.5 hr) at fixed times, e.g. 08:15/10:15/13:00/15:00; ticket ~14 BGN.
 _Tags: botanical, nature, outdoor, paid_
 _Source: research_
+
+### LUCKY Cinema Center (LUCKY Дом на киното)
+**Location:** ul. William Gladstone 1, Plovdiv
+**Discovered:** 2026-10-23 &nbsp; **Last suggested:** 2026-10-23
+The city's essential arthouse cinema, curating European cinema, festivals like Cinelibri, and original-audio screenings.
+_Source: find_
 
 ### LUCKY House of Cinema (Dom na Kinoto Plovdiv)
 **Location:** 1 William Gladstone St (Dom na Tehnikata), Central Plovdiv
@@ -626,6 +632,24 @@ _Source: research_
 
 ## Suggestion Ledger (200 entries)
 
+- ✅ 2026-10-23 | Puppet Show: "Peter Rabbit" (Зайчето Питър) | event_this_weekend | Sunday, October 25, 2026, 10:30 & 11:45 | sent score=95 — Confirmed on pptheatre.com and how2plovdiv.com.
+- ✅ 2026-10-23 | Kids' Magic Show with Stefan Sunkov | event_this_weekend | Sunday, October 25, 2026, 16:00 | sent score=85 — Confirmed on tickets.paysera.com and grabo.bg.
+- ✅ 2026-10-23 | Puppet Show: "The Choking Bear" (Задави се Меца) | event_this_weekend | Saturday, October 24, 2026, 11:00 | sent score=80 — Confirmed on pierrot-bg.com and theatre.art.bg (within 70 min drive of Plovdiv).
+- ✅ 2026-10-23 | National Awakening Day Open-Air Concert | event_thisweek | Friday, October 30, 2026, 18:30 | sent score=65 — Confirmed on plovdiv.bg and marica.bg.
+- ✅ 2026-10-23 | Awakening Leaders' Day at the Natural History Museum | event_lookahead | Sunday, November 1, 2026 | sent score=98 — Confirmed on marica.bg and plovdivnews.bg.
+- ✅ 2026-10-23 | Halloween Circus Ivanov | event_lookahead | Saturday, October 31, 2026, 16:30 | sent score=90 — Confirmed on circusivanov.com.
+- ✅ 2026-10-23 | Puppet Show: "The Little Round Bun" (Житената питка) | event_lookahead | Saturday, November 14, 2026, 10:30 & 11:45 | sent score=92 — Confirmed on pptheatre.com and entase.com.
+- ✅ 2026-10-23 | Chamber Scene Plovdiv 2026: Reverie Classical Concert | event_thisweek | Wednesday, October 28, 2026, at 18:00 | sent score=74 — Confirmed on culture.plovdiv.bg and visitplovdiv.com.
+- ✅ 2026-10-23 | Plovdiv Jazz Fest 2026 – Fall Edition | event_lookahead | Friday, November 6 – Sunday, November 8, 2026 | sent score=84 — Confirmed on culture.plovdiv.bg and actualno.com.
+- ✅ 2026-10-23 | 'Music of All Times' Classical Symphony Concert at the Bishop's Basilica | event_lookahead | Thursday, November 5, 2026, at 19:00 | sent score=78 — Confirmed on bta.bg and marica.bg.
+- ✅ 2026-10-23 | Central Plovdiv Street Closures for Presidential Election Logistics | civic_notice | Saturday, October 24, 2026, from 11:00 onwards | sent score=90 — Confirmed on marica.bg and plovdiv24.bg.
+- ✅ 2026-10-23 | Citywide Municipal Prohibition of Alcohol Sales and Service for Election Day | civic_notice | Sunday, October 25, 2026, 06:00 to 20:00 | sent score=80 — Confirmed on plovdiv.bg and fakti.bg.
+- ✅ 2026-10-23 | Matchday Traffic & Security Cordon: Lokomotiv Plovdiv vs. Slavia Sofia | civic_notice | Monday, October 26, 2026, kickoff 17:00 | sent score=65 — Confirmed on lokomotivpd.com and topsport.bg.
+- ✅ 2026-10-23 | Plovdiv Low Emission Zone ('Small Ring') Central Driving Restrictions | civic_opportunity | In force through April 30, 2027 | sent score=88 — Confirmed on plovdiv.bg and kmeta.bg.
+- ✅ 2026-10-23 | New Operational Base and 8 European Direct Flight Routes at Plovdiv Airport | civic_opportunity | Announced October 2026 (scheduled flights commencing March 2027) | sent score=92 — Confirmed on bnr.bg and marica.bg.
+- ✅ 2026-10-23 | Aviation Museum Krumovo Excursion | evergreen | Wednesday to Sunday, 09:00-16:30 | sent score=90 — Spacious, flat outdoor airfield where toddlers can safely wander and marvel at full-sized airplanes…
+- ✅ 2026-10-23 | Byala Reka Ecotrail Hike | evergreen | Open daily | sent score=88 — Gentle, secure wooden bridge trail crossing scenic river streams, directly matching family…
+- ✅ 2026-10-23 | LUCKY Cinema Center (LUCKY Дом на киното) | evergreen | Standing venue (daily afternoon and evening screenings) | sent score=82 — The city's essential arthouse cinema, curating European cinema, festivals like Cinelibri, and…
 - ✅ 2026-10-16 | Puppet Show: "The Brave Woodcutter" (Храбрият дървар) | event_this_weekend | Saturday, October 17, 2026, 10:30 & 11:45 | sent score=95 — Confirmed on pptheatre.com and visitplovdiv.com for October 17, 2026.
 - ✅ 2026-10-16 | Puppet Show: "Don't Look For Trouble / An Insect Story" (Не си търси белята) | event_this_weekend | Sunday, October 18, 2026, 10:30 & 11:45 | sent score=95 — Confirmed on pptheatre.com and how2plovdiv.com for October 18, 2026.
 - ✅ 2026-10-16 | Puppet Show: "The Three Brothers and the Golden Apple" (Тримата братя и златната ябълка) | event_this_weekend | Saturday, October 17, 2026, 11:00 | sent score=88 — Confirmed on kupibileti.bg and theatrepazardzhik.com for October 17, 2026.
@@ -658,22 +682,4 @@ _Source: research_
 - ✅ 2026-10-09 | Old Town Cobblestone Reconstruction on Dr. Stoyan Chomakov Street | civic_notice | Ongoing infrastructure project | sent score=80 — Confirmed on marica.bg and citybuild.bg as an ongoing Old Town paving project.
 - ✅ 2026-10-09 | Flat-Rate All-Week Ticket Pricing (€5) Introduced at Cinema City Mall Plovdiv | civic_opportunity | Valid daily through 31 October 2026 | sent score=78 — Confirmed on mallplovdiv.bg and Cinema City Bulgaria through October 31, 2026.
 - ✅ 2026-10-09 | Launch of Integrated 24/7 Traffic and Toll Camera Enforcement System | civic_opportunity | Implemented October 2026 | sent score=75 — Confirmed on plovdivdaily.bg and trafficnews.bg in October 2026.
-- ✅ 2026-10-09 | Damascena Biopark & Rose Gardens | evergreen | Daily, 09:00-17:00 | sent score=84 — A beautifully landscaped botanical park featuring gentle flat paths, wooden bridges, playground…
-- ✅ 2026-10-09 | Regional Ethnographic Museum Plovdiv | evergreen |  | sent score=60 — A National Revival merchant's house in the Old Town, worth it as much for the building as the…
-- ✅ 2026-10-02 | Dog Breed Parade (Парад на породите) | event_this_weekend | Saturday–Sunday, October 3–4, 2026 | sent score=95 — Confirmed on plovdiv-online.com and marica.bg for October 3–4, 2026.
-- ✅ 2026-10-02 | Puppet Show: What a Crocodile! (Ама че крокодил!) | event_this_weekend | Saturday, October 3, 2026, 10:30 & 11:45 | sent score=92 — Confirmed on pptheatre.com and sofiastage.com for October 3, 2026.
-- ✅ 2026-10-02 | Festival of Bread (Празник на хляба) | event_this_weekend | Saturday, October 3, 2026 at 11:00 | sent score=84 — Confirmed on hisarya.bg and pbnovini.com for October 3, 2026.
-- ✅ 2026-10-02 | Autumn Crafts Fair (Есенен панаир на занаятите) | event_this_weekend | Thursday–Sunday, October 1–4, 2026 | sent score=80 — Confirmed on plovdiv.bg and podtepeto.com for October 1–4, 2026.
-- ✅ 2026-10-02 | Kapana Fest – Autumn Edition | event_this_weekend | Friday–Sunday, October 2–4, 2026 | sent score=78 — Confirmed on podtepeto.com and marica.bg for October 2–4, 2026.
-- ✅ 2026-10-02 | Charity Cross-Voyage (Крос-Воаяж на Гребната база) | event_this_weekend | Saturday, October 3, 2026 at 10:00 | sent score=82 — Confirmed on bnrnews.bg and novini247.com for October 3, 2026.
-- ✅ 2026-10-02 | Children's Play: The Story of Cinderella (Историята на Пепеляшка) | event_thisweek | Tuesday, October 6, 2026 at 11:30 | sent score=80 — Confirmed on domborishristov.bg and marica.bg for October 6, 2026.
-- ✅ 2026-10-02 | Puppet Show: Winnie the Pooh (Мечо Пух) | event_lookahead | Saturday, October 10, 2026, 10:30 & 11:45 | sent score=94 — Confirmed on pptheatre.com and how2plovdiv.com for October 10, 2026.
-- ✅ 2026-10-02 | Gifts of Thrace Regional Fair (Даровете на Тракия) | event_lookahead | Friday–Sunday, October 9–11, 2026 | sent score=83 — Confirmed on festivali.eu for October 9–11, 2026 at Arapovo Monastery.
-- ✅ 2026-10-02 | Colors of Autumn Festival (Багрите на есента) | event_lookahead | Saturday, October 10, 2026 | sent score=82 — Could not find a corroborating source confirming this festival on October 10, 2026.
-- ✅ 2026-10-02 | Puppet Show: Peter Rabbit (Зайчето Питър) | event_lookahead | Sunday, October 25, 2026, 10:30 & 11:45 | sent score=90 — Confirmed on pptheatre.com and how2plovdiv.com for October 25, 2026.
-- ✅ 2026-10-02 | Station Street Festival 2026 | event_this_weekend | October 2–4, 2026 | sent score=85 — Confirmed on visitplovdiv.com and eventibg.com for October 2–4, 2026.
-- ✅ 2026-10-02 | Kapana Fest 2026 (Autumn Edition) | event_this_weekend | October 2–4 and October 9–11, 2026 | sent score=80 — Confirmed on podtepeto.com and marica.bg for October 2–4 and October 9–11, 2026.
-- ✅ 2026-10-02 | GuitArt Festival: Vlatko Stefanovski Trio Live | event_this_weekend | Saturday, 3 October 2026, 20:00 | sent score=80 — Confirmed on visitplovdiv.com and podtepeto.com for October 3, 2026.
-- ✅ 2026-10-02 | GuitArt Festival: Yamandu Costa Live in Concert | event_this_weekend | Sunday, 4 October 2026, 19:30 | sent score=85 — Confirmed on domborishristov.bg and plovdiv.bg for October 4, 2026.
-- ✅ 2026-10-02 | In Jazz: Bobi Valchev Concert | event_this_weekend | Saturday, 3 October 2026, 19:00 | sent score=75 — Confirmed on impressio.bg and bilet.bg for October 3, 2026 at Orpheus Summer Cinema.
 _... and 150 earlier entries_
