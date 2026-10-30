@@ -1017,15 +1017,15 @@
       "audience": "family"
     },
     "Farmers Market at Ribnitsa Park": {
-      "location": "Ribnitsa Park, Plovdiv",
+      "location": "Ribnitsa Park, Severen District, Plovdiv",
       "area": "",
-      "description": "Recurring outdoor morning market for fresh local produce and regional goods, fully accessible without Bulgarian.",
+      "description": "An established open-air weekend food market focusing on regional Thracian agricultural produce, artisanal breads, and honey; fully accessible and browseable without Bulgarian.",
       "tags": [],
       "url": "",
       "practical": "",
       "discovered": "2026-08-12",
       "source": "find",
-      "last_suggested": "2026-08-12",
+      "last_suggested": "2026-10-30",
       "audience": "adult"
     },
     "Frigopan Horse Base Pony Rides": {
@@ -1243,185 +1243,33 @@
       "source": "find",
       "last_suggested": "2026-10-23",
       "audience": "adult"
+    },
+    "Damascena Biopark & Rose Valley Gardens": {
+      "location": "Complex Damascena, Skobelevo (~85 min drive)",
+      "area": "",
+      "description": "Paved stroller-friendly garden paths, sculptures, running fountains, and enclosed habitats with deer, swans, and ostriches.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-10-30",
+      "source": "find",
+      "last_suggested": "2026-10-30",
+      "audience": "family"
+    },
+    "Sunset Viewpoint at Bunardzhik Hill": {
+      "location": "Bunardzhik (Alyosha Hill), Central Plovdiv",
+      "area": "",
+      "description": "A direct, quiet walk right out of central Plovdiv offering 360-degree panoramic views over the city and the Rhodope range without tickets, bookings, or language friction.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-10-30",
+      "source": "find",
+      "last_suggested": "2026-10-30",
+      "audience": "adult"
     }
   },
   "ledger": [
-    {
-      "date": "2026-08-11",
-      "title": "Eco Park Stamboliyski Day Trip",
-      "category": "evergreen",
-      "when": "Open daily during daylight hours",
-      "location": "Eco Park Stamboliyski (~25 min drive from Plovdiv)",
-      "url": "",
-      "score": 92,
-      "verdict": "sent",
-      "note": "A highly rated family favorite packed with toddler-safe playgrounds and spacious lawns for outdoor playing."
-    },
-    {
-      "date": "2026-08-11",
-      "title": "Stara Zagora Zoo Excursion",
-      "category": "evergreen",
-      "when": "Open daily, 08:30–19:30",
-      "location": "Stara Zagora Zoo (~1 hour drive from Plovdiv)",
-      "url": "",
-      "score": 90,
-      "verdict": "sent",
-      "note": "A scenic and well-maintained zoo located in a shady park, ideal for a relaxing day trip with a toddler."
-    },
-    {
-      "date": "2026-08-11",
-      "title": "Kapana Creative District",
-      "category": "evergreen",
-      "when": "",
-      "location": "Kapana, Plovdiv",
-      "url": "",
-      "score": 60,
-      "verdict": "sent",
-      "note": "The city's small-bar, gallery and street-art quarter — the default answer to 'where is something on tonight'."
-    },
-    {
-      "date": "2026-08-12",
-      "title": "Ostrova Park and Mini Zoo Pazardzhik",
-      "category": "evergreen",
-      "when": "Open daily",
-      "location": "Svoboda Island, Pazardzhik (~35 min drive)",
-      "url": "",
-      "score": 95,
-      "verdict": "sent",
-      "note": "A top family favorite featuring shady walking paths, extensive play areas, and a mini-zoo with small animals ideal for a 4-year-old."
-    },
-    {
-      "date": "2026-08-12",
-      "title": "Stara Zagora Zoo",
-      "category": "evergreen",
-      "when": "Open daily, 09:00 - 18:00",
-      "location": "Ayazmoto Park, Stara Zagora (~60 min drive)",
-      "url": "",
-      "score": 90,
-      "verdict": "sent",
-      "note": "A beautifully renovated woodland zoo nestled inside Ayazmoto Park offering wide paved walks, play areas, and healthy animal habitats."
-    },
-    {
-      "date": "2026-08-12",
-      "title": "Farmers Market at Ribnitsa Park",
-      "category": "evergreen",
-      "when": "Saturdays, 09:00 - 13:00",
-      "location": "Ribnitsa Park, Plovdiv",
-      "url": "",
-      "score": 72,
-      "verdict": "sent",
-      "note": "Recurring outdoor morning market for fresh local produce and regional goods, fully accessible without Bulgarian."
-    },
-    {
-      "date": "2026-08-14",
-      "title": "Plovdiv Regional Natural History Museum",
-      "category": "evergreen",
-      "when": "",
-      "location": "Plovdiv",
-      "url": "",
-      "score": 60,
-      "verdict": "sent",
-      "note": "Compact natural history museum with taxidermy and a small aquarium — easy indoor fallback."
-    },
-    {
-      "date": "2026-08-14",
-      "title": "Plovdiv City Art Gallery",
-      "category": "evergreen",
-      "when": "",
-      "location": "Plovdiv",
-      "url": "",
-      "score": 60,
-      "verdict": "sent",
-      "note": "Permanent Bulgarian painting collection across several central buildings — visual, so no language barrier."
-    },
-    {
-      "date": "2026-08-14",
-      "title": "Shake That Hill: Eldoria 2026",
-      "category": "event_lookahead",
-      "when": "August 28–30, 2026",
-      "location": "Youth Hill (Mladezhki Halm), Plovdiv",
-      "url": "",
-      "score": 80,
-      "verdict": "sent",
-      "note": "Confirmed on the official Shake That Hill website (shakethathill.com) for August 28–30, 2026."
-    },
-    {
-      "date": "2026-08-14",
-      "title": "Overcoming Gravity: Atanas Patsev Centenary Exhibition",
-      "category": "event_this_weekend",
-      "when": "12.08.2026 – 30.08.2026",
-      "location": "Hall '2019' (Gladstone 32), Plovdiv",
-      "url": "",
-      "score": 75,
-      "verdict": "sent",
-      "note": "Confirmed on the Plovdiv City Art Gallery official website (galleryplovdiv.com) listings for Hall 2019."
-    },
-    {
-      "date": "2026-08-14",
-      "title": "Molec – 'Where...' Live Tour Concert",
-      "category": "event_this_weekend",
-      "when": "Saturday, 15 August 2026, 20:30",
-      "location": "Ancient Theatre, Plovdiv",
-      "url": "",
-      "score": 70,
-      "verdict": "sent",
-      "note": "Confirmed on Eventim.bg for the Molec concert at the Ancient Theatre."
-    },
-    {
-      "date": "2026-08-14",
-      "title": "Sweeney Todd: The Demon Barber of Fleet Street",
-      "category": "event_thisweek",
-      "when": "Wednesday, 19 August 2026, 21:00",
-      "location": "Ancient Theatre, Plovdiv",
-      "url": "",
-      "score": 75,
-      "verdict": "sent",
-      "note": "Confirmed on Eventim.bg for the Sweeney Todd performance at the Ancient Theatre."
-    },
-    {
-      "date": "2026-08-14",
-      "title": "Shake That Hill: Eldoria 2026 Urban Arts & Music Festival",
-      "category": "event_lookahead",
-      "when": "28.08.2026 – 30.08.2026",
-      "location": "Youth Hill (Mladezhki Halm), Plovdiv",
-      "url": "",
-      "score": 85,
-      "verdict": "sent",
-      "note": "Confirmed on the official Shake That Hill website (shakethathill.com) for August 28–30, 2026."
-    },
-    {
-      "date": "2026-08-14",
-      "title": "Lane closure and bus detours on Blvd. Peshtersko Shose for heating pipe works",
-      "category": "civic_notice",
-      "when": "10.08.2026 – 24.08.2026",
-      "location": "Blvd. Peshtersko Shose (between ul. Tsarevets and ul. Raya), Zapaden district, Plovdiv",
-      "url": "",
-      "score": 80,
-      "verdict": "sent",
-      "note": "Confirmed via EVN Bulgaria announcement regarding heating pipe maintenance in Plovdiv."
-    },
-    {
-      "date": "2026-08-14",
-      "title": "Construction begins on 80-decare Kan Krum Park renovation in Trakia",
-      "category": "civic_opportunity",
-      "when": "Groundbreaking announced August 2026",
-      "location": "Kan Krum Park, Trakia district, Plovdiv",
-      "url": "",
-      "score": 80,
-      "verdict": "sent",
-      "note": "Confirmed by Plovdiv Municipality (plovdiv.bg) regarding the Kan Krum Park reconstruction project."
-    },
-    {
-      "date": "2026-08-14",
-      "title": "Frigopan Horse Base Pony Rides",
-      "category": "evergreen",
-      "when": "Open daily (advance booking recommended)",
-      "location": "Tsarimir (~15 min drive from Plovdiv)",
-      "url": "",
-      "score": 83,
-      "verdict": "sent",
-      "note": "Clean and modern equestrian centre offering guided pony walks and friendly animal viewing suited for younger children."
-    },
     {
       "date": "2026-08-14",
       "title": "Fantasy NeMuseum",
@@ -3445,6 +3293,182 @@
       "score": 82,
       "verdict": "sent",
       "note": "The city's essential arthouse cinema, curating European cinema, festivals like Cinelibri, and original-audio screenings."
+    },
+    {
+      "date": "2026-10-30",
+      "title": "Puppet Show: \"Thumbelina\" (Палечка)",
+      "category": "event_this_weekend",
+      "when": "Saturday, October 31, 2026, 10:30 & 11:45",
+      "location": "State Puppet Theatre, ul. Hristo G. Danov 14, Plovdiv",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com and grabo.bg."
+    },
+    {
+      "date": "2026-10-30",
+      "title": "Puppet Show: \"Kose Bose\" (Косе Босе)",
+      "category": "event_this_weekend",
+      "when": "Sunday, November 1, 2026, 10:30 & 11:45",
+      "location": "State Puppet Theatre, ul. Hristo G. Danov 14, Plovdiv",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com and grabo.bg."
+    },
+    {
+      "date": "2026-10-30",
+      "title": "Puppet Show: \"The Enormous Turnip\" (Дядо вади ряпа)",
+      "category": "event_this_weekend",
+      "when": "Saturday, October 31, 2026, 11:00",
+      "location": "State Puppet Theatre, ul. General Gurko 46, Stara Zagora",
+      "url": "",
+      "score": 84,
+      "verdict": "sent",
+      "note": "Confirmed on pierrot-bg.com."
+    },
+    {
+      "date": "2026-10-30",
+      "title": "Family Ballet: \"The Son of the Monkeys\" (Синът на маймуните)",
+      "category": "event_thisweek",
+      "when": "Wednesday, November 4, 2026, 19:00",
+      "location": "Boris Hristov House of Culture, Plovdiv",
+      "url": "",
+      "score": 72,
+      "verdict": "sent",
+      "note": "Confirmed on operaplovdiv.bg and eventim.bg."
+    },
+    {
+      "date": "2026-10-30",
+      "title": "Puppet Show: \"The Iron Boy\" (Желязното момче)",
+      "category": "event_lookahead",
+      "when": "Saturday, November 7, 2026, 11:00",
+      "location": "Drama-Puppet Theatre \"Konstantin Velichkov\", Pazardzhik",
+      "url": "",
+      "score": 88,
+      "verdict": "sent",
+      "note": "Confirmed on theatrepazardzhik.com and kupibileti.bg."
+    },
+    {
+      "date": "2026-10-30",
+      "title": "Symphony Concert: 'The Czech Romantics' (Чешките романтици)",
+      "category": "event_thisweek",
+      "when": "Thursday, November 5, 19:00",
+      "location": "Dom na Kulturata 'Boris Hristov', Ulitsa William Gladstone 15, Plovdiv",
+      "url": "",
+      "score": 72,
+      "verdict": "sent",
+      "note": "Confirmed on operaplovdiv.bg and eventim.bg."
+    },
+    {
+      "date": "2026-10-30",
+      "title": "Svetlin Roussev: 50 Years of Excellence Anniversary Concert",
+      "category": "event_lookahead",
+      "when": "Tuesday, November 10, 19:00",
+      "location": "Plovdiv Hall, SPS Hotel, Bulevard Osvobozhdenie 3, Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Confirmed on bta.bg and eventim.bg."
+    },
+    {
+      "date": "2026-10-30",
+      "title": "Road closures in Central Plovdiv for presidential election runoff logistics",
+      "category": "civic_notice",
+      "when": "Saturday, October 31, from 11:00 AM",
+      "location": "Ulitsa Hristo G. Danov (between ul. Beethoven and bul. Ruski), ul. Dr. Nikola Genadiev, and ul. Knyaz Aleksandar Ekzarh, Central Plovdiv",
+      "url": "",
+      "score": 90,
+      "verdict": "sent",
+      "note": "Confirmed on marica.bg and podtepeto.com."
+    },
+    {
+      "date": "2026-10-30",
+      "title": "EVN Toplofikatsiya begins seasonal district central heating roll-out",
+      "category": "civic_notice",
+      "when": "Starting Monday, November 2 (ongoing phase-in)",
+      "location": "City-wide, Plovdiv",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Confirmed on bnr.bg Radio Plovdiv and plovdiv24.bg."
+    },
+    {
+      "date": "2026-10-30",
+      "title": "Ryanair launches new direct scheduled route connecting Plovdiv and Malta",
+      "category": "civic_opportunity",
+      "when": "Announced this week (tickets on sale now; flights operate Summer 2027)",
+      "location": "Plovdiv Airport (PDV), Krumovo",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on marica.bg and bta.bg."
+    },
+    {
+      "date": "2026-10-30",
+      "title": "Match-day traffic alert: Lokomotiv Plovdiv vs. Ludogorets Razgrad",
+      "category": "civic_notice",
+      "when": "Saturday, October 31, kickoff at 14:00",
+      "location": "Stadion Lokomotiv (Lauta Park), Trakia District, Plovdiv",
+      "url": "",
+      "score": 65,
+      "verdict": "sent",
+      "note": "Confirmed on topsport.bg and sportal.bg."
+    },
+    {
+      "date": "2026-10-30",
+      "title": "Southern Bypass Collector sewer construction and long-term street closures",
+      "category": "civic_notice",
+      "when": "Ongoing through November",
+      "location": "Bulevard Aleksandar Stamboliyski and Kuklensko Shose, Kyuchuk Parizh, Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Confirmed on podtepeto.com and marica.bg."
+    },
+    {
+      "date": "2026-10-30",
+      "title": "Plovdiv officially designated European Capital of Sport for 2028",
+      "category": "civic_opportunity",
+      "when": "Announced October 30",
+      "location": "City-wide, Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Confirmed on plovdiv.bg and bntnews.bg."
+    },
+    {
+      "date": "2026-10-30",
+      "title": "Damascena Biopark & Rose Valley Gardens",
+      "category": "evergreen",
+      "when": "Daily, 09:00 - 17:00",
+      "location": "Complex Damascena, Skobelevo (~85 min drive)",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Paved stroller-friendly garden paths, sculptures, running fountains, and enclosed habitats with deer, swans, and ostriches."
+    },
+    {
+      "date": "2026-10-30",
+      "title": "Farmers Market at Ribnitsa Park",
+      "category": "evergreen",
+      "when": "Saturdays, 09:00-14:00",
+      "location": "Ribnitsa Park, Severen District, Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "An established open-air weekend food market focusing on regional Thracian agricultural produce, artisanal breads, and honey; fully accessible and browseable without Bulgarian."
+    },
+    {
+      "date": "2026-10-30",
+      "title": "Sunset Viewpoint at Bunardzhik Hill",
+      "category": "evergreen",
+      "when": "Open daily, best before sunset",
+      "location": "Bunardzhik (Alyosha Hill), Central Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "A direct, quiet walk right out of central Plovdiv offering 360-degree panoramic views over the city and the Rhodope range without tickets, bookings, or language friction."
     }
   ]
 }

@@ -1,6 +1,6 @@
-# Weekend Concierge Memory — updated 2026-10-23
+# Weekend Concierge Memory — updated 2026-10-30
 
-## Evergreen Catalog (87 entries)
+## Evergreen Catalog (89 entries)
 
 ### Ancient Theatre of Philippopolis
 **Location:** Plovdiv Old Town / in town
@@ -162,6 +162,12 @@ _Source: research_
 A beautifully landscaped botanical park featuring gentle flat paths, wooden bridges, playground corners, and free-roaming swans and deer.
 _Source: find_
 
+### Damascena Biopark & Rose Valley Gardens
+**Location:** Complex Damascena, Skobelevo (~85 min drive)
+**Discovered:** 2026-10-30 &nbsp; **Last suggested:** 2026-10-30
+Paved stroller-friendly garden paths, sculptures, running fountains, and enclosed habitats with deer, swans, and ostriches.
+_Source: find_
+
 ### Day Trip to Bachkovo Monastery
 **Location:** Bachkovo Monastery (~40-minute drive from Plovdiv)
 **Discovered:** 2026-07-02 &nbsp; **Last suggested:** never
@@ -229,9 +235,9 @@ _Tags: indoor, interactive, art, paid_
 _Source: research_
 
 ### Farmers Market at Ribnitsa Park
-**Location:** Ribnitsa Park, Plovdiv
-**Discovered:** 2026-08-12 &nbsp; **Last suggested:** 2026-08-12
-Recurring outdoor morning market for fresh local produce and regional goods, fully accessible without Bulgarian.
+**Location:** Ribnitsa Park, Severen District, Plovdiv
+**Discovered:** 2026-08-12 &nbsp; **Last suggested:** 2026-10-30
+An established open-air weekend food market focusing on regional Thracian agricultural produce, artisanal breads, and honey; fully accessible and browseable without Bulgarian.
 _Source: find_
 
 ### Four Seasons Ostrich Farm
@@ -551,6 +557,12 @@ Long-running puppet theatre; shows are paced and lit for preschool attention spa
 _Tags: theater, indoor, cultural, paid_
 _Source: research_
 
+### Sunset Viewpoint at Bunardzhik Hill
+**Location:** Bunardzhik (Alyosha Hill), Central Plovdiv
+**Discovered:** 2026-10-30 &nbsp; **Last suggested:** 2026-10-30
+A direct, quiet walk right out of central Plovdiv offering 360-degree panoramic views over the city and the Rhodope range without tickets, bookings, or language friction.
+_Source: find_
+
 ### Tangra Horse Base
 **Location:** Kalekovets village, near Plovdiv / ~15-20 min drive from Plovdiv
 **Discovered:** 2026-07-02 &nbsp; **Last suggested:** never
@@ -632,6 +644,22 @@ _Source: research_
 
 ## Suggestion Ledger (200 entries)
 
+- ✅ 2026-10-30 | Puppet Show: "Thumbelina" (Палечка) | event_this_weekend | Saturday, October 31, 2026, 10:30 & 11:45 | sent score=95 — Confirmed on pptheatre.com and grabo.bg.
+- ✅ 2026-10-30 | Puppet Show: "Kose Bose" (Косе Босе) | event_this_weekend | Sunday, November 1, 2026, 10:30 & 11:45 | sent score=95 — Confirmed on pptheatre.com and grabo.bg.
+- ✅ 2026-10-30 | Puppet Show: "The Enormous Turnip" (Дядо вади ряпа) | event_this_weekend | Saturday, October 31, 2026, 11:00 | sent score=84 — Confirmed on pierrot-bg.com.
+- ✅ 2026-10-30 | Family Ballet: "The Son of the Monkeys" (Синът на маймуните) | event_thisweek | Wednesday, November 4, 2026, 19:00 | sent score=72 — Confirmed on operaplovdiv.bg and eventim.bg.
+- ✅ 2026-10-30 | Puppet Show: "The Iron Boy" (Желязното момче) | event_lookahead | Saturday, November 7, 2026, 11:00 | sent score=88 — Confirmed on theatrepazardzhik.com and kupibileti.bg.
+- ✅ 2026-10-30 | Symphony Concert: 'The Czech Romantics' (Чешките романтици) | event_thisweek | Thursday, November 5, 19:00 | sent score=72 — Confirmed on operaplovdiv.bg and eventim.bg.
+- ✅ 2026-10-30 | Svetlin Roussev: 50 Years of Excellence Anniversary Concert | event_lookahead | Tuesday, November 10, 19:00 | sent score=75 — Confirmed on bta.bg and eventim.bg.
+- ✅ 2026-10-30 | Road closures in Central Plovdiv for presidential election runoff logistics | civic_notice | Saturday, October 31, from 11:00 AM | sent score=90 — Confirmed on marica.bg and podtepeto.com.
+- ✅ 2026-10-30 | EVN Toplofikatsiya begins seasonal district central heating roll-out | civic_notice | Starting Monday, November 2 (ongoing phase-in) | sent score=85 — Confirmed on bnr.bg Radio Plovdiv and plovdiv24.bg.
+- ✅ 2026-10-30 | Ryanair launches new direct scheduled route connecting Plovdiv and Malta | civic_opportunity | Announced this week (tickets on sale now; flights operate Summer 2027) | sent score=95 — Confirmed on marica.bg and bta.bg.
+- ✅ 2026-10-30 | Match-day traffic alert: Lokomotiv Plovdiv vs. Ludogorets Razgrad | civic_notice | Saturday, October 31, kickoff at 14:00 | sent score=65 — Confirmed on topsport.bg and sportal.bg.
+- ✅ 2026-10-30 | Southern Bypass Collector sewer construction and long-term street closures | civic_notice | Ongoing through November | sent score=75 — Confirmed on podtepeto.com and marica.bg.
+- ✅ 2026-10-30 | Plovdiv officially designated European Capital of Sport for 2028 | civic_opportunity | Announced October 30 | sent score=75 — Confirmed on plovdiv.bg and bntnews.bg.
+- ✅ 2026-10-30 | Damascena Biopark & Rose Valley Gardens | evergreen | Daily, 09:00 - 17:00 | sent score=85 — Paved stroller-friendly garden paths, sculptures, running fountains, and enclosed habitats with…
+- ✅ 2026-10-30 | Farmers Market at Ribnitsa Park | evergreen | Saturdays, 09:00-14:00 | sent score=75 — An established open-air weekend food market focusing on regional Thracian agricultural produce,…
+- ✅ 2026-10-30 | Sunset Viewpoint at Bunardzhik Hill | evergreen | Open daily, best before sunset | sent score=75 — A direct, quiet walk right out of central Plovdiv offering 360-degree panoramic views over the city…
 - ✅ 2026-10-23 | Puppet Show: "Peter Rabbit" (Зайчето Питър) | event_this_weekend | Sunday, October 25, 2026, 10:30 & 11:45 | sent score=95 — Confirmed on pptheatre.com and how2plovdiv.com.
 - ✅ 2026-10-23 | Kids' Magic Show with Stefan Sunkov | event_this_weekend | Sunday, October 25, 2026, 16:00 | sent score=85 — Confirmed on tickets.paysera.com and grabo.bg.
 - ✅ 2026-10-23 | Puppet Show: "The Choking Bear" (Задави се Меца) | event_this_weekend | Saturday, October 24, 2026, 11:00 | sent score=80 — Confirmed on pierrot-bg.com and theatre.art.bg (within 70 min drive of Plovdiv).
@@ -666,20 +694,4 @@ _Source: research_
 - ✅ 2026-10-16 | Citizen petition and protests against pedestrianization of Ivan Vazov Street | civic_notice | Ongoing active civic dispute | sent score=80 — Confirmed on marica.bg and glasnews.bg on October 14, 2026.
 - ✅ 2026-10-16 | Rowing Channel bike ride | evergreen |  | sent score=60 — Flat paved paths alongside the water, bike/scooter rental on site — easy free outdoor outing.
 - ✅ 2026-10-16 | Thermal Spa and Roman Ruins in Hisarya | evergreen | Open daily year-round | sent score=75 — Easy, scenic drive to mineral thermal baths and expansive Roman fortifications, ideal for an…
-- ✅ 2026-10-09 | Children's Scooter Race at Freedom Island Park | event_this_weekend | Saturday, October 10, 2026 | sent score=95 — Confirmed on pazardzhik.bg and marica.bg for October 10, 2026.
-- ✅ 2026-10-09 | Clever Peter (Хитър Петър) Puppet Show | event_this_weekend | Sunday, October 11, 2026, 10:30 & 11:45 | sent score=92 — Confirmed on pptheatre.com and grabo.bg for October 11, 2026.
-- ✅ 2026-10-09 | Parade of Nations & Culture Festival | event_this_weekend | Saturday, October 10, 2026, 11:00-15:00 | sent score=88 — Could not find a corroborating source confirming this festival on October 10, 2026.
-- ✅ 2026-10-09 | Gourmet under the Hills 2026 (Гурмето под тепето) | event_this_weekend | Friday–Sunday, October 9–11, 2026 | sent score=82 — Confirmed on visitplovdiv.com and marica.bg for October 9–11, 2026.
-- ✅ 2026-10-09 | Camping & Caravaning Expo Plovdiv | event_this_weekend | Saturday–Sunday, October 10–11, 2026 | sent score=80 — Confirmed on visitplovdiv.com and expo.camping.bg for October 10–11, 2026.
-- ✅ 2026-10-09 | Live Dinosaurs – In Search of the Egg (Живи Динозаври) | event_lookahead | Sunday, October 18, 2026, 13:30 | sent score=90 — Confirmed on eventim.bg and visitplovdiv.com for October 18, 2026.
-- ✅ 2026-10-09 | Peter Rabbit (Зайчето Питър) Guest Puppet Show | event_lookahead | Sunday, October 25, 2026, 10:30 & 11:45 | sent score=93 — Confirmed on pptheatre.com and how2plovdiv.com for October 25, 2026.
-- ✅ 2026-10-09 | English Stand-Up: Mustafa Algiyadi – 'Your Finest Second Cheapest Wine Please' | event_lookahead | Saturday, 17 October 2026 | sent score=95 — Confirmed on comedyclub.bg and fienta.com for October 17, 2026.
-- ✅ 2026-10-09 | Disco Music Fest: Back to the '80s & '90s | event_this_weekend | Friday & Saturday, 9–10 October 2026, 20:00 | sent score=75 — Confirmed on eventim.bg and kolodrumplovdiv.com for October 9–10, 2026.
-- ✅ 2026-10-09 | Plovdiv Jazz Fest 2026 (Autumn Edition) | event_lookahead | 6–8 November 2026 | sent score=85 — Confirmed on eventim.bg and visitplovdiv.com for November 6–8, 2026.
-- ✅ 2026-10-09 | Exhibition: 'Design from Plovdiv' (135 Years of Graphic Design) | event_this_weekend | 9–29 October 2026 | sent score=72 — Confirmed on marica.bg and podtepeto.com for October 9–29, 2026.
-- ✅ 2026-10-09 | Nedko Itinov Retrospective: 'A World of Colour and Light' | event_this_weekend | 9–28 October 2026 | sent score=70 — Confirmed on visitplovdiv.com and bta.bg for October 9–28, 2026.
-- ✅ 2026-10-09 | Traffic Closure and Pedestrian Expansion on Dr. G. M. Dimitrov Street | civic_notice | Ongoing through October 2026 | sent score=90 — Confirmed on plovdiv.bg and marica.bg on October 5, 2026.
-- ✅ 2026-10-09 | Old Town Cobblestone Reconstruction on Dr. Stoyan Chomakov Street | civic_notice | Ongoing infrastructure project | sent score=80 — Confirmed on marica.bg and citybuild.bg as an ongoing Old Town paving project.
-- ✅ 2026-10-09 | Flat-Rate All-Week Ticket Pricing (€5) Introduced at Cinema City Mall Plovdiv | civic_opportunity | Valid daily through 31 October 2026 | sent score=78 — Confirmed on mallplovdiv.bg and Cinema City Bulgaria through October 31, 2026.
-- ✅ 2026-10-09 | Launch of Integrated 24/7 Traffic and Toll Camera Enforcement System | civic_opportunity | Implemented October 2026 | sent score=75 — Confirmed on plovdivdaily.bg and trafficnews.bg in October 2026.
 _... and 150 earlier entries_
