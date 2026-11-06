@@ -1,6 +1,6 @@
-# Weekend Concierge Memory — updated 2026-10-30
+# Weekend Concierge Memory — updated 2026-11-06
 
-## Evergreen Catalog (89 entries)
+## Evergreen Catalog (92 entries)
 
 ### Ancient Theatre of Philippopolis
 **Location:** Plovdiv Old Town / in town
@@ -43,9 +43,9 @@ An outdoor airfield packed with real planes and helicopters that 4-year-olds can
 _Source: find_
 
 ### Ayazmoto Park & Hall of Laughter
-**Location:** Stara Zagora (~75 min drive from Plovdiv) / ~75 min drive from Plovdiv
-**Discovered:** 2026-07-02 &nbsp; **Last suggested:** 2026-07-03
-A massive, shady park with wide paths and a 'Hall of Laughter' filled with curved sensory mirrors. It pairs perfectly with a repeat trip to your beloved Stara Zagora Zoo nearby.
+**Location:** Ayazmoto Park, Stara Zagora / ~75 min drive from Plovdiv
+**Discovered:** 2026-07-02 &nbsp; **Last suggested:** 2026-11-06
+A massive pine forest park with broad buggy-friendly paths, fun house sensory curved mirrors, and an easy combination with the Stara Zagora Zoo.
 **Practical:** Rope park provides harnesses/instructors free; Hall of Laughter is a cheap, repeatable sensory stop.
 _Tags: park, active, indoor, outdoor, free_
 _Source: research_
@@ -97,6 +97,12 @@ _Source: find_
 Easily walkable central climb with panoramic sunset views over the Thracian plain; no booking required and entirely language-neutral.
 _Source: find_
 
+### Bunardzhik Hill Sunset Walk
+**Location:** Bunardzhik Hill (Alyosha), central Plovdiv
+**Discovered:** 2026-11-06 &nbsp; **Last suggested:** 2026-11-06
+A paved, tranquil climb to panoramic 360-degree viewpoints over Plovdiv and the Thracian plain, completely free and requiring no Bulgarian.
+_Source: find_
+
 ### Bunardzhik Hill sunset viewpoint
 **Location:** Bunardzhik (Hill of the Liberators), Plovdiv / central, walkable
 **Discovered:** 2026-08-11 &nbsp; **Last suggested:** 2026-08-21
@@ -138,6 +144,12 @@ Quirky indoor collection of brightly coloured retro cars and mid-century artifac
 **Practical:** Open daily 10:00-18:00 (to 17:00 in winter); entry ~6 BGN.
 _Tags: museum, retro, indoor, paid_
 _Source: research_
+
+### Children's Railway "Zname na Mira" Miniature Train Ride
+**Location:** Youth Hill (Mladezhki Halm), Plovdiv
+**Discovered:** 2026-11-06 &nbsp; **Last suggested:** 2026-11-06
+An authentic mini train journey through tunnels and over bridges up Youth Hill, followed by large playgrounds at the bottom.
+_Source: find_
 
 ### Children's Railway 'Banner of Peace'
 **Location:** Youth Hill (Mladezhki Halm), Plovdiv / in town
@@ -337,6 +349,12 @@ Former royal hunting lodge in a botanical park; flat, stroller-friendly paths, f
 **Practical:** Guided tours (~1.5 hr) at fixed times, e.g. 08:15/10:15/13:00/15:00; ticket ~14 BGN.
 _Tags: botanical, nature, outdoor, paid_
 _Source: research_
+
+### Krumovo Aviation Museum (Музей на авиацията)
+**Location:** Krumovo Air Base, near Plovdiv Airport
+**Discovered:** 2026-11-06 &nbsp; **Last suggested:** 2026-11-06
+Only 15 minutes away, offering vast open lawns and dozens of real passenger planes, jets, and helicopters where a preschooler can roam freely.
+_Source: find_
 
 ### LUCKY Cinema Center (LUCKY Дом на киното)
 **Location:** ul. William Gladstone 1, Plovdiv
@@ -644,6 +662,25 @@ _Source: research_
 
 ## Suggestion Ledger (200 entries)
 
+- · 2026-11-06 | Puppet Show: "Don't Look for Trouble" (Не си търси белята) | event_this_weekend | Saturday, November 7, 2026, 10:30 & 11:45 | skipped score=92 — dropped: venue cap (2/venue); Confirmed via pptheatre.com and grabo.bg.
+- ✅ 2026-11-06 | Puppet Show: "Chuk and Puk" (Чук и Пук) | event_this_weekend | Sunday, November 8, 2026, 10:30 & 11:45 | sent score=94 — Confirmed via pptheatre.com and grabo.bg.
+- ✅ 2026-11-06 | Puppet Show: "Puss in Boots" (Котаракът в чизми) | event_this_weekend | Saturday, November 7, 2026, 11:00 | sent score=82 — Confirmed via pierrot-bg.com.
+- ✅ 2026-11-06 | Puppet Show: "Monkey Adventure" (Приключение с маймунка) | event_this_weekend | Sunday, November 8, 2026, 11:00 | sent score=84 — Confirmed via pierrot-bg.com and sofiastage.com.
+- · 2026-11-06 | Puppet Show: "The Little Bread Loaf" (Житената питка) | event_lookahead | Saturday, November 14, 2026, 10:30 & 11:45 | skipped score=90 — dropped: venue cap (2/venue); Confirmed via pptheatre.com and grabo.bg.
+- · 2026-11-06 | Puppet Show: "The Boy and the Wind" (Момче и вятър) | event_lookahead | Sunday, November 15, 2026, 10:30 & 11:45 | skipped score=87 — dropped: venue cap (2/venue); Confirmed via pptheatre.com and opoznaiplovdiv.bg.
+- ✅ 2026-11-06 | Young Wine Festival 2026 (Дефиле на младото вино) | event_lookahead | November 20–22, 2026 | sent score=75 — Confirmed via visitplovdiv.com and wineshowplovdiv.events.
+- ✅ 2026-11-06 | Puppet Show: "Winnie the Pooh" (Мечо Пух) | event_lookahead | Sunday, November 22, 2026, 10:30 & 11:45 | sent score=96 — Confirmed via pptheatre.com and how2plovdiv.com.
+- ✅ 2026-11-06 | Family Musical: "Christmas Glue for Fathers" (Лепило за брада) | event_lookahead | Saturday, November 28, 2026, 11:00 & 17:00 | sent score=86 — Confirmed via operaplovdiv.bg and eventim.bg.
+- ✅ 2026-11-06 | Kapana Christmas Market 2026 (Коледен базар Капана) | event_lookahead | December 4–27, 2026 | sent score=88 — Confirmed via report on marica.bg.
+- ✅ 2026-11-06 | Plovdiv Jazz Fest 2026 (Fall Edition) | event_this_weekend | Friday to Sunday, November 6–8, 2026 | sent score=85 — Confirmed via marica.bg and licatanagrada.com.
+- ✅ 2026-11-06 | Kinomania 2026 Opening Night: Martin McDonagh’s 'Wild Horse Nine' | event_thisweek | Thursday, November 12, 2026 at 18:30 | sent score=93 — Confirmed via kinolucky.com and kinomania.bg.
+- ✅ 2026-11-06 | Art Exhibition: 'The Beginning. 130 Years. Until Today.' | event_this_weekend | November 3 – December 2, 2026 | sent score=75 — Confirmed via galleryplovdiv.com and sbh.bg.
+- ✅ 2026-11-06 | Northern Carriageway Closure on Blvd. 'Bulgaria' | civic_notice | Sunday, November 8, 2026 (08:00 – 12:00) | sent score=75 — Confirmed via plovdiv.bg and marica.bg.
+- ✅ 2026-11-06 | Roadworks and Traffic Delays on Rogoshko Shose Artery | civic_notice | Ongoing throughout November 2026 | sent score=62 — Confirmed via marica.bg and myve.bg.
+- ✅ 2026-11-06 | Children's Railway "Zname na Mira" Miniature Train Ride | evergreen | Wednesday–Sunday, 10:30, 11:30, 12:15, 14:30, 15:30, 16:30 | sent score=95 — An authentic mini train journey through tunnels and over bridges up Youth Hill, followed by large…
+- ✅ 2026-11-06 | Krumovo Aviation Museum (Музей на авиацията) | evergreen | Wednesday–Sunday, 09:00–16:30 | sent score=88 — Only 15 minutes away, offering vast open lawns and dozens of real passenger planes, jets, and…
+- ✅ 2026-11-06 | Ayazmoto Park & Hall of Laughter | evergreen | Open daily | sent score=85 — A massive pine forest park with broad buggy-friendly paths, fun house sensory curved mirrors, and…
+- ✅ 2026-11-06 | Bunardzhik Hill Sunset Walk | evergreen | Always accessible (best around sunset) | sent score=80 — A paved, tranquil climb to panoramic 360-degree viewpoints over Plovdiv and the Thracian plain,…
 - ✅ 2026-10-30 | Puppet Show: "Thumbelina" (Палечка) | event_this_weekend | Saturday, October 31, 2026, 10:30 & 11:45 | sent score=95 — Confirmed on pptheatre.com and grabo.bg.
 - ✅ 2026-10-30 | Puppet Show: "Kose Bose" (Косе Босе) | event_this_weekend | Sunday, November 1, 2026, 10:30 & 11:45 | sent score=95 — Confirmed on pptheatre.com and grabo.bg.
 - ✅ 2026-10-30 | Puppet Show: "The Enormous Turnip" (Дядо вади ряпа) | event_this_weekend | Saturday, October 31, 2026, 11:00 | sent score=84 — Confirmed on pierrot-bg.com.
@@ -675,23 +712,4 @@ _Source: research_
 - ✅ 2026-10-23 | Matchday Traffic & Security Cordon: Lokomotiv Plovdiv vs. Slavia Sofia | civic_notice | Monday, October 26, 2026, kickoff 17:00 | sent score=65 — Confirmed on lokomotivpd.com and topsport.bg.
 - ✅ 2026-10-23 | Plovdiv Low Emission Zone ('Small Ring') Central Driving Restrictions | civic_opportunity | In force through April 30, 2027 | sent score=88 — Confirmed on plovdiv.bg and kmeta.bg.
 - ✅ 2026-10-23 | New Operational Base and 8 European Direct Flight Routes at Plovdiv Airport | civic_opportunity | Announced October 2026 (scheduled flights commencing March 2027) | sent score=92 — Confirmed on bnr.bg and marica.bg.
-- ✅ 2026-10-23 | Aviation Museum Krumovo Excursion | evergreen | Wednesday to Sunday, 09:00-16:30 | sent score=90 — Spacious, flat outdoor airfield where toddlers can safely wander and marvel at full-sized airplanes…
-- ✅ 2026-10-23 | Byala Reka Ecotrail Hike | evergreen | Open daily | sent score=88 — Gentle, secure wooden bridge trail crossing scenic river streams, directly matching family…
-- ✅ 2026-10-23 | LUCKY Cinema Center (LUCKY Дом на киното) | evergreen | Standing venue (daily afternoon and evening screenings) | sent score=82 — The city's essential arthouse cinema, curating European cinema, festivals like Cinelibri, and…
-- ✅ 2026-10-16 | Puppet Show: "The Brave Woodcutter" (Храбрият дървар) | event_this_weekend | Saturday, October 17, 2026, 10:30 & 11:45 | sent score=95 — Confirmed on pptheatre.com and visitplovdiv.com for October 17, 2026.
-- ✅ 2026-10-16 | Puppet Show: "Don't Look For Trouble / An Insect Story" (Не си търси белята) | event_this_weekend | Sunday, October 18, 2026, 10:30 & 11:45 | sent score=95 — Confirmed on pptheatre.com and how2plovdiv.com for October 18, 2026.
-- ✅ 2026-10-16 | Puppet Show: "The Three Brothers and the Golden Apple" (Тримата братя и златната ябълка) | event_this_weekend | Saturday, October 17, 2026, 11:00 | sent score=88 — Confirmed on kupibileti.bg and theatrepazardzhik.com for October 17, 2026.
-- ✅ 2026-10-16 | Aviation and Air Force Day Special Program | event_this_weekend | Saturday, October 17, 2026, 09:00-16:30 | sent score=90 — Confirmed on airmuseum-bg.com and bnr.bg; the special program takes place on Friday, October 16,…
-- ✅ 2026-10-16 | Puppet Show: "Monkey Business" (Приключение с маймунка) | event_lookahead | Saturday, October 24, 2026, 10:30 & 11:45 | sent score=93 — Confirmed on pptheatre.com and how2plovdiv.com for October 24, 2026.
-- ✅ 2026-10-16 | Puppet Show: "Thumbelina" (Палечка) | event_lookahead | Saturday, October 31, 2026, 10:30 & 11:45 | sent score=92 — Confirmed on pptheatre.com and how2plovdiv.com for October 31, 2026.
-- ✅ 2026-10-16 | Puppet Show: "Kosie Bosie" (Косе Босе) | event_lookahead | Sunday, November 1, 2026, 10:30 & 11:45 | sent score=94 — Confirmed on pptheatre.com and how2plovdiv.com for November 1, 2026.
-- ✅ 2026-10-16 | International Photographic Meetings 2026: 'Memory and Identity' | event_this_weekend | October 16–31, 2026 | sent score=76 — Confirmed on visitplovdiv.com and plovdiv.bg for October 16–31, 2026.
-- ✅ 2026-10-16 | 4th Plovdiv Science Festival | event_thisweek | Thursday–Sunday, October 22–25, 2026 | sent score=82 — Confirmed on cpsbb.eu and sofiaglobe.com for October 22–25, 2026.
-- ✅ 2026-10-16 | DJ KRUSH Live Instrumental Set | event_thisweek | Thursday, October 22, 2026, 20:00 | sent score=78 — Confirmed on bilet.bg and facebook.com for October 22, 2026.
-- ✅ 2026-10-16 | Balkan Skyways bases aircraft at Plovdiv Airport with 8 planned European routes | civic_opportunity | Announced mid-October 2026 | sent score=95 — Confirmed on bnr.bg and travelradar.bg (announced August 2026 for 2027 launch).
-- ✅ 2026-10-16 | Extended night schedule for 7 bus lines and cycling paths added to Google Maps | civic_opportunity | In effect from mid-October 2026 | sent score=85 — Confirmed on marica.bg and municipal announcements on October 14, 2026.
-- ✅ 2026-10-16 | Scheduled water utility shut-off in Izgrev district | civic_notice | Monday, October 19, 2026, 08:30 – 17:30 | sent score=70 — Confirmed on vik.bg official notice published on October 14, 2026.
-- ✅ 2026-10-16 | Citizen petition and protests against pedestrianization of Ivan Vazov Street | civic_notice | Ongoing active civic dispute | sent score=80 — Confirmed on marica.bg and glasnews.bg on October 14, 2026.
-- ✅ 2026-10-16 | Rowing Channel bike ride | evergreen |  | sent score=60 — Flat paved paths alongside the water, bike/scooter rental on site — easy free outdoor outing.
-- ✅ 2026-10-16 | Thermal Spa and Roman Ruins in Hisarya | evergreen | Open daily year-round | sent score=75 — Easy, scenic drive to mineral thermal baths and expansive Roman fortifications, ideal for an…
 _... and 150 earlier entries_

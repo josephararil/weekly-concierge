@@ -591,9 +591,9 @@
       "last_suggested": null
     },
     "Ayazmoto Park & Hall of Laughter": {
-      "location": "Stara Zagora (~75 min drive from Plovdiv)",
+      "location": "Ayazmoto Park, Stara Zagora",
       "area": "~75 min drive from Plovdiv",
-      "description": "A massive, shady park with wide paths and a 'Hall of Laughter' filled with curved sensory mirrors. It pairs perfectly with a repeat trip to your beloved Stara Zagora Zoo nearby.",
+      "description": "A massive pine forest park with broad buggy-friendly paths, fun house sensory curved mirrors, and an easy combination with the Stara Zagora Zoo.",
       "tags": [
         "park",
         "active",
@@ -605,7 +605,8 @@
       "practical": "Rope park provides harnesses/instructors free; Hall of Laughter is a cheap, repeatable sensory stop.",
       "discovered": "2026-07-02",
       "source": "research",
-      "last_suggested": "2026-07-03"
+      "last_suggested": "2026-11-06",
+      "audience": "family"
     },
     "Damascena Biopark": {
       "location": "Skobelevo (~85 min drive from Plovdiv)",
@@ -1267,218 +1268,45 @@
       "source": "find",
       "last_suggested": "2026-10-30",
       "audience": "adult"
+    },
+    "Children's Railway \"Zname na Mira\" Miniature Train Ride": {
+      "location": "Youth Hill (Mladezhki Halm), Plovdiv",
+      "area": "",
+      "description": "An authentic mini train journey through tunnels and over bridges up Youth Hill, followed by large playgrounds at the bottom.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-11-06",
+      "source": "find",
+      "last_suggested": "2026-11-06",
+      "audience": "family"
+    },
+    "Krumovo Aviation Museum (Музей на авиацията)": {
+      "location": "Krumovo Air Base, near Plovdiv Airport",
+      "area": "",
+      "description": "Only 15 minutes away, offering vast open lawns and dozens of real passenger planes, jets, and helicopters where a preschooler can roam freely.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-11-06",
+      "source": "find",
+      "last_suggested": "2026-11-06",
+      "audience": "family"
+    },
+    "Bunardzhik Hill Sunset Walk": {
+      "location": "Bunardzhik Hill (Alyosha), central Plovdiv",
+      "area": "",
+      "description": "A paved, tranquil climb to panoramic 360-degree viewpoints over Plovdiv and the Thracian plain, completely free and requiring no Bulgarian.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-11-06",
+      "source": "find",
+      "last_suggested": "2026-11-06",
+      "audience": "adult"
     }
   },
   "ledger": [
-    {
-      "date": "2026-08-14",
-      "title": "Fantasy NeMuseum",
-      "category": "evergreen",
-      "when": "Open Tuesday to Sunday, 10:00 - 19:00",
-      "location": "Plovdiv",
-      "url": "",
-      "score": 82,
-      "verdict": "sent",
-      "note": "Hands-on sensory museum with colorful interactive installations and analog play where children are encouraged to touch and explore everything."
-    },
-    {
-      "date": "2026-08-14",
-      "title": "Bunardzhik Hill Sunset Viewpoint",
-      "category": "evergreen",
-      "when": "Open daily, best at sunset",
-      "location": "Bunardzhik (Liberators Hill), Central Plovdiv",
-      "url": "",
-      "score": 75,
-      "verdict": "sent",
-      "note": "Easily walkable central climb with panoramic sunset views over the Thracian plain; no booking required and entirely language-neutral."
-    },
-    {
-      "date": "2026-08-21",
-      "title": "TheatAir 2026 (13th International Street Arts Festival)",
-      "category": "event_lookahead",
-      "when": "September 4–7, 2026",
-      "location": "Open-air public spaces, Plovdiv",
-      "url": "",
-      "score": 95,
-      "verdict": "sent",
-      "note": "Confirmed on visitplovdiv.com for September 4–7, 2026."
-    },
-    {
-      "date": "2026-08-21",
-      "title": "Kose Bose (Косе Босе) Puppet Show",
-      "category": "event_lookahead",
-      "when": "Saturday, September 12, 2026",
-      "location": "State Puppet Theatre, Plovdiv",
-      "url": "",
-      "score": 92,
-      "verdict": "sent",
-      "note": "Confirmed on the State Puppet Theatre Plovdiv website for September 12, 2026."
-    },
-    {
-      "date": "2026-08-21",
-      "title": "Festival #BeActive Asenovgrad",
-      "category": "event_lookahead",
-      "when": "September 1–6, 2026",
-      "location": "Various sports clubs & parks, Asenovgrad",
-      "url": "",
-      "score": 85,
-      "verdict": "sent",
-      "note": "Confirmed on asenovgrad.bg and plovdivnow.bg for September 1–6, 2026 in Asenovgrad."
-    },
-    {
-      "date": "2026-08-21",
-      "title": "Stand-up Comedy in English: Elena Gabrielle – \"Disturb the Vibe\"",
-      "category": "event_lookahead",
-      "when": "Wednesday, September 23, 2026",
-      "location": "The Comedy Club Plovdiv, 15 Gladstone St, Plovdiv",
-      "url": "https://www.eventbrite.com",
-      "score": 95,
-      "verdict": "sent",
-      "note": "Confirmed on eventbrite.com and elenagabrielle.com for September 23, 2026 at Comedy Club Plovdiv."
-    },
-    {
-      "date": "2026-08-21",
-      "title": "Rock Opera: \"Jesus Christ Superstar\" at Opera Open 2026",
-      "category": "event_this_weekend",
-      "when": "Saturday, August 22, 2026, 21:00",
-      "location": "Ancient Theatre of Plovdiv (Античен театър), Old Town, Plovdiv",
-      "url": "https://www.eventim.bg",
-      "score": 75,
-      "verdict": "sent",
-      "note": "Confirmed on eventim.bg and visitplovdiv.com for August 22, 2026 at the Ancient Theatre."
-    },
-    {
-      "date": "2026-08-21",
-      "title": "Concert: \"A Night at the Opera with the Music of Queen\"",
-      "category": "event_thisweek",
-      "when": "Monday, August 24, 2026, 20:30",
-      "location": "Ancient Theatre of Plovdiv, Old Town, Plovdiv",
-      "url": "https://allevents.in",
-      "score": 72,
-      "verdict": "sent",
-      "note": "Confirmed on visitplovdiv.com and operabase.com for August 24, 2026 at the Ancient Theatre."
-    },
-    {
-      "date": "2026-08-21",
-      "title": "Live Outdoor Concert: Italian Singer Al Bano",
-      "category": "event_lookahead",
-      "when": "Sunday, August 30, 2026, 20:00",
-      "location": "Ancient Theatre of Plovdiv, Old Town, Plovdiv",
-      "url": "https://allevents.in",
-      "score": 70,
-      "verdict": "sent",
-      "note": "Confirmed on stubhub.com and eventim.bg for August 30, 2026 at the Ancient Theatre."
-    },
-    {
-      "date": "2026-08-21",
-      "title": "Slow. Art. Consumption. Festival of Analog Art",
-      "category": "event_lookahead",
-      "when": "September 4–26, 2026",
-      "location": "Elysium Cultural Center, 2 Dusho Hadzhidekov St, Plovdiv",
-      "url": "",
-      "score": 74,
-      "verdict": "sent",
-      "note": "Confirmed on visitplovdiv.com for September 4–26, 2026 at Elysium Cultural Center."
-    },
-    {
-      "date": "2026-08-21",
-      "title": "New Commercial Retail Park: EastRoad Retail Park",
-      "category": "civic_opportunity",
-      "when": "Newly opened / ongoing",
-      "location": "Eastern Ring Road (near Skobeleva Maika cloverleaf & Skutare turnoff), Plovdiv",
-      "url": "https://citybuild.bg",
-      "score": 80,
-      "verdict": "sent",
-      "note": "Confirmed on citybuild.bg regarding the opening of EastRoad Retail Park on the eastern ring road of Plovdiv."
-    },
-    {
-      "date": "2026-08-21",
-      "title": "Major Central Street Closure on Dr. G. M. Dimitrov Street",
-      "category": "civic_notice",
-      "when": "Until September 13, 2026",
-      "location": "Ul. Dr. G. M. Dimitrov (between Tsar Asen I St and Avksentiy Veleshki St), Central Plovdiv",
-      "url": "https://plovdivnow.bg",
-      "score": 90,
-      "verdict": "sent",
-      "note": "Confirmed on 24chasa.bg for road reconstruction and closure until September 13, 2026."
-    },
-    {
-      "date": "2026-08-21",
-      "title": "Football Match Traffic Disruption: Lokomotiv Plovdiv vs. Arda Kardzhali",
-      "category": "civic_notice",
-      "when": "Sunday, August 23, 2026",
-      "location": "Lokomotiv Stadium (Lauta Park), Plovdiv",
-      "url": "https://bnr.bg",
-      "score": 65,
-      "verdict": "sent",
-      "note": "Confirmed on forebet.com and oddspedia.com for August 23, 2026 at Lokomotiv Stadium."
-    },
-    {
-      "date": "2026-08-21",
-      "title": "Island Park Svoboda (Остров Свобода)",
-      "category": "evergreen",
-      "when": "Open daily",
-      "location": "Island Park Svoboda, Pazardzhik",
-      "url": "",
-      "score": 96,
-      "verdict": "sent",
-      "note": "A top family favorite featuring extensive play grounds, shaded walking trails, and small animals on a river island."
-    },
-    {
-      "date": "2026-08-21",
-      "title": "Bunardzhik Hill sunset viewpoint",
-      "category": "evergreen",
-      "when": "",
-      "location": "Bunardzhik (Hill of the Liberators), Plovdiv",
-      "url": "",
-      "score": 60,
-      "verdict": "sent",
-      "note": "A short climb to the best free view over the city — a genuinely good hour around sunset."
-    },
-    {
-      "date": "2026-08-28",
-      "title": "Shake That Hill: Eldoria 2026 Festival",
-      "category": "event_this_weekend",
-      "when": "August 28–30, 2026",
-      "location": "Youth Hill (Plovdiv Stage Park), Plovdiv",
-      "url": "",
-      "score": 88,
-      "verdict": "sent",
-      "note": "Confirmed on visitplovdiv.com and livepass.bg for August 28–30, 2026."
-    },
-    {
-      "date": "2026-08-28",
-      "title": "Puppet Show: Chuk & Puk (Чук и Пук)",
-      "category": "event_lookahead",
-      "when": "Saturday, September 19, 2026 at 11:45 AM",
-      "location": "State Puppet Theatre, Plovdiv",
-      "url": "",
-      "score": 95,
-      "verdict": "sent",
-      "note": "Confirmed on pptheatre.com for September 19, 2026 at State Puppet Theatre Plovdiv."
-    },
-    {
-      "date": "2026-08-28",
-      "title": "Plovdiv Old Town Celebrations 2026",
-      "category": "event_lookahead",
-      "when": "September 16–23, 2026",
-      "location": "Old Town squares (Lapidarium, Balabanov House), Plovdiv",
-      "url": "",
-      "score": 82,
-      "verdict": "sent",
-      "note": "Confirmed on visitplovdiv.com and Old Town Plovdiv official calendar for September 16–23, 2026."
-    },
-    {
-      "date": "2026-08-28",
-      "title": "Puppet Show: Thumbelina (Палечка)",
-      "category": "event_lookahead",
-      "when": "Saturday, September 26, 2026 at 10:30 AM & 11:45 AM",
-      "location": "State Puppet Theatre, Plovdiv",
-      "url": "",
-      "score": 95,
-      "verdict": "sent",
-      "note": "Confirmed on pptheatre.com and grabo.bg for September 26, 2026 at State Puppet Theatre Plovdiv."
-    },
     {
       "date": "2026-08-28",
       "title": "19th PolineROOOCK Festival (Headlined by Ronnie Romero)",
@@ -3469,6 +3297,215 @@
       "score": 75,
       "verdict": "sent",
       "note": "A direct, quiet walk right out of central Plovdiv offering 360-degree panoramic views over the city and the Rhodope range without tickets, bookings, or language friction."
+    },
+    {
+      "date": "2026-11-06",
+      "title": "Puppet Show: \"Don't Look for Trouble\" (Не си търси белята)",
+      "category": "event_this_weekend",
+      "when": "Saturday, November 7, 2026, 10:30 & 11:45",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 92,
+      "verdict": "skipped",
+      "note": "dropped: venue cap (2/venue); Confirmed via pptheatre.com and grabo.bg."
+    },
+    {
+      "date": "2026-11-06",
+      "title": "Puppet Show: \"Chuk and Puk\" (Чук и Пук)",
+      "category": "event_this_weekend",
+      "when": "Sunday, November 8, 2026, 10:30 & 11:45",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 94,
+      "verdict": "sent",
+      "note": "Confirmed via pptheatre.com and grabo.bg."
+    },
+    {
+      "date": "2026-11-06",
+      "title": "Puppet Show: \"Puss in Boots\" (Котаракът в чизми)",
+      "category": "event_this_weekend",
+      "when": "Saturday, November 7, 2026, 11:00",
+      "location": "State Puppet Theatre, Stara Zagora",
+      "url": "",
+      "score": 82,
+      "verdict": "sent",
+      "note": "Confirmed via pierrot-bg.com."
+    },
+    {
+      "date": "2026-11-06",
+      "title": "Puppet Show: \"Monkey Adventure\" (Приключение с маймунка)",
+      "category": "event_this_weekend",
+      "when": "Sunday, November 8, 2026, 11:00",
+      "location": "State Puppet Theatre, Stara Zagora",
+      "url": "",
+      "score": 84,
+      "verdict": "sent",
+      "note": "Confirmed via pierrot-bg.com and sofiastage.com."
+    },
+    {
+      "date": "2026-11-06",
+      "title": "Puppet Show: \"The Little Bread Loaf\" (Житената питка)",
+      "category": "event_lookahead",
+      "when": "Saturday, November 14, 2026, 10:30 & 11:45",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 90,
+      "verdict": "skipped",
+      "note": "dropped: venue cap (2/venue); Confirmed via pptheatre.com and grabo.bg."
+    },
+    {
+      "date": "2026-11-06",
+      "title": "Puppet Show: \"The Boy and the Wind\" (Момче и вятър)",
+      "category": "event_lookahead",
+      "when": "Sunday, November 15, 2026, 10:30 & 11:45",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 87,
+      "verdict": "skipped",
+      "note": "dropped: venue cap (2/venue); Confirmed via pptheatre.com and opoznaiplovdiv.bg."
+    },
+    {
+      "date": "2026-11-06",
+      "title": "Young Wine Festival 2026 (Дефиле на младото вино)",
+      "category": "event_lookahead",
+      "when": "November 20–22, 2026",
+      "location": "Old Town Revival Houses, Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Confirmed via visitplovdiv.com and wineshowplovdiv.events."
+    },
+    {
+      "date": "2026-11-06",
+      "title": "Puppet Show: \"Winnie the Pooh\" (Мечо Пух)",
+      "category": "event_lookahead",
+      "when": "Sunday, November 22, 2026, 10:30 & 11:45",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 96,
+      "verdict": "sent",
+      "note": "Confirmed via pptheatre.com and how2plovdiv.com."
+    },
+    {
+      "date": "2026-11-06",
+      "title": "Family Musical: \"Christmas Glue for Fathers\" (Лепило за брада)",
+      "category": "event_lookahead",
+      "when": "Saturday, November 28, 2026, 11:00 & 17:00",
+      "location": "City House of Culture \"Boris Hristov\", Plovdiv",
+      "url": "",
+      "score": 86,
+      "verdict": "sent",
+      "note": "Confirmed via operaplovdiv.bg and eventim.bg."
+    },
+    {
+      "date": "2026-11-06",
+      "title": "Kapana Christmas Market 2026 (Коледен базар Капана)",
+      "category": "event_lookahead",
+      "when": "December 4–27, 2026",
+      "location": "Overpass bridge over Gladstone St / Central Square, Plovdiv",
+      "url": "",
+      "score": 88,
+      "verdict": "sent",
+      "note": "Confirmed via report on marica.bg."
+    },
+    {
+      "date": "2026-11-06",
+      "title": "Plovdiv Jazz Fest 2026 (Fall Edition)",
+      "category": "event_this_weekend",
+      "when": "Friday to Sunday, November 6–8, 2026",
+      "location": "Boris Hristov House of Culture, 15 Gladstone St, Plovdiv",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Confirmed via marica.bg and licatanagrada.com."
+    },
+    {
+      "date": "2026-11-06",
+      "title": "Kinomania 2026 Opening Night: Martin McDonagh’s 'Wild Horse Nine'",
+      "category": "event_thisweek",
+      "when": "Thursday, November 12, 2026 at 18:30",
+      "location": "LUCKY Dom na Kinoto, 1 William Gladstone St, Plovdiv",
+      "url": "",
+      "score": 93,
+      "verdict": "sent",
+      "note": "Confirmed via kinolucky.com and kinomania.bg."
+    },
+    {
+      "date": "2026-11-06",
+      "title": "Art Exhibition: 'The Beginning. 130 Years. Until Today.'",
+      "category": "event_this_weekend",
+      "when": "November 3 – December 2, 2026",
+      "location": "Exhibition Hall '2019', 32 Gladstone St, Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Confirmed via galleryplovdiv.com and sbh.bg."
+    },
+    {
+      "date": "2026-11-06",
+      "title": "Northern Carriageway Closure on Blvd. 'Bulgaria'",
+      "category": "civic_notice",
+      "when": "Sunday, November 8, 2026 (08:00 – 12:00)",
+      "location": "Blvd. 'Bulgaria' (between Blvd. 'Tsar Boris III Obedinitel' and 'Vasil Levski' St), Plovdiv",
+      "url": "",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Confirmed via plovdiv.bg and marica.bg."
+    },
+    {
+      "date": "2026-11-06",
+      "title": "Roadworks and Traffic Delays on Rogoshko Shose Artery",
+      "category": "civic_notice",
+      "when": "Ongoing throughout November 2026",
+      "location": "Rogoshko Shose (from Severen Blvd outward), north-eastern Plovdiv",
+      "url": "",
+      "score": 62,
+      "verdict": "sent",
+      "note": "Confirmed via marica.bg and myve.bg."
+    },
+    {
+      "date": "2026-11-06",
+      "title": "Children's Railway \"Zname na Mira\" Miniature Train Ride",
+      "category": "evergreen",
+      "when": "Wednesday–Sunday, 10:30, 11:30, 12:15, 14:30, 15:30, 16:30",
+      "location": "Youth Hill (Mladezhki Halm), Plovdiv",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "An authentic mini train journey through tunnels and over bridges up Youth Hill, followed by large playgrounds at the bottom."
+    },
+    {
+      "date": "2026-11-06",
+      "title": "Krumovo Aviation Museum (Музей на авиацията)",
+      "category": "evergreen",
+      "when": "Wednesday–Sunday, 09:00–16:30",
+      "location": "Krumovo Air Base, near Plovdiv Airport",
+      "url": "",
+      "score": 88,
+      "verdict": "sent",
+      "note": "Only 15 minutes away, offering vast open lawns and dozens of real passenger planes, jets, and helicopters where a preschooler can roam freely."
+    },
+    {
+      "date": "2026-11-06",
+      "title": "Ayazmoto Park & Hall of Laughter",
+      "category": "evergreen",
+      "when": "Open daily",
+      "location": "Ayazmoto Park, Stara Zagora",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "A massive pine forest park with broad buggy-friendly paths, fun house sensory curved mirrors, and an easy combination with the Stara Zagora Zoo."
+    },
+    {
+      "date": "2026-11-06",
+      "title": "Bunardzhik Hill Sunset Walk",
+      "category": "evergreen",
+      "when": "Always accessible (best around sunset)",
+      "location": "Bunardzhik Hill (Alyosha), central Plovdiv",
+      "url": "",
+      "score": 80,
+      "verdict": "sent",
+      "note": "A paved, tranquil climb to panoramic 360-degree viewpoints over Plovdiv and the Thracian plain, completely free and requiring no Bulgarian."
     }
   ]
 }
