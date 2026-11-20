@@ -55,9 +55,12 @@
         "outdoor",
         "free"
       ],
+      "url": "",
+      "practical": "",
       "discovered": "2026-07-01",
       "source": "seed",
-      "last_suggested": null
+      "last_suggested": "2026-11-20",
+      "audience": "family"
     },
     "Bachkovo Monastery": {
       "location": "Bachkovo",
@@ -1306,185 +1309,21 @@
       "source": "find",
       "last_suggested": "2026-11-06",
       "audience": "adult"
+    },
+    "Dom na Kinoto (LUCKY House of Cinema)": {
+      "location": "Ulitsa William Gladstone 1, Plovdiv",
+      "area": "",
+      "description": "Plovdiv's sole dedicated arthouse cinema venue, regularly scheduling festival features, original-audio cinema, and European film releases.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-11-20",
+      "source": "find",
+      "last_suggested": "2026-11-20",
+      "audience": "adult"
     }
   },
   "ledger": [
-    {
-      "date": "2026-09-04",
-      "title": "Kids Expo & Beerland Festival 2026",
-      "category": "event_lookahead",
-      "when": "September 11–13, 2026",
-      "location": "Lauta Park / Bratska Mogila area, Plovdiv",
-      "url": "",
-      "score": 88,
-      "verdict": "sent",
-      "note": "Confirmed on visitplovdiv.com and eventibg.com for September 11–13, 2026."
-    },
-    {
-      "date": "2026-09-04",
-      "title": "PlayCity Kids Festival & Expo 2026",
-      "category": "event_lookahead",
-      "when": "September 26–27, 2026 (All Day)",
-      "location": "International Fair Plovdiv",
-      "url": "",
-      "score": 96,
-      "verdict": "sent",
-      "note": "Confirmed on visitplovdiv.com and bilet.bg for September 26–27, 2026."
-    },
-    {
-      "date": "2026-09-04",
-      "title": "International Street Arts Festival TheatAir 2026",
-      "category": "event_this_weekend",
-      "when": "Friday, September 4 to Monday, September 7, 2026",
-      "location": "Central streets, Kamenitsa stairs, Tsar Simeon Garden, and Ribnitsa Park, Plovdiv",
-      "url": "https://visitplovdiv.com",
-      "score": 82,
-      "verdict": "sent",
-      "note": "Confirmed on visitplovdiv.com and bta.bg for September 4–7, 2026."
-    },
-    {
-      "date": "2026-09-04",
-      "title": "Slow. Art. Consumption. – Festival of Analog Art",
-      "category": "event_this_weekend",
-      "when": "September 4 – September 26, 2026",
-      "location": "Elysium Cultural Center, Plovdiv",
-      "url": "https://visitplovdiv.com",
-      "score": 74,
-      "verdict": "sent",
-      "note": "Confirmed on visitplovdiv.com and vplovdiv.com for September 4–26, 2026."
-    },
-    {
-      "date": "2026-09-04",
-      "title": "Stand-Up Comedy in English with Elena Gabrielle",
-      "category": "event_lookahead",
-      "when": "Wednesday, September 23, 2026",
-      "location": "Comedy Club Plovdiv, Gladstone St 15 (Boris Hristov House of Culture), Plovdiv",
-      "url": "https://comedyclub.bg",
-      "score": 95,
-      "verdict": "sent",
-      "note": "Confirmed on comedyclub.bg and elenagabrielle.com for September 23, 2026."
-    },
-    {
-      "date": "2026-09-04",
-      "title": "GuitArt Festival 2026: Yamandu Costa Solo Concert",
-      "category": "event_lookahead",
-      "when": "Sunday, October 4, 2026 at 19:00",
-      "location": "Boris Hristov House of Culture, Plovdiv",
-      "url": "",
-      "score": 85,
-      "verdict": "sent",
-      "note": "Confirmed on eventim.bg and guitart.bg for October 4, 2026."
-    },
-    {
-      "date": "2026-09-04",
-      "title": "Festival of the Hills (Фестивал на тепетата)",
-      "category": "event_lookahead",
-      "when": "Saturday, September 26 – Sunday, September 27, 2026",
-      "location": "Across four Plovdiv hills (Old Town / Three Hills, Sahat Tepe, Bunardzhika, Youth Hill)",
-      "url": "",
-      "score": 78,
-      "verdict": "sent",
-      "note": "Confirmed on visitplovdiv.com and marica.bg for September 26–27, 2026."
-    },
-    {
-      "date": "2026-09-04",
-      "title": "Major Street Closures, Checkpoints, and Drone Ban for Unification Day",
-      "category": "civic_notice",
-      "when": "Sunday, September 6, 2026 (15:00 onwards; ceremony at 20:30)",
-      "location": "Saedinenie Square and 6th September Blvd (between Tsar Boris III and Ruski Blvd), Central Plovdiv",
-      "url": "https://plovdiv.bg",
-      "score": 95,
-      "verdict": "sent",
-      "note": "Confirmed on plovdiv.bg and marica.bg for September 6, 2026."
-    },
-    {
-      "date": "2026-09-04",
-      "title": "Complete Road Closure on Dr. G. M. Dimitrov Street",
-      "category": "civic_notice",
-      "when": "Ongoing through September 13, 2026",
-      "location": "Dr. G. M. Dimitrov Street (between Tsar Asen I St and Avksentiy Veleshki St), Central Plovdiv",
-      "url": "https://marica.bg",
-      "score": 90,
-      "verdict": "sent",
-      "note": "Confirmed on 24chasa.bg for ongoing road closure through September 13, 2026."
-    },
-    {
-      "date": "2026-09-04",
-      "title": "6th September Boulevard Section Closure and Bus Route Detours",
-      "category": "civic_notice",
-      "when": "Ongoing through September 14, 2026",
-      "location": "6th September Blvd (between Vladivostok St and Turgenev St), Plovdiv",
-      "url": "https://podtepeto.com",
-      "score": 85,
-      "verdict": "sent",
-      "note": "Confirmed on plovdiv.bg and podtepeto.com for closure through September 14, 2026."
-    },
-    {
-      "date": "2026-09-04",
-      "title": "Plovdiv Football Derby: Botev Plovdiv vs. Lokomotiv Plovdiv",
-      "category": "civic_notice",
-      "when": "Sunday, September 13, 2026",
-      "location": "Hristo Botev Stadium (Kolezha) and surrounding central streets, Plovdiv",
-      "url": "https://sportal.bg",
-      "score": 80,
-      "verdict": "sent",
-      "note": "Confirmed on sportal.bg and botevplovdiv.bg for September 13, 2026."
-    },
-    {
-      "date": "2026-09-04",
-      "title": "Bubbu Bear Children's Park & Center",
-      "category": "evergreen",
-      "when": "Open daily, 10:00–22:00",
-      "location": "Plovdiv",
-      "url": "",
-      "score": 85,
-      "verdict": "sent",
-      "note": "Enclosed, safe outdoor park zone equipped with inflatables and play equipment tailored specifically for toddlers and young preschoolers."
-    },
-    {
-      "date": "2026-09-04",
-      "title": "Roman Stadium of Philippopolis",
-      "category": "evergreen",
-      "when": "",
-      "location": "Dzhumaya Square, Plovdiv",
-      "url": "",
-      "score": 60,
-      "verdict": "sent",
-      "note": "The excavated end of a 240-metre Roman stadium sunk beneath the main pedestrian street."
-    },
-    {
-      "date": "2026-09-11",
-      "title": "Puppet Show: \"Boy and the Wind\" (Момче и вятър)",
-      "category": "event_this_weekend",
-      "when": "Sunday, September 13, 2026 (10:30 & 11:45 AM)",
-      "location": "State Puppet Theatre, Plovdiv",
-      "url": "",
-      "score": 92,
-      "verdict": "sent",
-      "note": "Confirmed on pptheatre.com and grabo.bg for September 13, 2026."
-    },
-    {
-      "date": "2026-09-11",
-      "title": "Re:Bazaar Green Family Festival & Eco Games",
-      "category": "event_this_weekend",
-      "when": "Saturday, September 12, 2026 (10:00 - 18:00)",
-      "location": "Park \"Belite Brezi\", South District, Plovdiv",
-      "url": "",
-      "score": 88,
-      "verdict": "sent",
-      "note": "Confirmed on marica.bg and rebazaar.bg for September 12, 2026."
-    },
-    {
-      "date": "2026-09-11",
-      "title": "Kids Road Safety Day & Vehicle Demonstrations",
-      "category": "event_this_weekend",
-      "when": "Saturday, September 12, 2026 (09:00 - 12:00)",
-      "location": "Kolodruma Arena Parking Lot, Trakia District, Plovdiv",
-      "url": "",
-      "score": 85,
-      "verdict": "sent",
-      "note": "Confirmed on marica.bg and trafficnews.bg for September 12, 2026."
-    },
     {
       "date": "2026-09-11",
       "title": "Plovdiv Beer Fest 2026 (Daytime Park Gathering)",
@@ -3508,6 +3347,182 @@
       "score": 80,
       "verdict": "sent",
       "note": "The city's primary independent cinema venue dedicated to international film festival selections and European cinema in original language audio with subtitles rather than Bulgarian dubbing."
+    },
+    {
+      "date": "2026-11-20",
+      "title": "Puppet Show: Winnie the Pooh (Мечо Пух)",
+      "category": "event_this_weekend",
+      "when": "Sunday, November 22, 2026, 10:30 & 11:45",
+      "location": "State Puppet Theatre Plovdiv, 14 Hristo G. Danov St, Plovdiv",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com and grabo.bg."
+    },
+    {
+      "date": "2026-11-20",
+      "title": "Puppet Play: Tale of the Blue Globe (Приказка за синьото кълбо)",
+      "category": "event_this_weekend",
+      "when": "Saturday, November 21, 2026, 11:00",
+      "location": "State Puppet Theatre, 46 General Gurko St, Stara Zagora",
+      "url": "",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Confirmed on pierrot-bg.com and entase.com."
+    },
+    {
+      "date": "2026-11-20",
+      "title": "Live Falconry and Birds of Prey Evening",
+      "category": "event_thisweek",
+      "when": "Thursday, November 26, 2026, 18:00",
+      "location": "Regional Natural History Museum, Plovdiv",
+      "url": "",
+      "score": 84,
+      "verdict": "sent",
+      "note": "Confirmed on factor-news.net and Regional Natural History Museum Plovdiv announcement."
+    },
+    {
+      "date": "2026-11-20",
+      "title": "Children's Musical: Beard Glue (Лепило за брада)",
+      "category": "event_lookahead",
+      "when": "Saturday, November 28, 2026, 11:00 & 17:00",
+      "location": "Boris Hristov House of Culture, Plovdiv",
+      "url": "",
+      "score": 88,
+      "verdict": "sent",
+      "note": "Confirmed on operaplovdiv.bg and eventim.bg."
+    },
+    {
+      "date": "2026-11-20",
+      "title": "Kapana Christmas Craft Market",
+      "category": "event_lookahead",
+      "when": "December 4–6, 2026",
+      "location": "Kapana District & Gladstone Bridge, Plovdiv",
+      "url": "",
+      "score": 82,
+      "verdict": "sent",
+      "note": "Confirmed on marica.bg and visitplovdiv.com."
+    },
+    {
+      "date": "2026-11-20",
+      "title": "Puppet Show: Pin and Polly's Christmas (Коледата на Пин и Поли)",
+      "category": "event_lookahead",
+      "when": "Sunday, December 6, 2026, 11:45",
+      "location": "State Puppet Theatre Plovdiv, 14 Hristo G. Danov St, Plovdiv",
+      "url": "",
+      "score": 92,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com and grabo.bg."
+    },
+    {
+      "date": "2026-11-20",
+      "title": "Classical Piano Recital: Beethoven Op. 31 Sonatas by Ivan Donchev",
+      "category": "event_this_weekend",
+      "when": "Saturday, 21 November 2026, 19:00",
+      "location": "AMTII Concert Hall, ulitsa Todor Samodumov 2, Old Town, Plovdiv",
+      "url": "https://www.plovdiv.bg",
+      "score": 82,
+      "verdict": "sent",
+      "note": "Confirmed on artacademyplovdiv.net and onhuddle.co."
+    },
+    {
+      "date": "2026-11-20",
+      "title": "Kinomania 2026: Arthouse Screening of Cannes Palme d'Or Winner 'Fiord'",
+      "category": "event_this_weekend",
+      "when": "Sunday, 22 November 2026, 17:30",
+      "location": "LUCKY House of Cinema (LUCKY Дом на киното), ulitsa William Gladstone 1, Plovdiv",
+      "url": "https://kinolucky.com",
+      "score": 80,
+      "verdict": "sent",
+      "note": "Confirmed on kinomania.bg and kinolucky.com."
+    },
+    {
+      "date": "2026-11-20",
+      "title": "The Chicago Experience (TCE) Live in Concert",
+      "category": "event_thisweek",
+      "when": "Monday, 23 November 2026, 20:00",
+      "location": "Kolodrum Sports Hall, Blvd. Asenovgradsko Shose, Plovdiv",
+      "url": "https://visitplovdiv.com",
+      "score": 76,
+      "verdict": "sent",
+      "note": "Confirmed on eventim.bg and 24chasa.bg."
+    },
+    {
+      "date": "2026-11-20",
+      "title": "Contemporary Art Retrospective: 'The Beginning. 130 Years. To the Present Day'",
+      "category": "event_lookahead",
+      "when": "Running through Wednesday, 2 December 2026",
+      "location": "'2019' Exhibition Hall, ulitsa William Gladstone 32, Plovdiv",
+      "url": "https://visitplovdiv.com",
+      "score": 75,
+      "verdict": "sent",
+      "note": "Confirmed on galleryplovdiv.com and visitplovdiv.com."
+    },
+    {
+      "date": "2026-11-20",
+      "title": "Major road closures around Hristo Botev Stadium for Botev Plovdiv vs. CSKA Sofia match",
+      "category": "civic_notice",
+      "when": "Sunday, 22 November 2026, 14:00 - 22:00",
+      "location": "Blvd. Iztochen, ul. Bogomil, ul. Varshava, and ul. Lev Tolstoy, Plovdiv",
+      "url": "https://www.plovdiv.bg",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Confirmed on plovdivnews.bg and sportal.bg."
+    },
+    {
+      "date": "2026-11-20",
+      "title": "Morning traffic signal shutdowns and manual police traffic regulation on Komatevsko Shose",
+      "category": "civic_notice",
+      "when": "Monday to Friday, 23-27 November 2026, 07:30 - 09:00 daily",
+      "location": "Komatevsko Shose intersections with Blvd. Aleksandar Stamboliyski and Blvd. Nikola Vaptsarov, Plovdiv",
+      "url": "https://plovdivnews.bg",
+      "score": 70,
+      "verdict": "sent",
+      "note": "Confirmed on plovdivnews.bg and plovdiv.bg."
+    },
+    {
+      "date": "2026-11-20",
+      "title": "Permanent vehicle closure and pedestrianisation works of ulitsa Ivan Vazov",
+      "category": "civic_opportunity",
+      "when": "Works commence Tuesday, 1 December 2026",
+      "location": "Ulitsa Ivan Vazov (section from Central Square to ulitsa Avksentiy Veleshki), Plovdiv",
+      "url": "https://www.marica.bg",
+      "score": 90,
+      "verdict": "sent",
+      "note": "Confirmed on marica.bg."
+    },
+    {
+      "date": "2026-11-20",
+      "title": "Plovdiv Airport finalizing 8 new direct scheduled European flight routes",
+      "category": "civic_opportunity",
+      "when": "Route agreements concluding late November 2026; flights launch March 2027",
+      "location": "Plovdiv Airport (PDV), Krumovo",
+      "url": "https://www.marica.bg",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on marica.bg."
+    },
+    {
+      "date": "2026-11-20",
+      "title": "Ancient Theatre of Philippopolis",
+      "category": "evergreen",
+      "when": "",
+      "location": "Plovdiv Old Town",
+      "url": "",
+      "score": 60,
+      "verdict": "sent",
+      "note": "Roman-era amphitheatre in the Old Town; a short scenic walk even without an event on."
+    },
+    {
+      "date": "2026-11-20",
+      "title": "Dom na Kinoto (LUCKY House of Cinema)",
+      "category": "evergreen",
+      "when": "Daily screenings year-round",
+      "location": "Ulitsa William Gladstone 1, Plovdiv",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Plovdiv's sole dedicated arthouse cinema venue, regularly scheduling festival features, original-audio cinema, and European film releases."
     }
   ]
 }

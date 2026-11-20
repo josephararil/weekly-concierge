@@ -1,10 +1,10 @@
-# Weekend Concierge Memory — updated 2026-11-13
+# Weekend Concierge Memory — updated 2026-11-20
 
-## Evergreen Catalog (92 entries)
+## Evergreen Catalog (93 entries)
 
 ### Ancient Theatre of Philippopolis
 **Location:** Plovdiv Old Town / in town
-**Discovered:** 2026-07-01 &nbsp; **Last suggested:** never
+**Discovered:** 2026-07-01 &nbsp; **Last suggested:** 2026-11-20
 Roman-era amphitheatre in the Old Town; a short scenic walk even without an event on.
 _Tags: history, outdoor, free_
 _Source: seed_
@@ -202,6 +202,12 @@ _Source: find_
 **Location:** Ayazmoto Park, Stara Zagora (~60 min drive)
 **Discovered:** 2026-07-24 &nbsp; **Last suggested:** 2026-07-24
 Explicitly highlighted as a family favorite; set in a deeply shaded forest park with wide, gentle paths and diverse animal exhibits.
+_Source: find_
+
+### Dom na Kinoto (LUCKY House of Cinema)
+**Location:** Ulitsa William Gladstone 1, Plovdiv
+**Discovered:** 2026-11-20 &nbsp; **Last suggested:** 2026-11-20
+Plovdiv's sole dedicated arthouse cinema venue, regularly scheduling festival features, original-audio cinema, and European film releases.
 _Source: find_
 
 ### Dom na Kinoto Plovdiv
@@ -662,6 +668,22 @@ _Source: research_
 
 ## Suggestion Ledger (200 entries)
 
+- ✅ 2026-11-20 | Puppet Show: Winnie the Pooh (Мечо Пух) | event_this_weekend | Sunday, November 22, 2026, 10:30 & 11:45 | sent score=95 — Confirmed on pptheatre.com and grabo.bg.
+- ✅ 2026-11-20 | Puppet Play: Tale of the Blue Globe (Приказка за синьото кълбо) | event_this_weekend | Saturday, November 21, 2026, 11:00 | sent score=80 — Confirmed on pierrot-bg.com and entase.com.
+- ✅ 2026-11-20 | Live Falconry and Birds of Prey Evening | event_thisweek | Thursday, November 26, 2026, 18:00 | sent score=84 — Confirmed on factor-news.net and Regional Natural History Museum Plovdiv announcement.
+- ✅ 2026-11-20 | Children's Musical: Beard Glue (Лепило за брада) | event_lookahead | Saturday, November 28, 2026, 11:00 & 17:00 | sent score=88 — Confirmed on operaplovdiv.bg and eventim.bg.
+- ✅ 2026-11-20 | Kapana Christmas Craft Market | event_lookahead | December 4–6, 2026 | sent score=82 — Confirmed on marica.bg and visitplovdiv.com.
+- ✅ 2026-11-20 | Puppet Show: Pin and Polly's Christmas (Коледата на Пин и Поли) | event_lookahead | Sunday, December 6, 2026, 11:45 | sent score=92 — Confirmed on pptheatre.com and grabo.bg.
+- ✅ 2026-11-20 | Classical Piano Recital: Beethoven Op. 31 Sonatas by Ivan Donchev | event_this_weekend | Saturday, 21 November 2026, 19:00 | sent score=82 — Confirmed on artacademyplovdiv.net and onhuddle.co.
+- ✅ 2026-11-20 | Kinomania 2026: Arthouse Screening of Cannes Palme d'Or Winner 'Fiord' | event_this_weekend | Sunday, 22 November 2026, 17:30 | sent score=80 — Confirmed on kinomania.bg and kinolucky.com.
+- ✅ 2026-11-20 | The Chicago Experience (TCE) Live in Concert | event_thisweek | Monday, 23 November 2026, 20:00 | sent score=76 — Confirmed on eventim.bg and 24chasa.bg.
+- ✅ 2026-11-20 | Contemporary Art Retrospective: 'The Beginning. 130 Years. To the Present Day' | event_lookahead | Running through Wednesday, 2 December 2026 | sent score=75 — Confirmed on galleryplovdiv.com and visitplovdiv.com.
+- ✅ 2026-11-20 | Major road closures around Hristo Botev Stadium for Botev Plovdiv vs. CSKA Sofia match | civic_notice | Sunday, 22 November 2026, 14:00 - 22:00 | sent score=85 — Confirmed on plovdivnews.bg and sportal.bg.
+- ✅ 2026-11-20 | Morning traffic signal shutdowns and manual police traffic regulation on Komatevsko Shose | civic_notice | Monday to Friday, 23-27 November 2026, 07:30 - 09:00 daily | sent score=70 — Confirmed on plovdivnews.bg and plovdiv.bg.
+- ✅ 2026-11-20 | Permanent vehicle closure and pedestrianisation works of ulitsa Ivan Vazov | civic_opportunity | Works commence Tuesday, 1 December 2026 | sent score=90 — Confirmed on marica.bg.
+- ✅ 2026-11-20 | Plovdiv Airport finalizing 8 new direct scheduled European flight routes | civic_opportunity | Route agreements concluding late November 2026; flights launch March 2027 | sent score=95 — Confirmed on marica.bg.
+- ✅ 2026-11-20 | Ancient Theatre of Philippopolis | evergreen |  | sent score=60 — Roman-era amphitheatre in the Old Town; a short scenic walk even without an event on.
+- ✅ 2026-11-20 | Dom na Kinoto (LUCKY House of Cinema) | evergreen | Daily screenings year-round | sent score=85 — Plovdiv's sole dedicated arthouse cinema venue, regularly scheduling festival features,…
 - ✅ 2026-11-13 | Puppet Show: Chirpy the Sparrow (Косе Босе) | event_this_weekend | Saturday, November 14, 2026, 11:00 | sent score=90 — Confirmed on kupibileti.bg and theatrepazardzhik.com.
 - ✅ 2026-11-13 | Premiere: The Three Brothers and the Golden Apple (Тримата братя и златната ябълка) | event_this_weekend | Saturday, November 14, 2026, 11:00 | sent score=86 — Confirmed on pierrot-bg.com and stara-zagora.info.
 - ✅ 2026-11-13 | Puppet Show: Patilansko Tsarstvo (Патиланско царство) | event_this_weekend | Sunday, November 15, 2026, 11:00 | sent score=84 — Confirmed on entase.com and pierrot-bg.com.
@@ -696,20 +718,4 @@ _Source: research_
 - ✅ 2026-11-06 | Roadworks and Traffic Delays on Rogoshko Shose Artery | civic_notice | Ongoing throughout November 2026 | sent score=62 — Confirmed via marica.bg and myve.bg.
 - ✅ 2026-11-06 | Children's Railway "Zname na Mira" Miniature Train Ride | evergreen | Wednesday–Sunday, 10:30, 11:30, 12:15, 14:30, 15:30, 16:30 | sent score=95 — An authentic mini train journey through tunnels and over bridges up Youth Hill, followed by large…
 - ✅ 2026-11-06 | Krumovo Aviation Museum (Музей на авиацията) | evergreen | Wednesday–Sunday, 09:00–16:30 | sent score=88 — Only 15 minutes away, offering vast open lawns and dozens of real passenger planes, jets, and…
-- ✅ 2026-11-06 | Ayazmoto Park & Hall of Laughter | evergreen | Open daily | sent score=85 — A massive pine forest park with broad buggy-friendly paths, fun house sensory curved mirrors, and…
-- ✅ 2026-11-06 | Bunardzhik Hill Sunset Walk | evergreen | Always accessible (best around sunset) | sent score=80 — A paved, tranquil climb to panoramic 360-degree viewpoints over Plovdiv and the Thracian plain,…
-- ✅ 2026-10-30 | Puppet Show: "Thumbelina" (Палечка) | event_this_weekend | Saturday, October 31, 2026, 10:30 & 11:45 | sent score=95 — Confirmed on pptheatre.com and grabo.bg.
-- ✅ 2026-10-30 | Puppet Show: "Kose Bose" (Косе Босе) | event_this_weekend | Sunday, November 1, 2026, 10:30 & 11:45 | sent score=95 — Confirmed on pptheatre.com and grabo.bg.
-- ✅ 2026-10-30 | Puppet Show: "The Enormous Turnip" (Дядо вади ряпа) | event_this_weekend | Saturday, October 31, 2026, 11:00 | sent score=84 — Confirmed on pierrot-bg.com.
-- ✅ 2026-10-30 | Family Ballet: "The Son of the Monkeys" (Синът на маймуните) | event_thisweek | Wednesday, November 4, 2026, 19:00 | sent score=72 — Confirmed on operaplovdiv.bg and eventim.bg.
-- ✅ 2026-10-30 | Puppet Show: "The Iron Boy" (Желязното момче) | event_lookahead | Saturday, November 7, 2026, 11:00 | sent score=88 — Confirmed on theatrepazardzhik.com and kupibileti.bg.
-- ✅ 2026-10-30 | Symphony Concert: 'The Czech Romantics' (Чешките романтици) | event_thisweek | Thursday, November 5, 19:00 | sent score=72 — Confirmed on operaplovdiv.bg and eventim.bg.
-- ✅ 2026-10-30 | Svetlin Roussev: 50 Years of Excellence Anniversary Concert | event_lookahead | Tuesday, November 10, 19:00 | sent score=75 — Confirmed on bta.bg and eventim.bg.
-- ✅ 2026-10-30 | Road closures in Central Plovdiv for presidential election runoff logistics | civic_notice | Saturday, October 31, from 11:00 AM | sent score=90 — Confirmed on marica.bg and podtepeto.com.
-- ✅ 2026-10-30 | EVN Toplofikatsiya begins seasonal district central heating roll-out | civic_notice | Starting Monday, November 2 (ongoing phase-in) | sent score=85 — Confirmed on bnr.bg Radio Plovdiv and plovdiv24.bg.
-- ✅ 2026-10-30 | Ryanair launches new direct scheduled route connecting Plovdiv and Malta | civic_opportunity | Announced this week (tickets on sale now; flights operate Summer 2027) | sent score=95 — Confirmed on marica.bg and bta.bg.
-- ✅ 2026-10-30 | Match-day traffic alert: Lokomotiv Plovdiv vs. Ludogorets Razgrad | civic_notice | Saturday, October 31, kickoff at 14:00 | sent score=65 — Confirmed on topsport.bg and sportal.bg.
-- ✅ 2026-10-30 | Southern Bypass Collector sewer construction and long-term street closures | civic_notice | Ongoing through November | sent score=75 — Confirmed on podtepeto.com and marica.bg.
-- ✅ 2026-10-30 | Plovdiv officially designated European Capital of Sport for 2028 | civic_opportunity | Announced October 30 | sent score=75 — Confirmed on plovdiv.bg and bntnews.bg.
-- ✅ 2026-10-30 | Damascena Biopark & Rose Valley Gardens | evergreen | Daily, 09:00 - 17:00 | sent score=85 — Paved stroller-friendly garden paths, sculptures, running fountains, and enclosed habitats with…
 _... and 150 earlier entries_
