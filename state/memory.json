@@ -71,9 +71,12 @@
         "history",
         "outdoor"
       ],
+      "url": "",
+      "practical": "",
       "discovered": "2026-07-01",
       "source": "seed",
-      "last_suggested": null
+      "last_suggested": "2026-11-27",
+      "audience": "family"
     },
     "Rowing Channel Family Bike Ride": {
       "location": "Rowing Canal (Grebi Kanal), Plovdiv",
@@ -1321,207 +1324,21 @@
       "source": "find",
       "last_suggested": "2026-11-20",
       "audience": "adult"
+    },
+    "Bistro Blyan: Seasonal Living-Room Tasting Menu": {
+      "location": "Central Plovdiv",
+      "area": "",
+      "description": "Distinctive permanent concept focused on seasonal regional produce, house fermentations, and an intimate tasting menu without alcohol centrality.",
+      "tags": [],
+      "url": "",
+      "practical": "",
+      "discovered": "2026-11-27",
+      "source": "find",
+      "last_suggested": "2026-11-27",
+      "audience": "adult"
     }
   },
   "ledger": [
-    {
-      "date": "2026-09-11",
-      "title": "Plovdiv Beer Fest 2026 (Daytime Park Gathering)",
-      "category": "event_thisweek",
-      "when": "Friday, September 18 – Tuesday, September 22, 2026",
-      "location": "Youth Hill (Mladezhki Halm), Plovdiv",
-      "url": "",
-      "score": 76,
-      "verdict": "sent",
-      "note": "Confirmed on opoznaiplovdiv.bg and marica.bg for September 18–22, 2026."
-    },
-    {
-      "date": "2026-09-11",
-      "title": "Lutenitsa Festival & Nashenski Fest 2026",
-      "category": "event_lookahead",
-      "when": "September 19–20, 2026",
-      "location": "Artillerijski Park, Stara Zagora (~1 hr drive)",
-      "url": "",
-      "score": 86,
-      "verdict": "sent",
-      "note": "Confirmed on sz.bg (Stara Zagora cultural calendar) for September 19, 2026."
-    },
-    {
-      "date": "2026-09-11",
-      "title": "Plovdiv Car-Free Day & Family Parade on Maritsa-South",
-      "category": "event_lookahead",
-      "when": "Tuesday, September 22, 2026 (All Day)",
-      "location": "Blvd. Maritsa-Yug (Riverbank Promenade), Plovdiv",
-      "url": "",
-      "score": 83,
-      "verdict": "sent",
-      "note": "Confirmed on bnr.bg and plovdivnow.bg for September 22, 2026."
-    },
-    {
-      "date": "2026-09-11",
-      "title": "Puppet Show: \"Thumbelina\" (Палечка)",
-      "category": "event_lookahead",
-      "when": "Saturday, September 26, 2026 (10:30 & 11:45 AM)",
-      "location": "State Puppet Theatre, Plovdiv",
-      "url": "",
-      "score": 93,
-      "verdict": "suppressed",
-      "note": "Confirmed on pptheatre.com and grabo.bg for September 26, 2026."
-    },
-    {
-      "date": "2026-09-11",
-      "title": "Ostava – Live in Concert at Orpheus Open-Air Cinema",
-      "category": "event_this_weekend",
-      "when": "Saturday, September 12, 2026 at 20:00",
-      "location": "Orpheus Open-Air Cinema (Lyatno Kino Orfey), Plovdiv",
-      "url": "",
-      "score": 72,
-      "verdict": "sent",
-      "note": "Confirmed on eventim.bg and domborishristov.bg for September 12, 2026."
-    },
-    {
-      "date": "2026-09-11",
-      "title": "XVII International Festival 'Music Days in Balabanov House' Opening Concert",
-      "category": "event_thisweek",
-      "when": "Tuesday, September 15, 2026 at 19:00",
-      "location": "Bishop's Basilica of Philippopolis, Plovdiv",
-      "url": "",
-      "score": 76,
-      "verdict": "sent",
-      "note": "Confirmed on visitplovdiv.com and musicartissimo.com; opening concert is held at the Bishop's Basilica."
-    },
-    {
-      "date": "2026-09-11",
-      "title": "Tarja Turunen – 'The World of Dreams' Live at the Ancient Theatre",
-      "category": "event_thisweek",
-      "when": "Friday, September 18, 2026 at 20:00",
-      "location": "Ancient Theatre of Plovdiv (Antichen Teatar)",
-      "url": "",
-      "score": 82,
-      "verdict": "sent",
-      "note": "Confirmed on visitplovdiv.com and eventim.bg for September 18, 2026."
-    },
-    {
-      "date": "2026-09-11",
-      "title": "32nd Week of Contemporary Art: 'Bug in Reality'",
-      "category": "event_lookahead",
-      "when": "September 3 – October 2, 2026",
-      "location": "City Art Gallery (15 Knyaz Alexander I St) & Roman Stadium Square, Plovdiv",
-      "url": "",
-      "score": 78,
-      "verdict": "sent",
-      "note": "Confirmed on bta.bg and visitplovdiv.com for September 3 – October 2, 2026."
-    },
-    {
-      "date": "2026-09-11",
-      "title": "Septicflesh with Full Symphonic Orchestra and Choir",
-      "category": "event_lookahead",
-      "when": "Saturday, September 19, 2026 at 20:00",
-      "location": "Ancient Theatre of Plovdiv (Antichen Teatar)",
-      "url": "",
-      "score": 78,
-      "verdict": "sent",
-      "note": "Confirmed on visitplovdiv.com and eventim.bg for September 19, 2026."
-    },
-    {
-      "date": "2026-09-11",
-      "title": "The Gathering Live at the Ancient Theatre",
-      "category": "event_lookahead",
-      "when": "Tuesday, September 22, 2026 at 20:00",
-      "location": "Ancient Theatre of Plovdiv (Antichen Teatar)",
-      "url": "",
-      "score": 84,
-      "verdict": "sent",
-      "note": "Confirmed on visitplovdiv.com and eventim.bg for September 22, 2026."
-    },
-    {
-      "date": "2026-09-11",
-      "title": "Plovdiv Derby: Botev Plovdiv vs. Lokomotiv Plovdiv (Traffic & Crowd Disruption)",
-      "category": "civic_notice",
-      "when": "Sunday, September 13, 2026",
-      "location": "Hristo Botev Stadium and central transit corridors, Plovdiv",
-      "url": "",
-      "score": 85,
-      "verdict": "sent",
-      "note": "Confirmed on marica.bg and topsport.bg for September 13, 2026."
-    },
-    {
-      "date": "2026-09-11",
-      "title": "Northern Promenade Access Restriction at Plovdiv Rowing Canal",
-      "category": "civic_notice",
-      "when": "September 11–13, 2026 (mornings and afternoons)",
-      "location": "Rowing Canal (Northern pedestrian alley), Plovdiv",
-      "url": "",
-      "score": 70,
-      "verdict": "sent",
-      "note": "Confirmed on plovdivdaily.bg for September 11–13, 2026."
-    },
-    {
-      "date": "2026-09-11",
-      "title": "Road Closure on Boulevard Shesti Septemvri for Heating Pipeline Replacement",
-      "category": "civic_notice",
-      "when": "Ongoing through Monday, September 14, 2026",
-      "location": "Boulevard Shesti Septemvri (between Vladivostok St and Turgenev St), Plovdiv",
-      "url": "",
-      "score": 80,
-      "verdict": "sent",
-      "note": "Confirmed on bta.bg and trafficnews.bg through September 14, 2026."
-    },
-    {
-      "date": "2026-09-11",
-      "title": "Balkan Skyways Establishing Operational Base at Plovdiv Airport with European Routes",
-      "category": "civic_opportunity",
-      "when": "Announced September 2026 (Operations launching spring 2027)",
-      "location": "Plovdiv Airport (Krumovo)",
-      "url": "",
-      "score": 95,
-      "verdict": "sent",
-      "note": "Confirmed on bnr.bg and gustomedia.bg."
-    },
-    {
-      "date": "2026-09-11",
-      "title": "Day Trip to Island \"Svoboda\" Park",
-      "category": "evergreen",
-      "when": "Always open / Best during daylight hours",
-      "location": "Svoboda Park Island, Pazardzhik (~35 min drive)",
-      "url": "",
-      "score": 96,
-      "verdict": "sent",
-      "note": "A family favorite island park featuring numerous shaded playgrounds, dinosaur sculptures, miniature zoo animals, and wide stroller-friendly paths."
-    },
-    {
-      "date": "2026-09-11",
-      "title": "Aviation Museum Krumovo Outing",
-      "category": "evergreen",
-      "when": "Wednesday to Sunday, 09:00 - 18:00",
-      "location": "Krumovo Airfield (~15 min drive from Plovdiv)",
-      "url": "",
-      "score": 90,
-      "verdict": "sent",
-      "note": "An outdoor airfield packed with real planes and helicopters that 4-year-olds can walk right up to, offering open grassy spaces to roam."
-    },
-    {
-      "date": "2026-09-11",
-      "title": "Pony Riding and Farm Walk at Frigopan Horse Base",
-      "category": "evergreen",
-      "when": "Daily by reservation, 09:00 - 18:00",
-      "location": "Frigopan Equestrian Base, Tsaratsovo (~15 min drive)",
-      "url": "",
-      "score": 88,
-      "verdict": "sent",
-      "note": "A clean, modern equestrian base offering gentle guided pony walks for preschoolers and an up-close look at beautiful horses."
-    },
-    {
-      "date": "2026-09-11",
-      "title": "Dom na Kinoto Plovdiv Arthouse Screenings",
-      "category": "evergreen",
-      "when": "Year-round / Weekly programming",
-      "location": "Dom na Kinoto (Lucky Cinema), ul. Gladstone 1, Plovdiv",
-      "url": "",
-      "score": 85,
-      "verdict": "sent",
-      "note": "The premier independent cinema venue in central Plovdiv offering original-language screenings with subtitling rather than dubbing."
-    },
     {
       "date": "2026-09-18",
       "title": "Plovdiv Fantasy Week",
@@ -3523,6 +3340,204 @@
       "score": 85,
       "verdict": "sent",
       "note": "Plovdiv's sole dedicated arthouse cinema venue, regularly scheduling festival features, original-audio cinema, and European film releases."
+    },
+    {
+      "date": "2026-11-27",
+      "title": "Puppet Show: Kose Bose (Косе Босе)",
+      "category": "event_this_weekend",
+      "when": "Sunday, 10:30 & 11:45",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 95,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com and grabo.bg."
+    },
+    {
+      "date": "2026-11-27",
+      "title": "Puppet Play: Grandpa's Mitten (Дядовата ръкавичка)",
+      "category": "event_this_weekend",
+      "when": "Saturday, 11:00",
+      "location": "Konstantin Velichkov Drama and Puppet Theatre, Pazardzhik",
+      "url": "",
+      "score": 88,
+      "verdict": "sent",
+      "note": "Confirmed on kupibileti.bg and theatrepazardzhik.com; venue is ~35 minutes from Plovdiv."
+    },
+    {
+      "date": "2026-11-27",
+      "title": "'Christmas in Plovdiv' Open-Air Holiday Fair",
+      "category": "event_this_weekend",
+      "when": "Daily, 10:00-22:00",
+      "location": "Central Square (pl. Tsentralen), Plovdiv",
+      "url": "",
+      "score": 90,
+      "verdict": "sent",
+      "note": "Confirmed on marica.bg and vplovdiv.com."
+    },
+    {
+      "date": "2026-11-27",
+      "title": "Plovdiv Christmas Tree Illumination Ceremony",
+      "category": "event_thisweek",
+      "when": "Tuesday, 18:00",
+      "location": "Stefan Stambolov Square, Plovdiv",
+      "url": "",
+      "score": 86,
+      "verdict": "sent",
+      "note": "Confirmed on marica.bg and plovdivmedia.bg."
+    },
+    {
+      "date": "2026-11-27",
+      "title": "Puppet Show: Who Am I? (Кой съм аз?)",
+      "category": "event_thisweek",
+      "when": "Tuesday, 10:30",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 85,
+      "verdict": "skipped",
+      "note": "dropped: venue cap (2/venue); Confirmed on pptheatre.com and entase.com."
+    },
+    {
+      "date": "2026-11-27",
+      "title": "'Tesserae: Layers of Time' Family Heritage Festival",
+      "category": "event_lookahead",
+      "when": "December 4–6, 2026",
+      "location": "Episcopal Basilica of Philippopolis and Small Basilica, Plovdiv",
+      "url": "",
+      "score": 84,
+      "verdict": "sent",
+      "note": "Confirmed on marica.bg and podtepeto.com."
+    },
+    {
+      "date": "2026-11-27",
+      "title": "Holiday Puppet Show: Super Snezhko and the Christmas Spirit",
+      "category": "event_lookahead",
+      "when": "Saturday, 10:30 & 11:45",
+      "location": "State Puppet Theatre, Plovdiv",
+      "url": "",
+      "score": 94,
+      "verdict": "sent",
+      "note": "Confirmed on pptheatre.com and grabo.bg."
+    },
+    {
+      "date": "2026-11-27",
+      "title": "Puppet Play: Pulling the Giant Turnip (Дядо вади ряпа)",
+      "category": "event_lookahead",
+      "when": "Saturday, 11:00",
+      "location": "Konstantin Velichkov Drama and Puppet Theatre, Pazardzhik",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Confirmed on kupibileti.bg; venue is ~35 minutes from Plovdiv."
+    },
+    {
+      "date": "2026-11-27",
+      "title": "Children's Black & White Christmas Fest",
+      "category": "event_lookahead",
+      "when": "Saturday, 16:00",
+      "location": "Complex SILA, Plovdiv",
+      "url": "",
+      "score": 81,
+      "verdict": "sent",
+      "note": "Confirmed on bnrnews.bg and kupibileti.bg."
+    },
+    {
+      "date": "2026-11-27",
+      "title": "Saké @ International Fair Headlined by Innellea",
+      "category": "event_this_weekend",
+      "when": "Saturday, 28 November 2026, 22:00",
+      "location": "Hall 2, International Fair Plovdiv, bul. Tsar Boris III Obedinitel 37, Plovdiv",
+      "url": "",
+      "score": 82,
+      "verdict": "sent",
+      "note": "Confirmed on eventim.bg and visitplovdiv.com."
+    },
+    {
+      "date": "2026-11-27",
+      "title": "Christmas in Plovdiv Holiday Market & Tangra Live Open-Air Concert",
+      "category": "event_this_weekend",
+      "when": "Saturday, 28 November 2026 (fair open daily 10:00–22:00)",
+      "location": "Central Square (in front of Central Post Office), Plovdiv",
+      "url": "",
+      "score": 76,
+      "verdict": "sent",
+      "note": "Confirmed on marica.bg and dir.bg."
+    },
+    {
+      "date": "2026-11-27",
+      "title": "National Ballet of Georgia Sukhishvili",
+      "category": "event_thisweek",
+      "when": "Friday, 4 December 2026, 20:00",
+      "location": "S.I.L.A. Complex, ul. Trakiya 50, Plovdiv",
+      "url": "",
+      "score": 84,
+      "verdict": "sent",
+      "note": "Confirmed on eventim.bg and grabo.bg."
+    },
+    {
+      "date": "2026-11-27",
+      "title": "Christmas Concert of the Vienna Schönbrunn Orchestra",
+      "category": "event_lookahead",
+      "when": "Wednesday, 16 December 2026, 19:30",
+      "location": "S.I.L.A. Complex, ul. Trakiya 50, Plovdiv",
+      "url": "",
+      "score": 74,
+      "verdict": "sent",
+      "note": "Confirmed on plovdiv.bg and eventim.bg."
+    },
+    {
+      "date": "2026-11-27",
+      "title": "Permanent Closure of Sever Bus Station and Rerouting of 33 Intercity Lines",
+      "category": "civic_notice",
+      "when": "Effective Tuesday, 1 December 2026",
+      "location": "Avtogara Sever, Dimitar Stambolov Blvd, Plovdiv",
+      "url": "",
+      "score": 88,
+      "verdict": "sent",
+      "note": "Confirmed on marica.bg and bnr.bg (Radio Plovdiv)."
+    },
+    {
+      "date": "2026-11-27",
+      "title": "Street Resurfacing and Sidewalk Paving Completion on Krali Marko and G. M. Dimitrov",
+      "category": "civic_notice",
+      "when": "Through Tuesday, 1 December 2026",
+      "location": "Ulitsa Krali Marko and Ulitsa G. M. Dimitrov, Tsentralen District, Plovdiv",
+      "url": "",
+      "score": 78,
+      "verdict": "sent",
+      "note": "Confirmed on marica.bg."
+    },
+    {
+      "date": "2026-11-27",
+      "title": "Municipal Christmas Tree Lighting and Central Ice Rink Opening",
+      "category": "civic_notice",
+      "when": "Tuesday, 1 December 2026, 18:00",
+      "location": "Stefan Stambolov Square and Central Square, Plovdiv",
+      "url": "",
+      "score": 65,
+      "verdict": "sent",
+      "note": "Confirmed on marica.bg and plovdiv.bg."
+    },
+    {
+      "date": "2026-11-27",
+      "title": "Bachkovo Monastery",
+      "category": "evergreen",
+      "when": "",
+      "location": "Bachkovo",
+      "url": "",
+      "score": 60,
+      "verdict": "sent",
+      "note": "Scenic mountain monastery with a river nearby for a picnic stop — a gentle half-day trip."
+    },
+    {
+      "date": "2026-11-27",
+      "title": "Bistro Blyan: Seasonal Living-Room Tasting Menu",
+      "category": "evergreen",
+      "when": "Permanent dining option (evenings)",
+      "location": "Central Plovdiv",
+      "url": "",
+      "score": 85,
+      "verdict": "sent",
+      "note": "Distinctive permanent concept focused on seasonal regional produce, house fermentations, and an intimate tasting menu without alcohol centrality."
     }
   ]
 }

@@ -1,6 +1,6 @@
-# Weekend Concierge Memory — updated 2026-11-20
+# Weekend Concierge Memory — updated 2026-11-27
 
-## Evergreen Catalog (93 entries)
+## Evergreen Catalog (94 entries)
 
 ### Ancient Theatre of Philippopolis
 **Location:** Plovdiv Old Town / in town
@@ -52,7 +52,7 @@ _Source: research_
 
 ### Bachkovo Monastery
 **Location:** Bachkovo / ~40 min drive from Plovdiv
-**Discovered:** 2026-07-01 &nbsp; **Last suggested:** never
+**Discovered:** 2026-07-01 &nbsp; **Last suggested:** 2026-11-27
 Scenic mountain monastery with a river nearby for a picnic stop — a gentle half-day trip.
 _Tags: nature, history, outdoor_
 _Source: seed_
@@ -64,6 +64,12 @@ A wonderful destination to escape the high July temperatures of Plovdiv, offerin
 **Practical:** High altitude — bring layered clothing; pedal boats operate seasonally.
 _Tags: water, nature, outdoor, free_
 _Source: research_
+
+### Bistro Blyan: Seasonal Living-Room Tasting Menu
+**Location:** Central Plovdiv
+**Discovered:** 2026-11-27 &nbsp; **Last suggested:** 2026-11-27
+Distinctive permanent concept focused on seasonal regional produce, house fermentations, and an intimate tasting menu without alcohol centrality.
+_Source: find_
 
 ### Bubbu Bear Children's Center
 **Location:** 141 Komatevsko Shose Blvd, Plovdiv / in town
@@ -668,6 +674,24 @@ _Source: research_
 
 ## Suggestion Ledger (200 entries)
 
+- ✅ 2026-11-27 | Puppet Show: Kose Bose (Косе Босе) | event_this_weekend | Sunday, 10:30 & 11:45 | sent score=95 — Confirmed on pptheatre.com and grabo.bg.
+- ✅ 2026-11-27 | Puppet Play: Grandpa's Mitten (Дядовата ръкавичка) | event_this_weekend | Saturday, 11:00 | sent score=88 — Confirmed on kupibileti.bg and theatrepazardzhik.com; venue is ~35 minutes from Plovdiv.
+- ✅ 2026-11-27 | 'Christmas in Plovdiv' Open-Air Holiday Fair | event_this_weekend | Daily, 10:00-22:00 | sent score=90 — Confirmed on marica.bg and vplovdiv.com.
+- ✅ 2026-11-27 | Plovdiv Christmas Tree Illumination Ceremony | event_thisweek | Tuesday, 18:00 | sent score=86 — Confirmed on marica.bg and plovdivmedia.bg.
+- · 2026-11-27 | Puppet Show: Who Am I? (Кой съм аз?) | event_thisweek | Tuesday, 10:30 | skipped score=85 — dropped: venue cap (2/venue); Confirmed on pptheatre.com and entase.com.
+- ✅ 2026-11-27 | 'Tesserae: Layers of Time' Family Heritage Festival | event_lookahead | December 4–6, 2026 | sent score=84 — Confirmed on marica.bg and podtepeto.com.
+- ✅ 2026-11-27 | Holiday Puppet Show: Super Snezhko and the Christmas Spirit | event_lookahead | Saturday, 10:30 & 11:45 | sent score=94 — Confirmed on pptheatre.com and grabo.bg.
+- ✅ 2026-11-27 | Puppet Play: Pulling the Giant Turnip (Дядо вади ряпа) | event_lookahead | Saturday, 11:00 | sent score=85 — Confirmed on kupibileti.bg; venue is ~35 minutes from Plovdiv.
+- ✅ 2026-11-27 | Children's Black & White Christmas Fest | event_lookahead | Saturday, 16:00 | sent score=81 — Confirmed on bnrnews.bg and kupibileti.bg.
+- ✅ 2026-11-27 | Saké @ International Fair Headlined by Innellea | event_this_weekend | Saturday, 28 November 2026, 22:00 | sent score=82 — Confirmed on eventim.bg and visitplovdiv.com.
+- ✅ 2026-11-27 | Christmas in Plovdiv Holiday Market & Tangra Live Open-Air Concert | event_this_weekend | Saturday, 28 November 2026 (fair open daily 10:00–22:00) | sent score=76 — Confirmed on marica.bg and dir.bg.
+- ✅ 2026-11-27 | National Ballet of Georgia Sukhishvili | event_thisweek | Friday, 4 December 2026, 20:00 | sent score=84 — Confirmed on eventim.bg and grabo.bg.
+- ✅ 2026-11-27 | Christmas Concert of the Vienna Schönbrunn Orchestra | event_lookahead | Wednesday, 16 December 2026, 19:30 | sent score=74 — Confirmed on plovdiv.bg and eventim.bg.
+- ✅ 2026-11-27 | Permanent Closure of Sever Bus Station and Rerouting of 33 Intercity Lines | civic_notice | Effective Tuesday, 1 December 2026 | sent score=88 — Confirmed on marica.bg and bnr.bg (Radio Plovdiv).
+- ✅ 2026-11-27 | Street Resurfacing and Sidewalk Paving Completion on Krali Marko and G. M. Dimitrov | civic_notice | Through Tuesday, 1 December 2026 | sent score=78 — Confirmed on marica.bg.
+- ✅ 2026-11-27 | Municipal Christmas Tree Lighting and Central Ice Rink Opening | civic_notice | Tuesday, 1 December 2026, 18:00 | sent score=65 — Confirmed on marica.bg and plovdiv.bg.
+- ✅ 2026-11-27 | Bachkovo Monastery | evergreen |  | sent score=60 — Scenic mountain monastery with a river nearby for a picnic stop — a gentle half-day trip.
+- ✅ 2026-11-27 | Bistro Blyan: Seasonal Living-Room Tasting Menu | evergreen | Permanent dining option (evenings) | sent score=85 — Distinctive permanent concept focused on seasonal regional produce, house fermentations, and an…
 - ✅ 2026-11-20 | Puppet Show: Winnie the Pooh (Мечо Пух) | event_this_weekend | Sunday, November 22, 2026, 10:30 & 11:45 | sent score=95 — Confirmed on pptheatre.com and grabo.bg.
 - ✅ 2026-11-20 | Puppet Play: Tale of the Blue Globe (Приказка за синьото кълбо) | event_this_weekend | Saturday, November 21, 2026, 11:00 | sent score=80 — Confirmed on pierrot-bg.com and entase.com.
 - ✅ 2026-11-20 | Live Falconry and Birds of Prey Evening | event_thisweek | Thursday, November 26, 2026, 18:00 | sent score=84 — Confirmed on factor-news.net and Regional Natural History Museum Plovdiv announcement.
@@ -700,22 +724,4 @@ _Source: research_
 - ✅ 2026-11-13 | Matchday Crowd & Traffic Disruption: Botev Plovdiv vs. CSKA Sofia | civic_notice | Sunday, 22 November 2026 at 18:00 | sent score=75 — Confirmed on botevplovdiv.bg and sportal.bg.
 - ✅ 2026-11-13 | Regional Natural History Museum Plovdiv | evergreen | Open daily, 08:30-17:00 | sent score=97 — A proven family favorite featuring an impressive live aquarium, terrarium, dinosaur displays, and a…
 - ✅ 2026-11-13 | Eco Park Stamboliyski | evergreen | Open daily during daylight hours | sent score=96 — An exceptional suburban park specifically built for children with massive, creative wooden…
-- ✅ 2026-11-13 | LUCKY House of Cinema: Subtitled Original Audio Screenings | evergreen | Daily screenings; check weekly schedule | sent score=80 — The city's primary independent cinema venue dedicated to international film festival selections and…
-- · 2026-11-06 | Puppet Show: "Don't Look for Trouble" (Не си търси белята) | event_this_weekend | Saturday, November 7, 2026, 10:30 & 11:45 | skipped score=92 — dropped: venue cap (2/venue); Confirmed via pptheatre.com and grabo.bg.
-- ✅ 2026-11-06 | Puppet Show: "Chuk and Puk" (Чук и Пук) | event_this_weekend | Sunday, November 8, 2026, 10:30 & 11:45 | sent score=94 — Confirmed via pptheatre.com and grabo.bg.
-- ✅ 2026-11-06 | Puppet Show: "Puss in Boots" (Котаракът в чизми) | event_this_weekend | Saturday, November 7, 2026, 11:00 | sent score=82 — Confirmed via pierrot-bg.com.
-- ✅ 2026-11-06 | Puppet Show: "Monkey Adventure" (Приключение с маймунка) | event_this_weekend | Sunday, November 8, 2026, 11:00 | sent score=84 — Confirmed via pierrot-bg.com and sofiastage.com.
-- · 2026-11-06 | Puppet Show: "The Little Bread Loaf" (Житената питка) | event_lookahead | Saturday, November 14, 2026, 10:30 & 11:45 | skipped score=90 — dropped: venue cap (2/venue); Confirmed via pptheatre.com and grabo.bg.
-- · 2026-11-06 | Puppet Show: "The Boy and the Wind" (Момче и вятър) | event_lookahead | Sunday, November 15, 2026, 10:30 & 11:45 | skipped score=87 — dropped: venue cap (2/venue); Confirmed via pptheatre.com and opoznaiplovdiv.bg.
-- ✅ 2026-11-06 | Young Wine Festival 2026 (Дефиле на младото вино) | event_lookahead | November 20–22, 2026 | sent score=75 — Confirmed via visitplovdiv.com and wineshowplovdiv.events.
-- ✅ 2026-11-06 | Puppet Show: "Winnie the Pooh" (Мечо Пух) | event_lookahead | Sunday, November 22, 2026, 10:30 & 11:45 | sent score=96 — Confirmed via pptheatre.com and how2plovdiv.com.
-- ✅ 2026-11-06 | Family Musical: "Christmas Glue for Fathers" (Лепило за брада) | event_lookahead | Saturday, November 28, 2026, 11:00 & 17:00 | sent score=86 — Confirmed via operaplovdiv.bg and eventim.bg.
-- ✅ 2026-11-06 | Kapana Christmas Market 2026 (Коледен базар Капана) | event_lookahead | December 4–27, 2026 | sent score=88 — Confirmed via report on marica.bg.
-- ✅ 2026-11-06 | Plovdiv Jazz Fest 2026 (Fall Edition) | event_this_weekend | Friday to Sunday, November 6–8, 2026 | sent score=85 — Confirmed via marica.bg and licatanagrada.com.
-- ✅ 2026-11-06 | Kinomania 2026 Opening Night: Martin McDonagh’s 'Wild Horse Nine' | event_thisweek | Thursday, November 12, 2026 at 18:30 | sent score=93 — Confirmed via kinolucky.com and kinomania.bg.
-- ✅ 2026-11-06 | Art Exhibition: 'The Beginning. 130 Years. Until Today.' | event_this_weekend | November 3 – December 2, 2026 | sent score=75 — Confirmed via galleryplovdiv.com and sbh.bg.
-- ✅ 2026-11-06 | Northern Carriageway Closure on Blvd. 'Bulgaria' | civic_notice | Sunday, November 8, 2026 (08:00 – 12:00) | sent score=75 — Confirmed via plovdiv.bg and marica.bg.
-- ✅ 2026-11-06 | Roadworks and Traffic Delays on Rogoshko Shose Artery | civic_notice | Ongoing throughout November 2026 | sent score=62 — Confirmed via marica.bg and myve.bg.
-- ✅ 2026-11-06 | Children's Railway "Zname na Mira" Miniature Train Ride | evergreen | Wednesday–Sunday, 10:30, 11:30, 12:15, 14:30, 15:30, 16:30 | sent score=95 — An authentic mini train journey through tunnels and over bridges up Youth Hill, followed by large…
-- ✅ 2026-11-06 | Krumovo Aviation Museum (Музей на авиацията) | evergreen | Wednesday–Sunday, 09:00–16:30 | sent score=88 — Only 15 minutes away, offering vast open lawns and dozens of real passenger planes, jets, and…
 _... and 150 earlier entries_
